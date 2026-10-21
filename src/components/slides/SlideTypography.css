@@ -1,0 +1,217 @@
+/* Slide 3: Typography Presentation Board */
+.behance-slide-typography {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  color: var(--color-pure-white);
+  padding: 40px 60px 60px 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Background Watermark Faint Letters */
+.typo-watermark-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.watermark-letter {
+  position: absolute;
+  font-family: var(--font-family-display);
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.035);
+  user-select: none;
+  line-height: 1;
+}
+
+.letter-left {
+  top: 15%;
+  left: -40px;
+  font-size: 380px;
+}
+
+.letter-bottom-1 {
+  bottom: 12%;
+  left: -20px;
+  font-size: 80px;
+}
+
+.letter-bottom-2 {
+  bottom: 2%;
+  left: -20px;
+  font-size: 80px;
+}
+
+/* Header */
+.typo-header {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 2;
+}
+
+.typo-title {
+  font-family: var(--font-family-display);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-pure-white);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.typo-chips-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.typo-chip {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #D1D5DB;
+  letter-spacing: 0.2px;
+}
+
+/* Giant Hero Wordmark Wrap */
+.typo-hero-wordmark-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 20px 0 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.typo-hero-wordmark-img {
+  width: 100%;
+  max-width: 680px;
+  height: auto;
+  display: block;
+}
+
+/* Typography Hierarchy Table */
+.typo-table-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 960px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.typo-table-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1.2fr 1.2fr 0.8fr;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color var(--transition-fast);
+}
+
+.typo-table-row:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.typo-col {
+  font-family: var(--font-family-display);
+  color: var(--color-pure-white);
+}
+
+.col-name {
+  letter-spacing: -0.3px;
+}
+
+.col-font {
+  font-size: 17px;
+  font-weight: 600;
+  color: #E5E7EB;
+}
+
+.col-weight {
+  font-size: 17px;
+  font-weight: 500;
+  color: #D1D5DB;
+}
+
+.col-size {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-pure-white);
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* Interactive Tester Bar */
+.typo-tester-bar {
+  margin-top: 36px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #111319;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 10px 18px;
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.tester-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-electric-lime);
+  white-space: nowrap;
+}
+
+.typo-tester-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-pure-white);
+  font-family: var(--font-family-display);
+  font-size: 15px;
+  width: 100%;
+}
+
+.typo-reset-btn {
+  font-size: 12px;
+  color: #9CA3AF;
+  text-decoration: underline;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .behance-slide-typography {
+    padding: 32px 20px;
+  }
+  .typo-table-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 8px;
+  }
+  .col-size {
+    text-align: left;
+    padding-right: 0;
+  }
+}

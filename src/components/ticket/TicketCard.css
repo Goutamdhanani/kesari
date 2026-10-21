@@ -1,0 +1,163 @@
+.hyper-ticket-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.12));
+}
+
+.hyper-ticket-card {
+  background-color: var(--color-pure-white);
+  border-radius: 32px;
+  padding: 16px 20px 22px 20px;
+  color: var(--color-true-black);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Header Art */
+.ticket-header-art {
+  width: 100%;
+  height: 110px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0042D9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.hyper-ticket-card:hover .ticket-art-img {
+  transform: scale(1.04);
+}
+
+/* Title */
+.ticket-event-title {
+  font-family: var(--font-family-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: #0A0A0A;
+  text-align: center;
+  margin: 14px 0 12px 0;
+  letter-spacing: -0.3px;
+}
+
+/* Perforation Divider with Notches */
+.ticket-perforation-divider {
+  position: relative;
+  margin: 12px -20px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.ticket-dashed-line {
+  width: 100%;
+  height: 0;
+  border-top: 2px dashed #93A6C8;
+  margin: 0 16px;
+}
+
+/* Notch Cutouts */
+.ticket-notch {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  z-index: 2;
+}
+
+.notch-left {
+  left: -12px;
+}
+
+.notch-right {
+  right: -12px;
+}
+
+/* Inherit parent background color for realistic hole punched effect */
+.bg-blue .ticket-notch {
+  background-color: var(--color-royal-blue);
+}
+
+.bg-pale .ticket-notch {
+  background-color: var(--color-pale-blue-bg);
+}
+
+.bg-dark .ticket-notch {
+  background-color: var(--color-true-black);
+}
+
+/* Metadata Grid */
+.ticket-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 16px;
+  padding: 6px 4px 6px 4px;
+}
+
+.ticket-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.text-right {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.ticket-meta-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8C93A4;
+  letter-spacing: 0.2px;
+}
+
+.ticket-meta-value {
+  font-family: var(--font-family-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: #121212;
+  letter-spacing: -0.2px;
+}
+
+/* Footer & Barcode */
+.ticket-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.ticket-hash {
+  font-family: var(--font-family-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #8C93A4;
+  letter-spacing: 0.4px;
+}
+
+.ticket-barcode-wrap {
+  width: 100%;
+  padding: 0 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.ticket-barcode-svg {
+  width: 100%;
+  max-width: 260px;
+  height: 48px;
+}

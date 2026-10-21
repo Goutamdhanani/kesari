@@ -1,0 +1,21 @@
+/* The supplied liquid-colour artwork is the material, across the whole app. */
+:root{color-scheme:dark;--canvas:#03131e;--ink:#f5f8fa;--muted:#c0cbd4;--accent:#b4dcff;--focus:#a8e4ff;--accent-ink:#fff;--accent-fill:linear-gradient(125deg,#c4efff33,#f6d0ff26 65%,#ffffff1f);--text-primary:var(--ink);--text-secondary:var(--muted);--glass-fill:linear-gradient(125deg,#ffffff12,#ffffff00 50%),#06132275;--glass-header:#04121a5c;--glass-line:#e4f1ff42;--glass-shadow:inset 0 1px 0 #ffffff38,inset 1px 0 0 #ffffff0d,inset 0 -1px 0 #00000019,0 12px 36px #00000020;--premium-ease:cubic-bezier(.22,1,.36,1);--header-offset:calc(96px + env(safe-area-inset-top,0px))}
+html,body{background:var(--canvas);color:var(--ink);scroll-padding-top:var(--header-offset)}
+body{overscroll-behavior-x:none}
+.memory-action{background:var(--accent-fill);color:var(--accent-ink)}
+.aurora-field{position:fixed;inset:0;overflow:hidden;pointer-events:none;contain:paint;z-index:0;background:var(--canvas)}
+.liquid-reference-art{display:block;position:absolute;inset:-3%;width:106%;height:106%;max-width:none;object-fit:cover;object-position:center 42%;animation:liquid-drift 38s ease-in-out infinite alternate;user-select:none;pointer-events:none}
+.aurora-field--landing{position:absolute;z-index:1;opacity:.65;mask-image:linear-gradient(#000,transparent 25%,transparent 59%,#000 88%);-webkit-mask-image:linear-gradient(#000,transparent 25%,transparent 59%,#000 88%)}
+@media(max-width:700px){.liquid-reference-art{object-fit:fill}}
+.aurora-field[data-paused=true] .liquid-reference-art{animation-play-state:paused}
+@keyframes liquid-drift{from{transform:translate3d(-.7%,0,0) scale(1.01)}to{transform:translate3d(.7%,-.6%,0) scale(1.04)}}
+.studio-tab-light{position:absolute;inset:-1px;border-radius:inherit;background:var(--accent-fill);border:1px solid #ecf7ff8a;box-shadow:inset 0 1px 0 #ffffff85,0 0 15px #abe4ff16;pointer-events:none}
+.studio-dock button>svg{position:relative;z-index:1}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+@media(hover:hover){.landing-menu-toggle:hover,.studio-dock button:hover{background:#ffffff1f}.memory-action:hover{filter:brightness(1.15)}}
+@media(prefers-reduced-motion:reduce){.liquid-reference-art{animation:none}.landing-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+@media(prefers-reduced-transparency:reduce){:root{--glass-fill:#0c1c2e;--glass-header:#091a28}.landing-glass-card,.landing-glass-card.selected,.landing-nav-panel,.studio-dock,.studio-screen .memory-event-open,.studio-screen .profile-summary,.studio-screen .profile-form,.studio-screen .live-booking-panel,.studio-screen .live-event-story,.studio-screen .memory-empty{background:#0c1c2e;backdrop-filter:none;-webkit-backdrop-filter:none}}
+@media(prefers-contrast:more){:root{--muted:#e4edf4;--glass-fill:#091a28e6}.landing-glass-card,.studio-dock,.landing-nav-panel{border-color:#e2efffaa}.studio-screen .memory-action{border:2px solid #b4ddff}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass-fill:#0c1c2ef0;--glass-header:#091a28ef}.landing-glass-card,.landing-glass-card.selected,.landing-nav-panel,.studio-dock,.studio-screen .memory-event-open{background:#0c1c2ef0}}
+@media print{.aurora-field{display:none!important}}

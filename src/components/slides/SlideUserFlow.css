@@ -1,0 +1,137 @@
+/* Slide 4: User Flow Presentation Board */
+.behance-slide-userflow {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #000000;
+  color: var(--color-pure-white);
+  padding: 40px 60px 60px 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Header */
+.flow-header {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 32px;
+}
+
+.flow-title {
+  font-family: var(--font-family-display);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-pure-white);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.flow-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  max-width: 480px;
+}
+
+.flow-view-toggle {
+  display: flex;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 3px;
+  gap: 4px;
+}
+
+.flow-toggle-chip {
+  background: transparent;
+  color: #9CA3AF;
+  border: none;
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.flow-toggle-chip:hover {
+  color: #FFFFFF;
+}
+
+.flow-toggle-chip.active {
+  background: var(--color-electric-lime);
+  color: #080808;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(218, 251, 113, 0.35);
+}
+
+.flow-statement {
+  font-family: var(--font-family-body);
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 420px;
+  text-align: right;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Diagram Stage */
+.flow-diagram-stage {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.flow-diagram-container {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  justify-content: center;
+}
+
+.flow-diagram-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Interactive hotspots */
+.flow-interactive-hotspot {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  transition: all var(--transition-fast);
+}
+
+.flow-interactive-hotspot:hover {
+  outline: 1.5px solid var(--color-electric-lime);
+  background: rgba(218, 251, 113, 0.12);
+}
+
+@media (max-width: 768px) {
+  .behance-slide-userflow {
+    padding: 32px 20px;
+  }
+  .flow-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

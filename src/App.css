@@ -1,0 +1,142 @@
+/* Root Application Layout */
+.hyperactive-showcase-root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-true-black);
+  color: var(--color-pure-white);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Main Presentation Surface */
+.presentation-canvas {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Continuous Stream (Behance Mode) */
+.behance-continuous-stream {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.stream-section {
+  width: 100%;
+  position: relative;
+}
+
+/* Single Slide Fullscreen Mode */
+.single-slide-fullscreen {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Standalone Mobile Canvas */
+.standalone-mobile-canvas {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 100px 20px;
+  background: radial-gradient(circle at 50% 30%, #171926 0%, #080808 85%);
+}
+
+/* Floating Discreet Slide Navigation Dock at Bottom Center */
+.floating-presentation-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-smooth);
+}
+
+.floating-presentation-dock.collapsed {
+  bottom: 20px;
+  right: 20px;
+  left: auto;
+  transform: none;
+}
+
+.dock-pill-bar {
+  background: rgba(15, 17, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.dock-btn {
+  background: transparent;
+  color: #9CA3AF;
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.dock-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-pure-white);
+}
+
+.dock-btn.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: var(--color-pure-white);
+}
+
+.dock-btn.lime-dock-btn.active {
+  background: var(--color-electric-lime);
+  color: #080808;
+  font-weight: 700;
+  box-shadow: var(--shadow-lime);
+}
+
+.dock-toggle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #181A24;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-pure-white);
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-fast);
+}
+
+.dock-toggle-btn:hover {
+  transform: scale(1.08);
+  background: #252838;
+}
+
+@media (max-width: 900px) {
+  .dock-pill-bar {
+    max-width: 92vw;
+    overflow-x: auto;
+    padding: 6px 8px;
+  }
+}
+/* The customer application; the original boards live under #/showcase. */
+.kesari-app{background:#e5edff;color:#10131c;min-height:100svh}.app-header{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:23px max(30px,calc((100vw - 1120px)/2));border-bottom:1px solid #cbd7ed80}.app-wordmark{color:#111b31;text-decoration:none;font:600 32px/.9 var(--font-family-display);letter-spacing:-1.7px}.app-wordmark span{display:block;font:500 6px var(--font-family-body);letter-spacing:1.5px;margin-top:7px}.app-header>nav{display:flex;gap:25px}.app-header>nav button{font-size:11px;color:#738096;padding:8px 0}.app-header>nav button.active{color:#0e36a9}.app-contact{display:flex;gap:12px;align-items:center;font-size:10px;background:#fff;border-radius:30px;padding:12px 17px;color:#151e30;text-decoration:none}.app-mobile-dock{display:none}.app-skip-link{position:absolute;left:15px;top:-80px;z-index:100;background:white;color:#111;padding:12px 20px;border-radius:20px}.app-skip-link:focus{top:12px}.back-to-landing{position:fixed;left:20px;top:18px;background:#dafb71;padding:12px 18px;border-radius:30px;color:#121620;text-decoration:none;font-size:12px;z-index:10000;box-shadow:0 4px 20px #0003}.preview-loading{display:grid;place-items:center;min-height:100vh;background:#0644d8;color:white}
+@media(max-width:700px){.app-header{padding:22px}.app-header>nav{display:none}.app-wordmark{font-size:28px}.app-mobile-dock{display:flex;position:fixed;bottom:calc(16px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);gap:7px;z-index:40;background:#e5edffdb;padding:7px;border:1px solid #fff;border-radius:50px;backdrop-filter:blur(20px);box-shadow:0 8px 30px #1d396520}.app-mobile-dock button{height:47px;width:47px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px;background:#10131c;color:white}.app-mobile-dock button.active{background:#dafb71;color:#111}.app-mobile-dock button>span{font-size:6px}.back-to-landing{font-size:10px;padding:10px 15px;top:12px;left:12px}}
+

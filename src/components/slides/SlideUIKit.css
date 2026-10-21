@@ -1,0 +1,136 @@
+/* Slide 1: UI Kit Master Presentation Board */
+.behance-slide-uikit {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-royal-blue);
+  color: var(--color-pure-white);
+  padding: 40px 60px 60px 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Header */
+.uikit-header {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.uikit-title {
+  font-family: var(--font-family-display);
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--color-pure-white);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.uikit-desc {
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 400px;
+  text-align: left;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* 3-Column Layout */
+.uikit-grid-layout {
+  width: 100%;
+  max-width: 1024px;
+  display: grid;
+  grid-template-columns: 280px 340px 320px;
+  gap: 28px;
+  justify-content: center;
+  align-items: start;
+}
+
+.uikit-col {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Dashed Bounding Box */
+.uikit-dashed-box {
+  border: 1.8px dashed rgba(255, 255, 255, 0.65);
+  border-radius: 28px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.uikit-dashed-box:hover {
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Specific Box Adjustments */
+.box-icons {
+  padding: 22px;
+}
+
+.box-upcoming-cards {
+  gap: 14px;
+  padding: 16px;
+}
+
+.box-ticket {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-profile-pill {
+  padding: 12px 16px;
+}
+
+.box-hero-card {
+  padding: 14px;
+}
+
+.box-controls-nav {
+  padding: 20px 18px;
+  gap: 18px;
+}
+
+.nav-container-center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .uikit-grid-layout {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .behance-slide-uikit {
+    padding: 32px 20px;
+  }
+  .uikit-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .uikit-grid-layout {
+    grid-template-columns: 1fr;
+  }
+}
