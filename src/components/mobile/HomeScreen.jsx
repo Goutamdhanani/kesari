@@ -126,10 +126,6 @@ export default function HomeScreen({
             setActiveTab(tab);
             if (tab === 'ticket') {
               onOpenTicket();
-            } else if (tab === 'search' || tab === 'calendar') {
-              onNavigate('discover');
-            } else if (tab === 'home') {
-              onNavigate('onboarding');
             }
           }} 
         />

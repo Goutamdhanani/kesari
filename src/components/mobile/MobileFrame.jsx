@@ -1,21 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HomeScreen from './HomeScreen';
 import OnboardingScreen from './OnboardingScreen';
 import TicketScreen from './TicketScreen';
 import EventDetailScreen from './EventDetailScreen';
 import QRModal from './QRModal';
-import AppIcon from '../common/AppIcon';
-import { EventsPage, ProfilePage } from '../pages/MemoryPages';
 import './MobileFrame.css';
 
-export default function MobileFrame({ initialScreen = 'onboarding', initialEventId = 'rock', onEventSelected = () => {} }) {
+export default function MobileFrame({ 
+  initialScreen = 'onboarding',
+  initialEventId = 'rock',
+  onEventSelected = () => {}
+}) {
   const [currentScreen, setCurrentScreen] = useState(initialScreen);
   const [selectedEventId, setSelectedEventId] = useState(initialEventId);
   const [showQRModal, setShowQRModal] = useState(false);
-  const [previewProfile, setPreviewProfile] = useState({ name: '', email: '', city: 'Bengaluru' });
-  const [previewSaved, setPreviewSaved] = useState([]);
-  useEffect(() => { setCurrentScreen(initialScreen); }, [initialScreen]);
-  useEffect(() => { setSelectedEventId(initialEventId); }, [initialEventId]);
+
+  useEffect(() => {
+    setCurrentScreen(initialScreen);
+  }, [initialScreen]);
+
+  useEffect(() => {
+    setSelectedEventId(initialEventId);
+  }, [initialEventId]);
 
   const handleSelectEvent = (id) => {
     setSelectedEventId(id);
@@ -38,10 +44,8 @@ export default function MobileFrame({ initialScreen = 'onboarding', initialEvent
           className={`switch-tab-btn ${currentScreen === 'onboarding' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('onboarding')}
         >
-          Landing
+          🚀 Onboarding
         </button>
-        <button className={`switch-tab-btn ${currentScreen === 'discover' ? 'active' : ''}`} onClick={() => setCurrentScreen('discover')}>Discover</button>
-        <button className={`switch-tab-btn ${currentScreen === 'profile' ? 'active' : ''}`} onClick={() => setCurrentScreen('profile')}>My Profile</button>
         <button 
           className={`switch-tab-btn ${currentScreen === 'ticket' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('ticket')}
@@ -88,17 +92,13 @@ export default function MobileFrame({ initialScreen = 'onboarding', initialEvent
             <HomeScreen 
               onSelectEvent={handleSelectEvent}
               onOpenTicket={() => setCurrentScreen('ticket')}
-              onNavigate={setCurrentScreen}
               onOpenNotifications={() => alert("Gregory, you have 1 unread notification: Doors for Jazz & Blues Festival open at 15:00 PM!")}
             />
           )}
 
           {currentScreen === 'onboarding' && (
-            <OnboardingScreen onNavigate={id => setCurrentScreen({ events: 'home', discover: 'discover', profile: 'profile', tickets: 'ticket' }[id] || 'home')} onFinish={() => setCurrentScreen('home')} />
+            <OnboardingScreen onFinish={() => setCurrentScreen('home')} />
           )}
-
-          {currentScreen === 'discover' && <EventsPage discover onHome={() => setCurrentScreen('onboarding')} onSelect={() => setCurrentScreen('home')} saved={previewSaved} onSave={id => setPreviewSaved(previous => previous.includes(id) ? previous.filter(x => x !== id) : [...previous, id])} />}
-          {currentScreen === 'profile' && <ProfilePage onHome={() => setCurrentScreen('onboarding')} profile={previewProfile} onSave={value => { setPreviewProfile(value); return true; }} saved={previewSaved} onEvents={() => setCurrentScreen('home')} />}
 
           {currentScreen === 'ticket' && (
             <TicketScreen 
