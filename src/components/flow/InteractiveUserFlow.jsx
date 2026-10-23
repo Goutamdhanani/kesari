@@ -113,8 +113,8 @@ export default function InteractiveUserFlow({ onNavigateScreen = () => {} }) {
       >
         <defs>
           <linearGradient id="edgeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#DAFB71" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0042D9" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#FF8248" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#292522" stopOpacity="0.6" />
           </linearGradient>
           <filter id="nodeGlow" x="-20%" y="-20%" width="140%" height="140%">
             <feGaussianBlur stdDeviation="6" result="blur" />

@@ -21,7 +21,7 @@
 }
 
 .flow-active-pulse {
-  filter: drop-shadow(0 0 6px #DAFB71);
+  filter: drop-shadow(0 0 6px #FF8248);
   stroke-dasharray: 8 4;
   animation: flowPulseAnim 1.2s linear infinite;
 }
@@ -64,10 +64,10 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 
-/* Root Node: Splash Screen (Electric Lime) */
+/* Root Node: Splash Screen (Stage Orange) */
 .pill-root-lime {
-  background-color: #DAFB71;
-  color: #080808;
+  background-color: #FF8248;
+  color: #0A0A0A;
   padding: 8px 24px;
   font-family: var(--font-family-display);
   font-size: 13.5px;

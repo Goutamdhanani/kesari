@@ -6,10 +6,10 @@ export default function SlideColorPalette() {
   const [copiedHex, setCopiedHex] = useState(null);
 
   const colors = [
-    { hex: "#EE3D5A", name: "Crimson / Coral", role: "Urgent Alerts, Badges & Music Accents" },
-    { hex: "#DAFB71", name: "Electric Lime", role: "High-Priority Action & Active Indicators" },
-    { hex: "#80B0EC", name: "Soft Sky Blue", role: "Subtle Interfaces, Dividers & Highlights" },
-    { hex: "#FFFFFF", name: "Pure White", role: "Content Cards, Tickets & High-Contrast Typography" }
+    { hex: "#0A0A0A", name: "Obsidian", role: "Primary Deep Canvas & Base Contrast" },
+    { hex: "#F5F0E8", name: "Warm ivory", role: "Headlines, Editorial Typography & Crisp Elements" },
+    { hex: "#FF8248", name: "Stage orange", role: "Primary CTAs, Active States & Stage Backlight Glow" },
+    { hex: "#292522", name: "Charcoal", role: "Card Surfaces, Navigation Bars & Elevated Panels" }
   ];
 
   const handleCopyHex = (hex) => {
@@ -30,48 +30,73 @@ export default function SlideColorPalette() {
         <h2 className="colors-title">Color Palette</h2>
         <div className="colors-header-right">
           <div className="colors-thumb-wrap">
-            <img src="/assets/color_capsule.png" alt="3D Capsule Asset" className="colors-thumb-img" />
+            <img src="/assets/kesari_logo.png" alt="KESARI Logo" className="colors-thumb-img" />
           </div>
           <p className="colors-statement">
-            We use a balanced mix of primary, secondary, and accent colors to create a clear visual hierarchy and an emotionally high experience.
+            A handcrafted luxury palette rooted in Obsidian, Warm Ivory, Stage Orange, and Charcoal for an immersive, tactile live experience.
           </p>
         </div>
       </div>
 
-      {/* Main Center Visualization: Authentic 4-color Organic Swirl Donut */}
+      {/* Recommended Color Palette Swatch Bar */}
+      <div className="palette-swatches-grid">
+        {colors.map((c) => (
+          <motion.div 
+            key={c.hex}
+            className="palette-swatch-card"
+            whileHover={{ y: -4, scale: 1.02 }}
+            onClick={() => handleCopyHex(c.hex)}
+            title={`Click to copy ${c.hex}`}
+          >
+            <div 
+              className="palette-swatch-pill" 
+              style={{ 
+                backgroundColor: c.hex, 
+                border: c.hex === '#0A0A0A' ? '1px solid rgba(245, 240, 232, 0.2)' : 'none' 
+              }} 
+            />
+            <div className="palette-swatch-meta">
+              <span className="swatch-name">{c.name}</span>
+              <span className="swatch-hex font-mono">{c.hex}</span>
+              <span className="swatch-role">{c.role}</span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Main Center Visualization: Pinwheel Donut */}
       <div className="colors-center-stage">
         <motion.div 
           className="pinwheel-container"
           whileHover={{ scale: 1.02 }}
           transition={{ type: 'spring', stiffness: 200, damping: 15 }}
         >
-          {/* Authentic High-Resolution Donut Artwork with organic swirl petals and frosted badges */}
           <img 
             src="/assets/donut_wheel_perfect.png" 
             alt="Color Palette Wheel" 
             className="pinwheel-artwork-img"
           />
 
-          {/* Interactive Clickable Hotspots over the 4 Frosted Badges */}
+          {/* Interactive Clickable Hotspots */}
           <button 
             className="badge-click-hotspot hotspot-lime" 
-            onClick={() => handleCopyHex('#DAFB71')} 
-            title="Click to copy #DAFB71"
+            onClick={() => handleCopyHex('#FF8248')} 
+            title="Click to copy #FF8248 (Stage orange)"
           />
           <button 
             className="badge-click-hotspot hotspot-crimson" 
-            onClick={() => handleCopyHex('#EE3D5A')} 
-            title="Click to copy #EE3D5A"
+            onClick={() => handleCopyHex('#FF8248')} 
+            title="Click to copy #FF8248"
           />
           <button 
             className="badge-click-hotspot hotspot-sky" 
-            onClick={() => handleCopyHex('#80B0EC')} 
-            title="Click to copy #80B0EC"
+            onClick={() => handleCopyHex('#F5F0E8')} 
+            title="Click to copy #F5F0E8 (Warm ivory)"
           />
           <button 
             className="badge-click-hotspot hotspot-white" 
-            onClick={() => handleCopyHex('#FFFFFF')} 
-            title="Click to copy #FFFFFF"
+            onClick={() => handleCopyHex('#292522')} 
+            title="Click to copy #292522 (Charcoal)"
           />
         </motion.div>
 

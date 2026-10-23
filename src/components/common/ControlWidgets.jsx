@@ -33,7 +33,7 @@ export function IconGridMatrix() {
           key={item.id}
           className={`matrix-icon-btn ${activeIcon === item.id ? 'active' : ''}`}
           onClick={() => setActiveIcon(item.id)}
-          whileHover={{ scale: 1.1, backgroundColor: activeIcon === item.id ? '#DAFB71' : '#F8FAFC' }}
+          whileHover={{ scale: 1.1, backgroundColor: activeIcon === item.id ? '#FF8248' : '#F8FAFC' }}
           whileTap={{ scale: 0.92 }}
           title={item.name}
         >

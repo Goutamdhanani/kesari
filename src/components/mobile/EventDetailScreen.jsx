@@ -51,7 +51,7 @@ export default function EventDetailScreen({
       particleCount: 80,
       spread: 60,
       origin: { y: 0.8 },
-      colors: ['#DAFB71', '#0042D9', '#EE3D5A', '#FFFFFF']
+      colors: ['#FF8248', '#F5F0E8', '#292522', '#FFB37C']
     });
     setTimeout(() => {
       onBookSuccess();

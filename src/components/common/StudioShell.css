@@ -14,7 +14,7 @@
 .studio-screen input::placeholder{color:#b9c8dd;opacity:1}
 .studio-screen .memory-filters{gap:7px;margin:16px 0 20px;padding:2px 0 6px;display:flex;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
 .studio-screen .memory-filters button{flex-shrink:0;min-height:38px;padding:9px 15px;border:1px solid var(--studio-line);color:#e2eafa;background:#ffffff0c;font-size:11px;white-space:nowrap}
-.studio-screen .memory-filters button.active{background:#dafb71;border-color:#dafb71;color:#182126}
+.studio-screen .memory-filters button.active{background:#FF8248;border-color:#FF8248;color:#182126}
 .studio-screen .memory-events-grid{grid-template-columns:minmax(0,1fr);gap:18px}
 .studio-screen .memory-event{height:310px;border:1px solid var(--studio-line);border-radius:29px;background:#102342}
 .studio-screen .memory-event::after{background:linear-gradient(transparent,#08172a99)}
@@ -25,12 +25,12 @@
 .studio-screen .memory-event-open>small{font-size:10px;opacity:1;color:#e0eafa}
 .studio-screen .memory-event-open>h2{font:500 24px/1.08 var(--font-family-display);letter-spacing:-.5px;margin-top:8px}
 .studio-screen .memory-event-bottom{font-size:12px;margin-top:12px;color:#fff}
-.studio-screen .memory-event-bottom>i{height:37px;width:37px;background:#dafb71}
-.studio-screen .memory-action{font:500 12px var(--font-family-display);border:1px solid #dafb71;min-height:43px;gap:10px;padding:13px 18px;background:#dafb71;color:#172221;border-radius:30px;max-width:100%}
+.studio-screen .memory-event-bottom>i{height:37px;width:37px;background:#FF8248}
+.studio-screen .memory-action{font:500 12px var(--font-family-display);border:1px solid #FF8248;min-height:43px;gap:10px;padding:13px 18px;background:#FF8248;color:#172221;border-radius:30px;max-width:100%}
 .studio-screen .memory-action svg{flex-shrink:0}
 .studio-screen .memory-empty,.studio-screen .profile-summary,.studio-screen .profile-form,.studio-screen .live-booking-panel,.studio-screen .live-event-story{background:linear-gradient(135deg,#d5e5ff20,#b9dcff10);border:1px solid var(--studio-line);border-radius:28px;backdrop-filter:blur(18px);box-shadow:0 10px 25px #06172c16}
 .studio-screen .memory-empty{margin:20px 0 0;padding:36px 20px;gap:17px;max-width:none}
-.studio-screen .memory-empty>svg{box-sizing:content-box;padding:18px;background:#dafb71;color:#182126;border-radius:24px}
+.studio-screen .memory-empty>svg{box-sizing:content-box;padding:18px;background:#FF8248;color:#182126;border-radius:24px}
 .studio-screen .memory-empty h2{font:500 25px/1.1 var(--font-family-display);letter-spacing:-.5px}
 .studio-screen .memory-empty p,.studio-screen .memory-muted{color:var(--studio-muted);font-size:11px!important;line-height:1.8}
 .studio-screen .memory-overline{color:#c2d4ed;font-size:9px;letter-spacing:1.5px}
@@ -41,7 +41,7 @@
 .studio-screen .profile-summary h2{margin:0;font:500 23px var(--font-family-display);letter-spacing:-.5px;overflow-wrap:anywhere;min-width:0}
 .studio-screen .profile-summary>p{margin:0;color:var(--studio-muted);font-size:12px}
 .studio-screen .profile-stat{grid-column:1/-1;margin:14px 0;gap:12px}
-.studio-screen .profile-stat strong{font-size:29px;color:#dafb71}
+.studio-screen .profile-stat strong{font-size:29px;color:#FF8248}
 .studio-screen .profile-stat span{font-size:11px;color:var(--studio-muted)}
 .studio-screen .profile-summary .memory-action{grid-column:1/-1;justify-self:start}
 .studio-screen .profile-form{padding:21px}
@@ -49,8 +49,8 @@
 .studio-screen .profile-form label,.studio-screen .event-booking-form label{font-size:12px;color:#e3ecfa;margin:17px 0}
 .studio-screen .profile-form input,.studio-screen .event-booking-form input,.studio-screen .event-booking-form select{width:100%;border:1px solid #ffffff32;border-radius:16px;padding:13px 14px;margin-top:8px;background:#ffffff0e;color:white;font:400 13px var(--font-family-display)}
 .studio-screen select option{background:#183556;color:white}
-.studio-screen input{accent-color:#dafb71}
-.studio-screen .profile-save-status{color:#dafb71;font-size:11px}
+.studio-screen input{accent-color:#FF8248}
+.studio-screen .profile-save-status{color:#FF8248;font-size:11px}
 .studio-screen .live-event-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
 .studio-screen .live-event-layout>*,.studio-screen .profile-layout>*,.studio-screen .live-tickets-grid>*{min-width:0}
 .studio-screen .live-event-story{padding:14px}
@@ -60,7 +60,7 @@
 .studio-screen .live-event-subtitle{font:500 22px/1.1 var(--font-family-display);letter-spacing:-.5px;margin:14px 3px}
 .studio-screen .live-event-description{color:#d0dcec;font-size:12px;line-height:1.8;margin:15px 3px}
 .studio-screen .memory-save{color:#e6efff;font-size:12px;padding:8px 3px}
-.studio-screen .memory-save[aria-pressed=true]{color:#dafb71}
+.studio-screen .memory-save[aria-pressed=true]{color:#FF8248}
 .studio-screen .live-booking-panel{padding:21px;scroll-margin-top:12px}
 .studio-screen .booking-meta{font-size:11px;color:#d1e0f5;align-items:flex-start;gap:8px}
 .studio-screen .booking-meta svg{flex-shrink:0;margin-top:2px}
@@ -91,15 +91,15 @@
 .studio-screen .live-ticket .payment-code>.payment-qr{margin:0;width:100%;height:100%}
 .studio-screen .live-ticket>small{color:#738198;font:10px var(--font-family-mono);overflow-wrap:anywhere;border-top:1px dashed #bbc9de;padding-top:17px;margin-top:17px}
 .studio-screen .ticket-status{font-size:10px;color:#254466;background:#e0e9fa;padding:8px 13px;margin-top:16px}
-.studio-screen .ticket-status.confirmed{background:#dafb71;color:#263424}
+.studio-screen .ticket-status.confirmed{background:#FF8248;color:#263424}
 .studio-screen .ticket-status.rejected{background:#ffe3eb;color:#a32c51}
-.studio-screen .memory-page button:focus-visible,.studio-screen .memory-page a:focus-visible,.studio-screen .memory-page input:focus-visible,.studio-screen .memory-page select:focus-visible{outline:2px solid #dafb71;outline-offset:3px}
-.studio-screen .landing-brand:focus-visible,.studio-screen .landing-menu-toggle:focus-visible{outline:2px solid #dafb71;outline-offset:3px}
+.studio-screen .memory-page button:focus-visible,.studio-screen .memory-page a:focus-visible,.studio-screen .memory-page input:focus-visible,.studio-screen .memory-page select:focus-visible{outline:2px solid #FF8248;outline-offset:3px}
+.studio-screen .landing-brand:focus-visible,.studio-screen .landing-menu-toggle:focus-visible{outline:2px solid #FF8248;outline-offset:3px}
 .studio-dock{position:absolute;z-index:4;bottom:2.2%;left:5%;right:5%;height:8.5%;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:6px 8px;border:1px solid #ffffff29;border-radius:40px;background:#dceaff17;backdrop-filter:blur(22px);box-shadow:0 8px 30px #08193320}
 .studio-dock button{position:relative;display:grid;place-items:center;height:41px;width:41px;flex:0 0 41px;border-radius:50%;color:#e6f0ff;background:#0c1d356e}
-.studio-dock button.active{background:#dafb71;color:#1a282b}
+.studio-dock button.active{background:#FF8248;color:#1a282b}
 .studio-dock button>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.studio-dock button:focus-visible{outline:2px solid #dafb71;outline-offset:2px}
+.studio-dock button:focus-visible{outline:2px solid #FF8248;outline-offset:2px}
 @keyframes studio-page-enter{from{opacity:.5;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:500px){.studio-screen{border-radius:12cqw}}
 @media(max-height:700px){.studio-content{inset:19% 0 13%}.studio-dock{height:9%;bottom:2%}.studio-dock button{height:35px;width:35px;flex-basis:35px}.studio-screen .memory-page-heading h1{font-size:25px}}

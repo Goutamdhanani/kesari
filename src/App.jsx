@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MOCK_EVENTS, CITIES, GENRES, INITIAL_TICKETS } from './data/mockEvents';
 import WebHeader from './components/web/WebHeader';
 import HeroSection from './components/web/HeroSection';
+import StudioBanner from './components/web/StudioBanner';
 import EventCatalog from './components/web/EventCatalog';
 import TicketWalletView from './components/web/TicketWalletView';
 import EventModal from './components/web/EventModal';
@@ -190,13 +191,16 @@ export default function App() {
           <div className="web-explore-view">
             {/* Hero Concert Spotlight Banner */}
             {!searchQuery && (
-              <HeroSection 
-                featuredEvent={featuredEvent}
-                onBookNow={handleBookNow}
-                onToggleFavorite={handleToggleFavorite}
-                isFavorite={favorites.includes(featuredEvent.id)}
-                onSelectEvent={handleOpenEvent}
-              />
+              <>
+                <HeroSection 
+                  featuredEvent={featuredEvent}
+                  onBookNow={handleBookNow}
+                  onToggleFavorite={handleToggleFavorite}
+                  isFavorite={favorites.includes(featuredEvent.id)}
+                  onSelectEvent={handleOpenEvent}
+                />
+                <StudioBanner onBookStudio={() => handleOpenEvent(featuredEvent)} />
+              </>
             )}
 
             {/* Catalog Grid with Filters & Sort */}

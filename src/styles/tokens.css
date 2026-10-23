@@ -1,30 +1,39 @@
 :root {
-  /* KESARI Premium Brand Palette - Warm Saffron & Deep Obsidian */
-  --color-brand-saffron: #E07A28;
-  --color-brand-saffron-hover: #F08B32;
-  --color-brand-saffron-subtle: rgba(224, 122, 40, 0.12);
-  --color-brand-saffron-glow: rgba(224, 122, 40, 0.22);
-  --color-brand-gold: #DDA853;
+  /* KESARI Official Studio Palette */
+  --color-obsidian: #0A0A0A;
+  --color-warm-ivory: #F5F0E8;
+  --color-stage-orange: #FF8248;
+  --color-stage-orange-hover: #FF9866;
+  --color-charcoal: #292522;
+  --color-charcoal-elevated: #36312C;
+  --color-charcoal-border: rgba(245, 240, 232, 0.1);
 
-  /* Aliased for backwards-compatibility in component CSS */
-  --color-royal-blue: #E07A28;
-  --color-royal-blue-deep: #C76518;
-  --color-electric-lime: #E07A28;
-  --color-lime-glow: rgba(224, 122, 40, 0.22);
+  /* Primary Brand Tokens */
+  --color-brand-saffron: #FF8248;
+  --color-brand-saffron-hover: #FF9866;
+  --color-brand-saffron-subtle: rgba(255, 130, 72, 0.14);
+  --color-brand-saffron-glow: rgba(255, 130, 72, 0.32);
+  --color-brand-gold: #FFB37C;
+
+  /* Aliased for component CSS backwards-compatibility */
+  --color-royal-blue: #FF8248;
+  --color-royal-blue-deep: #E66A30;
+  --color-electric-lime: #FF8248;
+  --color-lime-glow: rgba(255, 130, 72, 0.32);
   --color-crimson: #E05342;
-  --color-sky-blue: #DDA853;
-  --color-pale-blue-bg: #1A1C24;
+  --color-sky-blue: #FFB37C;
+  --color-pale-blue-bg: #292522;
 
   /* Surfaces & Neutrals */
-  --color-pure-white: #FFFFFF;
-  --color-true-black: #0A0B0E;
-  --color-card-dark: #12141A;
-  --color-card-surface-elevated: #181B23;
-  --color-muted-gray: #8A90A2;
-  --color-light-gray: #181A22;
-  --color-border-subtle: rgba(255, 255, 255, 0.08);
-  --color-border-focus: rgba(224, 122, 40, 0.4);
-  --color-dashed-line: rgba(255, 255, 255, 0.2);
+  --color-pure-white: #F5F0E8;
+  --color-true-black: #0A0A0A;
+  --color-card-dark: #292522;
+  --color-card-surface-elevated: #36312C;
+  --color-muted-gray: #A8A29A;
+  --color-light-gray: #292522;
+  --color-border-subtle: rgba(245, 240, 232, 0.1);
+  --color-border-focus: rgba(255, 130, 72, 0.5);
+  --color-dashed-line: rgba(245, 240, 232, 0.2);
 
   /* Typography */
   --font-family-display: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;

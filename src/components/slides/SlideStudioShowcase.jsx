@@ -25,8 +25,8 @@ export default function SlideStudioShowcase({ onNavigateHome = () => {} }) {
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
               <img 
-                src="/assets/clean_studio_slide.jpg" 
-                alt="3D Studio Showcase" 
+                src="/assets/kesari_studio.jpg" 
+                alt="KESARI Live Studio" 
                 className="studio-mockup-img" 
               />
 

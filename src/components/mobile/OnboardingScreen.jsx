@@ -92,7 +92,7 @@ export default function OnboardingScreen({ onFinish = () => {} }) {
         </AnimatePresence>
 
         <div className="onboarding-translucent-card">
-          <AppIcon name="sparkles" size={16} color="#DAFB71" />
+          <AppIcon name="sparkles" size={16} color="#FF8248" />
           <span>{current.feature}</span>
         </div>
 
