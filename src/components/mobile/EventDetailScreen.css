@@ -224,21 +224,21 @@
   align-items: center;
 }
 
-.tier-name {
+.mobile-event-detail .tier-name {
   font-family: var(--font-family-display);
   font-size: 14px;
   font-weight: 700;
   color: #0E0F14;
 }
 
-.tier-price {
+.mobile-event-detail .tier-price {
   font-family: var(--font-family-display);
   font-size: 15px;
   font-weight: 700;
   color: #0042D9;
 }
 
-.tier-desc {
+.mobile-event-detail .tier-desc {
   font-size: 11px;
   color: #6B7280;
 }

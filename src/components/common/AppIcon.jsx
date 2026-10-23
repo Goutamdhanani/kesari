@@ -24,8 +24,8 @@ import {
   Check
 } from 'lucide-react';
 
-export default function AppIcon({ name, size = 20, color = 'currentColor', strokeWidth = 2, className = '' }) {
-  const iconProps = { size, color, strokeWidth, className };
+export default function AppIcon({ name, size = 20, color = 'currentColor', fill = 'none', strokeWidth = 2, className = '' }) {
+  const iconProps = { size, color, fill, strokeWidth, className };
 
   switch (name) {
     case 'home':

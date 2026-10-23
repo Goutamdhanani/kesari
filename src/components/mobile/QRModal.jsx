@@ -3,8 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import './QRModal.css';
 
-export default function QRModal({ isOpen, onClose = () => {} }) {
+export default function QRModal({ isOpen, onClose = () => {}, ticket = null }) {
   if (!isOpen) return null;
+
+  const eventTitle = ticket?.eventTitle || 'Gate Entry Pass';
+  const location = ticket?.location || 'Riverfront Park Main Gate A';
+  const passHash = ticket?.hash || '0x487Fh3kmjn3...35620';
 
   return (
     <AnimatePresence>
@@ -27,11 +31,11 @@ export default function QRModal({ isOpen, onClose = () => {} }) {
           <div className="sheet-drag-handle"></div>
 
           <div className="qr-modal-header">
-            <h3 className="qr-modal-title">Gate Entry Pass</h3>
+            <h3 className="qr-modal-title">{eventTitle}</h3>
             <button className="qr-modal-close" onClick={onClose} aria-label="Close">✕</button>
           </div>
 
-          <p className="qr-modal-subtitle">Hold phone near scanner at Riverfront Park Main Gate A</p>
+          <p className="qr-modal-subtitle">Hold phone near scanner at {location}</p>
 
           {/* QR Code Container */}
           <div className="qr-code-scanner-box">
@@ -91,7 +95,7 @@ export default function QRModal({ isOpen, onClose = () => {} }) {
             </div>
             <div className="qr-meta-row">
               <span className="qr-meta-label">Pass ID</span>
-              <span className="qr-meta-val font-mono">0x487Fh3kmjn3...35620</span>
+              <span className="qr-meta-val font-mono">{passHash}</span>
             </div>
             <div className="qr-meta-row">
               <span className="qr-meta-label">Status</span>
