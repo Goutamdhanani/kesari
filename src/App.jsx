@@ -8,6 +8,7 @@ import EventModal from './components/web/EventModal';
 import NotificationDrawer from './components/web/NotificationDrawer';
 import WebFooter from './components/web/WebFooter';
 import ToastSystem from './components/web/ToastSystem';
+import MobileBottomNav from './components/web/MobileBottomNav';
 import MobileFrame from './components/mobile/MobileFrame';
 import QRModal from './components/mobile/QRModal';
 import SlideUIKit from './components/slides/SlideUIKit';
@@ -454,6 +455,19 @@ export default function App() {
       <ToastSystem 
         toasts={toasts}
         onDismiss={handleDismissToast}
+      />
+
+      {/* 7. Mobile Sticky Bottom Navigation Dock */}
+      <MobileBottomNav 
+        activeView={activeView}
+        onSelectView={(v) => {
+          setActiveView(v);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        ticketCount={tickets.length}
+        savedCount={favorites.length}
+        unreadCount={unreadCount}
+        onOpenNotifications={() => setNotificationDrawerOpen(true)}
       />
 
     </div>

@@ -48,7 +48,8 @@ export default function HomeScreen({
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
     >
-      {/* Top Header / Profile Bar */}
+      <div className="mobile-home-scroll-container">
+        {/* Top Header / Profile Bar */}
       <header className="mobile-home-header">
         <div className="header-user-badge">
           <button className="user-avatar-circle" title="My profile" aria-label="My profile" onClick={() => onNavigate('profile')}>
@@ -117,9 +118,10 @@ export default function HomeScreen({
           ))}
         </div>
       </section>
+      </div>
 
       {/* Floating Bottom Navigation Bar */}
-        <div className="mobile-bottom-nav-wrapper">
+      <div className="mobile-bottom-nav-wrapper">
         <FloatingBottomNav 
           activeTab={activeTab} 
           onTabChange={(tab) => {

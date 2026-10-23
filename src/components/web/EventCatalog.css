@@ -417,12 +417,61 @@
   }
 }
 
-@media (max-width: 680px) {
-  .events-responsive-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 768px) {
+  .web-catalog-section {
+    padding: 16px 14px 40px 14px;
   }
   .catalog-header-row {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
+  }
+  .section-title {
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .catalog-sort-wrapper {
+    width: 100%;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 12px;
+    border-radius: 12px;
+  }
+  .genre-filter-scroller {
+    margin: 0 -14px 14px -14px;
+    padding: 4px 14px 12px 14px;
+    gap: 8px;
+  }
+  .genre-pill-btn {
+    padding: 8px 14px;
+    font-size: 12px;
+    gap: 6px;
+  }
+  .events-responsive-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .card-media-wrap {
+    height: 190px;
+  }
+  .card-body-content {
+    padding: 14px 16px 16px 16px;
+    gap: 10px;
+  }
+  .card-event-title {
+    font-size: 18px;
+    line-height: 1.25;
+  }
+  .card-bottom-action-row {
+    padding-top: 10px;
+  }
+  .card-book-cta-btn {
+    padding: 10px 16px;
+    font-size: 13px;
   }
 }

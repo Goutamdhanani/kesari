@@ -4,12 +4,18 @@
   height: 100%;
   background-color: var(--color-pale-blue-bg);
   color: var(--color-true-black);
-  padding: 54px 18px 90px 18px;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+}
+
+.mobile-home-scroll-container {
+  width: 100%;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 50px 18px 85px 18px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header */
@@ -17,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .header-user-badge {
@@ -92,21 +98,21 @@
 
 /* Greeting */
 .mobile-greeting-section {
-  margin-bottom: 20px;
+  margin-bottom: 14px;
 }
 
 .greeting-headline {
   font-family: var(--font-family-display);
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 700;
   color: #0C0D12;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.6px;
   line-height: 1.15;
-  margin: 0 0 4px 0;
+  margin: 0 0 3px 0;
 }
 
 .greeting-subtext {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #6B7280;
   letter-spacing: -0.1px;
@@ -115,14 +121,14 @@
 
 /* Upcoming Card Section */
 .mobile-upcoming-section {
-  margin-bottom: 28px;
+  margin-bottom: 18px;
 }
 
 /* Popular Now Section */
 .mobile-popular-section {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   flex-grow: 1;
 }
 
@@ -168,18 +174,18 @@
 
 .popular-card-item {
   flex-shrink: 0;
-  width: 270px;
+  width: 250px;
   scroll-snap-align: start;
 }
 
 /* Floating Bottom Navigation Wrapper */
 .mobile-bottom-nav-wrapper {
   position: absolute;
-  bottom: 20px;
+  bottom: 22px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 10;
+  z-index: 40;
   pointer-events: auto;
 }

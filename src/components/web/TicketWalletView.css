@@ -269,5 +269,39 @@
 @media (max-width: 900px) {
   .wallet-main-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .wallet-container {
+    padding: 16px 14px 40px 14px;
+  }
+  .section-title {
+    font-size: 24px;
+    letter-spacing: -0.4px;
+    margin-bottom: 4px;
+  }
+  .section-subtitle {
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+  .wallet-stage-ticket-display {
+    padding: 24px 14px;
+    border-radius: 24px;
+  }
+  .ticket-elevation-mount {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .wallet-action-primary-btn {
+    padding: 14px;
+    font-size: 14px;
+  }
+  .wallet-action-secondary-btn {
+    padding: 12px;
+    font-size: 13px;
   }
 }

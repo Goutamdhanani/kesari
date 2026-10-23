@@ -1,7 +1,7 @@
 .event-modal-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 500;
+  z-index: 2000;
   background: rgba(0, 0, 0, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -442,4 +442,69 @@
 .modal-confirm-checkout-btn:disabled {
   opacity: 0.7;
   cursor: wait;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .event-modal-backdrop {
+    padding: 0;
+    align-items: flex-end;
+    z-index: 2000;
+  }
+  .event-modal-card {
+    max-width: 100%;
+    border-radius: 24px 24px 0 0;
+    max-height: 90vh;
+    border-bottom: none;
+  }
+  .modal-banner-art {
+    height: 140px;
+  }
+  .modal-close-btn {
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+  }
+  .modal-body-scroll {
+    padding: 16px 16px 24px 16px;
+    gap: 16px;
+  }
+  .modal-title {
+    font-size: 22px;
+    letter-spacing: -0.4px;
+  }
+  .modal-date-venue-row {
+    font-size: 12px;
+  }
+  .modal-artist-chips-row {
+    gap: 8px;
+  }
+  .modal-artist-chip {
+    padding: 6px 12px;
+  }
+  .ticket-tier-option {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+  .tier-name {
+    font-size: 13px;
+  }
+  .tier-price {
+    font-size: 14px;
+  }
+  .tier-desc {
+    font-size: 11px;
+  }
+  .modal-checkout-footer {
+    padding: 14px 16px max(14px, env(safe-area-inset-bottom)) 16px;
+  }
+  .checkout-big-price {
+    font-size: 20px;
+  }
+  .modal-confirm-checkout-btn {
+    padding: 12px 18px;
+    font-size: 13px;
+    gap: 6px;
+  }
 }

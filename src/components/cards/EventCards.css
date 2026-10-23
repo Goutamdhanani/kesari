@@ -141,13 +141,13 @@
   position: relative;
   width: 100%;
   max-width: 320px;
-  height: 350px;
-  border-radius: 28px;
+  height: 290px;
+  border-radius: 26px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 18px;
+  padding: 14px 16px;
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
