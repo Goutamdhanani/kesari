@@ -92,7 +92,7 @@ export default function MobileFrame({
             <HomeScreen 
               onSelectEvent={handleSelectEvent}
               onOpenTicket={() => setCurrentScreen('ticket')}
-              onOpenNotifications={() => alert("Gregory, you have 1 unread notification: Doors for Jazz & Blues Festival open at 15:00 PM!")}
+              onOpenNotifications={() => alert("You have 1 unread notification: Doors for Jazz & Blues Festival open at 15:00 PM!")}
             />
           )}
 
@@ -112,7 +112,7 @@ export default function MobileFrame({
               eventId={selectedEventId}
               onBack={() => setCurrentScreen('home')}
               onBookSuccess={() => {
-                alert("Ticket confirmed for Gregory Jenkins! Check your digital pass in My Tickets.");
+                alert("Ticket confirmed! Check your digital pass in My Tickets.");
                 setCurrentScreen('ticket');
               }}
             />

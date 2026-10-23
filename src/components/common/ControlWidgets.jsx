@@ -44,10 +44,10 @@ export function IconGridMatrix() {
   );
 }
 
-// 2. User Profile Pill Bar (Gregory + San Francisco + Bell)
+// 2. User Profile Pill Bar (KESARI + Bengaluru, Koramangala + Bell)
 export function UserProfileBar({
-  avatar = "/assets/gregory_face.png",
-  location = "San Francisco",
+  avatar = "/assets/kesari_logo.png",
+  location = "Bengaluru, Koramangala",
   unreadNotifications = true,
   theme = "blue", // "blue" | "white"
   onNotificationClick = () => {},
@@ -59,8 +59,8 @@ export function UserProfileBar({
       whileHover={{ y: -2 }}
     >
       {/* Avatar */}
-      <div className="profile-avatar-wrap" onClick={onProfileClick} title="Gregory's Profile">
-        <img src={avatar} alt="Gregory" className="profile-avatar-img" />
+      <div className="profile-avatar-wrap" onClick={onProfileClick} title="KESARI Profile">
+        <img src={avatar} alt="KESARI" className="profile-avatar-img" />
       </div>
 
       {/* Location */}

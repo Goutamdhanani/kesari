@@ -36,6 +36,11 @@ export default function WebHeader({
             onClick={() => onSelectView('explore')}
             title="KESARI Home"
           >
+            <img 
+              src="/assets/kesari_logo.png" 
+              alt="KESARI" 
+              className="brand-header-icon" 
+            />
             <span className="brand-name">KESARI</span>
             <span className="brand-dot"></span>
           </button>
@@ -142,10 +147,10 @@ export default function WebHeader({
           </button>
 
           {/* User Profile Pill */}
-          <div className="header-user-avatar-wrap" title="User Profile">
+          <div className="header-user-avatar-wrap" title="KESARI Member Profile">
             <img 
-              src="/assets/gregory_face.png" 
-              alt="Profile" 
+              src="/assets/kesari_logo.png" 
+              alt="KESARI Profile" 
               className="header-user-avatar-img"
             />
             <span className="user-online-status"></span>

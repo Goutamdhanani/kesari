@@ -68,10 +68,10 @@ export default function SlideUIKit({ onSelectEvent = () => {}, onOpenQR = () => 
           {/* Dashed Box 4: User Profile Bar */}
           <div className="uikit-dashed-box box-profile-pill">
             <UserProfileBar 
-              location="San Francisco" 
+              location="Bengaluru, Koramangala" 
               theme="blue" 
-              avatar="/assets/gregory_face.png"
-              onNotificationClick={() => alert('Gregory has 1 new event ticket update')}
+              avatar="/assets/kesari_logo.png"
+              onNotificationClick={() => alert('KESARI Member has 1 new event ticket update')}
             />
           </div>
         </div>

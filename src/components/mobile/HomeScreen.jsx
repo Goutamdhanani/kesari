@@ -52,10 +52,10 @@ export default function HomeScreen({
         {/* Top Header / Profile Bar */}
       <header className="mobile-home-header">
         <div className="header-user-badge">
-          <button className="user-avatar-circle" title="My profile" aria-label="My profile" onClick={() => onNavigate('profile')}>
+          <button className="user-avatar-circle" title="KESARI Profile" aria-label="KESARI Profile" onClick={() => onNavigate('profile')}>
             <img 
-              src="/assets/gregory_face.png" 
-              alt="Profile" 
+              src="/assets/kesari_logo.png" 
+              alt="KESARI" 
             />
           </button>
           <div className="header-location-pill">
