@@ -33,12 +33,12 @@ export default function EventModal({
   const handleConfirmBooking = () => {
     setIsBooking(true);
 
-    // Confetti celebration
+    // Subtle warm confetti
     confetti({
-      particleCount: 100,
-      spread: 70,
+      particleCount: 80,
+      spread: 60,
       origin: { y: 0.7 },
-      colors: ['#DAFB71', '#0042D9', '#EE3D5A', '#FFFFFF']
+      colors: ['#E07A28', '#DDA853', '#FFFFFF', '#F08B32']
     });
 
     const newTicket = {
@@ -71,7 +71,7 @@ export default function EventModal({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          transition={{ duration: 0.24, ease: [0.19, 1, 0.22, 1] }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Close Button */}
           <button className="modal-close-btn" onClick={onClose} aria-label="Close modal">
@@ -84,7 +84,7 @@ export default function EventModal({
             <div className="modal-art-overlay"></div>
 
             <div className="modal-top-tag-row">
-              <span className="modal-category-chip">🎵 {event.category}</span>
+              <span className="modal-category-chip">{event.category}</span>
               <button 
                 className={`modal-fav-btn ${isFavorite ? 'active' : ''}`}
                 onClick={() => onToggleFavorite(event.id)}
@@ -92,9 +92,9 @@ export default function EventModal({
               >
                 <AppIcon 
                   name="heart" 
-                  size={18} 
-                  color={isFavorite ? '#EE3D5A' : '#FFFFFF'} 
-                  fill={isFavorite ? '#EE3D5A' : 'none'}
+                  size={17} 
+                  color={isFavorite ? '#E05342' : '#FFFFFF'} 
+                  fill={isFavorite ? '#E05342' : 'none'}
                   strokeWidth={2}
                 />
               </button>
@@ -103,9 +103,15 @@ export default function EventModal({
             <div className="modal-banner-headline">
               <h2 className="modal-event-title">{event.title}</h2>
               <div className="modal-venue-date">
-                <span>📅 {event.date}</span>
+                <span className="meta-icon-text">
+                  <AppIcon name="calendar" size={13} color="var(--color-muted-gray)" />
+                  <span>{event.date}</span>
+                </span>
                 <span>•</span>
-                <span>📍 {event.venue}</span>
+                <span className="meta-icon-text">
+                  <AppIcon name="pin" size={13} color="var(--color-muted-gray)" />
+                  <span>{event.venue}</span>
+                </span>
               </div>
             </div>
           </div>
@@ -193,7 +199,7 @@ export default function EventModal({
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               <div className="breakdown-line">
-                <span>Verifiable Dynamic NFC Service Fee (8%)</span>
+                <span>Verifiable Dynamic Pass Fee (8%)</span>
                 <span>${fee.toFixed(2)}</span>
               </div>
               <div className="breakdown-line total-line">
@@ -217,9 +223,9 @@ export default function EventModal({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span className="checkout-btn-icon">⚡</span>
+              <AppIcon name="ticket" size={16} />
               <span>{isBooking ? 'Securing Passes...' : 'Confirm & Book Tickets'}</span>
-              <span className="checkout-btn-arrow">↗</span>
+              <AppIcon name="arrow-up-right" size={15} />
             </motion.button>
           </div>
         </motion.div>

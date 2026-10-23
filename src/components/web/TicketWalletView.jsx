@@ -20,7 +20,8 @@ export default function TicketWalletView({
         {/* Header */}
         <div className="wallet-header">
           <div className="section-eyebrow-pill">
-            <span>🎟️ Verified Digital Passes</span>
+            <AppIcon name="ticket" size={13} color="var(--color-brand-saffron)" />
+            <span>Verified Digital Passes</span>
           </div>
           <h2 className="section-title">Digital Ticket Wallet</h2>
           <p className="section-subtitle">
@@ -45,7 +46,7 @@ export default function TicketWalletView({
                     <img src={t.image} alt={t.eventTitle} className="pill-ticket-thumb" />
                     <div className="pill-ticket-info">
                       <span className="pill-ticket-title">{t.eventTitle}</span>
-                      <span className="pill-ticket-meta">📅 {t.date} • {t.seat}</span>
+                      <span className="pill-ticket-meta">{t.date} • {t.seat}</span>
                     </div>
                     {selectedTicketIndex === idx && (
                       <span className="pill-active-indicator">●</span>
@@ -56,7 +57,9 @@ export default function TicketWalletView({
 
               {/* Apple Wallet Notice */}
               <div className="apple-wallet-perk-card">
-                <span className="perk-icon">🍏</span>
+                <span className="perk-icon">
+                  <AppIcon name="sparkles" size={18} color="var(--color-brand-saffron)" />
+                </span>
                 <div>
                   <h4 className="perk-heading">Apple & Google Wallet Ready</h4>
                   <p className="perk-sub">Add any pass with one click for offline gate tap.</p>
@@ -88,7 +91,7 @@ export default function TicketWalletView({
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <AppIcon name="qr-code" size={18} color="#080808" />
+                  <AppIcon name="qr" size={17} color="#FFFFFF" />
                   <span>Show Gate QR Pass</span>
                   <span className="action-hint">Scan at gate</span>
                 </motion.button>
@@ -99,14 +102,14 @@ export default function TicketWalletView({
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span>🍏 Add to Apple Wallet</span>
+                  <span>Add to Apple Wallet</span>
                 </motion.button>
 
                 <button 
                   className="wallet-action-ghost-btn"
                   onClick={() => alert(`Downloading verifiable PDF pass for ${activeTicket.eventTitle}...`)}
                 >
-                  <AppIcon name="share" size={15} color="#7E8597" />
+                  <AppIcon name="share" size={15} color="var(--color-muted-gray)" />
                   <span>Download Pass PDF</span>
                 </button>
               </div>
@@ -115,10 +118,10 @@ export default function TicketWalletView({
           </div>
         ) : (
           <div className="wallet-empty-state">
-            <span className="wallet-empty-icon">🎟️</span>
+            <AppIcon name="ticket" size={36} color="var(--color-muted-gray)" />
             <h3 className="wallet-empty-title">Your Wallet is Empty</h3>
             <p className="wallet-empty-desc">
-              You haven't booked any event passes yet. Browse available concerts and secure your gate ticket in seconds!
+              You haven't booked any event passes yet. Browse available sessions and secure your gate ticket in seconds!
             </p>
             <button 
               className="wallet-explore-btn"

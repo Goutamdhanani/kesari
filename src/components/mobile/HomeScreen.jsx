@@ -12,7 +12,7 @@ export default function HomeScreen({
   onOpenNotifications = () => {} 
 }) {
   const [activeTab, setActiveTab] = useState('home');
-  const [selectedCity, setSelectedCity] = useState('San Francisco');
+  const [selectedCity, setSelectedCity] = useState('Bengaluru, Koramangala');
 
   const popularEvents = [
     {
@@ -55,13 +55,12 @@ export default function HomeScreen({
           <button className="user-avatar-circle" title="My profile" aria-label="My profile" onClick={() => onNavigate('profile')}>
             <img 
               src="/assets/gregory_face.png" 
-              alt="Gregory" 
+              alt="Profile" 
             />
           </button>
           <div className="header-location-pill">
             <AppIcon name="pin" size={13} color="#080808" strokeWidth={2.5} />
             <span className="location-name">{selectedCity}</span>
-            <AppIcon name="chevron-right" size={12} color="#080808" className="rotate-90" />
           </div>
         </div>
 
@@ -79,8 +78,8 @@ export default function HomeScreen({
 
       {/* Greeting Section */}
       <section className="mobile-greeting-section">
-        <h1 className="greeting-headline">Hello Gregory!</h1>
-        <p className="greeting-subtext">Find Your Next Adventure</p>
+        <h1 className="greeting-headline">Welcome to KESARI</h1>
+        <p className="greeting-subtext">Live Sessions in Koramangala</p>
       </section>
 
       {/* Featured Upcoming Event Card */}

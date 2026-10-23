@@ -24,7 +24,7 @@ export default function MobileBottomNav({
           aria-label="Explore Events"
         >
           <div className="mobile-nav-icon-wrap">
-            <AppIcon name="compass" size={20} color={activeView === 'explore' ? '#DAFB71' : '#9CA3AF'} />
+            <AppIcon name="compass" size={20} color={activeView === 'explore' ? '#E07A28' : '#9CA3AF'} />
           </div>
           <span className="mobile-nav-label">Explore</span>
         </button>
@@ -39,7 +39,7 @@ export default function MobileBottomNav({
           aria-label="My Tickets"
         >
           <div className="mobile-nav-icon-wrap">
-            <AppIcon name="ticket" size={20} color={activeView === 'wallet' ? '#DAFB71' : '#9CA3AF'} />
+            <AppIcon name="ticket" size={20} color={activeView === 'wallet' ? '#E07A28' : '#9CA3AF'} />
             {ticketCount > 0 && (
               <span className="mobile-nav-badge-pill">{ticketCount}</span>
             )}
@@ -60,8 +60,8 @@ export default function MobileBottomNav({
             <AppIcon 
               name="heart" 
               size={20} 
-              color={activeView === 'favorites' ? '#EE3D5A' : '#9CA3AF'} 
-              fill={activeView === 'favorites' ? '#EE3D5A' : 'none'}
+              color={activeView === 'favorites' ? '#E05342' : '#9CA3AF'} 
+              fill={activeView === 'favorites' ? '#E05342' : 'none'}
             />
             {savedCount > 0 && (
               <span className="mobile-nav-badge-pill lime-dot">{savedCount}</span>
@@ -80,7 +80,7 @@ export default function MobileBottomNav({
           aria-label="Mobile App Simulator"
         >
           <div className="mobile-nav-icon-wrap">
-            <AppIcon name="layout" size={20} color={activeView === 'mobile' ? '#DAFB71' : '#9CA3AF'} />
+            <AppIcon name="layout" size={20} color={activeView === 'mobile' ? '#E07A28' : '#9CA3AF'} />
           </div>
           <span className="mobile-nav-label">Simulator</span>
         </button>

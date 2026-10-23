@@ -6,7 +6,7 @@ import './EventCatalog.css';
 export default function EventCatalog({
   events = [],
   genres = [],
-  selectedCity = 'San Francisco',
+  selectedCity = 'Bengaluru, Koramangala',
   searchQuery = '',
   onSelectEvent = () => {},
   onBookNow = () => {},
@@ -46,7 +46,8 @@ export default function EventCatalog({
         <div className="catalog-header-row">
           <div>
             <div className="section-eyebrow-pill">
-              <span>🎟️ Verified Live Access</span>
+              <AppIcon name="ticket" size={13} color="var(--color-brand-saffron)" />
+              <span>Verified Live Access</span>
             </div>
             <h2 className="section-title">Explore Experiences</h2>
             <p className="section-subtitle">
@@ -62,14 +63,14 @@ export default function EventCatalog({
               onChange={(e) => setSortBy(e.target.value)}
               className="catalog-sort-select"
             >
-              <option value="trending">🔥 Trending First</option>
-              <option value="price-asc">💵 Price: Low to High</option>
-              <option value="price-desc">💎 Price: High to Low</option>
+              <option value="trending">Trending First</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
             </select>
           </div>
         </div>
 
-        {/* Genre Category Pills */}
+        {/* Genre Category Pills (Zero Emojis) */}
         <div className="genre-filter-scroller">
           {genres.map(g => (
             <button
@@ -77,7 +78,6 @@ export default function EventCatalog({
               className={`genre-pill-btn ${selectedGenre === g.id ? 'active' : ''}`}
               onClick={() => setSelectedGenre(g.id)}
             >
-              <span className="genre-icon">{g.icon}</span>
               <span className="genre-label">{g.label}</span>
             </button>
           ))}
@@ -105,7 +105,7 @@ export default function EventCatalog({
                   key={event.id}
                   className="catalog-event-card"
                   onClick={() => onSelectEvent(event)}
-                  whileHover={{ y: -6, transition: { duration: 0.22 } }}
+                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.99 }}
                 >
                   {/* Card Media Header */}
@@ -115,7 +115,7 @@ export default function EventCatalog({
 
                     {/* Category Chip */}
                     <div className="card-top-category-pill">
-                      <span>🎵</span>
+                      <AppIcon name="music" size={11} color="var(--color-brand-saffron)" />
                       <span>{event.category}</span>
                     </div>
 
@@ -131,9 +131,9 @@ export default function EventCatalog({
                     >
                       <AppIcon 
                         name="heart" 
-                        size={17} 
-                        color={isFav ? '#EE3D5A' : '#FFFFFF'} 
-                        fill={isFav ? '#EE3D5A' : 'none'}
+                        size={16} 
+                        color={isFav ? '#E05342' : '#FFFFFF'} 
+                        fill={isFav ? '#E05342' : 'none'}
                         strokeWidth={2}
                       />
                     </button>
@@ -144,11 +144,12 @@ export default function EventCatalog({
                     {/* Date & Venue Row */}
                     <div className="card-date-venue-row">
                       <span className="card-date-badge">
-                        <AppIcon name="calendar" size={13} color="#7E8597" />
+                        <AppIcon name="calendar" size={12} color="var(--color-muted-gray)" />
                         {event.date}
                       </span>
                       <span className="card-venue-text" title={event.venue}>
-                        📍 {event.venueShort || event.venue}
+                        <AppIcon name="pin" size={12} color="var(--color-muted-gray)" />
+                        <span>{event.venueShort || event.venue}</span>
                       </span>
                     </div>
 
@@ -179,7 +180,7 @@ export default function EventCatalog({
                           className="card-lime-arrow-btn"
                           aria-label={`View details for ${event.title}`}
                         >
-                          <AppIcon name="arrow-up-right" size={16} color="#080808" strokeWidth={2.5} />
+                          <AppIcon name="arrow-up-right" size={15} color="#FFFFFF" strokeWidth={2.2} />
                         </button>
                       </div>
                     </div>
@@ -190,7 +191,7 @@ export default function EventCatalog({
           </div>
         ) : (
           <div className="catalog-empty-state">
-            <span className="empty-emoji">🔍</span>
+            <AppIcon name="search" size={28} color="var(--color-muted-gray)" />
             <h3 className="empty-title">No events found</h3>
             <p className="empty-desc">
               We couldn't find any events matching your search or filters in {selectedCity}.

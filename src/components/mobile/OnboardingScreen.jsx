@@ -8,25 +8,25 @@ export default function OnboardingScreen({ onFinish = () => {} }) {
 
   const slides = [
     {
-      title: "Event Jam",
-      subtitle: "Discover live concerts, secret festivals, and underground experiences around you in seconds.",
+      title: "Live Sessions",
+      subtitle: "Discover live concerts, acoustic sets, and curated gatherings in Koramangala.",
       feature: "Instant Gate Check-in • Digital Wallet Pass",
       image: "/assets/rock_concert_bg.png",
-      tag: "⚡ Hyperactive Live Experience"
+      tag: "KESARI Live Experiences"
     },
     {
       title: "Sound Waves",
       subtitle: "Secure verifiable digital screen tickets with anti-counterfeit dynamic barcode encryption.",
       feature: "Zero Fraud • One-Tap Apple Wallet",
       image: "/assets/jazz_blues_pills.png",
-      tag: "🎟️ Verified NFC Passes"
+      tag: "Verified Passes"
     },
     {
-      title: "Vibe Together",
+      title: "Community & Vibe",
       subtitle: "Explore artist lineups, set times, and curated festival stages before you arrive.",
       feature: "Curated Lineups • Realtime Notifications",
       image: "/assets/rock_concert_bg.png",
-      tag: "🎸 Curated Lineups"
+      tag: "Curated Sessions"
     }
   ];
 
@@ -50,7 +50,7 @@ export default function OnboardingScreen({ onFinish = () => {} }) {
     <div className="mobile-onboarding-screen">
       {/* Top Header */}
       <div className="onboarding-top-bar">
-        <span className="onboarding-brand-mini">HYPERACTIVE</span>
+        <span className="onboarding-brand-mini">KESARI</span>
         <button className="onboarding-skip-btn" onClick={onFinish}>
           Skip
         </button>

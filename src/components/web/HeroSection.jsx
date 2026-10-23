@@ -40,8 +40,7 @@ export default function HeroSection({
             className="hero-backdrop-img"
           />
           <div className="hero-gradient-overlay"></div>
-          <div className="hero-glow-accent blue-glow"></div>
-          <div className="hero-glow-accent lime-glow"></div>
+          <div className="hero-glow-accent saffron-glow"></div>
         </div>
 
         {/* Content Inside Hero */}
@@ -50,7 +49,7 @@ export default function HeroSection({
           <div className="hero-top-status-row">
             <div className="hero-badge-pill">
               <span className="badge-pulse-dot"></span>
-              <span className="badge-text">{featuredEvent.badge || '⚡ FEATURED LIVE CONCERT'}</span>
+              <span className="badge-text">{featuredEvent.badge || 'FEATURED LIVE SESSION'}</span>
             </div>
 
             {/* Live Countdown Clock */}
@@ -71,7 +70,8 @@ export default function HeroSection({
           {/* Main Title & Editorial Pitch */}
           <div className="hero-editorial-block">
             <span className="hero-category-label">
-              <span className="category-symbol">🎸</span> {featuredEvent.category}
+              <AppIcon name="music" size={13} color="var(--color-brand-saffron)" />
+              <span>{featuredEvent.category}</span>
             </span>
             <h1 className="hero-main-title">{featuredEvent.title}</h1>
             <p className="hero-lead-description">{featuredEvent.description}</p>
@@ -80,11 +80,11 @@ export default function HeroSection({
           {/* Venue & Metadata Strip */}
           <div className="hero-meta-strip">
             <div className="meta-pill">
-              <span className="meta-icon">📅</span>
+              <AppIcon name="calendar" size={13} color="var(--color-muted-gray)" />
               <span className="meta-text">{featuredEvent.date}</span>
             </div>
             <div className="meta-pill">
-              <span className="meta-icon">📍</span>
+              <AppIcon name="pin" size={13} color="var(--color-muted-gray)" />
               <span className="meta-text">{featuredEvent.venue}</span>
             </div>
             <div className="meta-pill price-pill">
@@ -98,24 +98,24 @@ export default function HeroSection({
             <motion.button 
               className="hero-primary-cta"
               onClick={() => onBookNow(featuredEvent)}
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="cta-icon">⚡</span>
-              <span className="cta-text">Book Tickets Now</span>
-              <span className="cta-arrow">↗</span>
+              <AppIcon name="ticket" size={16} />
+              <span className="cta-text">Book Tickets</span>
+              <AppIcon name="arrow-up-right" size={16} />
             </motion.button>
 
             <motion.button 
               className={`hero-audio-btn ${isPlayingAudio ? 'active' : ''}`}
               onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              title={isPlayingAudio ? 'Pause Sound Preview' : 'Play Sound Waves Preview'}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              title={isPlayingAudio ? 'Pause Sound Preview' : 'Play Live Audio Preview'}
             >
-              <span className="audio-btn-icon">{isPlayingAudio ? '⏸' : '▶'}</span>
+              <AppIcon name="waveform" size={15} />
               <span className="audio-btn-label">
-                {isPlayingAudio ? 'Sound Waves Playing' : 'Preview Live Vibe'}
+                {isPlayingAudio ? 'Acoustic Preview' : 'Sound Preview'}
               </span>
 
               {/* Animated Equalizer Wave Bars */}
@@ -130,16 +130,16 @@ export default function HeroSection({
             <motion.button 
               className={`hero-favorite-btn ${isFavorite ? 'favorited' : ''}`}
               onClick={() => onToggleFavorite(featuredEvent.id)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              title={isFavorite ? 'Remove from favorites' : 'Save to favorites'}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.94 }}
+              title={isFavorite ? 'Remove from saved' : 'Save to favorites'}
               aria-label="Save to favorites"
             >
               <AppIcon 
                 name="heart" 
-                size={20} 
-                color={isFavorite ? '#EE3D5A' : '#FFFFFF'} 
-                fill={isFavorite ? '#EE3D5A' : 'none'}
+                size={18} 
+                color={isFavorite ? '#E05342' : '#FFFFFF'} 
+                fill={isFavorite ? '#E05342' : 'none'}
                 strokeWidth={2}
               />
             </motion.button>

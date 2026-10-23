@@ -62,8 +62,8 @@ export default function QRModal({ isOpen, onClose = () => {}, ticket = null }) {
               <rect x="85" y="55" width="10" height="10" fill="#080808" />
               
               {/* Center pattern */}
-              <rect x="75" y="75" width="50" height="50" fill="#DAFB71" rx="8" />
-              <text x="100" y="105" textAnchor="middle" fill="#080808" fontSize="22" fontWeight="900" fontFamily="sans-serif">⚡</text>
+              <rect x="75" y="75" width="50" height="50" fill="#E07A28" rx="8" />
+              <text x="100" y="107" textAnchor="middle" fill="#FFFFFF" fontSize="22" fontWeight="800" fontFamily="sans-serif">K</text>
 
               <rect x="25" y="75" width="10" height="10" fill="#080808" />
               <rect x="45" y="75" width="10" height="10" fill="#080808" />

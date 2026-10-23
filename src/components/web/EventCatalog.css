@@ -24,11 +24,11 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  font-weight: 700;
-  color: var(--color-electric-lime);
-  background: rgba(218, 251, 113, 0.12);
-  border: 1px solid rgba(218, 251, 113, 0.3);
-  padding: 4px 12px;
+  font-weight: 600;
+  color: var(--color-brand-saffron);
+  background: rgba(224, 122, 40, 0.08);
+  border: 1px solid rgba(224, 122, 40, 0.25);
+  padding: 5px 12px;
   border-radius: 9999px;
   margin-bottom: 8px;
 }
@@ -117,11 +117,11 @@
 }
 
 .genre-pill-btn.active {
-  background: var(--color-electric-lime);
-  color: #080808;
-  border-color: var(--color-electric-lime);
-  font-weight: 700;
-  box-shadow: 0 4px 16px rgba(218, 251, 113, 0.35);
+  background: var(--color-brand-saffron);
+  color: #FFFFFF;
+  border-color: var(--color-brand-saffron);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(224, 122, 40, 0.3);
 }
 
 /* Results Status Bar */
@@ -167,8 +167,8 @@
 }
 
 .catalog-event-card:hover {
-  border-color: rgba(218, 251, 113, 0.4);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 24px rgba(0, 66, 217, 0.2);
+  border-color: rgba(224, 122, 40, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(224, 122, 40, 0.12);
 }
 
 /* Card Media */
@@ -347,16 +347,16 @@
 }
 
 .card-book-btn:hover {
-  background: var(--color-royal-blue);
-  border-color: var(--color-royal-blue);
-  box-shadow: 0 4px 14px rgba(0, 66, 217, 0.4);
+  background: var(--color-brand-saffron);
+  border-color: var(--color-brand-saffron);
+  box-shadow: 0 4px 14px rgba(224, 122, 40, 0.35);
 }
 
 .card-lime-arrow-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-electric-lime);
+  background: var(--color-brand-saffron);
   border: none;
   display: flex;
   align-items: center;
@@ -366,8 +366,8 @@
 }
 
 .card-lime-arrow-btn:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 14px rgba(218, 251, 113, 0.5);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(224, 122, 40, 0.45);
 }
 
 /* Empty State */

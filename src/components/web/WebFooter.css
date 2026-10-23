@@ -39,11 +39,11 @@
 }
 
 .footer-lime-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: var(--color-electric-lime);
-  box-shadow: 0 0 10px var(--color-electric-lime);
+  background: var(--color-brand-saffron);
+  box-shadow: 0 0 8px rgba(224, 122, 40, 0.6);
 }
 
 .footer-brand-bio {

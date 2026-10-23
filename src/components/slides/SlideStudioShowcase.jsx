@@ -37,7 +37,7 @@ export default function SlideStudioShowcase({ onNavigateHome = () => {} }) {
                 title="Click to interact with Live Mobile App"
               >
                 <div className="hotspot-pulse-badge">
-                  <span>⚡ Click to Test Live App</span>
+                  <span>Test Mobile Experience</span>
                 </div>
               </button>
             </motion.div>

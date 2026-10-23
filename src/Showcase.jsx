@@ -53,7 +53,7 @@ export default function App() {
           onClick={() => setShowFloatingNav(!showFloatingNav)}
           title="Toggle Navigation Dock"
         >
-          {showFloatingNav ? '✕' : '⚡ Menu'}
+          {showFloatingNav ? '✕' : 'Menu'}
         </button>
 
         {showFloatingNav && (
@@ -62,7 +62,7 @@ export default function App() {
               className={`dock-btn ${activeSlide === 'all' ? 'active' : ''}`}
               onClick={() => setActiveSlide('all')}
             >
-              📜 All Slides (Behance)
+              All Slides
             </button>
             <button 
               className={`dock-btn ${activeSlide === 'uikit' ? 'active' : ''}`}
@@ -98,7 +98,7 @@ export default function App() {
               className={`dock-btn lime-dock-btn ${activeSlide === 'mobile' ? 'active' : ''}`}
               onClick={() => setActiveSlide('mobile')}
             >
-              📱 Mobile App
+              Mobile App
             </button>
           </div>
         )}

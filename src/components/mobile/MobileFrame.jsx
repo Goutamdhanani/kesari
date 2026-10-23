@@ -38,25 +38,25 @@ export default function MobileFrame({
           className={`switch-tab-btn ${currentScreen === 'home' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('home')}
         >
-          🏠 Home Feed
+          Home Feed
         </button>
         <button 
           className={`switch-tab-btn ${currentScreen === 'onboarding' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('onboarding')}
         >
-          🚀 Onboarding
+          Onboarding
         </button>
         <button 
           className={`switch-tab-btn ${currentScreen === 'ticket' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('ticket')}
         >
-          🎟️ Digital Ticket
+          Digital Pass
         </button>
         <button 
           className={`switch-tab-btn ${currentScreen === 'details' ? 'active' : ''}`}
           onClick={() => setCurrentScreen('details')}
         >
-          🎸 Event Details
+          Event Details
         </button>
       </div>
 
@@ -112,7 +112,7 @@ export default function MobileFrame({
               eventId={selectedEventId}
               onBack={() => setCurrentScreen('home')}
               onBookSuccess={() => {
-                alert("🎉 Ticket confirmed for Gregory Jenkins! Check your digital pass in My Tickets.");
+                alert("Ticket confirmed for Gregory Jenkins! Check your digital pass in My Tickets.");
                 setCurrentScreen('ticket');
               }}
             />

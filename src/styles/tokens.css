@@ -1,51 +1,63 @@
 :root {
-  /* Core Brand Colors */
-  --color-royal-blue: #0042D9;
-  --color-royal-blue-deep: #0036B8;
-  --color-electric-lime: #DAFB71;
-  --color-lime-glow: rgba(218, 251, 113, 0.4);
-  --color-crimson: #EE3D5A;
-  --color-sky-blue: #80B0EC;
-  --color-pale-blue-bg: #EBF1FF;
+  /* KESARI Premium Brand Palette - Warm Saffron & Deep Obsidian */
+  --color-brand-saffron: #E07A28;
+  --color-brand-saffron-hover: #F08B32;
+  --color-brand-saffron-subtle: rgba(224, 122, 40, 0.12);
+  --color-brand-saffron-glow: rgba(224, 122, 40, 0.22);
+  --color-brand-gold: #DDA853;
+
+  /* Aliased for backwards-compatibility in component CSS */
+  --color-royal-blue: #E07A28;
+  --color-royal-blue-deep: #C76518;
+  --color-electric-lime: #E07A28;
+  --color-lime-glow: rgba(224, 122, 40, 0.22);
+  --color-crimson: #E05342;
+  --color-sky-blue: #DDA853;
+  --color-pale-blue-bg: #1A1C24;
+
+  /* Surfaces & Neutrals */
   --color-pure-white: #FFFFFF;
-  --color-true-black: #080808;
-  --color-card-dark: #0F1118;
-  --color-muted-gray: #7E8597;
-  --color-light-gray: #F4F6FB;
-  --color-border-subtle: #E2E7F2;
-  --color-dashed-line: rgba(255, 255, 255, 0.5);
+  --color-true-black: #0A0B0E;
+  --color-card-dark: #12141A;
+  --color-card-surface-elevated: #181B23;
+  --color-muted-gray: #8A90A2;
+  --color-light-gray: #181A22;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-focus: rgba(224, 122, 40, 0.4);
+  --color-dashed-line: rgba(255, 255, 255, 0.2);
 
-  /* Typography - Lufga geometric profile */
-  --font-family-display: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
-  --font-family-body: 'Plus Jakarta Sans', 'Outfit', -apple-system, sans-serif;
-  --font-family-mono: 'Space Grotesk', monospace;
+  /* Typography */
+  --font-family-display: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'Space Grotesk', ui-monospace, monospace;
 
-  /* Typography Scale from Reference Board */
-  --text-h1: 40px;
-  --text-h2: 36px;
-  --text-h3: 24px;
-  --text-title: 20px;
-  --text-subtitle: 16px;
+  /* Typography Scale */
+  --text-h1: 38px;
+  --text-h2: 32px;
+  --text-h3: 22px;
+  --text-title: 19px;
+  --text-subtitle: 15px;
   --text-caption: 13px;
   --text-micro: 11px;
 
-  /* Radii */
-  --radius-sm: 10px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  /* Radii - refined, modern architecture */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-pill: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.14);
-  --shadow-card: 0 12px 36px rgba(0, 66, 217, 0.12);
-  --shadow-lime: 0 8px 24px rgba(218, 251, 113, 0.35);
+  /* Premium Shadows - diffuse and realistic */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 48px -8px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lime: 0 4px 18px rgba(224, 122, 40, 0.25);
 
   /* Transitions */
-  --transition-fast: 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-  --transition-smooth: 0.28s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-fast: 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reset & Global Base */
@@ -64,6 +76,7 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  letter-spacing: -0.01em;
 }
 
 button {
@@ -72,26 +85,32 @@ button {
   border: none;
   background: none;
   outline: none;
-  transition: transform var(--transition-fast), filter var(--transition-fast), background-color var(--transition-fast);
+  transition: transform var(--transition-fast), filter var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
 }
 
 button:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
-/* Custom Scrollbar */
+/* Minimal Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-electric-lime);
+  background: rgba(224, 122, 40, 0.5);
 }
-button:focus-visible,a:focus-visible{outline:2px solid #80b0ec;outline-offset:4px}a{ -webkit-tap-highlight-color:transparent }button,input{ -webkit-tap-highlight-color:transparent }
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--color-brand-saffron);
+  outline-offset: 3px;
+}
+a { -webkit-tap-highlight-color: transparent; }
+button, input { -webkit-tap-highlight-color: transparent; }

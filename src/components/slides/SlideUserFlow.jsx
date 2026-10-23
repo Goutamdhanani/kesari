@@ -22,13 +22,13 @@ export default function SlideUserFlow({ onNavigateScreen = () => {} }) {
               className={`flow-toggle-chip ${viewMode === 'interactive' ? 'active' : ''}`}
               onClick={() => setViewMode('interactive')}
             >
-              ⚡ Interactive Flow Engine
+              Interactive Flow
             </button>
             <button 
               className={`flow-toggle-chip ${viewMode === 'reference' ? 'active' : ''}`}
               onClick={() => setViewMode('reference')}
             >
-              📷 Behance Spec
+              Architecture Spec
             </button>
           </div>
           <p className="flow-statement">

@@ -20,17 +20,19 @@ export default function NotificationDrawer({
           initial={{ x: '100%' }}
           animate={{ x: 0 }}
           exit={{ x: '100%' }}
-          transition={{ duration: 0.25, ease: [0.19, 1, 0.22, 1] }}
+          transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Header */}
           <div className="notifications-header">
             <div className="notif-title-row">
-              <span className="notif-icon-bubble">🔔</span>
+              <span className="notif-icon-bubble">
+                <AppIcon name="bell" size={15} color="var(--color-brand-saffron)" />
+              </span>
               <h3 className="notif-heading">Activity & Alerts</h3>
             </div>
             <div className="notif-header-actions">
               <button className="notif-clear-btn" onClick={onClearAll}>Clear</button>
-              <button className="notif-close-btn" onClick={onClose}>✕</button>
+              <button className="notif-close-btn" onClick={onClose} aria-label="Close notifications">✕</button>
             </div>
           </div>
 
@@ -39,7 +41,9 @@ export default function NotificationDrawer({
             {notifications.length > 0 ? (
               notifications.map(n => (
                 <div key={n.id} className="notification-item-card">
-                  <span className="notif-item-icon">{n.icon || '⚡'}</span>
+                  <span className="notif-item-icon">
+                    <AppIcon name="sparkles" size={15} color="var(--color-brand-saffron)" />
+                  </span>
                   <div className="notif-item-body">
                     <h5 className="notif-item-title">{n.title}</h5>
                     <p className="notif-item-message">{n.message}</p>
@@ -49,7 +53,7 @@ export default function NotificationDrawer({
               ))
             ) : (
               <div className="notifications-empty">
-                <span className="empty-bell">🔕</span>
+                <AppIcon name="bell" size={32} color="var(--color-muted-gray)" />
                 <p>No new notifications right now</p>
               </div>
             )}

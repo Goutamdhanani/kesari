@@ -100,7 +100,6 @@ export function FeaturedHeroCard({
       {/* Top Floating Badges */}
       <div className="hero-top-badges">
         <div className="hero-category-chip">
-          <span className="category-music-note">🎵</span>
           <span className="category-name">{category}</span>
         </div>
         <motion.button 

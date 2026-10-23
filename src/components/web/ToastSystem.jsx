@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import AppIcon from '../common/AppIcon';
 import './ToastSystem.css';
 
 export default function ToastSystem({ toasts = [], onDismiss = () => {} }) {
@@ -16,7 +17,9 @@ export default function ToastSystem({ toasts = [], onDismiss = () => {} }) {
             transition={{ duration: 0.22, ease: [0.19, 1, 0.22, 1] }}
             onClick={() => onDismiss(toast.id)}
           >
-            <span className="toast-icon">{toast.icon || '⚡'}</span>
+            <span className="toast-icon">
+              <AppIcon name="sparkles" size={14} color="var(--color-brand-saffron)" />
+            </span>
             <span className="toast-message">{toast.message}</span>
             <button className="toast-dismiss-btn" aria-label="Dismiss toast">✕</button>
           </motion.div>

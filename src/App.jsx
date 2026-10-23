@@ -16,6 +16,7 @@ import SlideColorPalette from './components/slides/SlideColorPalette';
 import SlideTypography from './components/slides/SlideTypography';
 import SlideUserFlow from './components/slides/SlideUserFlow';
 import SlideStudioShowcase from './components/slides/SlideStudioShowcase';
+import AppIcon from './components/common/AppIcon';
 import './App.css';
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
   const [events, setEvents] = useState(MOCK_EVENTS);
   const [tickets, setTickets] = useState(INITIAL_TICKETS);
   const [favorites, setFavorites] = useState(['rock']);
-  const [selectedCity, setSelectedCity] = useState('San Francisco');
+  const [selectedCity, setSelectedCity] = useState('Bengaluru, Koramangala');
   const [searchQuery, setSearchQuery] = useState('');
 
   // Modals & Drawers
@@ -35,35 +36,32 @@ export default function App() {
   const [showQRModal, setShowQRModal] = useState(false);
   const [notificationDrawerOpen, setNotificationDrawerOpen] = useState(false);
 
-  // Notifications State
+  // Notifications State (Zero Emojis)
   const [notifications, setNotifications] = useState([
     {
       id: 'n1',
-      icon: '🎟️',
       title: 'Pass Ready for Gate Check-in',
-      message: 'Your Jazz & Blues Festival ticket is verified for Riverfront Park.',
+      message: 'Your Jazz & Blues Festival ticket is verified for Kesari Courtyard.',
       time: '12m ago'
     },
     {
       id: 'n2',
-      icon: '⚡',
-      title: 'Rock Legends Selling Fast',
-      message: 'Over 92% of passes claimed for the October 20 concert.',
+      title: 'Rock Legends Reunion Selling Fast',
+      message: 'Over 92% of passes claimed for the upcoming Koramangala show.',
       time: '1h ago'
     },
     {
       id: 'n3',
-      icon: '🎷',
       title: 'New Lineup Announcement',
-      message: 'Miles Quartet added to Riverfront Sunset Stage.',
+      message: 'Miles Quartet added to Kesari Sunset Stage.',
       time: 'Yesterday'
     }
   ]);
   const [unreadCount, setUnreadCount] = useState(2);
 
-  // Toast System
+  // Toast System (Zero Emojis)
   const [toasts, setToasts] = useState([]);
-  const triggerToast = (message, icon = '⚡', type = 'info') => {
+  const triggerToast = (message, icon = '', type = 'info') => {
     const id = `t-${Date.now()}-${Math.random()}`;
     setToasts(prev => [...prev, { id, message, icon, type }]);
     setTimeout(() => {
@@ -75,7 +73,7 @@ export default function App() {
     setToasts(prev => prev.filter(t => t.id !== id));
   };
 
-  // Behance Slide Deck Mode States
+  // Slide Deck Mode States
   const [activeSlide, setActiveSlide] = useState('all');
   const [showFloatingNav, setShowFloatingNav] = useState(true);
 
@@ -120,17 +118,17 @@ export default function App() {
   const handleBookSuccess = (newTicket) => {
     setTickets(prev => [newTicket, ...prev]);
     setSelectedModalEvent(null);
-    triggerToast(`Pass confirmed for ${newTicket.eventTitle}! Added to Digital Wallet.`, '🎟️', 'success');
+    triggerToast(`Pass confirmed for ${newTicket.eventTitle}! Added to Digital Wallet.`, '', 'success');
   };
 
   const handleToggleFavorite = (eventId) => {
     setFavorites(prev => {
       const exists = prev.includes(eventId);
       if (exists) {
-        triggerToast('Removed from saved events', '🤍');
+        triggerToast('Removed from saved events', '', 'info');
         return prev.filter(id => id !== eventId);
       } else {
-        triggerToast('Saved to your favorites collection!', '❤️', 'success');
+        triggerToast('Saved to your collection', '', 'success');
         return [...prev, eventId];
       }
     });
@@ -142,18 +140,18 @@ export default function App() {
   };
 
   const handleSaveToAppleWallet = (ticket) => {
-    triggerToast(`Added pass for "${ticket.eventTitle}" to Apple Wallet!`, '🍏', 'success');
+    triggerToast(`Added pass for "${ticket.eventTitle}" to Apple Wallet`, '', 'success');
   };
 
   const handleSelectCity = (city) => {
     setSelectedCity(city);
-    triggerToast(`Location switched to ${city}`, '📍');
+    triggerToast(`Location set to ${city}`, '', 'info');
   };
 
   const handleClearNotifications = () => {
     setNotifications([]);
     setUnreadCount(0);
-    triggerToast('All notifications cleared', '🧹');
+    triggerToast('All notifications cleared', '', 'info');
   };
 
   // Filtered list for 'favorites' view
@@ -239,11 +237,12 @@ export default function App() {
                 <div className="catalog-header-row">
                   <div>
                     <div className="section-eyebrow-pill">
-                      <span>❤️ Wishlist</span>
+                      <AppIcon name="heart" size={13} color="var(--color-brand-saffron)" />
+                      <span>Saved Experiences</span>
                     </div>
-                    <h2 className="section-title">Saved Experiences</h2>
+                    <h2 className="section-title">Your Collection</h2>
                     <p className="section-subtitle">
-                      Your bookmarked live concerts, secret festivals, and underground shows.
+                      Your bookmarked live sessions, acoustic sets, and performances in Koramangala.
                     </p>
                   </div>
                 </div>
@@ -260,7 +259,7 @@ export default function App() {
                           <img src={event.image} alt={event.title} className="card-media-img" />
                           <div className="card-media-dark-vignette"></div>
                           <div className="card-top-category-pill">
-                            <span>🎵</span>
+                            <AppIcon name="music" size={11} color="var(--color-brand-saffron)" />
                             <span>{event.category}</span>
                           </div>
                           <button 
@@ -270,13 +269,19 @@ export default function App() {
                               handleToggleFavorite(event.id);
                             }}
                           >
-                            ❤️
+                            <AppIcon name="heart" size={16} color="#E05342" fill="#E05342" />
                           </button>
                         </div>
                         <div className="card-body-content">
                           <div className="card-date-venue-row">
-                            <span className="card-date-badge">📅 {event.date}</span>
-                            <span className="card-venue-text">📍 {event.venueShort}</span>
+                            <span className="card-date-badge">
+                              <AppIcon name="calendar" size={12} color="var(--color-muted-gray)" />
+                              {event.date}
+                            </span>
+                            <span className="card-venue-text">
+                              <AppIcon name="pin" size={12} color="var(--color-muted-gray)" />
+                              {event.venueShort}
+                            </span>
                           </div>
                           <h3 className="card-event-title">{event.title}</h3>
                           <p className="card-brief-desc">{event.description}</p>
@@ -301,16 +306,16 @@ export default function App() {
                   </div>
                 ) : (
                   <div className="catalog-empty-state">
-                    <span className="empty-emoji">🤍</span>
-                    <h3 className="empty-title">No saved events yet</h3>
+                    <AppIcon name="heart" size={28} color="var(--color-muted-gray)" />
+                    <h3 className="empty-title">No saved experiences yet</h3>
                     <p className="empty-desc">
-                      Tap the heart icon on any concert card to save events to your personal wishlist.
+                      Tap the bookmark icon on any session card to save experiences to your personal collection.
                     </p>
                     <button 
                       className="empty-reset-btn"
                       onClick={() => setActiveView('explore')}
                     >
-                      Browse Concerts
+                      Browse Experiences
                     </button>
                   </div>
                 )}
@@ -334,7 +339,7 @@ export default function App() {
           </div>
         )}
 
-        {/* VIEW E: BEHANCE CASE STUDY & DESIGN SYSTEM SLIDES */}
+        {/* VIEW E: CASE STUDY & DESIGN SYSTEM SLIDES */}
         {activeView === 'slides' && (
           <div className="behance-case-study-canvas">
             {/* Floating Discreet Slide Dock */}
@@ -342,9 +347,9 @@ export default function App() {
               <button 
                 className="dock-toggle-btn"
                 onClick={() => setShowFloatingNav(!showFloatingNav)}
-                title="Toggle Slide Menu"
+                title="Toggle Menu"
               >
-                {showFloatingNav ? '✕' : '⚡ Slides'}
+                {showFloatingNav ? '✕' : 'Design Spec'}
               </button>
 
               {showFloatingNav && (
@@ -353,7 +358,7 @@ export default function App() {
                     className={`dock-btn ${activeSlide === 'all' ? 'active' : ''}`}
                     onClick={() => setActiveSlide('all')}
                   >
-                    📜 All Slides
+                    All Specs
                   </button>
                   <button 
                     className={`dock-btn ${activeSlide === 'uikit' ? 'active' : ''}`}
@@ -383,7 +388,7 @@ export default function App() {
                     className={`dock-btn ${activeSlide === 'studio' ? 'active' : ''}`}
                     onClick={() => setActiveSlide('studio')}
                   >
-                    5. 3D Studio Mockup
+                    5. Studio Mockup
                   </button>
                 </div>
               )}

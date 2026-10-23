@@ -94,7 +94,7 @@ export default function EventDetailScreen({
         </div>
 
         <div className="detail-badge-pill">
-          <span>🎵 {eventData.category}</span>
+          <span>{eventData.category}</span>
         </div>
       </div>
 
@@ -105,7 +105,7 @@ export default function EventDetailScreen({
         {/* Date & Location Pill Cards */}
         <div className="detail-quick-meta">
           <div className="quick-meta-item">
-            <AppIcon name="calendar" size={16} color="#0042D9" />
+            <AppIcon name="calendar" size={16} color="var(--color-brand-saffron)" />
             <div>
               <div className="meta-bold">{eventData.date}</div>
               <div className="meta-sub">{eventData.time}</div>
@@ -113,9 +113,9 @@ export default function EventDetailScreen({
           </div>
 
           <div className="quick-meta-item">
-            <AppIcon name="pin" size={16} color="#EE3D5A" />
+            <AppIcon name="pin" size={16} color="var(--color-brand-saffron)" />
             <div>
-              <div className="meta-bold">San Francisco</div>
+              <div className="meta-bold">Bengaluru, Koramangala</div>
               <div className="meta-sub">{eventData.venue}</div>
             </div>
           </div>

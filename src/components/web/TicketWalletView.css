@@ -60,9 +60,9 @@
 }
 
 .ticket-summary-pill-btn.active {
-  background: rgba(0, 66, 217, 0.15);
-  border-color: var(--color-royal-blue);
-  box-shadow: 0 4px 20px rgba(0, 66, 217, 0.25);
+  background: rgba(224, 122, 40, 0.1);
+  border-color: var(--color-brand-saffron);
+  box-shadow: 0 4px 16px rgba(224, 122, 40, 0.2);
 }
 
 .pill-ticket-thumb {
@@ -92,7 +92,7 @@
 }
 
 .pill-active-indicator {
-  color: var(--color-electric-lime);
+  color: var(--color-brand-saffron);
   font-size: 14px;
 }
 
@@ -108,7 +108,9 @@
 }
 
 .perk-icon {
-  font-size: 22px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .perk-heading {
@@ -156,22 +158,22 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: var(--color-electric-lime);
-  color: #080808;
+  background: var(--color-brand-saffron);
+  color: #FFFFFF;
   border: none;
-  padding: 16px;
+  padding: 15px;
   border-radius: 9999px;
   font-family: var(--font-family-display);
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(218, 251, 113, 0.35);
+  box-shadow: 0 4px 18px rgba(224, 122, 40, 0.35);
   transition: all 0.2s ease;
 }
 
 .wallet-action-primary-btn:hover {
-  background: #E5FFA0;
-  box-shadow: 0 12px 30px rgba(218, 251, 113, 0.5);
+  background: var(--color-brand-saffron-hover);
+  box-shadow: 0 8px 24px rgba(224, 122, 40, 0.5);
 }
 
 .action-hint {
@@ -256,13 +258,14 @@
 }
 
 .wallet-explore-btn {
-  background: var(--color-electric-lime);
-  color: #080808;
+  background: var(--color-brand-saffron);
+  color: #FFFFFF;
   border: none;
-  padding: 14px 28px;
+  padding: 13px 26px;
   border-radius: 9999px;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
+  box-shadow: 0 4px 16px rgba(224, 122, 40, 0.35);
 }
 
 /* Responsive */
