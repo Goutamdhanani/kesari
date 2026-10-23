@@ -2,10 +2,39 @@
 .hyperactive-showcase-root {
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-true-black);
-  color: var(--color-pure-white);
+  background-color: var(--color-obsidian);
+  color: var(--color-warm-ivory);
   position: relative;
   overflow-x: hidden;
+}
+
+/* Full Website Global Background */
+.global-website-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.global-backdrop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transform: scale(1.02);
+}
+
+.global-backdrop-overlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(circle at 50% 18%, rgba(255, 130, 72, 0.2) 0%, rgba(10, 10, 10, 0.72) 48%, #0A0A0A 100%),
+    linear-gradient(180deg, rgba(10, 10, 10, 0.62) 0%, rgba(10, 10, 10, 0.8) 45%, rgba(10, 10, 10, 0.93) 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* Main Presentation Surface */
@@ -13,6 +42,7 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
+  z-index: 1;
 }
 
 /* Continuous Stream (Behance Mode) */

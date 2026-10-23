@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MOCK_EVENTS, CITIES, GENRES, INITIAL_TICKETS } from './data/mockEvents';
 import WebHeader from './components/web/WebHeader';
 import HeroSection from './components/web/HeroSection';
-import StudioBanner from './components/web/StudioBanner';
 import EventCatalog from './components/web/EventCatalog';
 import TicketWalletView from './components/web/TicketWalletView';
 import EventModal from './components/web/EventModal';
@@ -161,6 +160,15 @@ export default function App() {
 
   return (
     <div className="hyperactive-showcase-root">
+      {/* Global Studio Background covering the entire website */}
+      <div className="global-website-backdrop" aria-hidden="true">
+        <img 
+          src="/assets/kesari_studio.jpg" 
+          alt="KESARI Live Studio" 
+          className="global-backdrop-img" 
+        />
+        <div className="global-backdrop-overlay"></div>
+      </div>
       
       {/* 1. Global Sticky Header */}
       <WebHeader 
@@ -191,16 +199,13 @@ export default function App() {
           <div className="web-explore-view">
             {/* Hero Concert Spotlight Banner */}
             {!searchQuery && (
-              <>
-                <HeroSection 
-                  featuredEvent={featuredEvent}
-                  onBookNow={handleBookNow}
-                  onToggleFavorite={handleToggleFavorite}
-                  isFavorite={favorites.includes(featuredEvent.id)}
-                  onSelectEvent={handleOpenEvent}
-                />
-                <StudioBanner onBookStudio={() => handleOpenEvent(featuredEvent)} />
-              </>
+              <HeroSection 
+                featuredEvent={featuredEvent}
+                onBookNow={handleBookNow}
+                onToggleFavorite={handleToggleFavorite}
+                isFavorite={favorites.includes(featuredEvent.id)}
+                onSelectEvent={handleOpenEvent}
+              />
             )}
 
             {/* Catalog Grid with Filters & Sort */}
