@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import HomeScreen from './HomeScreen';
 import OnboardingScreen from './OnboardingScreen';
 import TicketScreen from './TicketScreen';
 import EventDetailScreen from './EventDetailScreen';
 import QRModal from './QRModal';
 import './MobileFrame.css';
+
+const SCREEN_TABS = [
+  { id: 'home',       label: '🏠 Home', },
+  { id: 'onboarding', label: '🚀 Onboarding', },
+  { id: 'ticket',     label: '🎟️ Ticket', },
+  { id: 'details',    label: '🎸 Event', },
+];
+
+const screenVariants = {
+  initial: { opacity: 0, x: 18 },
+  animate: { opacity: 1, x: 0, transition: { duration: 0.22, ease: [0.19, 1, 0.22, 1] } },
+  exit:    { opacity: 0, x: -18, transition: { duration: 0.16 } },
+};
 
 export default function MobileFrame({ 
   initialScreen = 'onboarding',
@@ -15,13 +29,8 @@ export default function MobileFrame({
   const [selectedEventId, setSelectedEventId] = useState(initialEventId);
   const [showQRModal, setShowQRModal] = useState(false);
 
-  useEffect(() => {
-    setCurrentScreen(initialScreen);
-  }, [initialScreen]);
-
-  useEffect(() => {
-    setSelectedEventId(initialEventId);
-  }, [initialEventId]);
+  useEffect(() => { setCurrentScreen(initialScreen); }, [initialScreen]);
+  useEffect(() => { setSelectedEventId(initialEventId); }, [initialEventId]);
 
   const handleSelectEvent = (id) => {
     setSelectedEventId(id);
@@ -29,101 +38,131 @@ export default function MobileFrame({
     onEventSelected(id);
   };
 
+  const goTo = (screen) => setCurrentScreen(screen);
+
   return (
     <div className="mobile-frame-showcase">
-      {/* Screen Quick-Switcher Bar */}
-      <div className="frame-screen-switcher">
-        <span className="switcher-label">Mobile Screen:</span>
-        <button 
-          className={`switch-tab-btn ${currentScreen === 'home' ? 'active' : ''}`}
-          onClick={() => setCurrentScreen('home')}
-        >
-          🏠 Home Feed
-        </button>
-        <button 
-          className={`switch-tab-btn ${currentScreen === 'onboarding' ? 'active' : ''}`}
-          onClick={() => setCurrentScreen('onboarding')}
-        >
-          🚀 Onboarding
-        </button>
-        <button 
-          className={`switch-tab-btn ${currentScreen === 'ticket' ? 'active' : ''}`}
-          onClick={() => setCurrentScreen('ticket')}
-        >
-          🎟️ Digital Ticket
-        </button>
-        <button 
-          className={`switch-tab-btn ${currentScreen === 'details' ? 'active' : ''}`}
-          onClick={() => setCurrentScreen('details')}
-        >
-          🎸 Event Details
-        </button>
+      {/* Screen Quick-Switcher */}
+      <div className="frame-screen-switcher" role="tablist" aria-label="Mobile screen preview">
+        <span className="switcher-label">Preview:</span>
+        {SCREEN_TABS.map(tab => (
+          <button
+            key={tab.id}
+            role="tab"
+            aria-selected={currentScreen === tab.id}
+            className={`switch-tab-btn ${currentScreen === tab.id ? 'active' : ''}`}
+            onClick={() => goTo(tab.id)}
+          >
+            {tab.label}
+          </button>
+        ))}
       </div>
 
-      {/* Realistic iPhone Device Frame */}
-      <div className="iphone-outer-chassis">
+      {/* iPhone Device Frame */}
+      <div className="iphone-outer-chassis" role="presentation" aria-label="iPhone mobile preview">
+        
         {/* Dynamic Island */}
-        <div className="iphone-dynamic-island">
-          <div className="island-camera-lens"></div>
+        <div className="iphone-dynamic-island" aria-hidden="true">
+          <div className="island-camera-lens" />
         </div>
 
         {/* Status Bar */}
-        <div className="iphone-status-bar">
+        <div className="iphone-status-bar" aria-hidden="true">
           <span className="status-time">9:41</span>
           <div className="status-icons">
-            <svg width="15" height="11" viewBox="0 0 15 11" fill="none">
-              <path d="M1 9.5C1 9.22386 1.22386 9 1.5 9H2.5C2.77614 9 3 9.22386 3 9.5V10.5C3 10.7761 2.77614 11 2.5 11H1.5C1.22386 11 1 10.7761 1 10.5V9.5Z" fill="currentColor"/>
-              <path d="M5 7C5 6.72386 5.22386 6.5 5.5 6.5H6.5C6.77614 6.5 7 6.72386 7 7V10.5C7 10.7761 6.77614 11 6.5 11H5.5C5.22386 11 5 10.7761 5 10.5V7Z" fill="currentColor"/>
-              <path d="M9 4.5C9 4.22386 9.22386 4 9.5 4H10.5C10.7761 4 11 4.22386 11 4.5V10.5C11 10.7761 10.7761 11 10.5 11H9.5C9.22386 11 9 10.7761 9 10.5V4.5Z" fill="currentColor"/>
-              <path d="M13 1.5C13 1.22386 13.224 1 13.5 1H14.5C14.776 1 15 1.22386 15 1.5V10.5C15 10.7761 14.776 11 14.5 11H13.5C13.224 11 13 10.7761 13 10.5V1.5Z" fill="currentColor"/>
+            {/* Signal Bars */}
+            <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor">
+              <rect x="0" y="9" width="3" height="3" rx="0.5"/>
+              <rect x="4.5" y="6.5" width="3" height="5.5" rx="0.5"/>
+              <rect x="9" y="3.5" width="3" height="8.5" rx="0.5"/>
+              <rect x="13.5" y="0" width="3" height="12" rx="0.5"/>
             </svg>
-            <svg width="15" height="11" viewBox="0 0 16 11" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M8 0.5C4.8 0.5 1.9 1.9 0 4.1L8 11L16 4.1C14.1 1.9 11.2 0.5 8 0.5ZM2.3 4.9C3.8 3.4 5.8 2.5 8 2.5C10.2 2.5 12.2 3.4 13.7 4.9L8 9.8L2.3 4.9Z" fill="currentColor"/>
+            {/* WiFi */}
+            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+              <path fillRule="evenodd" clipRule="evenodd" d="M8 3C5.5 3 3.2 3.9 1.5 5.5L0 4C2.1 1.5 5 0 8 0C11 0 13.9 1.5 16 4L14.5 5.5C12.8 3.9 10.5 3 8 3ZM8 7C6.5 7 5.2 7.6 4.2 8.5L2.7 7C4 5.8 5.9 5 8 5C10.1 5 12 5.8 13.3 7L11.8 8.5C10.8 7.6 9.5 7 8 7ZM8 11C7.2 11 6.5 11.3 6 11.8L8 14L10 11.8C9.5 11.3 8.8 11 8 11Z" fill="currentColor"/>
             </svg>
+            {/* Battery */}
             <div className="battery-indicator-wrap">
-              <div className="battery-level-bar"></div>
+              <div className="battery-level-bar" />
             </div>
           </div>
         </div>
 
-        {/* Screen Content Viewport */}
+        {/* Screen Viewport */}
         <div className="iphone-screen-viewport">
-          {currentScreen === 'home' && (
-            <HomeScreen 
-              onSelectEvent={handleSelectEvent}
-              onOpenTicket={() => setCurrentScreen('ticket')}
-              onOpenNotifications={() => alert("Gregory, you have 1 unread notification: Doors for Jazz & Blues Festival open at 15:00 PM!")}
-            />
-          )}
+          <AnimatePresence mode="wait">
+            {currentScreen === 'home' && (
+              <motion.div
+                key="home"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <HomeScreen 
+                  onSelectEvent={handleSelectEvent}
+                  onOpenTicket={() => setCurrentScreen('ticket')}
+                  onOpenNotifications={() => {}}
+                />
+              </motion.div>
+            )}
 
-          {currentScreen === 'onboarding' && (
-            <OnboardingScreen onFinish={() => setCurrentScreen('home')} />
-          )}
+            {currentScreen === 'onboarding' && (
+              <motion.div
+                key="onboarding"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <OnboardingScreen onFinish={() => setCurrentScreen('home')} />
+              </motion.div>
+            )}
 
-          {currentScreen === 'ticket' && (
-            <TicketScreen 
-              onBack={() => setCurrentScreen('home')} 
-              onOpenQR={() => setShowQRModal(true)}
-            />
-          )}
+            {currentScreen === 'ticket' && (
+              <motion.div
+                key="ticket"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <TicketScreen 
+                  onBack={() => setCurrentScreen('home')} 
+                  onOpenQR={() => setShowQRModal(true)}
+                />
+              </motion.div>
+            )}
 
-          {currentScreen === 'details' && (
-            <EventDetailScreen 
-              eventId={selectedEventId}
-              onBack={() => setCurrentScreen('home')}
-              onBookSuccess={() => {
-                alert("🎉 Ticket confirmed for Gregory Jenkins! Check your digital pass in My Tickets.");
-                setCurrentScreen('ticket');
-              }}
-            />
-          )}
+            {currentScreen === 'details' && (
+              <motion.div
+                key="details"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <EventDetailScreen 
+                  eventId={selectedEventId}
+                  onBack={() => setCurrentScreen('home')}
+                  onBookSuccess={() => {
+                    setCurrentScreen('ticket');
+                  }}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-          {/* QR Scanner Modal Overlay */}
+          {/* QR Modal */}
           <QRModal isOpen={showQRModal} onClose={() => setShowQRModal(false)} />
         </div>
 
-        {/* iPhone Bottom Home Indicator Bar */}
-        <div className="iphone-home-indicator"></div>
+        {/* Home Indicator */}
+        <div className="iphone-home-indicator" aria-hidden="true" />
       </div>
     </div>
   );

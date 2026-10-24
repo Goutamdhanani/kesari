@@ -21,7 +21,10 @@ import {
   SlidersHorizontal,
   Compass,
   ArrowRight,
-  Check
+  Check,
+  Mic,
+  MapPinned,
+  Star
 } from 'lucide-react';
 
 export default function AppIcon({ name, size = 20, color = 'currentColor', fill = 'none', strokeWidth = 2, className = '' }) {
@@ -76,6 +79,12 @@ export default function AppIcon({ name, size = 20, color = 'currentColor', fill 
       return <ArrowRight {...iconProps} />;
     case 'check':
       return <Check {...iconProps} />;
+    case 'mic':
+      return <Mic {...iconProps} />;
+    case 'map-pin':
+      return <MapPinned {...iconProps} />;
+    case 'star':
+      return <Star {...iconProps} />;
     default:
       return <Home {...iconProps} />;
   }

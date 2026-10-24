@@ -1,97 +1,138 @@
-/* Mobile Ticket Screen */
+/* ============================================================
+   MOBILE TICKET SCREEN — Digital Pass View
+   ============================================================ */
+
 .mobile-ticket-screen {
   width: 100%;
   height: 100%;
-  background-color: var(--color-pale-blue-bg);
-  color: var(--color-true-black);
-  padding: 50px 18px 40px 18px;
-  position: relative;
+  background: #EBF1FF;
+  color: #0C0D12;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 54px 18px 32px;
 }
+.mobile-ticket-screen::-webkit-scrollbar { display: none; }
 
+/* ── Header ─────────────────────────────────── */
 .ticket-screen-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
 }
 
 .ticket-nav-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-pure-white);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.ticket-nav-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 
 .ticket-header-title {
   font-family: var(--font-family-display);
-  font-size: 18px;
-  font-weight: 700;
-  color: #0E0F14;
-  letter-spacing: -0.3px;
+  font-size: 17px;
+  font-weight: 800;
+  color: #0C0D12;
+  letter-spacing: -0.4px;
   margin: 0;
 }
 
-/* Center Presentation */
+/* ── Ticket Count Badge ──────────────────────── */
+.ticket-count-badge {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9CA3AF;
+  letter-spacing: 0.5px;
+}
+.ticket-count-badge strong {
+  color: #0042D9;
+  font-weight: 800;
+}
+
+/* ── Center Presentation ─────────────────────── */
 .ticket-card-presentation {
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  flex-shrink: 0;
 }
 
-/* Actions */
+/* ── Section Header ──────────────────────────── */
+.ticket-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #9CA3AF;
+  margin-bottom: 14px;
+}
+
+/* ── Actions ─────────────────────────────────── */
 .ticket-screen-actions {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  max-width: 320px;
+  max-width: 340px;
   margin: 0 auto;
+  flex-shrink: 0;
 }
 
 .ticket-primary-qr-btn {
-  background: var(--color-electric-lime);
+  background: var(--color-electric-lime, #DAFB71);
   color: #080808;
   font-family: var(--font-family-display);
-  font-size: 15px;
+  font-size: 14.5px;
   font-weight: 700;
-  border-radius: 9999px;
-  padding: 14px 20px;
+  border-radius: 999px;
+  padding: 15px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: var(--shadow-lime);
-  transition: transform var(--transition-fast), filter var(--transition-fast);
+  box-shadow: 0 6px 20px rgba(218,251,113,0.5);
+  transition: transform 0.18s, box-shadow 0.18s;
+  letter-spacing: -0.2px;
 }
-
 .ticket-primary-qr-btn:hover {
   transform: translateY(-2px);
-  filter: brightness(1.05);
+  box-shadow: 0 10px 28px rgba(218,251,113,0.6);
 }
 
 .ticket-wallet-btn {
-  background: #0E1017;
-  color: var(--color-pure-white);
+  background: #0C0D12;
+  color: #fff;
   font-family: var(--font-family-display);
   font-size: 14px;
   font-weight: 600;
-  border-radius: 9999px;
-  padding: 12px 20px;
+  border-radius: 999px;
+  padding: 14px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-  transition: transform var(--transition-fast);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  transition: transform 0.18s;
 }
+.ticket-wallet-btn:hover { transform: translateY(-2px); }
 
-.ticket-wallet-btn:hover {
-  transform: translateY(-2px);
+/* Spacer */
+.ticket-screen-spacer {
+  flex: 1;
+  min-height: 20px;
 }
