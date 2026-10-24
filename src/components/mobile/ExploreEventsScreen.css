@@ -1,16 +1,17 @@
 /* ============================================================
-   EXPLORE EVENTS SCREEN — Antique Minimal Editorial
-   Quiet luxury, generous whitespace, refined serif typography,
-   warm linen canvas, and zero visual clutter.
+   EXPLORE EVENTS SCREEN — Matches Home Screen Theme
+   Obsidian Curved Stage Dome, Aurora Borealis Fluid Canvas,
+   Warm Alabaster Canvas (#F7F4EE), Clean Poster Pass Cards,
+   and Minimal, Impactful Text.
    ============================================================ */
 
-.antique-explore-root {
+.mobile-explore-screen {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: #FAF7F2;
-  color: #1C1917;
+  background: var(--color-canvas-warm, #F7F4EE);
+  color: var(--color-ink-primary, #12131A);
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -19,308 +20,485 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.antique-explore-root::-webkit-scrollbar {
+.mobile-explore-screen::-webkit-scrollbar {
   display: none;
 }
 
-/* ── Minimal Antique Header ── */
-.antique-header {
+/* ── 1. The Obsidian Curved Stage Dome Header ── */
+.explore-curved-dome-header {
+  background: rgba(14, 15, 23, 0.94);
+  border-radius: 0 0 28px 28px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Aurora Fluid Simulation Viewport */
+.explore-aurora-viewport {
+  position: absolute;
+  inset: 0;
+  border-radius: 0 0 28px 28px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    #131626 0%,
+    #0E1018 55%,
+    #090A0F 100%
+  );
+}
+
+/* Top Navigation Row inside Dome */
+.explore-dome-nav-row {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: max(18px, env(safe-area-inset-top, 18px)) 24px 14px 24px;
-  background: #FAF7F2;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  border-bottom: 1px solid rgba(28, 25, 23, 0.06);
+  gap: 10px;
 }
 
-.antique-back-btn {
+.explore-dome-back-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(28, 25, 23, 0.12);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
   flex-shrink: 0;
 }
 
-.antique-back-btn:hover {
-  background: rgba(28, 25, 23, 0.05);
-  transform: scale(1.04);
+.explore-dome-back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
-.antique-header-center {
+.explore-dome-titles {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.antique-kicker {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 9.5px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  color: #A8A29E;
+.explore-dome-beacon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.explore-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+  animation: exploreBeaconPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes exploreBeaconPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(0.85); }
+}
+
+.explore-live-label {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  color: #DAFB71;
   text-transform: uppercase;
 }
 
-.antique-title {
-  margin: 0;
-  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
-  font-size: 22px;
-  font-weight: 500;
-  color: #1C1917;
-  letter-spacing: -0.01em;
-  line-height: 1.15;
+.explore-dome-heading {
+  margin: 1px 0 0 0;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 17px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
 }
 
-.antique-location-link {
-  background: transparent;
-  border: none;
-  padding: 6px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: #78716C;
-  cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: color 0.18s ease;
-}
-
-.antique-location-link:hover {
-  color: #C2571A;
-}
-
-/* ── Minimal Understated Filter Tabs ── */
-.antique-tabs-nav {
+.explore-dome-venue-pill {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
-  padding: 12px 24px 16px 24px;
-  background: #FAF7F2;
-  border-bottom: 1px solid rgba(28, 25, 23, 0.05);
-  position: sticky;
-  top: 73px;
-  z-index: 15;
-}
-
-.antique-tab-btn {
-  position: relative;
-  background: transparent;
-  border: none;
-  padding: 6px 4px 10px 4px;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 450;
-  color: #8C827A;
+  gap: 6px;
+  padding: 5px 11px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
   cursor: pointer;
-  letter-spacing: 0.02em;
-  transition: color 0.2s ease;
+  flex-shrink: 0;
+  transition: all 0.18s ease;
 }
 
-.antique-tab-btn:hover {
-  color: #1C1917;
+.explore-dome-venue-pill:hover {
+  background: rgba(255, 255, 255, 0.14);
 }
 
-.antique-tab-btn.is-active {
-  color: #1C1917;
-  font-weight: 600;
+.explore-venue-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #DAFB71;
 }
 
-.antique-tab-underline {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: #C2571A;
+.explore-venue-name {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11px;
+  font-weight: 650;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
 }
 
-/* ── Spacious Event Stream ── */
-.antique-events-stream {
-  display: flex;
-  flex-direction: column;
-  padding: 24px 20px 40px 20px;
-  gap: 40px; /* Generous breathing space */
-}
-
-.antique-event-item {
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  background: #FAF7F2;
-  transition: opacity 0.2s ease;
-}
-
-.antique-event-item:hover {
-  opacity: 0.94;
-}
-
-.antique-event-item:active {
-  transform: scale(0.995);
-}
-
-/* Photo */
-.antique-image-wrap {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: 12px;
-  overflow: hidden;
-  background: #EFECE5;
-  box-shadow: 0 4px 18px rgba(28, 25, 23, 0.06);
+/* Date Tabs inside Dome */
+.explore-dome-date-row {
   position: relative;
-}
-
-.antique-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  filter: contrast(1.02);
-}
-
-.antique-event-item:hover .antique-image {
-  transform: scale(1.02);
-}
-
-/* Editorial Details */
-.antique-info-row {
-  display: flex;
-  flex-direction: column;
-  padding: 16px 4px 0 4px;
-}
-
-.antique-meta-line {
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 3px;
 }
 
-.antique-date {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+.explore-date-tab {
+  position: relative;
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 7px 6px;
+  border-radius: 11px;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #9AA0AF;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.18s ease;
+  z-index: 2;
+}
+
+.explore-date-tab.active {
+  color: #12131A;
+  font-weight: 750;
+}
+
+.explore-date-tab-active-pill {
+  position: absolute;
+  inset: 0;
+  background: #FFFFFF;
+  border-radius: 11px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: -1;
+}
+
+/* ── 2. The Warm Alabaster Sheet ── */
+.explore-warm-sheet {
+  padding: 16px 16px 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+/* Vibe Pills Row */
+.explore-vibe-pills-row {
+  display: flex;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 0 4px;
+}
+
+.explore-vibe-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.vibe-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #FFFFFF;
+  border: 1px solid rgba(18, 19, 26, 0.08);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  outline: none;
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(18, 19, 26, 0.03);
+  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.vibe-chip-label {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11.5px;
+  font-weight: 650;
+  color: #6B6F7B;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.vibe-chip-btn.active {
+  background: #12131A;
+  border-color: #12131A;
+  box-shadow: 0 3px 10px rgba(18, 19, 26, 0.18);
+}
+
+.vibe-chip-btn.active .vibe-chip-label {
+  color: #FFFFFF;
+  font-weight: 750;
+}
+
+/* Section Title Row */
+.explore-shows-meta-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 2px;
+}
+
+.explore-section-title {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #12131A;
+  letter-spacing: -0.015em;
+}
+
+.explore-section-count {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #C2571A;
+  color: #8E92A0;
+}
+
+/* ── 3. Cards Stream (Matches HomeScreen poster-pass-card) ── */
+.explore-cards-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.explore-poster-card {
+  width: 100%;
+  height: 240px;
+  border-radius: 22px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 6px 22px rgba(18, 19, 26, 0.08);
+  border: 1px solid rgba(18, 19, 26, 0.06);
+  background: #12141D;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.2s ease;
+}
+
+.explore-poster-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(18, 19, 26, 0.12);
+}
+
+.explore-card-bg-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  transition: transform 0.35s ease;
+}
+
+.explore-poster-card:hover .explore-card-bg-img {
+  transform: scale(1.025);
+}
+
+.explore-card-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 15, 23, 0.25) 0%,
+    rgba(14, 15, 23, 0.15) 35%,
+    rgba(14, 15, 23, 0.85) 75%,
+    rgba(14, 15, 23, 0.98) 100%
+  );
+  pointer-events: none;
+}
+
+/* Card Top Floating Badge */
+.explore-card-top-row {
+  position: relative;
+  z-index: 2;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.explore-stage-badge {
+  background: rgba(14, 15, 23, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #DAFB71;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  padding: 3.5px 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   text-transform: uppercase;
 }
 
-.antique-time {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 11.5px;
-  color: #8C827A;
-  font-weight: 450;
+.explore-arrow-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease;
 }
 
-.antique-event-title {
-  margin: 0 0 4px 0;
-  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
-  font-size: 21px;
-  font-weight: 500;
-  color: #1C1917;
+.explore-poster-card:hover .explore-arrow-circle {
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* Frosted Bottom Info Drawer */
+.explore-card-drawer {
+  position: relative;
+  z-index: 2;
+  padding: 12px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.explore-timing-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.explore-timing-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 5px #10B981;
+}
+
+.explore-timing-text {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 10.5px;
+  font-weight: 650;
+  color: #B5B9C8;
+}
+
+.explore-card-title {
+  margin: 2px 0 0 0;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
   letter-spacing: -0.015em;
   line-height: 1.25;
 }
 
-.antique-artist-line {
-  margin: 0 0 14px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 13px;
-  color: #78716C;
-  font-weight: 400;
+.explore-card-artist {
+  margin: 0 0 4px 0;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11.5px;
+  color: #9AA0AF;
+  font-weight: 500;
 }
 
-.antique-action-line {
+.explore-card-footer {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
-  padding-top: 12px;
-  border-top: 1px solid rgba(28, 25, 23, 0.08);
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.antique-price {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+.explore-price-val {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
   font-size: 15px;
-  font-weight: 600;
-  color: #1C1917;
-  letter-spacing: -0.01em;
+  font-weight: 800;
+  color: #FFFFFF;
 }
 
-.antique-reserve-link {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 12.5px;
-  font-weight: 600;
-  color: #C2571A;
+.explore-claim-btn {
+  background: #E50914;
+  color: #FFFFFF;
+  border: none;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11px;
+  font-weight: 750;
+  padding: 5px 12px;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  transition: transform 0.18s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(229, 9, 20, 0.35);
+  transition: transform 0.16s ease;
 }
 
-.antique-reserve-link span {
-  transition: transform 0.18s ease;
-}
-
-.antique-event-item:hover .antique-reserve-link span {
-  transform: translateX(3px);
+.explore-claim-btn:hover {
+  transform: scale(1.05);
 }
 
 /* Empty State */
-.antique-empty {
+.explore-empty-box {
+  background: #FFFFFF;
+  border: 1px dashed rgba(18, 19, 26, 0.12);
+  border-radius: 16px;
+  padding: 32px 16px;
   text-align: center;
-  padding: 48px 16px;
-  color: #78716C;
+  color: #6B6F7B;
 }
 
-.antique-empty p {
-  margin: 0 0 12px 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 13.5px;
-}
-
-.antique-reset-btn {
-  background: transparent;
-  border: 1px solid rgba(28, 25, 23, 0.2);
-  color: #1C1917;
-  padding: 7px 16px;
-  border-radius: 999px;
-  font-size: 12px;
+.explore-empty-box p {
+  margin: 0 0 10px 0;
+  font-size: 12.5px;
   font-weight: 500;
+}
+
+.explore-empty-reset {
+  background: #12131A;
+  color: #FFFFFF;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
   cursor: pointer;
 }
 
-/* Footer Note */
-.antique-footer-note {
-  margin-top: 24px;
-  padding-top: 24px;
-  border-top: 1px solid rgba(28, 25, 23, 0.08);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.antique-footer-note p {
-  margin: 0;
-  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
-  font-size: 14.5px;
-  color: #1C1917;
-  font-style: italic;
-}
-
-.antique-footer-note span {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
-  font-size: 10.5px;
-  color: #A8A29E;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* Spacer for Fixed Bottom Nav */
+.explore-bottom-spacer {
+  height: 85px;
+  flex-shrink: 0;
 }
