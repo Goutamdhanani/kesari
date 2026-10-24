@@ -29,8 +29,9 @@
 .skel-circle,
 .skel-pill,
 .skel-line,
-.skel-pass-card,
-.skel-bento-box {
+.skel-poster-card,
+.skel-bento-box,
+.skel-schedule-row {
   background: linear-gradient(
     90deg,
     rgba(228, 223, 212, 0.5) 0%,
@@ -47,10 +48,10 @@
 .skel-curved-dome {
   background: #12131A;
   border-radius: 0 0 32px 32px;
-  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 22px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 .skel-dome-top {
@@ -88,8 +89,8 @@
 
 .skel-dome-card {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  padding: 13px 14px;
+  border-radius: 22px;
+  padding: 14px 15px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -146,7 +147,7 @@
 }
 
 .skel-label {
-  width: 110px;
+  width: 120px;
   height: 12px;
   border-radius: 3px;
 }
@@ -176,10 +177,10 @@
   overflow: hidden;
 }
 
-.skel-pass-card {
-  width: 205px;
-  height: 136px;
-  border-radius: 22px;
+.skel-poster-card {
+  width: 218px;
+  height: 275px;
+  border-radius: 24px;
   flex-shrink: 0;
 }
 
@@ -191,6 +192,17 @@
 }
 
 .skel-bento-box {
-  height: 148px;
+  height: 162px;
   border-radius: 22px;
+}
+
+.skel-schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skel-schedule-row {
+  height: 72px;
+  border-radius: 18px;
 }

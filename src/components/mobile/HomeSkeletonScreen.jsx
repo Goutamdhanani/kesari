@@ -47,20 +47,30 @@ export default function HomeSkeletonScreen() {
           <div className="skel-circle skel-vibe-orb" />
         </div>
 
-        {/* Passes Skeleton */}
+        {/* Poster Passes Skeleton (matching 275px height) */}
         <div className="skel-section-head" style={{ marginTop: 14 }}>
           <div className="skel-line skel-label" />
           <div className="skel-line skel-meta" />
         </div>
         <div className="skel-passes-row">
-          <div className="skel-pass-card" />
-          <div className="skel-pass-card" />
+          <div className="skel-poster-card" />
+          <div className="skel-poster-card" />
         </div>
 
         {/* Bento Duo Skeleton */}
         <div className="skel-bento-duo">
           <div className="skel-bento-box" />
           <div className="skel-bento-box" />
+        </div>
+
+        {/* Schedule List Skeleton */}
+        <div className="skel-section-head" style={{ marginTop: 14 }}>
+          <div className="skel-line skel-label" />
+          <div className="skel-line skel-meta" />
+        </div>
+        <div className="skel-schedule-list">
+          <div className="skel-schedule-row" />
+          <div className="skel-schedule-row" />
         </div>
       </div>
     </motion.div>

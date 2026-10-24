@@ -2,7 +2,7 @@
    MOBILE HOME SCREEN — Event Jam App (2026 Warm Oat & Obsidian Dome)
    Inspired by Reference Images 1 & 2:
    Two-tone architectural dome, soundwave visualizer, vibe spectrum,
-   pastel bento stage passes, and frosted bottom navigation.
+   rich concert posters, pastel editorial badges, and frosted bottom navigation.
    ============================================================ */
 
 .mobile-home-root-container {
@@ -34,11 +34,11 @@
 .home-curved-dome-header {
   background: linear-gradient(180deg, #181A24 0%, #0D0E14 100%);
   border-radius: 0 0 32px 32px;
-  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 22px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  box-shadow: 0 12px 36px rgba(18, 19, 26, 0.18);
+  gap: 14px;
+  box-shadow: 0 12px 36px rgba(18, 19, 26, 0.22);
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
@@ -153,15 +153,47 @@
   border: 1.5px solid #FFFFFF;
 }
 
-/* Main Stage Live Feature Display */
+/* Main Stage Live Feature Display with Real Concert Background Poster */
 .dome-hero-spotlight {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 20px;
-  padding: 13px 14px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 14px 15px;
   cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.dome-hero-backdrop-img {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 25%;
+  filter: brightness(0.68) contrast(1.15);
+  transform: scale(1.02);
+  transition: transform 0.4s ease;
+}
+
+.dome-hero-spotlight:hover .dome-hero-backdrop-img {
+  transform: scale(1.06);
+}
+
+.dome-hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(13, 14, 20, 0.45) 0%,
+    rgba(13, 14, 20, 0.78) 50%,
+    rgba(13, 14, 20, 0.96) 100%
+  );
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+}
+
+.dome-hero-inner-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -173,6 +205,27 @@
   justify-content: space-between;
 }
 
+.dome-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.live-pulse-dot {
+  width: 6.5px;
+  height: 6.5px;
+  border-radius: 50%;
+  background: #F3E294;
+  box-shadow: 0 0 10px #F3E294;
+  animation: pulse-glow 1.4s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
 .dome-live-tag {
   color: #F3E294;
   font-size: 9.5px;
@@ -182,13 +235,15 @@
 }
 
 .dome-db-badge {
-  background: rgba(215, 220, 250, 0.15);
+  background: rgba(215, 220, 250, 0.18);
+  backdrop-filter: blur(6px);
   color: #D7DCFA;
   font-size: 9px;
   font-weight: 750;
-  padding: 2.5px 7px;
+  padding: 2.5px 8px;
   border-radius: 999px;
   letter-spacing: 0.02em;
+  border: 1px solid rgba(215, 220, 250, 0.2);
 }
 
 .dome-headline-row {
@@ -200,12 +255,13 @@
 
 .dome-act-title {
   font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Soundwave Equalizer Bars */
@@ -225,7 +281,7 @@
 }
 
 .bar-1 { height: 6px; animation-delay: 0.1s; }
-.bar-2 { height: 14px; animation-delay: 0.35s; background: #F3E294; }
+.bar-2 { height: 15px; animation-delay: 0.35s; background: #F3E294; }
 .bar-3 { height: 9px; animation-delay: 0.2s; }
 .bar-4 { height: 16px; animation-delay: 0.45s; background: #CFE7DE; }
 .bar-5 { height: 8px; animation-delay: 0.15s; }
@@ -245,7 +301,7 @@
 .dome-subtext {
   font-size: 10.5px;
   font-weight: 500;
-  color: #9AA0AF;
+  color: #B5B9C8;
   letter-spacing: -0.01em;
 }
 
@@ -254,14 +310,14 @@
   color: #12131A;
   font-size: 10.5px;
   font-weight: 800;
-  padding: 5px 11px;
+  padding: 5px 12px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   border: none;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
   flex-shrink: 0;
 }
 
@@ -284,7 +340,7 @@
 
 .section-label {
   font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 800;
   color: #12131A;
   letter-spacing: -0.02em;
@@ -298,7 +354,7 @@
 
 .section-meta-action {
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 750;
   color: #12131A;
   cursor: pointer;
 }
@@ -363,7 +419,7 @@
   font-weight: 800;
 }
 
-/* ── 3. Today's Stage Passes (from Reference Image 1) ── */
+/* ── 3. Event Poster Cards Carousel (Stage Passes & Posters) ── */
 .stage-passes-section {
   display: flex;
   flex-direction: column;
@@ -376,106 +432,169 @@
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding-bottom: 2px;
+  padding: 2px 2px 8px;
 }
 .stage-passes-scroll::-webkit-scrollbar { display: none; }
 
-.stage-pass-card {
-  width: 205px;
-  border-radius: 22px;
-  padding: 13px 14px;
+.poster-pass-card {
+  width: 218px;
+  height: 275px;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 136px;
   flex-shrink: 0;
   scroll-snap-align: start;
-  box-shadow: 0 3px 12px rgba(18, 19, 26, 0.04);
-  border: 1px solid rgba(18, 19, 26, 0.05);
   cursor: pointer;
+  box-shadow: 0 6px 22px rgba(18, 19, 26, 0.08);
+  border: 1px solid rgba(18, 19, 26, 0.06);
 }
 
-.pass-card-top {
+.poster-card-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.poster-pass-card:hover .poster-card-image {
+  transform: scale(1.06);
+}
+
+.poster-card-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 19, 26, 0.3) 0%,
+    rgba(18, 19, 26, 0.1) 30%,
+    rgba(18, 19, 26, 0.8) 72%,
+    rgba(18, 19, 26, 0.98) 100%
+  );
+}
+
+.poster-card-header {
+  position: relative;
+  z-index: 2;
+  padding: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.pass-timing-tag {
-  font-size: 9px;
+.poster-stage-badge {
+  font-size: 9.5px;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: rgba(18, 19, 26, 0.65);
+  color: #12131A;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
-.pass-arrow-circle {
-  width: 26px;
-  height: 26px;
+.poster-arrow-circle {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #12131A;
+  background: rgba(18, 19, 26, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 6px rgba(18, 19, 26, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
 }
 
-.pass-card-mid {
+.poster-card-drawer {
+  position: relative;
+  z-index: 2;
+  margin: 10px;
+  padding: 11px 12px;
+  border-radius: 18px;
+  background: rgba(18, 19, 26, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin: 6px 0;
+  gap: 3px;
 }
 
-.pass-stage-name {
-  font-size: 9.5px;
-  font-weight: 600;
-  color: rgba(18, 19, 26, 0.55);
+.poster-timing-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.pass-event-title {
+.poster-timing-pulse {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.poster-timing-text {
+  font-size: 8.5px;
+  font-weight: 750;
+  color: #D7DCFA;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.poster-event-title {
   font-family: var(--font-family-display, 'Syne', sans-serif);
   font-size: 13.5px;
   font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.22;
   letter-spacing: -0.02em;
-  color: #12131A;
-  line-height: 1.2;
-  margin: 0;
+  margin: 1px 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.pass-artist-name {
+.poster-artist-name {
   font-size: 10px;
   font-weight: 500;
-  color: rgba(18, 19, 26, 0.65);
-  margin: 0;
+  color: #A3A7B6;
+  margin: 0 0 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.pass-card-bottom {
+.poster-card-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-.pass-price-val {
+.poster-price-val {
   font-family: var(--font-family-display, 'Syne', sans-serif);
   font-size: 14px;
   font-weight: 850;
-  color: #12131A;
+  color: #FFFFFF;
   letter-spacing: -0.02em;
 }
 
-.pass-chip {
-  font-size: 9px;
-  font-weight: 700;
+.poster-tag-chip {
+  font-size: 8.5px;
+  font-weight: 800;
   color: #12131A;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 2px 7px;
+  padding: 2.5px 8px;
   border-radius: 999px;
+  letter-spacing: -0.01em;
 }
 
 .pass-empty-state {
-  padding: 20px;
+  padding: 24px;
   color: #8E92A0;
   font-size: 11px;
   font-style: italic;
@@ -489,25 +608,48 @@
   gap: 10px;
 }
 
-/* Bento Card 1: Artistic Line-Art Card */
-.bento-artistic-card {
-  background: #FFFFFF;
+/* Bento Card 1: Sunset Acoustic Lounge with Real Photo Poster */
+.bento-poster-card {
   border-radius: 22px;
-  padding: 13px;
+  position: relative;
+  overflow: hidden;
+  min-height: 162px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 148px;
-  box-shadow: 0 3px 12px rgba(18, 19, 26, 0.03);
-  border: 1px solid rgba(18, 19, 26, 0.05);
+  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.06);
+  border: 1px solid rgba(18, 19, 26, 0.06);
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
 }
 
-.bento-art-content {
+.bento-poster-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.85);
+  transition: transform 0.4s ease;
+}
+
+.bento-poster-card:hover .bento-poster-bg {
+  transform: scale(1.06);
+}
+
+.bento-poster-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 19, 26, 0.35) 0%,
+    rgba(18, 19, 26, 0.75) 60%,
+    rgba(18, 19, 26, 0.95) 100%
+  );
+}
+
+.bento-poster-content {
   position: relative;
   z-index: 2;
+  padding: 13px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -516,30 +658,30 @@
 
 .bento-mini-tag {
   font-size: 8.5px;
-  font-weight: 750;
+  font-weight: 800;
   text-transform: uppercase;
-  color: #8E92A0;
+  color: #F3E294;
   letter-spacing: 0.04em;
 }
 
-.bento-art-title {
+.bento-poster-title {
   font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 800;
-  color: #12131A;
+  color: #FFFFFF;
   line-height: 1.25;
   letter-spacing: -0.02em;
   margin: 4px 0 2px;
 }
 
-.bento-art-sub {
+.bento-poster-sub {
   font-size: 10px;
-  color: #737682;
+  color: #CFD3DF;
   margin: 0;
   line-height: 1.25;
 }
 
-.bento-art-footer {
+.bento-poster-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -559,32 +701,24 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #12131A;
+  background: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.bento-botanical-svg {
-  position: absolute;
-  right: -8px;
-  bottom: -8px;
-  width: 90px;
-  height: 90px;
-  pointer-events: none;
-  z-index: 1;
 }
 
 /* Bento Card 2: Giant Stat Capacity Card (like Image 2 "89%") */
 .bento-metric-card {
   background: #12131A;
   border-radius: 22px;
-  padding: 13px;
+  padding: 13px 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 148px;
-  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.15);
+  min-height: 162px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .metric-header-row {
@@ -594,7 +728,7 @@
 }
 
 .metric-eyebrow {
-  font-size: 8.5px;
+  font-size: 9px;
   font-weight: 750;
   text-transform: uppercase;
   color: #9AA0AF;
@@ -602,8 +736,8 @@
 }
 
 .metric-live-dot {
-  width: 5px;
-  height: 5px;
+  width: 6.5px;
+  height: 6.5px;
   border-radius: 50%;
   background: #10B981;
   box-shadow: 0 0 6px #10B981;
@@ -613,62 +747,248 @@
   display: flex;
   align-items: baseline;
   gap: 2px;
-  margin: 4px 0 2px;
+  line-height: 1;
+  margin: 3px 0 1px;
 }
 
 .metric-giant-number span:first-child {
   font-family: var(--font-family-display, 'Syne', sans-serif);
   font-size: 34px;
-  font-weight: 800;
-  color: #FFFFFF;
-  line-height: 1;
+  font-weight: 900;
   letter-spacing: -0.04em;
+  color: #FFFFFF;
 }
 
 .metric-pct {
   font-size: 16px;
   font-weight: 700;
-  color: #F3E294;
+  color: #D7DCFA;
 }
 
 .metric-subtext {
   font-size: 9.5px;
   color: #9AA0AF;
-  line-height: 1.3;
+  line-height: 1.25;
   margin: 0;
 }
 
-.metric-dots-matrix {
+/* Live Decibel Audio Meter in Metric Card */
+.metric-sound-meter {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px 8px;
+  border-radius: 8px;
+  margin: 4px 0 2px;
+}
+
+.meter-info {
+  display: flex;
+  align-items: center;
   gap: 4px;
-  margin-top: 8px;
+}
+
+.meter-label {
+  font-size: 8.5px;
+  color: #9AA0AF;
+  font-weight: 600;
+}
+
+.meter-db {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #F3E294;
+}
+
+.meter-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 10px;
+}
+
+.m-bar {
+  width: 2px;
+  border-radius: 1px;
+  background: #D7DCFA;
+  animation: meter-wave 0.8s ease-in-out infinite alternate;
+}
+.mb-1 { height: 4px; animation-delay: 0.1s; }
+.mb-2 { height: 8px; animation-delay: 0.3s; background: #F3E294; }
+.mb-3 { height: 6px; animation-delay: 0.15s; }
+.mb-4 { height: 10px; animation-delay: 0.4s; background: #CFE7DE; }
+.mb-5 { height: 5px; animation-delay: 0.2s; }
+
+@keyframes meter-wave {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(1); }
+}
+
+.metric-dots-matrix {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  margin-top: 2px;
 }
 
 .matrix-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  height: 3.5px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .matrix-dot.filled {
-  background: #F3E294;
+  background: #D7DCFA;
 }
 
-/* ── 5. Floating Bottom Navigation Wrapper ─────────────── */
+/* ── 5. Tonight's Stage Schedule (Editorial Poster Lineup List) ── */
+.venue-schedule-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.schedule-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schedule-row-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(18, 19, 26, 0.05);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(18, 19, 26, 0.03);
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.schedule-thumb-poster {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(18, 19, 26, 0.12);
+}
+
+.schedule-time-badge {
+  background: rgba(18, 19, 26, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  letter-spacing: -0.01em;
+}
+
+.schedule-row-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+  min-width: 0;
+}
+
+.schedule-stage-name {
+  font-size: 9px;
+  font-weight: 750;
+  color: #7A7E8D;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.schedule-item-title {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  color: #12131A;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.schedule-item-artist {
+  font-size: 10.5px;
+  color: #7B7F8C;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.schedule-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.schedule-price-tag {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 13px;
+  font-weight: 850;
+  color: #12131A;
+  letter-spacing: -0.02em;
+}
+
+.schedule-quick-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #EDE8DF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.schedule-row-item:hover .schedule-quick-btn {
+  background: #12131A;
+  color: #FFFFFF;
+}
+.schedule-row-item:hover .schedule-quick-btn svg {
+  stroke: #FFFFFF;
+}
+
+/* ── 6. Minimal Frosted Bottom Navigation (from Reference Image 2) ── */
 .mobile-bottom-nav-wrapper {
-  position: sticky;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   display: flex;
   justify-content: center;
-  z-index: 30;
-  padding: 6px 0 16px;
-  background: linear-gradient(transparent, rgba(247, 244, 238, 0.95) 45%);
+  align-items: center;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  padding-top: 6px;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 244, 238, 0) 0%,
+    rgba(247, 244, 238, 0.85) 45%,
+    rgba(247, 244, 238, 1) 100%
+  );
   pointer-events: none;
-  margin-top: auto;
+  z-index: 40;
 }
+
 .mobile-bottom-nav-wrapper > * {
   pointer-events: auto;
 }
