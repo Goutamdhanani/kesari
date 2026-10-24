@@ -70,67 +70,114 @@ export default function ExploreEventsScreen({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.18 }}
           >
-            {/* ── 1. The Obsidian Curved Stage Dome Header (Matches Home Screen) ── */}
-            <header className="explore-curved-dome-header">
-        {/* Northern Lights Aurora Canvas Background */}
-        <div className="explore-aurora-viewport">
-          <AuroraFluidCanvas />
-        </div>
+            {/* ── 1. The Obsidian Curved Stage Dome (Exact Match to Screenshot) ── */}
+            <header className="home-curved-dome-header">
+              <AuroraFluidCanvas />
 
-        {/* Top Navigation Row */}
-        <div className="explore-dome-nav-row">
-          <button 
-            className="explore-dome-back-btn" 
-            onClick={onBack} 
-            aria-label="Back to Home"
-          >
-            <AppIcon name="chevron-left" size={18} color="#FFFFFF" strokeWidth={2.4} />
-          </button>
-
-          <div className="explore-dome-titles">
-            <div className="explore-dome-beacon">
-              <span className="explore-live-dot" />
-              <span className="explore-live-label">LIVE RADAR • BANGALORE</span>
-            </div>
-            <h1 className="explore-dome-heading">Explore Shows</h1>
-          </div>
-
-          <div 
-            className="explore-dome-venue-pill"
-            onClick={onOpenCitySelector}
-            title="Studio Location"
-          >
-            <span className="explore-venue-dot" />
-            <span className="explore-venue-name">Kesari Studio</span>
-          </div>
-        </div>
-
-        {/* Dome Date Tabs */}
-        <div className="explore-dome-date-row">
-          {DATE_TABS.map(tab => {
-            const isActive = selectedDateTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                className={`explore-date-tab ${isActive ? 'active' : ''}`}
-                onClick={() => setSelectedDateTab(tab.id)}
-              >
-                <span>{tab.label}</span>
-                {isActive && (
-                  <motion.div 
-                    layoutId="exploreActiveTabPill" 
-                    className="explore-date-tab-active-pill"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+              {/* Top Navigation Row: Back Button + Kesari Logo & Actions */}
+              <div className="dome-top-nav">
+                <div className="dome-brand-group" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                  <button 
+                    className="explore-dome-back-btn" 
+                    onClick={onBack} 
+                    aria-label="Back to Home"
+                  >
+                    <AppIcon name="chevron-left" size={17} color="#FFFFFF" strokeWidth={2.4} />
+                  </button>
+                  <img 
+                    src="/assets/kesari-logo.png" 
+                    alt="Kesari Live" 
+                    className="dome-kesari-brand-logo" 
                   />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </header>
+                </div>
+
+                <div className="dome-nav-actions">
+                  <motion.button 
+                    className="dome-glass-btn" 
+                    onClick={onOpenCitySelector}
+                    whileHover={{ scale: 1.08, rotate: 6 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Notifications"
+                  >
+                    <AppIcon name="bell" size={13} color="#FFFFFF" strokeWidth={2.2} />
+                    <span className="dome-bell-dot" />
+                  </motion.button>
+
+                  <motion.div 
+                    className="dome-avatar-halo" 
+                    onClick={() => onSelectEvent('rock')}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.92 }}
+                    title="Profile"
+                  >
+                    <div className="dome-halo-ring" />
+                    <img src="/assets/gregory_face.png" alt="Gregory" className="dome-avatar-img" />
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Main Stage Live Feature Display with Real Concert Background Poster (Exact Match to Screenshot) */}
+              <motion.div 
+                className="dome-hero-spotlight"
+                onClick={() => onSelectEvent('rock')}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div 
+                  className="dome-hero-backdrop-img"
+                  style={{ backgroundImage: `url('/assets/events/ev_rock.jpg')` }}
+                />
+                <div className="dome-hero-vignette" />
+
+                <div className="dome-hero-inner-content">
+                  <div className="dome-eyebrow-row">
+                    <div className="dome-live-pill">
+                      <span className="live-pulse-dot" />
+                      <span className="dome-live-tag">NOW LIVE • KESARI STUDIO</span>
+                    </div>
+                    <span className="dome-db-badge">98 dB Peak</span>
+                  </div>
+
+                  <div className="dome-headline-row">
+                    <h1 className="dome-act-title">The Velvet Echoes</h1>
+                    <div className="dome-soundwave-bars" aria-label="Live audio waveform">
+                      <span className="wave-bar bar-1" />
+                      <span className="wave-bar bar-2" />
+                      <span className="wave-bar bar-3" />
+                      <span className="wave-bar bar-4" />
+                      <span className="wave-bar bar-5" />
+                    </div>
+                  </div>
+
+                  <div className="dome-footer-row">
+                    <div className="dome-timing-info">
+                      <span className="dome-subtext">Rock Legends Reunion • Live Studio Stage</span>
+                    </div>
+                    
+                    <motion.button 
+                      className="dome-tune-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectEvent('rock');
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.92 }}
+                    >
+                      <span>Pass ₹1,499</span>
+                      <AppIcon name="arrow-up-right" size={11} color="#FFFFFF" strokeWidth={2.6} />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            </header>
 
       {/* ── 2. The Warm Alabaster Sheet (Matches Home Screen) ── */}
       <main className="explore-warm-sheet">
+        {/* Shows Count Subtitle (Matches Screenshot) */}
+        <div className="section-title-row" style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10 }}>
+          <span className="section-label" style={{ fontFamily: 'var(--font-family-display)', fontSize: '13.5px', fontWeight: 700, color: '#12131A', letterSpacing: '-0.015em' }}>Studio Lineup</span>
+          <span className="section-meta" style={{ fontSize: '10.5px', fontWeight: 600, color: '#8E92A0' }}>Live This Week</span>
+        </div>
+
         {/* Minimal Vibe Pills */}
         <div className="explore-vibe-pills-row">
           {VIBE_FILTERS.map(vibe => {
@@ -145,12 +192,6 @@ export default function ExploreEventsScreen({
               </button>
             );
           })}
-        </div>
-
-        {/* Shows Count Subtitle */}
-        <div className="explore-shows-meta-row">
-          <span className="explore-section-title">Studio Lineup</span>
-          <span className="explore-section-count">{filteredEvents.length} Shows</span>
         </div>
 
         {/* Minimal Event Cards Stream (Matches Home Screen Poster Pass Language) */}

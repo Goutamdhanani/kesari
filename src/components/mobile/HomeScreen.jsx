@@ -228,7 +228,7 @@ export default function HomeScreen({
               {/* Authentic Northern Lights (Aurora Borealis) Fluid Simulation Canvas */}
               <AuroraFluidCanvas />
 
-              {/* Top Navigation Row: Kesari Logo Branding & Koramangala Studio Venue */}
+              {/* Top Navigation Row: Kesari Logo Branding & Actions */}
               <div className="dome-top-nav">
                 <div className="dome-brand-group">
                   {/* Official Kesari Logo */}
@@ -237,18 +237,6 @@ export default function HomeScreen({
                     alt="Kesari Live" 
                     className="dome-kesari-brand-logo" 
                   />
-
-                  {/* Studio Venue Capsule */}
-                  <motion.div 
-                    className="dome-venue-capsule"
-                    onClick={() => setShowRentSpaceModal(true)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.96 }}
-                  >
-                    <span className="dome-live-beacon" />
-                    <span className="dome-venue-name">Kesari Studio</span>
-                    <AppIcon name="chevron-right" size={8} color="#9AA0AF" className="rotate-90" />
-                  </motion.div>
                 </div>
 
                 <div className="dome-nav-actions">

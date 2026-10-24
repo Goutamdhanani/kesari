@@ -340,21 +340,17 @@
 
 .wave-bar {
   width: 2.5px;
-  background: #D7DCFA;
+  background: #E50914;
+  box-shadow: 0 0 8px rgba(229, 9, 20, 0.6);
   border-radius: 2px;
   animation: wave-bounce 0.9s ease-in-out infinite alternate;
 }
 
 .bar-1 { height: 6px; animation-delay: 0.1s; }
-.bar-2 { height: 15px; animation-delay: 0.35s; background: #F3E294; }
+.bar-2 { height: 15px; animation-delay: 0.35s; }
 .bar-3 { height: 9px; animation-delay: 0.2s; }
-.bar-4 { height: 16px; animation-delay: 0.45s; background: #CFE7DE; }
+.bar-4 { height: 16px; animation-delay: 0.45s; }
 .bar-5 { height: 8px; animation-delay: 0.15s; }
-
-.bar-netflix {
-  background: #E50914 !important;
-  box-shadow: 0 0 10px rgba(229, 9, 20, 0.7);
-}
 
 @keyframes wave-bounce {
   0% { transform: scaleY(0.35); }

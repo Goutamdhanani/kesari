@@ -12,22 +12,22 @@ export default function ExploreSkeletonScreen() {
       transition={{ duration: 0.16 }}
     >
       {/* 1. Curved Obsidian Dome Skeleton */}
-      <div className="skel-explore-curved-dome">
-        <div className="skel-explore-dome-nav">
-          <div className="skel-circle skel-explore-back-btn" />
-          <div className="skel-explore-title-box">
-            <div className="skel-line skel-explore-beacon-line" />
-            <div className="skel-line skel-explore-heading-line" />
+      <div className="skel-curved-dome">
+        <div className="skel-dome-top" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+          <div className="skel-pill" style={{ width: 110, height: 28, borderRadius: 8 }} />
+          <div className="skel-dome-actions" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <div className="skel-circle" style={{ width: 34, height: 34, borderRadius: '50%' }} />
+            <div className="skel-circle" style={{ width: 34, height: 34, borderRadius: '50%' }} />
           </div>
-          <div className="skel-pill skel-explore-venue-pill" />
         </div>
 
-        {/* Date Tabs inside Dome */}
-        <div className="skel-explore-date-tabs">
-          <div className="skel-pill skel-date-pill active" />
-          <div className="skel-pill skel-date-pill" />
-          <div className="skel-pill skel-date-pill" />
-          <div className="skel-pill skel-date-pill" />
+        <div className="skel-dome-card" style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 22, padding: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div className="skel-line" style={{ width: 120, height: 10, borderRadius: 4 }} />
+          <div className="skel-line" style={{ width: 180, height: 18, borderRadius: 6 }} />
+          <div className="skel-dome-footer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+            <div className="skel-line" style={{ width: 140, height: 10, borderRadius: 4 }} />
+            <div className="skel-pill" style={{ width: 85, height: 26, borderRadius: 999 }} />
+          </div>
         </div>
       </div>
 
