@@ -1,105 +1,105 @@
-/* Card 1: Upcoming Event Pill Card */
+/* ============================================================
+   EVENT CARDS — Event Jam App (2026 AAA-Grade Minimalist)
+   Compact mobile proportions, Apple/Linear craft standard
+   ============================================================ */
+
+/* ── Card 1: Upcoming Event Pill Card ───────────────────────── */
 .upcoming-mini-card {
-  background: var(--color-pure-white);
-  border-radius: 24px;
-  padding: 10px 14px;
+  background: #FFFFFF;
+  border-radius: 15px;
+  padding: 7px 11px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  gap: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.upcoming-mini-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .upcoming-card-art {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
   overflow: hidden;
   flex-shrink: 0;
-  background: #000;
+  background: #000000;
 }
 
 .upcoming-card-art img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .upcoming-card-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
   flex-grow: 1;
+  min-width: 0;
 }
 
 .upcoming-card-tag {
-  font-size: 11px;
-  font-weight: 500;
-  color: #8C93A4;
-  letter-spacing: -0.1px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .upcoming-card-title {
-  font-family: var(--font-family-display);
-  font-size: 15px;
-  font-weight: 700;
-  color: #0E0F14;
-  letter-spacing: -0.2px;
+  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
+  font-size: 13px;
+  font-weight: 750;
+  color: #08080C;
+  letter-spacing: -0.02em;
   line-height: 1.2;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Electric Lime Circular Action Button */
 .upcoming-lime-arrow-btn {
-  width: 38px;
-  height: 38px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: var(--color-electric-lime);
+  background: #DAFB71;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  box-shadow: var(--shadow-lime);
-  transition: transform var(--transition-fast), filter var(--transition-fast);
-}
-
-.upcoming-lime-arrow-btn:hover {
-  transform: scale(1.08);
-  filter: brightness(1.05);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(218, 251, 113, 0.4);
 }
 
 .upcoming-lime-arrow-btn.sm {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
 }
 
-/* Card 2: Compact Event Summary Card */
+/* ── Card 2: Compact Event Summary Card ─────────────────────── */
 .compact-event-card {
-  background: var(--color-pure-white);
-  border-radius: 22px;
-  padding: 14px 16px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 11px 13px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  gap: 9px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   cursor: pointer;
-  transition: transform var(--transition-fast);
-}
-
-.compact-event-card:hover {
-  transform: translateY(-2px);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .compact-top-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
 }
 
 .compact-title-wrap {
@@ -108,11 +108,11 @@
 }
 
 .compact-event-title-line {
-  font-family: var(--font-family-display);
-  font-size: 16px;
-  font-weight: 700;
-  color: #0E0F14;
-  letter-spacing: -0.2px;
+  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
+  font-size: 13.5px;
+  font-weight: 750;
+  color: #08080C;
+  letter-spacing: -0.02em;
   line-height: 1.2;
   margin: 0;
 }
@@ -121,41 +121,36 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
-  color: #8C93A4;
+  color: #64748B;
 }
 
 .compact-event-date {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
 }
 
 .compact-event-price {
-  font-weight: 600;
+  font-weight: 700;
+  color: #08080C;
 }
 
-/* Card 3: Featured Music Hero Card */
+/* ── Card 3: Featured Music Hero Card (Carousel) ─────────────── */
 .featured-hero-card {
   position: relative;
   width: 100%;
-  max-width: 280px;
-  height: 310px;
-  border-radius: 24px;
+  max-width: 220px;
+  height: 265px;
+  border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 18px;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
+  padding: 13px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.featured-hero-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
 }
 
 .hero-card-bg-img {
@@ -165,7 +160,7 @@
   height: 100%;
   object-fit: cover;
   z-index: 1;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .featured-hero-card:hover .hero-card-bg-img {
@@ -177,10 +172,10 @@
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.25) 0%,
-    transparent 35%,
-    rgba(0, 0, 0, 0.4) 60%,
-    rgba(0, 0, 0, 0.88) 100%
+    rgba(0, 0, 0, 0.2) 0%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.9) 100%
   );
   z-index: 2;
 }
@@ -196,46 +191,44 @@
 }
 
 .hero-category-chip {
-  background: rgba(18, 18, 22, 0.55);
+  background: rgba(14, 15, 20, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 9999px;
-  padding: 6px 14px;
-  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 3.5px 9px;
+  display: inline-flex;
   align-items: center;
-  gap: 6px;
-  color: var(--color-pure-white);
-  font-size: 12px;
-  font-weight: 600;
+  gap: 5px;
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .category-music-note {
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .hero-heart-btn {
-  width: 38px;
-  height: 38px;
+  width: 29px;
+  height: 29px;
   border-radius: 50%;
-  background: rgba(18, 18, 22, 0.55);
+  background: rgba(14, 15, 20, 0.6);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
-}
-
-.hero-heart-btn:hover {
-  transform: scale(1.1);
-  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
 }
 
 .hero-heart-btn.active {
-  background: rgba(238, 61, 90, 0.2);
-  border-color: rgba(238, 61, 90, 0.5);
+  background: rgba(238, 61, 90, 0.25);
+  border-color: rgba(238, 61, 90, 0.6);
 }
 
 .fill-crimson {
@@ -248,16 +241,17 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 7px;
 }
 
 .hero-event-title {
-  font-family: var(--font-family-display);
-  font-size: 21px;
-  font-weight: 700;
-  color: var(--color-pure-white);
-  letter-spacing: -0.3px;
+  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.025em;
   line-height: 1.2;
+  margin: 0;
 }
 
 .hero-info-footer {
@@ -269,37 +263,37 @@
 .hero-date-price {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
 }
 
 .hero-date {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 13px;
-  color: #D1D5DB;
+  gap: 4px;
+  font-size: 10.5px;
+  color: #CBD5E1;
   font-weight: 500;
 }
 
 .hero-price {
-  font-size: 13px;
-  color: #E5E7EB;
-  font-weight: 600;
+  font-size: 11.5px;
+  color: #FFFFFF;
+  font-weight: 750;
+  letter-spacing: -0.01em;
 }
 
 /* White Circle Arrow Button */
 .hero-white-arrow-btn {
-  width: 40px;
-  height: 40px;
+  width: 29px;
+  height: 29px;
   border-radius: 50%;
-  background: var(--color-pure-white);
+  background: #FFFFFF;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transition: transform var(--transition-fast);
-}
-
-.hero-white-arrow-btn:hover {
-  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  outline: none;
 }

@@ -1,0 +1,294 @@
+/* ============================================================
+   HOME SKELETON SCREEN — Apple/Linear AAA Grade Specular Shimmer
+   Zero Cumulative Layout Shift (CLS = 0) matching HomeScreen.css
+   ============================================================ */
+
+.home-skeleton-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #EBF1FF;
+  padding: 0 0 90px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Base Specular Shimmer Animation */
+@keyframes skel-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skel-circle,
+.skel-pill,
+.skel-line,
+.skel-search-bar,
+.skel-ai-banner,
+.skel-upcoming-card,
+.skel-card-tall,
+.skel-nearby-row,
+.skel-upcoming-thumb,
+.skel-nearby-thumb {
+  background: linear-gradient(
+    90deg,
+    rgba(226, 232, 240, 0.65) 0%,
+    rgba(241, 245, 249, 0.95) 45%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(241, 245, 249, 0.95) 55%,
+    rgba(226, 232, 240, 0.65) 100%
+  );
+  background-size: 250% 100%;
+  animation: skel-shimmer 1.5s infinite linear;
+}
+
+/* ── 1. Header Skeleton ─────────────────────────────── */
+.skel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 10px;
+  margin-bottom: 2px;
+}
+
+.skel-row-left,
+.skel-row-right {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.skel-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.skel-location {
+  width: 84px;
+  height: 24px;
+  border-radius: 999px;
+}
+
+.skel-refresh {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+}
+
+.skel-ai-btn {
+  width: 58px;
+  height: 24px;
+  border-radius: 999px;
+}
+
+.skel-bell {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+}
+
+/* ── 2. Greeting Skeleton ───────────────────────────── */
+.skel-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 16px 12px;
+}
+
+.skel-eyebrow {
+  width: 60px;
+  height: 8.5px;
+  border-radius: 3px;
+}
+
+.skel-headline {
+  width: 130px;
+  height: 19px;
+  border-radius: 5px;
+}
+
+.skel-subtext {
+  width: 155px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/* ── 3. Search Bar Skeleton ─────────────────────────── */
+.skel-search-bar {
+  margin: 0 16px 12px;
+  height: 36px;
+  border-radius: 13px;
+}
+
+/* ── 4. JamAI Banner Skeleton ───────────────────────── */
+.skel-ai-banner {
+  margin: 0 16px 14px;
+  height: 58px;
+  border-radius: 16px;
+}
+
+/* ── 5. Category Chips Skeleton ─────────────────────── */
+.skel-chips-row {
+  display: flex;
+  gap: 6px;
+  padding: 0 16px 14px;
+  overflow: hidden;
+}
+
+.skel-chip-active {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: rgba(0, 66, 217, 0.22);
+}
+
+.skel-chip {
+  width: 54px;
+  height: 24px;
+  border-radius: 999px;
+}
+
+/* ── 6. Upcoming Event Card Skeleton ─────────────────── */
+.skel-upcoming-card {
+  margin: 0 16px 16px;
+  height: 50px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  padding: 6px 11px;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.skel-upcoming-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.skel-upcoming-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skel-upcoming-tag {
+  width: 75px;
+  height: 7.5px;
+  border-radius: 2.5px;
+}
+
+.skel-upcoming-title {
+  width: 115px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.skel-upcoming-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── 7. Popular Section Skeleton ─────────────────────── */
+.skel-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+.skel-section-title {
+  width: 95px;
+  height: 13.5px;
+  border-radius: 3.5px;
+}
+
+.skel-see-all {
+  width: 36px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.skel-carousel-row {
+  display: flex;
+  gap: 10px;
+  padding: 2px 16px 14px;
+  overflow: hidden;
+}
+
+.skel-card-tall {
+  width: 220px;
+  height: 265px;
+  border-radius: 18px;
+  flex-shrink: 0;
+}
+
+/* ── 8. Nearby Section Skeleton ─────────────────────── */
+.skel-nearby-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.skel-nearby-row {
+  width: 100%;
+  height: 52px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  padding: 6px 11px;
+  gap: 10px;
+  box-sizing: border-box;
+}
+
+.skel-nearby-thumb {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  flex-shrink: 0;
+}
+
+.skel-nearby-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.skel-nearby-cat {
+  width: 50px;
+  height: 7px;
+  border-radius: 2px;
+}
+
+.skel-nearby-title {
+  width: 105px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.skel-nearby-meta {
+  width: 75px;
+  height: 7.5px;
+  border-radius: 2.5px;
+}
+
+.skel-nearby-price {
+  width: 36px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}

@@ -27,10 +27,10 @@ export function UpcomingEventCard({
       <motion.button 
         className="upcoming-lime-arrow-btn" 
         aria-label="Open Event Details"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.92 }}
+        whileHover={{ scale: 1.1, rotate: 12 }}
+        whileTap={{ scale: 0.9 }}
       >
-        <AppIcon name="arrow-up-right" size={18} color="#080808" strokeWidth={2.5} />
+        <AppIcon name="arrow-up-right" size={14} color="#080808" strokeWidth={2.5} />
       </motion.button>
     </motion.div>
   );
@@ -115,7 +115,7 @@ export function FeaturedHeroCard({
         >
           <AppIcon 
             name="heart" 
-            size={18} 
+            size={13.5} 
             color={liked ? '#EE3D5A' : '#FFFFFF'} 
             strokeWidth={liked ? 0 : 2}
             className={liked ? 'fill-crimson' : ''}
@@ -129,7 +129,7 @@ export function FeaturedHeroCard({
         <div className="hero-info-footer">
           <div className="hero-date-price">
             <span className="hero-date">
-              <AppIcon name="calendar" size={14} color="#D1D5DB" />
+              <AppIcon name="calendar" size={11} color="#D1D5DB" />
               {date}
             </span>
             <span className="hero-price">{price}</span>
@@ -137,10 +137,10 @@ export function FeaturedHeroCard({
           <motion.button 
             className="hero-white-arrow-btn" 
             aria-label="Open Event"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.92 }}
+            whileHover={{ scale: 1.1, rotate: 12 }}
+            whileTap={{ scale: 0.9 }}
           >
-            <AppIcon name="arrow-up-right" size={18} color="#080808" strokeWidth={2.5} />
+            <AppIcon name="arrow-up-right" size={13.5} color="#080808" strokeWidth={2.5} />
           </motion.button>
         </div>
       </div>

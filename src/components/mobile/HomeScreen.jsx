@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
+import HomeSkeletonScreen from './HomeSkeletonScreen';
 import { UpcomingEventCard, FeaturedHeroCard } from '../cards/EventCards';
 import { FloatingBottomNav } from '../common/ControlWidgets';
 import './HomeScreen.css';
@@ -64,6 +65,26 @@ const DEFAULT_NEARBY = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.02
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 8 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.22, ease: [0.19, 1, 0.22, 1] }
+  }
+};
+
 export default function HomeScreen({ 
   onSelectEvent = () => {}, 
   onOpenTicket = () => {},
@@ -75,6 +96,22 @@ export default function HomeScreen({
 }) {
   const [activeTab, setActiveTab] = useState('home');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulated quick initial load for skeleton demonstration
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 550);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const triggerRefresh = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+  };
 
   // Filter events by selected category chip
   const filteredPopular = DEFAULT_POPULAR.filter(e => {
@@ -90,241 +127,327 @@ export default function HomeScreen({
   });
 
   return (
-    <motion.div 
-      className="mobile-home-screen"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.22 }}
-    >
-      {/* Top Header */}
-      <header className="mobile-home-header">
-        <div className="header-user-badge">
-          <button 
-            className="user-avatar-circle" 
-            title="My profile" 
-            aria-label="My profile" 
-            onClick={() => onNavigate('profile')}
+    <div className="mobile-home-root-container">
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <HomeSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key="content"
+            className="mobile-home-screen"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0, transition: { duration: 0.15 } }}
           >
-            <img src="/assets/gregory_face.png" alt="Gregory" />
-          </button>
-          
-          <button 
-            className="header-location-pill" 
-            onClick={onOpenCitySelector}
-            title="Change City"
-          >
-            <AppIcon name="pin" size={12} color="#0042D9" strokeWidth={2.5} />
-            <span className="location-name">{selectedCity}</span>
-            <AppIcon name="chevron-right" size={11} color="#6B7280" className="rotate-90" />
-          </button>
-        </div>
+            {/* 1. Top Header */}
+            <header className="mobile-home-header">
+              <div className="header-user-badge">
+                <motion.button 
+                  className="user-avatar-circle" 
+                  title="My profile" 
+                  aria-label="My profile" 
+                  onClick={() => onNavigate('profile')}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                >
+                  <img src="/assets/gregory_face.png" alt="Gregory" />
+                </motion.button>
+                
+                <motion.button 
+                  className="header-location-pill" 
+                  onClick={onOpenCitySelector}
+                  title="Change City"
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                >
+                  <AppIcon name="pin" size={10} color="#0042D9" strokeWidth={2.5} />
+                  <span className="location-name">{selectedCity}</span>
+                  <AppIcon name="chevron-right" size={9} color="#64748B" className="rotate-90" />
+                </motion.button>
+              </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <motion.button
-            className="header-ai-pill-btn"
-            onClick={() => onNavigate('ai')}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            title="Ask JamAI"
-          >
-            <AppIcon name="sparkles" size={13} color="#080808" strokeWidth={2.5} />
-            <span>JamAI</span>
-          </motion.button>
+              <div className="header-actions-group">
+                {/* Refresh Trigger (Demonstrates Skeleton Screen) */}
+                <motion.button
+                  className="header-refresh-btn"
+                  onClick={triggerRefresh}
+                  whileHover={{ rotate: 90, scale: 1.08 }}
+                  whileTap={{ rotate: 360, scale: 0.88 }}
+                  title="Refresh Stage Feeds"
+                  aria-label="Refresh"
+                >
+                  <AppIcon name="refresh" size={13} color="#64748B" strokeWidth={2.2} />
+                </motion.button>
 
-          <motion.button 
-            className="header-bell-button" 
-            onClick={onOpenNotifications}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Notifications"
-          >
-            <AppIcon name="bell" size={17} color="#0C0D12" strokeWidth={2} />
-            {unreadCount > 0 && <span className="bell-badge-dot" />}
-          </motion.button>
-        </div>
-      </header>
+                {/* JamAI Sparkle Pill */}
+                <motion.button
+                  className="header-ai-pill-btn"
+                  onClick={() => onNavigate('ai')}
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.92 }}
+                  title="Ask JamAI Vibe Concierge"
+                >
+                  <AppIcon name="sparkles" size={11} color="#080808" strokeWidth={2.5} />
+                  <span>JamAI</span>
+                </motion.button>
 
-      {/* Greeting Section */}
-      <section className="mobile-greeting-section">
-        <div className="greeting-eyebrow">Good evening</div>
-        <h1 className="greeting-headline">
-          Hello, <em>Gregory!</em>
-        </h1>
-        <p className="greeting-subtext">Find your next live experience</p>
-      </section>
+                {/* Notifications Bell */}
+                <motion.button 
+                  className="header-bell-button" 
+                  onClick={onOpenNotifications}
+                  whileHover={{ scale: 1.08, rotate: 6 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Notifications"
+                >
+                  <AppIcon name="bell" size={14} color="#08080C" strokeWidth={2.2} />
+                  {unreadCount > 0 && <span className="bell-badge-dot" />}
+                </motion.button>
+              </div>
+            </header>
 
-      {/* Functional Tap-to-Search Bar */}
-      <div 
-        className="mobile-search-bar" 
-        onClick={() => onNavigate('search')}
-        role="button"
-        tabIndex={0}
-        aria-label="Open Search"
-      >
-        <AppIcon name="search" size={16} color="#0042D9" strokeWidth={2.5} />
-        <span className="search-bar-placeholder">Search concerts, artists, venues...</span>
-        <div 
-          className="search-mic-btn" 
-          aria-label="Voice search with JamAI"
-          onClick={(e) => {
-            e.stopPropagation();
-            onNavigate('ai');
-          }}
-        >
-          <AppIcon name="sparkles" size={13} color="#080808" strokeWidth={2.5} />
-        </div>
-      </div>
+            {/* 2. Greeting Section */}
+            <motion.section className="mobile-greeting-section" variants={itemVariants}>
+              <div className="greeting-eyebrow">
+                <span className="greeting-dot" />
+                <span>Good evening</span>
+              </div>
+              <h1 className="greeting-headline">
+                Hello, <em>Gregory!</em>
+              </h1>
+              <p className="greeting-subtext">Find your next live sound experience</p>
+            </motion.section>
 
-      {/* JamAI Vibe Concierge Feature Banner */}
-      <motion.div 
-        className="home-ai-vibe-banner"
-        onClick={() => onNavigate('ai')}
-        whileHover={{ scale: 1.015 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <div className="ai-banner-content">
-          <div className="ai-banner-tag">
-            <span className="ai-spark-dot" />
-            <span>JamAI Neural Concierge</span>
-          </div>
-          <h3 className="ai-banner-title">Match your live sound vibe</h3>
-          <p className="ai-banner-desc">Describe your mood or favorite artists to find secret sets</p>
-        </div>
-        <div className="ai-banner-action">
-          <div className="ai-magic-circle">
-            <AppIcon name="arrow-up-right" size={15} color="#080808" strokeWidth={2.5} />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* Category Pills */}
-      <div className="mobile-categories-row" role="tablist" aria-label="Event categories">
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat}
-            role="tab"
-            aria-selected={activeCategory === cat}
-            className={`category-chip ${activeCategory === cat ? 'active' : ''}`}
-            onClick={() => setActiveCategory(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Featured Upcoming Event */}
-      <section className="mobile-upcoming-section">
-        <div className="upcoming-section-label">Your upcoming event</div>
-        <UpcomingEventCard 
-          tag="Your upcoming event : Sep 5"
-          title="Jazz & Blues Festival"
-          image="/assets/upcoming_pill_thumb.png"
-          onClick={() => onSelectEvent('jazz')}
-        />
-      </section>
-
-      {/* Popular Now Carousel */}
-      <section className="mobile-popular-section">
-        <div className="popular-section-header">
-          <h2 className="popular-title">
-            Popular Now {activeCategory !== 'All' && <span className="filter-tag-pill">• {activeCategory}</span>}
-          </h2>
-          <button className="popular-see-all-btn" onClick={() => onNavigate('explore')}>
-            See all
-          </button>
-        </div>
-
-        <div className="popular-cards-scroll">
-          {filteredPopular.length > 0 ? (
-            filteredPopular.map((event, i) => (
+            {/* 3. Functional Tap-to-Search Bar */}
+            <motion.div 
+              className="mobile-search-bar" 
+              onClick={() => onNavigate('search')}
+              role="button"
+              tabIndex={0}
+              aria-label="Open Search"
+              variants={itemVariants}
+              whileHover={{ scale: 1.01, borderColor: 'rgba(0, 66, 217, 0.3)' }}
+              whileTap={{ scale: 0.99 }}
+            >
+              <AppIcon name="search" size={13.5} color="#0042D9" strokeWidth={2.5} />
+              <span className="search-bar-placeholder">Search concerts, artists, venues...</span>
               <motion.div 
-                key={event.id} 
-                className="popular-card-item"
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: i * 0.06 }}
+                className="search-mic-btn" 
+                aria-label="Ask JamAI"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onNavigate('ai');
+                }}
+                whileHover={{ scale: 1.1, rotate: 6 }}
+                whileTap={{ scale: 0.88 }}
               >
-                <FeaturedHeroCard 
-                  category={event.category}
-                  title={event.title}
-                  date={event.date}
-                  price={event.price}
-                  image={event.image}
-                  onSelect={() => onSelectEvent(event.id)}
-                />
+                <AppIcon name="sparkles" size={11} color="#080808" strokeWidth={2.5} />
               </motion.div>
-            ))
-          ) : (
-            <div className="category-empty-hint">
-              <span>No {activeCategory} concerts in Popular right now</span>
-            </div>
-          )}
-        </div>
-      </section>
+            </motion.div>
 
-      {/* Nearby Events List */}
-      <section className="mobile-nearby-section">
-        <div className="nearby-section-header">
-          <h2 className="nearby-title">Nearby You in {selectedCity}</h2>
-          <button className="nearby-see-all-btn" onClick={() => onNavigate('explore')}>
-            See all
-          </button>
-        </div>
-
-        <div className="nearby-events-list">
-          {filteredNearby.length > 0 ? (
-            filteredNearby.map((event, i) => (
-              <motion.div
-                key={event.id}
-                className="nearby-event-row"
-                onClick={() => onSelectEvent(event.id)}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.22, delay: 0.1 + i * 0.08 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <img 
-                  src={event.image} 
-                  alt={event.title} 
-                  className="nearby-event-thumb"
-                  onError={e => { e.target.style.background = '#EBF1FF'; }}
-                />
-                <div className="nearby-event-info">
-                  <div className="nearby-event-cat">{event.category}</div>
-                  <div className="nearby-event-title">{event.title}</div>
-                  <div className="nearby-event-meta">
-                    <span>📅 {event.date}</span>
-                    <span className="nearby-event-meta-dot" />
-                    <span>📍 {event.distance}</span>
-                  </div>
+            {/* 4. JamAI Vibe Concierge Feature Banner */}
+            <motion.div 
+              className="home-ai-vibe-banner"
+              onClick={() => onNavigate('ai')}
+              variants={itemVariants}
+              whileHover={{ scale: 1.015 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="ai-banner-content">
+                <div className="ai-banner-tag">
+                  <span className="ai-spark-dot" />
+                  <span>JamAI Neural Concierge</span>
                 </div>
-                <div className="nearby-event-price">{event.price}</div>
-              </motion.div>
-            ))
-          ) : (
-            <div className="category-empty-hint">
-              <span>No {activeCategory} concerts nearby</span>
+                <h3 className="ai-banner-title">Match your live sound vibe</h3>
+                <p className="ai-banner-desc">Describe your mood or artists to discover verified secret sets</p>
+              </div>
+              <div className="ai-banner-action">
+                <motion.div 
+                  className="ai-magic-circle"
+                  whileHover={{ rotate: 45, scale: 1.1 }}
+                >
+                  <AppIcon name="arrow-up-right" size={14} color="#080808" strokeWidth={2.5} />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* 5. Category Pills Row */}
+            <motion.div 
+              className="mobile-categories-row" 
+              role="tablist" 
+              aria-label="Event categories"
+              variants={itemVariants}
+            >
+              {CATEGORIES.map(cat => {
+                const isActive = activeCategory === cat;
+                return (
+                  <motion.button
+                    key={cat}
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`category-chip ${isActive ? 'active' : ''}`}
+                    onClick={() => setActiveCategory(cat)}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.92 }}
+                  >
+                    {isActive && (
+                      <motion.div 
+                        className="active-chip-backdrop" 
+                        layoutId="activeChipGlow" 
+                        transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                      />
+                    )}
+                    <span className="chip-label">{cat}</span>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+
+            {/* 6. Featured Upcoming Event */}
+            <motion.section className="mobile-upcoming-section" variants={itemVariants}>
+              <div className="upcoming-section-label">
+                <span className="upcoming-pulse-dot" />
+                <span>Your upcoming event • Sep 5</span>
+              </div>
+              <UpcomingEventCard 
+                tag="Riverfront Park • Sunset Stage"
+                title="Jazz & Blues Festival"
+                image="/assets/upcoming_pill_thumb.png"
+                onClick={() => onSelectEvent('jazz')}
+              />
+            </motion.section>
+
+            {/* 7. Popular Now Carousel */}
+            <motion.section className="mobile-popular-section" variants={itemVariants}>
+              <div className="popular-section-header">
+                <h2 className="popular-title">
+                  Popular Now {activeCategory !== 'All' && <span className="filter-tag-pill">• {activeCategory}</span>}
+                </h2>
+                <motion.button 
+                  className="popular-see-all-btn" 
+                  onClick={() => onNavigate('explore')}
+                  whileHover={{ x: 2 }}
+                  whileTap={{ scale: 0.94 }}
+                >
+                  <span>See all</span>
+                  <AppIcon name="arrow-right" size={11} color="#0042D9" strokeWidth={2.5} />
+                </motion.button>
+              </div>
+
+              <div className="popular-cards-scroll">
+                <AnimatePresence mode="popLayout">
+                  {filteredPopular.length > 0 ? (
+                    filteredPopular.map((event, i) => (
+                      <motion.div 
+                        key={event.id} 
+                        className="popular-card-item"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.92 }}
+                        transition={{ duration: 0.22, delay: i * 0.04 }}
+                      >
+                        <FeaturedHeroCard 
+                          category={event.category}
+                          title={event.title}
+                          date={event.date}
+                          price={event.price}
+                          image={event.image}
+                          onSelect={() => onSelectEvent(event.id)}
+                        />
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="category-empty-hint">
+                      <span>No {activeCategory} concerts in Popular right now</span>
+                    </div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.section>
+
+            {/* 8. Nearby Events List */}
+            <motion.section className="mobile-nearby-section" variants={itemVariants}>
+              <div className="nearby-section-header">
+                <h2 className="nearby-title">Nearby in {selectedCity}</h2>
+                <motion.button 
+                  className="nearby-see-all-btn" 
+                  onClick={() => onNavigate('explore')}
+                  whileHover={{ x: 2 }}
+                  whileTap={{ scale: 0.94 }}
+                >
+                  <span>See all</span>
+                  <AppIcon name="arrow-right" size={11} color="#0042D9" strokeWidth={2.5} />
+                </motion.button>
+              </div>
+
+              <div className="nearby-events-list">
+                <AnimatePresence mode="popLayout">
+                  {filteredNearby.length > 0 ? (
+                    filteredNearby.map((event, i) => (
+                      <motion.div
+                        key={event.id}
+                        className="nearby-event-row"
+                        onClick={() => onSelectEvent(event.id)}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.2, delay: i * 0.05 }}
+                        whileHover={{ y: -2, backgroundColor: '#FFFFFF' }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        <img 
+                          src={event.image} 
+                          alt={event.title} 
+                          className="nearby-event-thumb"
+                          onError={e => { e.target.style.background = '#EBF1FF'; }}
+                        />
+                        <div className="nearby-event-info">
+                          <div className="nearby-event-cat">{event.category}</div>
+                          <div className="nearby-event-title">{event.title}</div>
+                          <div className="nearby-event-meta">
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                              <AppIcon name="calendar" size={10} color="#64748B" strokeWidth={2} />
+                              {event.date}
+                            </span>
+                            <span className="nearby-event-meta-dot" />
+                            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                              <AppIcon name="pin" size={10} color="#64748B" strokeWidth={2} />
+                              {event.distance}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="nearby-event-price">{event.price}</div>
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="category-empty-hint">
+                      <span>No {activeCategory} concerts nearby</span>
+                    </div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.section>
+
+            {/* Spacer for bottom nav */}
+            <div style={{ height: 24, flexShrink: 0 }} />
+
+            {/* 9. Floating Bottom Navigation Bar */}
+            <div className="mobile-bottom-nav-wrapper">
+              <FloatingBottomNav 
+                activeTab={activeTab} 
+                onTabChange={(tab) => {
+                  setActiveTab(tab);
+                  if (tab === 'search') onNavigate('search');
+                  else if (tab === 'ai') onNavigate('ai');
+                  else if (tab === 'calendar') onNavigate('explore');
+                  else if (tab === 'ticket') onOpenTicket();
+                  else if (tab === 'home') onNavigate('home');
+                }} 
+              />
             </div>
-          )}
-        </div>
-      </section>
-
-      {/* Spacer for bottom nav */}
-      <div style={{ height: 20, flexShrink: 0 }} />
-
-      {/* Floating Bottom Navigation Bar */}
-      <div className="mobile-bottom-nav-wrapper">
-        <FloatingBottomNav 
-          activeTab={activeTab} 
-          onTabChange={(tab) => {
-            setActiveTab(tab);
-            if (tab === 'search') onNavigate('search');
-            else if (tab === 'ai') onNavigate('ai');
-            else if (tab === 'calendar') onNavigate('explore');
-            else if (tab === 'ticket') onOpenTicket();
-            else if (tab === 'home') onNavigate('home');
-          }} 
-        />
-      </div>
-    </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
