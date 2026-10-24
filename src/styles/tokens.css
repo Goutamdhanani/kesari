@@ -27,7 +27,9 @@
   --color-bento-peach-border: #E5A99D;
   --color-bento-dark: #12131A;
 
-  /* Supporting Accents */
+  /* Supporting Accents & Cinematic Colors */
+  --color-netflix-red: #E50914;
+  --color-netflix-red-glow: rgba(229, 9, 20, 0.45);
   --color-crimson: #EE3D5A;
   --color-royal-blue: #0042D9;
   --color-electric-lime: #DAFB71;

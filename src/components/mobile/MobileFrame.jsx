@@ -10,13 +10,14 @@ import ProfileScreen from './ProfileScreen';
 import NotificationsSheet from './NotificationsSheet';
 import CitySelectorSheet from './CitySelectorSheet';
 import QRModal from './QRModal';
+import { FloatingBottomNav } from '../common/ControlWidgets';
 import { MOCK_EVENTS, INITIAL_TICKETS } from '../../data/mockEvents';
 import './MobileFrame.css';
 
 const screenVariants = {
-  initial: { opacity: 0, scale: 0.985, y: 8 },
-  animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.24, ease: [0.19, 1, 0.22, 1] } },
-  exit:    { opacity: 0, scale: 0.985, y: -8, transition: { duration: 0.16 } },
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.16, ease: [0.19, 1, 0.22, 1] } },
+  exit:    { opacity: 0, transition: { duration: 0.12 } },
 };
 
 export default function MobileFrame({ 
@@ -26,7 +27,7 @@ export default function MobileFrame({
 }) {
   const [currentScreen, setCurrentScreen] = useState(initialScreen);
   const [selectedEventId, setSelectedEventId] = useState(initialEventId);
-  const [selectedCity, setSelectedCity] = useState('San Francisco');
+  const [selectedCity, setSelectedCity] = useState('Bangalore');
   const [tickets, setTickets] = useState(INITIAL_TICKETS);
   const [activeQRTicket, setActiveQRTicket] = useState(null);
 
@@ -272,6 +273,28 @@ export default function MobileFrame({
             )}
 
           </AnimatePresence>
+
+          {/* Persistent Fixed Floating Navigation Bar (Never moves, never unmounts, anchored on top) */}
+          {['home', 'search', 'explore', 'ticket', 'profile'].includes(currentScreen) && (
+            <div className="mobile-fixed-bottom-nav-root">
+              <FloatingBottomNav 
+                activeTab={
+                  currentScreen === 'home' ? 'home' :
+                  currentScreen === 'search' ? 'search' :
+                  currentScreen === 'explore' ? 'calendar' :
+                  currentScreen === 'ticket' ? 'ticket' :
+                  currentScreen === 'profile' ? 'profile' : 'home'
+                }
+                onTabChange={(tab) => {
+                  if (tab === 'home') setCurrentScreen('home');
+                  else if (tab === 'search') setCurrentScreen('search');
+                  else if (tab === 'calendar') setCurrentScreen('explore');
+                  else if (tab === 'ticket') setCurrentScreen('ticket');
+                  else if (tab === 'profile') setCurrentScreen('profile');
+                }}
+              />
+            </div>
+          )}
 
           {/* Gate Check-in QR Modal */}
           <QRModal 

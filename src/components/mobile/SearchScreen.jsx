@@ -8,10 +8,10 @@ import './SearchScreen.css';
 const TRENDING_SEARCHES = [
   'Rock Legends',
   'Miles Quartet',
-  'Riverfront Park',
+  'Kesari Arena',
   'Jazz & Blues',
   'Hip Hop Showcase',
-  'San Francisco'
+  'Bangalore'
 ];
 
 const SEARCH_GENRES = ['All', 'Rock', 'Jazz', 'Hip-Hop', 'Electronic', 'Festivals'];
@@ -20,26 +20,17 @@ export default function SearchScreen({
   events = [],
   onSelectEvent = () => {},
   onBack = () => {},
-  onTabChange = () => {},
   initialQuery = ''
 }) {
-  const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState(initialQuery);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const inputRef = useRef(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 380);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    if (!isLoading && inputRef.current) {
+    if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, [isLoading]);
+  }, []);
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
@@ -61,18 +52,7 @@ export default function SearchScreen({
   }, [events, query, selectedGenre]);
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <SearchSkeletonScreen key="search-skel" />
-      ) : (
-        <motion.div 
-          key="search-content"
-          className="mobile-search-screen"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-        >
+    <div className="mobile-search-screen">
       {/* Search Header Bar */}
       <header className="search-screen-header">
         <div className="search-input-wrapper">
@@ -166,11 +146,11 @@ export default function SearchScreen({
                   <div className="result-meta-row">
                     <span>📅 {event.date}</span>
                     <span className="meta-sep">•</span>
-                    <span>📍 {event.venueShort || 'San Francisco'}</span>
+                    <span>📍 {event.venueShort || 'Bangalore'}</span>
                   </div>
                 </div>
                 <div className="result-action-side">
-                  <span className="result-price">${event.price?.toFixed(2)}</span>
+                  <span className="result-price">₹{event.price}</span>
                   <div className="result-arrow-circle">
                     <AppIcon name="arrow-up-right" size={14} color="#080808" strokeWidth={2.5} />
                   </div>
@@ -190,15 +170,8 @@ export default function SearchScreen({
         </div>
       </div>
 
-      {/* Floating Bottom Nav */}
-      <div className="mobile-bottom-nav-wrapper">
-        <FloatingBottomNav 
-          activeTab="search" 
-          onTabChange={onTabChange} 
-        />
-      </div>
-    </motion.div>
-      )}
-    </AnimatePresence>
+      {/* Bottom Spacer for Fixed Nav */}
+      <div style={{ height: 85, flexShrink: 0 }} />
+    </div>
   );
 }

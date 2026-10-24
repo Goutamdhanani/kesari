@@ -1,30 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import HomeSkeletonScreen from './HomeSkeletonScreen';
-import { FloatingBottomNav } from '../common/ControlWidgets';
 import './HomeScreen.css';
 
-// 5 Interactive Stage Vibes (inspired by the mood log in reference image 2)
+// Bespoke Apple-grade SVG Micro-Icons for Stage Vibes (No emojis)
+const VIBE_ICONS = {
+  all: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="currentColor" fillOpacity="0.18" />
+    </svg>
+  ),
+  rock: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="currentColor" fillOpacity="0.22" />
+    </svg>
+  ),
+  jazz: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 4v10a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4V7" />
+      <circle cx="18" cy="5" r="2.5" fill="currentColor" fillOpacity="0.22" />
+      <circle cx="8" cy="18" r="2.5" fill="currentColor" fillOpacity="0.22" />
+      <path d="M10 10h4" />
+      <path d="M10 7h4" />
+    </svg>
+  ),
+  electronic: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="5" fill="currentColor" fillOpacity="0.15" />
+      <circle cx="8.5" cy="8.5" r="2.5" />
+      <circle cx="15.5" cy="15.5" r="2.5" />
+      <path d="M8.5 15.5h.01M15.5 8.5h.01" strokeWidth="3" />
+    </svg>
+  ),
+  acoustic: (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 22c1.25-6.5 6-12 13-14 3.5 4 4.5 9 1 14-4 2-9 1-14 0Z" fill="currentColor" fillOpacity="0.2" />
+      <path d="M9 15c2.5-3 5-4.5 8-5.5" />
+    </svg>
+  )
+};
+
+// 5 Interactive Stage Vibes at Kesari Arena Bangalore
 const VIBE_SPECTRUM = [
-  { id: 'all', label: 'All', emoji: '✦', color: '#12131A', bg: '#EDE8DF', decibels: '92dB' },
-  { id: 'rock', label: 'Rock', emoji: '⚡', color: '#12131A', bg: '#F3E294', decibels: '98dB', stage: 'Main Stage' },
-  { id: 'jazz', label: 'Jazz', emoji: '🎷', color: '#12131A', bg: '#D7DCFA', decibels: '82dB', stage: 'Sunset Stage' },
-  { id: 'electronic', label: 'Rave', emoji: '🎛️', color: '#12131A', bg: '#CFE7DE', decibels: '102dB', stage: 'Warehouse' },
-  { id: 'acoustic', label: 'Lounge', emoji: '🌿', color: '#12131A', bg: '#F0BBB0', decibels: '74dB', stage: 'Garden' }
+  { id: 'all', label: 'All', iconKey: 'all', color: '#12131A', bg: '#EDE8DF', decibels: '92dB' },
+  { id: 'rock', label: 'Rock', iconKey: 'rock', color: '#12131A', bg: '#F3E294', decibels: '98dB', stage: 'Main Stage' },
+  { id: 'jazz', label: 'Jazz', iconKey: 'jazz', color: '#12131A', bg: '#D7DCFA', decibels: '82dB', stage: 'Sunset Stage' },
+  { id: 'electronic', label: 'Rave', iconKey: 'electronic', color: '#12131A', bg: '#CFE7DE', decibels: '102dB', stage: 'Warehouse' },
+  { id: 'acoustic', label: 'Lounge', iconKey: 'acoustic', color: '#12131A', bg: '#F0BBB0', decibels: '74dB', stage: 'Garden' }
 ];
 
-// High-impact Event Posters (Real concert photography + pastel editorial tokens)
+// High-impact Event Posters at Kesari Bangalore
 const STAGE_PASSES = [
   {
     id: 'rock',
     vibeId: 'rock',
     bg: '#F3E294',
     badgeText: '⚡ Main Stage',
-    stage: 'Main Stage • 21:00',
+    stage: 'Kesari Main Stage • 21:00',
     title: 'Rock Legends Reunion',
     artist: 'The Velvet Echoes & Guests',
-    price: '€28.00',
+    price: '₹1,499',
     timing: 'Now Live • 1h 45m left',
     image: '/assets/events/ev_rock.jpg',
     tag: 'Headliner'
@@ -34,10 +70,10 @@ const STAGE_PASSES = [
     vibeId: 'jazz',
     bg: '#D7DCFA',
     badgeText: '🎷 Sunset Stage',
-    stage: 'Sunset Stage • 18:30',
+    stage: 'Kesari Sunset Stage • 18:30',
     title: 'Jazz & Blues Festival',
     artist: 'Miles Davis Tribute Quartet',
-    price: '€22.50',
+    price: '₹1,250',
     timing: 'In 45 mins • 6:30 PM',
     image: '/assets/events/ev_jazz.jpg',
     tag: 'Fast Pass'
@@ -47,10 +83,10 @@ const STAGE_PASSES = [
     vibeId: 'rock',
     bg: '#F0BBB0',
     badgeText: '🎤 Deck Stage',
-    stage: 'Deck Stage • 20:15',
+    stage: 'Kesari Deck • 20:15',
     title: 'Hip Hop Showcase Live',
     artist: 'Apex Rhymes & DJ Metro',
-    price: '€25.00',
+    price: '₹1,350',
     timing: 'Tonight • 8:15 PM',
     image: '/assets/concert_crowd.jpg',
     tag: 'Trending'
@@ -60,10 +96,10 @@ const STAGE_PASSES = [
     vibeId: 'electronic',
     bg: '#CFE7DE',
     badgeText: '🎛️ Warehouse 7',
-    stage: 'Warehouse 7 • 23:00',
-    title: 'Neon Horizon Rave',
+    stage: 'Kesari Warehouse • 23:00',
+    title: 'Neon Horizon Rave 2026',
     artist: 'Klangwelt Live Modular',
-    price: '€32.00',
+    price: '₹1,850',
     timing: 'Late Night • 11:00 PM',
     image: '/assets/fluid_art.jpg',
     tag: '360° Visuals'
@@ -73,55 +109,55 @@ const STAGE_PASSES = [
     vibeId: 'acoustic',
     bg: '#EDE8DF',
     badgeText: '🌿 Garden Stage',
-    stage: 'Garden Terrace • 17:00',
+    stage: 'Kesari Garden Terrace • 17:00',
     title: 'Sunset Acoustic Sessions',
     artist: 'Sarah Vaughan Trio',
-    price: '€18.00',
+    price: '₹950',
     timing: 'Sunset Lounge Set',
     image: '/assets/events/ev_openmic.jpg',
     tag: 'Unplugged'
   }
 ];
 
-// Stage Schedule List Items for Tonight at Riverfront Pavilion
+// Stage Schedule List for Tonight at Kesari Arena Bangalore
 const TONIGHT_SCHEDULE = [
   {
     id: 'jazz',
-    stage: 'Sunset Stage',
+    stage: 'Sunset Stage • Kesari Bangalore',
     time: '18:30',
     title: 'Jazz & Blues Improv',
     artist: 'Miles Davis Tribute Quartet',
-    price: '€22.50',
+    price: '₹1,250',
     image: '/assets/events/ev_jazz.jpg',
     status: 'Starting Soon'
   },
   {
     id: 'hiphop',
-    stage: 'Deck Stage',
+    stage: 'Deck Stage • Kesari Bangalore',
     time: '20:15',
     title: 'Hip Hop Showcase Live',
     artist: 'Apex Rhymes & DJ Metro',
-    price: '€25.00',
+    price: '₹1,350',
     image: '/assets/concert_crowd.jpg',
-    status: 'Tickets Fast'
+    status: 'Fast Pass'
   },
   {
     id: 'rock',
-    stage: 'Main Stage',
+    stage: 'Main Stage • Kesari Bangalore',
     time: '21:00',
     title: 'Rock Legends Reunion',
     artist: 'The Velvet Echoes',
-    price: '€28.00',
+    price: '₹1,499',
     image: '/assets/events/ev_rock.jpg',
     status: 'Headline Set'
   },
   {
     id: 'electronic',
-    stage: 'Warehouse 7',
+    stage: 'Warehouse 7 • Kesari Bangalore',
     time: '23:00',
     title: 'Neon Horizon Rave 2026',
     artist: 'Klangwelt Collective',
-    price: '€32.00',
+    price: '₹1,850',
     image: '/assets/fluid_art.jpg',
     status: 'Late Hangar'
   }
@@ -132,18 +168,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.045,
-      delayChildren: 0.02
+      staggerChildren: 0.035,
+      delayChildren: 0.01
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
+  hidden: { opacity: 0, y: 8 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.24, ease: [0.19, 1, 0.22, 1] }
+    transition: { duration: 0.2, ease: [0.19, 1, 0.22, 1] }
   }
 };
 
@@ -155,22 +191,14 @@ export default function HomeScreen({
   onOpenCitySelector = () => {},
   unreadCount = 2
 }) {
-  const [activeTab, setActiveTab] = useState('home');
   const [selectedVibe, setSelectedVibe] = useState('all');
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 450);
-    return () => clearTimeout(timer);
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   const triggerRefresh = () => {
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 450);
   };
 
   const filteredPasses = STAGE_PASSES.filter(pass => {
@@ -190,31 +218,42 @@ export default function HomeScreen({
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            exit={{ opacity: 0, transition: { duration: 0.15 } }}
+            exit={{ opacity: 0, transition: { duration: 0.12 } }}
           >
-            {/* ── 1. The Obsidian Curved Stage Dome (Inspired by Reference Image 1) ── */}
+            {/* ── 1. The Obsidian Curved Stage Dome with Prominent Aurora Lights ── */}
             <header className="home-curved-dome-header">
-              {/* Aurora Borealis Ambient Stage Lighting (Strictly bounded inside the curved dome boundary) */}
+              {/* Prominent Aurora Borealis Ambient Stage Lighting (Strictly bounded to dome) */}
               <div className="dome-aurora-container" aria-hidden="true">
-                <div className="aurora-glow aurora-glow-emerald" />
-                <div className="aurora-glow aurora-glow-indigo" />
-                <div className="aurora-glow aurora-glow-amber" />
-                <div className="aurora-glow aurora-glow-coral" />
+                <div className="aurora-beam aurora-beam-cyan" />
+                <div className="aurora-beam aurora-beam-violet" />
+                <div className="aurora-beam aurora-beam-netflix-red" />
+                <div className="aurora-beam aurora-beam-emerald" />
+                <div className="aurora-veil-sweep" />
                 <div className="aurora-mesh-noise" />
               </div>
 
-              {/* Top Navigation Row */}
+              {/* Top Navigation Row: Kesari Logo Branding & Bangalore Venue */}
               <div className="dome-top-nav">
-                <motion.div 
-                  className="dome-venue-capsule"
-                  onClick={onOpenCitySelector}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.96 }}
-                >
-                  <span className="dome-live-beacon" />
-                  <span className="dome-venue-name">Riverfront Pavilion</span>
-                  <AppIcon name="chevron-right" size={8} color="#9AA0AF" className="rotate-90" />
-                </motion.div>
+                <div className="dome-brand-group">
+                  {/* Official Kesari Logo */}
+                  <img 
+                    src="/assets/kesari-logo.png" 
+                    alt="Kesari Live" 
+                    className="dome-kesari-brand-logo" 
+                  />
+
+                  {/* Bangalore Venue Capsule */}
+                  <motion.div 
+                    className="dome-venue-capsule"
+                    onClick={onOpenCitySelector}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <span className="dome-live-beacon" />
+                    <span className="dome-venue-name">Kesari Arena • Bangalore</span>
+                    <AppIcon name="chevron-right" size={8} color="#9AA0AF" className="rotate-90" />
+                  </motion.div>
+                </div>
 
                 <div className="dome-nav-actions">
                   <motion.button
@@ -270,26 +309,26 @@ export default function HomeScreen({
                   <div className="dome-eyebrow-row">
                     <div className="dome-live-pill">
                       <span className="live-pulse-dot" />
-                      <span className="dome-live-tag">NOW LIVE • MAIN STAGE</span>
+                      <span className="dome-live-tag">NOW LIVE • KESARI MAIN</span>
                     </div>
                     <span className="dome-db-badge">98 dB Peak</span>
                   </div>
 
                   <div className="dome-headline-row">
                     <h1 className="dome-act-title">The Velvet Echoes</h1>
-                    {/* Delicate Animated Soundwave Equalizer */}
+                    {/* Animated Soundwave Equalizer with Netflix Red Peak */}
                     <div className="dome-soundwave-bars" aria-label="Live audio waveform">
                       <span className="wave-bar bar-1" />
-                      <span className="wave-bar bar-2" />
+                      <span className="wave-bar bar-2 bar-netflix" />
                       <span className="wave-bar bar-3" />
-                      <span className="wave-bar bar-4" />
+                      <span className="wave-bar bar-4 bar-netflix" />
                       <span className="wave-bar bar-5" />
                     </div>
                   </div>
 
                   <div className="dome-footer-row">
                     <div className="dome-timing-info">
-                      <span className="dome-subtext">Rock Legends Reunion • 1h 45m left</span>
+                      <span className="dome-subtext">Rock Legends Reunion • Bangalore Arena</span>
                     </div>
                     
                     <motion.button 
@@ -297,8 +336,8 @@ export default function HomeScreen({
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.92 }}
                     >
-                      <span>Pass €18.89</span>
-                      <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
+                      <span>Pass ₹1,499</span>
+                      <AppIcon name="arrow-up-right" size={11} color="#FFFFFF" strokeWidth={2.6} />
                     </motion.button>
                   </div>
                 </div>
@@ -307,11 +346,11 @@ export default function HomeScreen({
 
             {/* ── 2. The Warm Alabaster Sheet ── */}
             <main className="home-warm-sheet">
-              {/* Vibe Spectrum / Acoustic Mood Bar (from Reference Image 2) */}
+              {/* Vibe Spectrum with Bespoke Apple-grade Vector Icons */}
               <motion.section className="venue-vibe-section" variants={itemVariants}>
                 <div className="section-title-row">
                   <span className="section-label">Acoustic Stage Vibe</span>
-                  <span className="section-meta">4 Live Stages</span>
+                  <span className="section-meta">5 Stages at Kesari</span>
                 </div>
 
                 <div className="vibe-pills-scroll">
@@ -329,7 +368,9 @@ export default function HomeScreen({
                           className="vibe-orb-circle" 
                           style={{ backgroundColor: vibe.bg }}
                         >
-                          <span className="vibe-emoji">{vibe.emoji}</span>
+                          <span className="vibe-svg-wrap">
+                            {VIBE_ICONS[vibe.iconKey]}
+                          </span>
                         </div>
                         <span className="vibe-orb-label">{vibe.label}</span>
                       </motion.button>
@@ -357,7 +398,7 @@ export default function HomeScreen({
                         whileHover={{ y: -4, scale: 1.02 }}
                         whileTap={{ scale: 0.97 }}
                       >
-                        {/* High-Resolution Event Artwork / Poster Background */}
+                        {/* High-Resolution Event Artwork Background */}
                         <div 
                           className="poster-card-image"
                           style={{ backgroundImage: `url(${pass.image})` }}
@@ -411,9 +452,9 @@ export default function HomeScreen({
                 </div>
               </motion.section>
 
-              {/* Asymmetric Bento Spotlight & Venue Capacity (from Reference Image 2) */}
+              {/* Asymmetric Bento Spotlight & Venue Capacity */}
               <motion.section className="venue-bento-duo-section" variants={itemVariants}>
-                {/* Bento Card 1: Sunset Acoustic Lounge with Real Photo Poster */}
+                {/* Bento Card 1: Sunset Acoustic Lounge at Kesari Garden Terrace */}
                 <motion.div 
                   className="bento-poster-card"
                   onClick={() => onSelectEvent('jazz')}
@@ -427,7 +468,7 @@ export default function HomeScreen({
                   <div className="bento-poster-overlay" />
 
                   <div className="bento-poster-content">
-                    <span className="bento-mini-tag">Garden Terrace • 17:00</span>
+                    <span className="bento-mini-tag">Kesari Garden • 17:00</span>
                     <h4 className="bento-poster-title">Sunset Acoustic Sessions</h4>
                     <p className="bento-poster-sub">Sarah Vaughan Trio • Unplugged</p>
                     
@@ -440,7 +481,7 @@ export default function HomeScreen({
                   </div>
                 </motion.div>
 
-                {/* Bento Card 2: Giant Stat Capacity & Live Sound Meter */}
+                {/* Bento Card 2: Kesari Arena Capacity & Live Sound Meter */}
                 <div className="bento-metric-card">
                   <div className="metric-header-row">
                     <span className="metric-eyebrow">Venue Capacity</span>
@@ -452,11 +493,11 @@ export default function HomeScreen({
                     <span className="metric-pct">%</span>
                   </div>
 
-                  <p className="metric-subtext">Riverfront Gate 2 Check-in Fast Track Open</p>
+                  <p className="metric-subtext">Kesari Gate 2 Fast Track Check-in Open</p>
 
                   <div className="metric-sound-meter">
                     <div className="meter-info">
-                      <span className="meter-label">Sound Level</span>
+                      <span className="meter-label">Live Audio</span>
                       <span className="meter-db">88 dB</span>
                     </div>
                     <div className="meter-bars">
@@ -476,11 +517,11 @@ export default function HomeScreen({
                 </div>
               </motion.section>
 
-              {/* ── 3. Tonight's Stage Schedule (Editorial Poster Lineup List) ── */}
+              {/* Tonight's Stage Schedule (Editorial Poster Lineup List) */}
               <motion.section className="venue-schedule-section" variants={itemVariants}>
                 <div className="section-title-row">
-                  <span className="section-label">Tonight's Pavilion Schedule</span>
-                  <span className="section-meta">All Stages Active</span>
+                  <span className="section-label">Tonight's Kesari Schedule</span>
+                  <span className="section-meta">Bangalore Arena</span>
                 </div>
 
                 <div className="schedule-cards-list">
@@ -489,7 +530,7 @@ export default function HomeScreen({
                       key={item.id}
                       className="schedule-row-item"
                       onClick={() => onSelectEvent(item.id)}
-                      whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+                      whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
                       whileTap={{ scale: 0.98 }}
                     >
                       {/* Thumbnail Poster */}
@@ -519,24 +560,9 @@ export default function HomeScreen({
                 </div>
               </motion.section>
 
-              {/* Bottom Spacer */}
-              <div style={{ height: 36, flexShrink: 0 }} />
+              {/* Bottom Spacer for Fixed Root Navigation */}
+              <div style={{ height: 85, flexShrink: 0 }} />
             </main>
-
-            {/* ── 4. Minimal Frosted Bottom Navigation (from Reference Image 2) ── */}
-            <div className="mobile-bottom-nav-wrapper">
-              <FloatingBottomNav 
-                activeTab={activeTab} 
-                onTabChange={(tab) => {
-                  setActiveTab(tab);
-                  if (tab === 'search') onNavigate('search');
-                  else if (tab === 'calendar') onNavigate('explore');
-                  else if (tab === 'ticket') onOpenTicket();
-                  else if (tab === 'profile') onNavigate('profile');
-                  else if (tab === 'home') onNavigate('home');
-                }} 
-              />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

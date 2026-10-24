@@ -11,31 +11,12 @@ export default function ProfileScreen({
   tickets = [],
   savedEvents = []
 }) {
-  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('passes'); // 'passes' | 'saved' | 'settings'
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [appleWalletSync, setAppleWalletSync] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 380);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <ProfileSkeletonScreen key="profile-skel" />
-      ) : (
-        <motion.div 
-          key="profile-content"
-          className="mobile-profile-screen"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 0.2 }}
-        >
+    <div className="mobile-profile-screen">
       {/* Header Bar */}
       <header className="profile-top-bar">
         <button className="profile-back-btn" onClick={onBack} aria-label="Go Back">
@@ -54,7 +35,7 @@ export default function ProfileScreen({
           <div className="identity-vip-badge" title="Verified VIP">⚡</div>
         </div>
         <h3 className="identity-name">Gregory Vance</h3>
-        <p className="identity-handle">@gregory.sound • San Francisco, CA</p>
+        <p className="identity-handle">@gregory.sound • Bangalore, India</p>
         <div className="identity-pill-tag">
           <span>🎵 VIP Festival Explorer</span>
         </div>
@@ -107,7 +88,7 @@ export default function ProfileScreen({
             <div className="pass-card-left">
               <span className="pass-tag">GATE PASS VERIFIED</span>
               <h4 className="pass-title">{tickets[0]?.eventTitle || 'Jazz & Blues Festival'}</h4>
-              <span className="pass-time">📅 Sep 5, 2026 • Riverfront Park</span>
+              <span className="pass-time">📅 Sep 5, 2026 • Kesari Arena Bangalore</span>
             </div>
             <div className="pass-card-right">
               <div className="pass-qr-thumb">
@@ -133,9 +114,9 @@ export default function ProfileScreen({
               <div className="saved-info">
                 <span className="saved-cat">Rock & Electric</span>
                 <h4 className="saved-title">Rock Legends Reunion</h4>
-                <span className="saved-date">Oct 20 • The Great Northern</span>
+                <span className="saved-date">Oct 20 • Kesari Main Stage, Bangalore</span>
               </div>
-              <span className="saved-price">From $18.89</span>
+              <span className="saved-price">From ₹1,499</span>
             </div>
 
             <div className="saved-event-item" onClick={() => onSelectEvent('hiphop')}>
@@ -143,9 +124,9 @@ export default function ProfileScreen({
               <div className="saved-info">
                 <span className="saved-cat">Hip-Hop & Urban</span>
                 <h4 className="saved-title">Hip Hop Showcase Live</h4>
-                <span className="saved-date">Nov 14 • Midway Pavilion</span>
+                <span className="saved-date">Nov 14 • Kesari Deck, Bangalore</span>
               </div>
-              <span className="saved-price">From $25.00</span>
+              <span className="saved-price">From ₹1,350</span>
             </div>
           </div>
         </div>
@@ -192,9 +173,7 @@ export default function ProfileScreen({
         </div>
       )}
 
-      <div style={{ height: 30 }} />
-    </motion.div>
-      )}
-    </AnimatePresence>
+      <div style={{ height: 85, flexShrink: 0 }} />
+    </div>
   );
 }

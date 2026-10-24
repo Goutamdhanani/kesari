@@ -110,6 +110,31 @@
   gap: 6px;
 }
 
+/* ── Persistent Fixed Floating Navigation Bar ──── */
+.mobile-fixed-bottom-nav-root {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  padding-top: 6px;
+  background: linear-gradient(
+    180deg,
+    rgba(247, 244, 238, 0) 0%,
+    rgba(247, 244, 238, 0.85) 45%,
+    rgba(247, 244, 238, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 990;
+}
+
+.mobile-fixed-bottom-nav-root > * {
+  pointer-events: auto;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

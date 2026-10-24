@@ -10,22 +10,13 @@ const CATEGORIES = ['All', 'Rock', 'Jazz', 'Hip-Hop', 'Electronic', 'Festivals']
 
 export default function ExploreEventsScreen({
   events = [],
-  selectedCity = 'San Francisco',
+  selectedCity = 'Bangalore',
   onSelectEvent = () => {},
   onBack = () => {},
-  onTabChange = () => {},
   onOpenCitySelector = () => {}
 }) {
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedTimeline, setSelectedTimeline] = useState('All Dates');
   const [selectedCategory, setSelectedCategory] = useState('All');
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 380);
-    return () => clearTimeout(timer);
-  }, []);
 
   const filteredEvents = events.filter(e => {
     if (selectedCategory !== 'All' && 
@@ -37,18 +28,7 @@ export default function ExploreEventsScreen({
   });
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <ExploreSkeletonScreen key="explore-skel" />
-      ) : (
-        <motion.div 
-          key="explore-content"
-          className="mobile-explore-screen"
-          initial={{ opacity: 0, x: 15 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -15 }}
-          transition={{ duration: 0.22 }}
-        >
+    <div className="mobile-explore-screen">
       {/* Top Header */}
       <header className="explore-header">
         <div className="explore-header-left">
@@ -116,14 +96,14 @@ export default function ExploreEventsScreen({
 
               <div className="explore-price-tag">
                 <span className="price-label">From</span>
-                <span className="price-amount">${event.price?.toFixed(2)}</span>
+                <span className="price-amount">₹{event.price}</span>
               </div>
             </div>
 
             <div className="explore-card-body">
               <div className="explore-card-meta-row">
                 <span className="meta-badge">📅 {event.date}</span>
-                <span className="meta-badge">📍 {event.venueShort || 'San Francisco'}</span>
+                <span className="meta-badge">📍 {event.venueShort || 'Bangalore'}</span>
               </div>
 
               <h3 className="explore-event-name">{event.title}</h3>
@@ -161,15 +141,8 @@ export default function ExploreEventsScreen({
         ))}
       </div>
 
-      {/* Floating Bottom Nav */}
-      <div className="mobile-bottom-nav-wrapper">
-        <FloatingBottomNav 
-          activeTab="calendar" 
-          onTabChange={onTabChange} 
-        />
-      </div>
-    </motion.div>
-      )}
-    </AnimatePresence>
+      {/* Bottom Spacer for Fixed Nav */}
+      <div style={{ height: 85, flexShrink: 0 }} />
+    </div>
   );
 }

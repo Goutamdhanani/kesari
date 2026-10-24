@@ -4,17 +4,17 @@ export const MOCK_EVENTS = [
     title: 'Rock Legends Reunion',
     category: 'Rock & Electric',
     genre: 'rock',
-    city: 'San Francisco',
+    city: 'Bangalore',
     date: 'October 20, 2026',
     time: '18:00 PM - 02:00 AM',
-    venue: 'The Great Northern, San Francisco',
-    venueShort: 'The Great Northern',
+    venue: 'Kesari Arena, Indiranagar, Bangalore',
+    venueShort: 'Kesari Arena',
     price: 18.89,
     priceLabel: 'From $18.89',
-    image: '/assets/rock_concert_bg.png',
+    image: '/assets/events/ev_rock.jpg',
     badge: '⚡ Selling Fast • 92% Booked',
     featured: true,
-    description: 'An electrifying night celebrating iconic guitar riffs, thunderous drum solos, and legendary rock anthems performed by Grammy-nominated artists.',
+    description: 'An electrifying night celebrating iconic guitar riffs, thunderous drum solos, and legendary rock anthems performed live at Kesari Arena, Bangalore.',
     lineup: [
       { name: 'The Velvet Echoes', role: 'Headliner', time: '21:30 PM', img: '/assets/artist_1.png' },
       { name: 'Neon Distortion', role: 'Direct Support', time: '20:00 PM', img: '/assets/artist_2.png' },
@@ -31,17 +31,17 @@ export const MOCK_EVENTS = [
     title: 'Jazz & Blues Festival',
     category: 'Jazz & Blues',
     genre: 'jazz',
-    city: 'San Francisco',
+    city: 'Bangalore',
     date: 'September 5, 2026',
     time: '15:00 PM - 23:00 PM',
-    venue: 'Riverfront Park, San Francisco',
-    venueShort: 'Riverfront Park',
+    venue: 'Kesari Pavilion, Koramangala, Bangalore',
+    venueShort: 'Kesari Pavilion',
     price: 22.50,
     priceLabel: 'From $22.50',
-    image: '/assets/jazz_blues_pills.png',
+    image: '/assets/events/ev_jazz.jpg',
     badge: '🎷 Sunset Stage Special',
     featured: true,
-    description: 'Immerse yourself in three stages of smooth saxophone melodies, soulful electric blues, and world-class live improvisation along the scenic bay.',
+    description: 'Immerse yourself in smooth saxophone melodies, soulful electric blues, and world-class live improvisation at Kesari Pavilion, Bangalore.',
     lineup: [
       { name: 'Miles Quartet', role: 'Main Stage', time: '19:00 PM', img: '/assets/artist_1.png' },
       { name: 'Sarah Vaughan Trio', role: 'Acoustic Dome', time: '17:30 PM', img: '/assets/artist_2.png' },
@@ -58,17 +58,17 @@ export const MOCK_EVENTS = [
     title: 'Hip Hop Showcase Live',
     category: 'Hip-Hop & Urban',
     genre: 'hiphop',
-    city: 'San Francisco',
+    city: 'Bangalore',
     date: 'November 14, 2026',
     time: '20:00 PM - 03:00 AM',
-    venue: 'Warfield Theater, San Francisco',
-    venueShort: 'Warfield Theater',
+    venue: 'Kesari Deck, MG Road, Bangalore',
+    venueShort: 'Kesari Deck',
     price: 25.00,
     priceLabel: 'From $25.00',
     image: '/assets/concert_crowd.jpg',
     badge: '🔥 Top Trending',
     featured: false,
-    description: 'The heavyweight battle of freestyle cyphers, chart-topping lyricists, and high-energy 808 bass beats at the historic Warfield stage.',
+    description: 'Freestyle cyphers, chart-topping lyricists, and high-energy 808 bass beats live on stage at Kesari Deck, Bangalore.',
     lineup: [
       { name: 'Apex Rhymes', role: 'Headliner', time: '22:30 PM', img: '/assets/artist_2.png' },
       { name: 'DJ Cipher & Metro', role: 'Live Set', time: '21:00 PM', img: '/assets/artist_3.png' }
@@ -84,17 +84,17 @@ export const MOCK_EVENTS = [
     title: 'Neon Horizon Rave 2026',
     category: 'Electronic & Rave',
     genre: 'electronic',
-    city: 'San Francisco',
+    city: 'Bangalore',
     date: 'December 31, 2026',
     time: '21:00 PM - 06:00 AM',
-    venue: 'Pier 70 Hangar, San Francisco',
-    venueShort: 'Pier 70 Hangar',
+    venue: 'Kesari Warehouse 7, Whitefield, Bangalore',
+    venueShort: 'Kesari Warehouse',
     price: 45.00,
     priceLabel: 'From $45.00',
     image: '/assets/fluid_art.jpg',
     badge: '🎆 NYE Special Event',
     featured: true,
-    description: 'A 360-degree immersive audiovisual rave with 40-foot laser arrays, modular analog synths, and international warehouse techno titans.',
+    description: 'A 360-degree immersive audiovisual rave with 40-foot laser arrays and international warehouse techno titans at Kesari Warehouse Bangalore.',
     lineup: [
       { name: 'Klangwelt Collective', role: 'Berlin Techno', time: '01:00 AM', img: '/assets/artist_3.png' },
       { name: 'Aura Pulse', role: 'Live Modular', time: '23:30 PM', img: '/assets/artist_1.png' }
@@ -107,61 +107,36 @@ export const MOCK_EVENTS = [
   },
   {
     id: 'soundwaves',
-    title: 'Underground Sound Waves',
-    category: 'Experimental Beats',
-    genre: 'electronic',
-    city: 'San Francisco',
+    title: 'Sunset Acoustic Sessions',
+    category: 'Acoustic & Lounge',
+    genre: 'acoustic',
+    city: 'Bangalore',
     date: 'October 28, 2026',
-    time: '19:30 PM - 01:30 AM',
-    venue: 'The Midway, San Francisco',
-    venueShort: 'The Midway',
-    price: 30.00,
-    priceLabel: 'From $30.00',
-    image: '/assets/3d_capsule.jpg',
-    badge: '⚡ Curated Underground',
+    time: '17:00 PM - 22:30 AM',
+    venue: 'Kesari Garden Terrace, Bangalore',
+    venueShort: 'Kesari Garden',
+    price: 18.00,
+    priceLabel: 'From $18.00',
+    image: '/assets/events/ev_openmic.jpg',
+    badge: '🌿 Garden Stage Unplugged',
     featured: false,
-    description: 'Aural soundscapes, tactile sub-bass frequencies, and ambient visual installations by cutting-edge West Coast sound designers.',
+    description: 'Intimate acoustic guitar, candlelit wooden deck, and craft cocktails under Bangalore starlight at Kesari Garden Terrace.',
     lineup: [
-      { name: 'Sub Frequency', role: 'Sonic Explorer', time: '21:00 PM', img: '/assets/artist_1.png' }
+      { name: 'Sarah Vaughan Trio', role: 'Acoustic Set', time: '18:00 PM', img: '/assets/artist_1.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'General Admission', price: 30.00, perks: 'Full gallery and stage entry' },
-      { id: 'vip', name: 'Sensory Lounge Access', price: 60.00, perks: 'Spatial audio immersion headphones provided' }
-    ]
-  },
-  {
-    id: 'soul',
-    title: 'Midnight Velvet Soul Night',
-    category: 'Soul & R&B',
-    genre: 'jazz',
-    city: 'New York',
-    date: 'November 20, 2026',
-    time: '20:00 PM - 01:00 AM',
-    venue: 'Blue Note Club, New York',
-    venueShort: 'Blue Note Club',
-    price: 35.00,
-    priceLabel: 'From $35.00',
-    image: '/assets/events/lounge.webp',
-    badge: '🍸 Intimate Acoustic',
-    featured: false,
-    description: 'Candlelit tables, vintage microphones, and velvet harmonies celebrating the timeless legacy of neo-soul and contemporary R&B.',
-    lineup: [
-      { name: 'Velvet Strings Trio', role: 'Live Quintet', time: '21:00 PM', img: '/assets/artist_2.png' }
-    ],
-    tiers: [
-      { id: 'ga', name: 'Bar Standing Pass', price: 35.00, perks: 'Access to bar area with cocktail service' },
-      { id: 'vip', name: 'Front Table with Dinner', price: 75.00, perks: 'Stage-side seating and 2-course meal' }
+      { id: 'ga', name: 'Lawn Pass', price: 18.00, perks: 'Lawn seating & welcome drink' },
+      { id: 'vip', name: 'Table Terrace Seating', price: 38.00, perks: 'Reserved table with tapas service' }
     ]
   }
 ];
 
 export const CITIES = [
-  'San Francisco',
-  'New York',
-  'Los Angeles',
-  'Tokyo',
-  'London',
-  'Berlin'
+  'Bangalore',
+  'Indiranagar, Bangalore',
+  'Koramangala, Bangalore',
+  'Whitefield, Bangalore',
+  'MG Road, Bangalore'
 ];
 
 export const GENRES = [
@@ -175,16 +150,16 @@ export const GENRES = [
 export const INITIAL_TICKETS = [
   {
     id: 'tkt-001',
-    eventId: 'jazz',
-    eventTitle: 'Jazz & Blues Festival',
-    date: 'Sep 5, 2026',
-    time: '15:00 PM',
-    location: 'Riverfront Park',
-    seat: 'A-14 (General Lawn)',
+    eventId: 'rock',
+    eventTitle: 'Rock Legends Reunion',
+    date: 'Oct 20, 2026',
+    time: '18:00 PM',
+    location: 'Kesari Arena, Bangalore',
+    seat: 'VIP Pit (Front Stage)',
     hash: '0x487Fh3kmjn3...35620',
-    tier: 'General Admission',
-    price: 22.50,
-    image: '/assets/jazz_blues_pills.png',
+    tier: 'VIP Pit & Express Pass',
+    price: 49.99,
+    image: '/assets/events/ev_rock.jpg',
     bookedAt: 'Today at 14:22'
   }
 ];

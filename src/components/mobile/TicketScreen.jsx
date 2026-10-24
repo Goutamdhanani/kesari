@@ -10,7 +10,7 @@ const DEFAULT_TICKET = {
   eventTitle: "Jazz & Blues Festival",
   date: "Sep 5, 2026",
   time: "15:00 PM",
-  location: "Riverfront Park",
+  location: "Kesari Pavilion, Bangalore",
   seat: "No seat",
   hash: "0x487Fh3kmjn3...35620",
   image: "/assets/jazz_blues_pills.png",
@@ -24,16 +24,8 @@ export default function TicketScreen({
   onFindConcerts = () => {},
   onShowToast = () => {}
 }) {
-  const [isLoading, setIsLoading] = useState(true);
   const ticketList = tickets.length > 0 ? tickets : [DEFAULT_TICKET];
   const [ticketIndex, setTicketIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 380);
-    return () => clearTimeout(timer);
-  }, []);
 
   const currentTicket = ticketList[ticketIndex] || ticketList[0];
 
@@ -55,18 +47,7 @@ export default function TicketScreen({
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <TicketSkeletonScreen key="ticket-skel" />
-      ) : (
-        <motion.div 
-          key="ticket-content"
-          className="mobile-ticket-screen"
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
-          transition={{ duration: 0.22 }}
-        >
+    <div className="mobile-ticket-screen">
       {/* Header */}
       <header className="ticket-screen-header">
         <motion.button 
@@ -154,8 +135,7 @@ export default function TicketScreen({
       </div>
 
       <div className="ticket-screen-spacer" />
-    </motion.div>
-      )}
-    </AnimatePresence>
+      <div style={{ height: 85, flexShrink: 0 }} />
+    </div>
   );
 }

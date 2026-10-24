@@ -4,19 +4,17 @@ import AppIcon from '../common/AppIcon';
 import './CitySelectorSheet.css';
 
 const AVAILABLE_CITIES = [
-  { name: 'San Francisco', state: 'California, US', icon: '🌉', activeShows: 14 },
-  { name: 'New York', state: 'New York, US', icon: '🗽', activeShows: 28 },
-  { name: 'Los Angeles', state: 'California, US', icon: '🌴', activeShows: 19 },
-  { name: 'London', state: 'England, UK', icon: '🇬🇧', activeShows: 22 },
-  { name: 'Berlin', state: 'Germany, EU', icon: '🎧', activeShows: 16 },
-  { name: 'Austin', state: 'Texas, US', icon: '🎸', activeShows: 11 },
-  { name: 'Tokyo', state: 'Japan, Asia', icon: '🗼', activeShows: 15 }
+  { name: 'Bangalore (Kesari Arena)', state: 'Karnataka, India', icon: '📍', activeShows: 18 },
+  { name: 'Indiranagar, Bangalore', state: 'East Zone', icon: '⚡', activeShows: 6 },
+  { name: 'Koramangala, Bangalore', state: 'South Zone', icon: '🎷', activeShows: 5 },
+  { name: 'Whitefield, Bangalore', state: 'Tech Corridor', icon: '🎛️', activeShows: 4 },
+  { name: 'MG Road, Bangalore', state: 'Central District', icon: '🌿', activeShows: 3 }
 ];
 
 export default function CitySelectorSheet({
   isOpen,
   onClose = () => {},
-  selectedCity = 'San Francisco',
+  selectedCity = 'Bangalore',
   onSelectCity = () => {}
 }) {
   if (!isOpen) return null;
@@ -42,8 +40,8 @@ export default function CitySelectorSheet({
 
           <div className="city-sheet-header">
             <div>
-              <h3 className="city-sheet-title">Select Location</h3>
-              <p className="city-sheet-subtitle">Find concerts and festivals near you</p>
+              <h3 className="city-sheet-title">Kesari Venue • Bangalore</h3>
+              <p className="city-sheet-subtitle">Select Kesari stages & zones in Bangalore</p>
             </div>
             <button className="city-close-btn" onClick={onClose} aria-label="Close">
               <AppIcon name="x" size={16} color="#64748B" />
@@ -52,7 +50,7 @@ export default function CitySelectorSheet({
 
           <div className="city-items-list">
             {AVAILABLE_CITIES.map((city) => {
-              const isSelected = selectedCity.toLowerCase() === city.name.toLowerCase();
+              const isSelected = selectedCity.toLowerCase().includes(city.name.toLowerCase().split(' ')[0]);
               return (
                 <div 
                   key={city.name}
@@ -62,19 +60,12 @@ export default function CitySelectorSheet({
                     onClose();
                   }}
                 >
-                  <span className="city-icon">{city.icon}</span>
-                  <div className="city-name-wrap">
-                    <h4 className="city-title">{city.name}</h4>
-                    <span className="city-state">{city.state}</span>
+                  <div className="city-icon-box">{city.icon}</div>
+                  <div className="city-text-col">
+                    <h4 className="city-name-label">{city.name}</h4>
+                    <span className="city-state-label">{city.state}</span>
                   </div>
-                  <div className="city-meta-right">
-                    <span className="city-shows-badge">{city.activeShows} shows</span>
-                    {isSelected && (
-                      <div className="city-check-dot">
-                        <AppIcon name="check" size={12} color="#080808" strokeWidth={3} />
-                      </div>
-                    )}
-                  </div>
+                  <span className="city-shows-chip">{city.activeShows} Live Sets</span>
                 </div>
               );
             })}
