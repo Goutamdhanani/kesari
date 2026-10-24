@@ -24,7 +24,13 @@ import {
   Check,
   Mic,
   MapPinned,
-  Star
+  Star,
+  X,
+  Plus,
+  Minus,
+  Settings,
+  CreditCard,
+  Clock
 } from 'lucide-react';
 
 export default function AppIcon({ name, size = 20, color = 'currentColor', fill = 'none', strokeWidth = 2, className = '' }) {
@@ -85,6 +91,19 @@ export default function AppIcon({ name, size = 20, color = 'currentColor', fill 
       return <MapPinned {...iconProps} />;
     case 'star':
       return <Star {...iconProps} />;
+    case 'x':
+    case 'close':
+      return <X {...iconProps} />;
+    case 'plus':
+      return <Plus {...iconProps} />;
+    case 'minus':
+      return <Minus {...iconProps} />;
+    case 'settings':
+      return <Settings {...iconProps} />;
+    case 'credit-card':
+      return <CreditCard {...iconProps} />;
+    case 'clock':
+      return <Clock {...iconProps} />;
     default:
       return <Home {...iconProps} />;
   }

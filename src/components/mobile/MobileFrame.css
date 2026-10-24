@@ -214,6 +214,26 @@
   container-type: inline-size;
 }
 
+/* ── In-Phone Toast Feedback Pill ─────────────── */
+.in-phone-toast-pill {
+  position: absolute;
+  top: 54px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(12, 13, 18, 0.94);
+  backdrop-filter: blur(12px);
+  color: #DAFB71;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+  z-index: 60;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(218, 251, 113, 0.3);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 /* ── Bottom Home Indicator ───────────────────── */
 .iphone-home-indicator {
   position: absolute;
@@ -225,7 +245,14 @@
   border-radius: 999px;
   background: rgba(0,0,0,0.8);
   z-index: 50;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.iphone-home-indicator:hover {
+  transform: translateX(-50%) scale(1.05);
+  background: #0042D9;
 }
 
 /* Dark screen home indicator */

@@ -64,6 +64,31 @@
   font-weight: 800;
 }
 
+.ticket-switcher-pills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: -10px 0 16px;
+}
+
+.ticket-dot-btn {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #CBD5E1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ticket-dot-btn.active {
+  width: 22px;
+  border-radius: 999px;
+  background: #0042D9;
+}
+
 /* ── Center Presentation ─────────────────────── */
 .ticket-card-presentation {
   display: flex;

@@ -4,30 +4,79 @@ import HomeScreen from './HomeScreen';
 import OnboardingScreen from './OnboardingScreen';
 import TicketScreen from './TicketScreen';
 import EventDetailScreen from './EventDetailScreen';
+import SearchScreen from './SearchScreen';
+import ExploreEventsScreen from './ExploreEventsScreen';
+import ProfileScreen from './ProfileScreen';
+import NotificationsSheet from './NotificationsSheet';
+import CitySelectorSheet from './CitySelectorSheet';
 import QRModal from './QRModal';
+import { MOCK_EVENTS, INITIAL_TICKETS } from '../../data/mockEvents';
 import './MobileFrame.css';
 
 const SCREEN_TABS = [
-  { id: 'home',       label: '🏠 Home', },
-  { id: 'onboarding', label: '🚀 Onboarding', },
-  { id: 'ticket',     label: '🎟️ Ticket', },
-  { id: 'details',    label: '🎸 Event', },
+  { id: 'home',       label: '🏠 Home' },
+  { id: 'search',     label: '🔍 Search' },
+  { id: 'explore',    label: '📅 Explore' },
+  { id: 'details',    label: '🎸 Event' },
+  { id: 'ticket',     label: '🎟️ Tickets' },
+  { id: 'profile',    label: '👤 Profile' },
+  { id: 'onboarding', label: '🚀 Onboarding' },
 ];
 
 const screenVariants = {
-  initial: { opacity: 0, x: 18 },
+  initial: { opacity: 0, x: 16 },
   animate: { opacity: 1, x: 0, transition: { duration: 0.22, ease: [0.19, 1, 0.22, 1] } },
-  exit:    { opacity: 0, x: -18, transition: { duration: 0.16 } },
+  exit:    { opacity: 0, x: -16, transition: { duration: 0.16 } },
 };
 
 export default function MobileFrame({ 
-  initialScreen = 'onboarding',
+  initialScreen = 'home',
   initialEventId = 'rock',
   onEventSelected = () => {}
 }) {
   const [currentScreen, setCurrentScreen] = useState(initialScreen);
   const [selectedEventId, setSelectedEventId] = useState(initialEventId);
+  const [selectedCity, setSelectedCity] = useState('San Francisco');
+  const [tickets, setTickets] = useState(INITIAL_TICKETS);
+  const [activeQRTicket, setActiveQRTicket] = useState(null);
+
+  // Sheets & Modals
   const [showQRModal, setShowQRModal] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showCitySelector, setShowCitySelector] = useState(false);
+
+  // In-app Notification list
+  const [notifications, setNotifications] = useState([
+    {
+      id: 'n1',
+      icon: '🎟️',
+      title: 'Pass Ready for Gate Check-in',
+      message: 'Your Jazz & Blues Festival ticket is verified for Riverfront Park Main Gate.',
+      time: '12m ago'
+    },
+    {
+      id: 'n2',
+      icon: '⚡',
+      title: 'Rock Legends Selling Fast',
+      message: 'Over 92% of passes claimed for the October 20 concert.',
+      time: '1h ago'
+    },
+    {
+      id: 'n3',
+      icon: '🎷',
+      title: 'Miles Quartet Added',
+      message: 'Sunset Stage lineup updated with special acoustic set.',
+      time: 'Yesterday'
+    }
+  ]);
+  const [unreadCount, setUnreadCount] = useState(2);
+
+  // In-phone Micro Toast
+  const [toastMessage, setToastMessage] = useState('');
+  const showToast = (msg) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(''), 3500);
+  };
 
   useEffect(() => { setCurrentScreen(initialScreen); }, [initialScreen]);
   useEffect(() => { setSelectedEventId(initialEventId); }, [initialEventId]);
@@ -38,20 +87,43 @@ export default function MobileFrame({
     onEventSelected(id);
   };
 
-  const goTo = (screen) => setCurrentScreen(screen);
+  const handleBookSuccess = (newTicket) => {
+    if (newTicket) {
+      setTickets(prev => [newTicket, ...prev]);
+      setActiveQRTicket(newTicket);
+      showToast(`Pass confirmed for ${newTicket.eventTitle}! 🎟️`);
+    }
+    setCurrentScreen('ticket');
+  };
+
+  const handleOpenQR = (ticket) => {
+    setActiveQRTicket(ticket || tickets[0]);
+    setShowQRModal(true);
+  };
+
+  const handleClearNotifications = () => {
+    setNotifications([]);
+    setUnreadCount(0);
+    showToast('All notifications cleared 🧹');
+  };
+
+  const handleSelectCity = (city) => {
+    setSelectedCity(city);
+    showToast(`Location set to ${city} 📍`);
+  };
 
   return (
     <div className="mobile-frame-showcase">
-      {/* Screen Quick-Switcher */}
+      {/* Screen Quick-Switcher Bar (Desktop Header for Phone Preview) */}
       <div className="frame-screen-switcher" role="tablist" aria-label="Mobile screen preview">
-        <span className="switcher-label">Preview:</span>
+        <span className="switcher-label">Screen:</span>
         {SCREEN_TABS.map(tab => (
           <button
             key={tab.id}
             role="tab"
             aria-selected={currentScreen === tab.id}
             className={`switch-tab-btn ${currentScreen === tab.id ? 'active' : ''}`}
-            onClick={() => goTo(tab.id)}
+            onClick={() => setCurrentScreen(tab.id)}
           >
             {tab.label}
           </button>
@@ -88,9 +160,26 @@ export default function MobileFrame({
           </div>
         </div>
 
+        {/* In-Phone Feedback Micro Toast Banner */}
+        <AnimatePresence>
+          {toastMessage && (
+            <motion.div 
+              className="in-phone-toast-pill"
+              initial={{ opacity: 0, y: -20, scale: 0.92 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.92 }}
+              transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            >
+              <span>{toastMessage}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* Screen Viewport */}
         <div className="iphone-screen-viewport">
           <AnimatePresence mode="wait">
+            
+            {/* 1. Home Screen */}
             {currentScreen === 'home' && (
               <motion.div
                 key="home"
@@ -103,11 +192,123 @@ export default function MobileFrame({
                 <HomeScreen 
                   onSelectEvent={handleSelectEvent}
                   onOpenTicket={() => setCurrentScreen('ticket')}
-                  onOpenNotifications={() => {}}
+                  onNavigate={(scr) => setCurrentScreen(scr)}
+                  onOpenNotifications={() => {
+                    setShowNotifications(true);
+                    setUnreadCount(0);
+                  }}
+                  onOpenCitySelector={() => setShowCitySelector(true)}
+                  selectedCity={selectedCity}
+                  unreadCount={unreadCount}
                 />
               </motion.div>
             )}
 
+            {/* 2. Search Screen */}
+            {currentScreen === 'search' && (
+              <motion.div
+                key="search"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <SearchScreen 
+                  events={MOCK_EVENTS}
+                  onSelectEvent={handleSelectEvent}
+                  onBack={() => setCurrentScreen('home')}
+                  onTabChange={(tab) => {
+                    if (tab === 'home') setCurrentScreen('home');
+                    else if (tab === 'calendar') setCurrentScreen('explore');
+                    else if (tab === 'ticket') setCurrentScreen('ticket');
+                  }}
+                />
+              </motion.div>
+            )}
+
+            {/* 3. Explore & Calendar Screen */}
+            {currentScreen === 'explore' && (
+              <motion.div
+                key="explore"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <ExploreEventsScreen 
+                  events={MOCK_EVENTS}
+                  selectedCity={selectedCity}
+                  onSelectEvent={handleSelectEvent}
+                  onBack={() => setCurrentScreen('home')}
+                  onTabChange={(tab) => {
+                    if (tab === 'home') setCurrentScreen('home');
+                    else if (tab === 'search') setCurrentScreen('search');
+                    else if (tab === 'ticket') setCurrentScreen('ticket');
+                  }}
+                  onOpenCitySelector={() => setShowCitySelector(true)}
+                />
+              </motion.div>
+            )}
+
+            {/* 4. Event Detail & Booking Screen */}
+            {currentScreen === 'details' && (
+              <motion.div
+                key="details"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <EventDetailScreen 
+                  eventId={selectedEventId}
+                  onBack={() => setCurrentScreen('home')}
+                  onBookSuccess={handleBookSuccess}
+                />
+              </motion.div>
+            )}
+
+            {/* 5. Ticket Screen */}
+            {currentScreen === 'ticket' && (
+              <motion.div
+                key="ticket"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <TicketScreen 
+                  tickets={tickets}
+                  onBack={() => setCurrentScreen('home')} 
+                  onOpenQR={handleOpenQR}
+                  onShowToast={showToast}
+                />
+              </motion.div>
+            )}
+
+            {/* 6. Profile & Wallet Screen */}
+            {currentScreen === 'profile' && (
+              <motion.div
+                key="profile"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <ProfileScreen 
+                  tickets={tickets}
+                  onBack={() => setCurrentScreen('home')}
+                  onOpenTickets={() => setCurrentScreen('ticket')}
+                  onSelectEvent={handleSelectEvent}
+                />
+              </motion.div>
+            )}
+
+            {/* 7. Onboarding Screen */}
             {currentScreen === 'onboarding' && (
               <motion.div
                 key="onboarding"
@@ -121,48 +322,44 @@ export default function MobileFrame({
               </motion.div>
             )}
 
-            {currentScreen === 'ticket' && (
-              <motion.div
-                key="ticket"
-                variants={screenVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                style={{ width: '100%', height: '100%' }}
-              >
-                <TicketScreen 
-                  onBack={() => setCurrentScreen('home')} 
-                  onOpenQR={() => setShowQRModal(true)}
-                />
-              </motion.div>
-            )}
-
-            {currentScreen === 'details' && (
-              <motion.div
-                key="details"
-                variants={screenVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                style={{ width: '100%', height: '100%' }}
-              >
-                <EventDetailScreen 
-                  eventId={selectedEventId}
-                  onBack={() => setCurrentScreen('home')}
-                  onBookSuccess={() => {
-                    setCurrentScreen('ticket');
-                  }}
-                />
-              </motion.div>
-            )}
           </AnimatePresence>
 
-          {/* QR Modal */}
-          <QRModal isOpen={showQRModal} onClose={() => setShowQRModal(false)} />
+          {/* Gate Check-in QR Modal */}
+          <QRModal 
+            isOpen={showQRModal} 
+            onClose={() => setShowQRModal(false)}
+            ticket={activeQRTicket || tickets[0]}
+          />
+
+          {/* Notifications Drawer Sheet */}
+          <NotificationsSheet 
+            isOpen={showNotifications}
+            onClose={() => setShowNotifications(false)}
+            notifications={notifications}
+            onClearAll={handleClearNotifications}
+            onSelectNotification={(item) => {
+              if (item.title.includes('Pass Ready')) setCurrentScreen('ticket');
+              else if (item.title.includes('Rock Legends')) handleSelectEvent('rock');
+              else if (item.title.includes('Miles Quartet')) handleSelectEvent('jazz');
+            }}
+          />
+
+          {/* City Selector Sheet */}
+          <CitySelectorSheet 
+            isOpen={showCitySelector}
+            onClose={() => setShowCitySelector(false)}
+            selectedCity={selectedCity}
+            onSelectCity={handleSelectCity}
+          />
         </div>
 
-        {/* Home Indicator */}
-        <div className="iphone-home-indicator" aria-hidden="true" />
+        {/* iPhone Home Indicator */}
+        <div 
+          className="iphone-home-indicator" 
+          aria-label="Home Bar"
+          onClick={() => setCurrentScreen('home')}
+          title="Tap to go Home"
+        />
       </div>
     </div>
   );

@@ -53,9 +53,39 @@ export default function EventDetailScreen({
       origin: { y: 0.8 },
       colors: ['#DAFB71', '#0042D9', '#EE3D5A', '#FFFFFF']
     });
+
+    const newTicket = {
+      id: `ticket-${Date.now()}`,
+      eventId,
+      eventTitle: eventData.title,
+      date: eventData.date,
+      time: eventData.time.split(' - ')[0] || eventData.time,
+      location: eventData.venue,
+      seat: selectedTier === 'vip' ? 'VIP Pavilion #14' : 'General Admission',
+      tier: selectedTier === 'vip' ? 'VIP Festival Pass' : 'General Admission',
+      price: totalPrice,
+      quantity: ticketCount,
+      hash: `0x${Math.random().toString(16).substring(2, 8).toUpperCase()}...${Math.random().toString(16).substring(2, 6).toUpperCase()}`,
+      image: eventData.image,
+      parentBg: 'pale'
+    };
+
     setTimeout(() => {
-      onBookSuccess();
-    }, 400);
+      onBookSuccess(newTicket);
+    }, 450);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: eventData.title,
+        text: `Join me at ${eventData.title}!`,
+        url: window.location.href
+      }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(window.location.href);
+      alert(`Event link copied to clipboard! 🔗`);
+    }
   };
 
   return (
@@ -82,15 +112,28 @@ export default function EventDetailScreen({
           >
             <AppIcon name="chevron-left" size={20} color="#FFFFFF" strokeWidth={2.5} />
           </motion.button>
-          <motion.button 
-            className={`detail-circle-btn ${isLiked ? 'liked' : ''}`} 
-            onClick={() => setIsLiked(!isLiked)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            aria-label="Favorite"
-          >
-            <AppIcon name="heart" size={18} color={isLiked ? '#EE3D5A' : '#FFFFFF'} strokeWidth={2} />
-          </motion.button>
+          
+          <div style={{ display: 'flex', gap: 8 }}>
+            <motion.button 
+              className="detail-circle-btn" 
+              onClick={handleShare}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Share Event"
+            >
+              <AppIcon name="share" size={17} color="#FFFFFF" strokeWidth={2} />
+            </motion.button>
+
+            <motion.button 
+              className={`detail-circle-btn ${isLiked ? 'liked' : ''}`} 
+              onClick={() => setIsLiked(!isLiked)}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Favorite"
+            >
+              <AppIcon name="heart" size={18} color={isLiked ? '#EE3D5A' : '#FFFFFF'} strokeWidth={2} />
+            </motion.button>
+          </div>
         </div>
 
         <div className="detail-badge-pill">

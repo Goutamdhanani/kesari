@@ -7,7 +7,34 @@ import './HomeScreen.css';
 
 const CATEGORIES = ['All', 'Music', 'Hip-Hop', 'Jazz', 'Rock', 'Electronic', 'Festivals'];
 
-const NEARBY_EVENTS = [
+const DEFAULT_POPULAR = [
+  {
+    id: 'rock',
+    category: 'Rock & Electric',
+    title: 'Rock Legends Reunion',
+    date: 'October 20',
+    price: 'From $18.89',
+    image: '/assets/rock_concert_bg.png'
+  },
+  {
+    id: 'hiphop',
+    category: 'Hip-Hop',
+    title: 'Hip Hop Showcase Live',
+    date: 'Nov 14',
+    price: 'From $25.00',
+    image: '/assets/concert_crowd.jpg'
+  },
+  {
+    id: 'jazz',
+    category: 'Jazz',
+    title: 'Jazz & Blues Festival',
+    date: 'Sep 5',
+    price: 'From $22.50',
+    image: '/assets/jazz_blues_pills.png'
+  }
+];
+
+const DEFAULT_NEARBY = [
   {
     id: 'jazz',
     category: 'Jazz',
@@ -25,6 +52,15 @@ const NEARBY_EVENTS = [
     distance: '1.2 mi',
     price: '$25.00',
     image: '/assets/concert_crowd.jpg'
+  },
+  {
+    id: 'rock',
+    category: 'Rock',
+    title: 'Rock Legends Reunion',
+    date: 'Oct 20',
+    distance: '2.4 mi',
+    price: '$18.89',
+    image: '/assets/rock_concert_bg.png'
   }
 ];
 
@@ -32,37 +68,26 @@ export default function HomeScreen({
   onSelectEvent = () => {}, 
   onOpenTicket = () => {},
   onNavigate = () => {},
-  onOpenNotifications = () => {} 
+  onOpenNotifications = () => {},
+  onOpenCitySelector = () => {},
+  selectedCity = 'San Francisco',
+  unreadCount = 2
 }) {
   const [activeTab, setActiveTab] = useState('home');
   const [activeCategory, setActiveCategory] = useState('All');
 
-  const popularEvents = [
-    {
-      id: 'rock',
-      category: 'Music',
-      title: 'Rock Legends Reunion',
-      date: 'October 20',
-      price: 'From $18.89',
-      image: '/assets/rock_concert_bg.png'
-    },
-    {
-      id: 'hiphop',
-      category: 'Hip-Hop',
-      title: 'Hip Hop Showcase Live',
-      date: 'Nov 14',
-      price: 'From $25.00',
-      image: '/assets/concert_crowd.jpg'
-    },
-    {
-      id: 'jazz',
-      category: 'Jazz',
-      title: 'Jazz & Blues Festival',
-      date: 'Sep 5',
-      price: 'From $22.50',
-      image: '/assets/jazz_blues_pills.png'
-    }
-  ];
+  // Filter events by selected category chip
+  const filteredPopular = DEFAULT_POPULAR.filter(e => {
+    if (activeCategory === 'All') return true;
+    if (activeCategory === 'Music') return true;
+    return e.category.toLowerCase().includes(activeCategory.toLowerCase());
+  });
+
+  const filteredNearby = DEFAULT_NEARBY.filter(e => {
+    if (activeCategory === 'All') return true;
+    if (activeCategory === 'Music') return true;
+    return e.category.toLowerCase().includes(activeCategory.toLowerCase());
+  });
 
   return (
     <motion.div 
@@ -82,11 +107,16 @@ export default function HomeScreen({
           >
             <img src="/assets/gregory_face.png" alt="Gregory" />
           </button>
-          <div className="header-location-pill">
+          
+          <button 
+            className="header-location-pill" 
+            onClick={onOpenCitySelector}
+            title="Change City"
+          >
             <AppIcon name="pin" size={12} color="#0042D9" strokeWidth={2.5} />
-            <span className="location-name">San Francisco</span>
+            <span className="location-name">{selectedCity}</span>
             <AppIcon name="chevron-right" size={11} color="#6B7280" className="rotate-90" />
-          </div>
+          </button>
         </div>
 
         <motion.button 
@@ -96,7 +126,7 @@ export default function HomeScreen({
           aria-label="Notifications"
         >
           <AppIcon name="bell" size={17} color="#0C0D12" strokeWidth={2} />
-          <span className="bell-badge-dot" />
+          {unreadCount > 0 && <span className="bell-badge-dot" />}
         </motion.button>
       </header>
 
@@ -109,9 +139,15 @@ export default function HomeScreen({
         <p className="greeting-subtext">Find your next live experience</p>
       </section>
 
-      {/* Search Bar */}
-      <div className="mobile-search-bar">
-        <AppIcon name="search" size={16} color="#9CA3AF" strokeWidth={2} />
+      {/* Functional Tap-to-Search Bar */}
+      <div 
+        className="mobile-search-bar" 
+        onClick={() => onNavigate('search')}
+        role="button"
+        tabIndex={0}
+        aria-label="Open Search"
+      >
+        <AppIcon name="search" size={16} color="#0042D9" strokeWidth={2.5} />
         <span className="search-bar-placeholder">Search concerts, artists, venues...</span>
         <div className="search-mic-btn" aria-label="Voice search">
           <AppIcon name="mic" size={14} color="#fff" strokeWidth={2} />
@@ -147,70 +183,86 @@ export default function HomeScreen({
       {/* Popular Now Carousel */}
       <section className="mobile-popular-section">
         <div className="popular-section-header">
-          <h2 className="popular-title">Popular Now</h2>
-          <button className="popular-see-all-btn" onClick={() => onSelectEvent('rock')}>
+          <h2 className="popular-title">
+            Popular Now {activeCategory !== 'All' && <span className="filter-tag-pill">• {activeCategory}</span>}
+          </h2>
+          <button className="popular-see-all-btn" onClick={() => onNavigate('explore')}>
             See all
           </button>
         </div>
 
         <div className="popular-cards-scroll">
-          {popularEvents.map((event, i) => (
-            <motion.div 
-              key={event.id} 
-              className="popular-card-item"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, delay: i * 0.06 }}
-            >
-              <FeaturedHeroCard 
-                category={event.category}
-                title={event.title}
-                date={event.date}
-                price={event.price}
-                image={event.image}
-                onSelect={() => onSelectEvent(event.id)}
-              />
-            </motion.div>
-          ))}
+          {filteredPopular.length > 0 ? (
+            filteredPopular.map((event, i) => (
+              <motion.div 
+                key={event.id} 
+                className="popular-card-item"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.25, delay: i * 0.06 }}
+              >
+                <FeaturedHeroCard 
+                  category={event.category}
+                  title={event.title}
+                  date={event.date}
+                  price={event.price}
+                  image={event.image}
+                  onSelect={() => onSelectEvent(event.id)}
+                />
+              </motion.div>
+            ))
+          ) : (
+            <div className="category-empty-hint">
+              <span>No {activeCategory} concerts in Popular right now</span>
+            </div>
+          )}
         </div>
       </section>
 
       {/* Nearby Events List */}
       <section className="mobile-nearby-section">
         <div className="nearby-section-header">
-          <h2 className="nearby-title">Nearby You</h2>
-          <button className="nearby-see-all-btn">See all</button>
+          <h2 className="nearby-title">Nearby You in {selectedCity}</h2>
+          <button className="nearby-see-all-btn" onClick={() => onNavigate('explore')}>
+            See all
+          </button>
         </div>
 
         <div className="nearby-events-list">
-          {NEARBY_EVENTS.map((event, i) => (
-            <motion.div
-              key={event.id}
-              className="nearby-event-row"
-              onClick={() => onSelectEvent(event.id)}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.22, delay: 0.1 + i * 0.08 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <img 
-                src={event.image} 
-                alt={event.title} 
-                className="nearby-event-thumb"
-                onError={e => { e.target.style.background = '#EBF1FF'; }}
-              />
-              <div className="nearby-event-info">
-                <div className="nearby-event-cat">{event.category}</div>
-                <div className="nearby-event-title">{event.title}</div>
-                <div className="nearby-event-meta">
-                  <span>📅 {event.date}</span>
-                  <span className="nearby-event-meta-dot" />
-                  <span>📍 {event.distance}</span>
+          {filteredNearby.length > 0 ? (
+            filteredNearby.map((event, i) => (
+              <motion.div
+                key={event.id}
+                className="nearby-event-row"
+                onClick={() => onSelectEvent(event.id)}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.22, delay: 0.1 + i * 0.08 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <img 
+                  src={event.image} 
+                  alt={event.title} 
+                  className="nearby-event-thumb"
+                  onError={e => { e.target.style.background = '#EBF1FF'; }}
+                />
+                <div className="nearby-event-info">
+                  <div className="nearby-event-cat">{event.category}</div>
+                  <div className="nearby-event-title">{event.title}</div>
+                  <div className="nearby-event-meta">
+                    <span>📅 {event.date}</span>
+                    <span className="nearby-event-meta-dot" />
+                    <span>📍 {event.distance}</span>
+                  </div>
                 </div>
-              </div>
-              <div className="nearby-event-price">{event.price}</div>
-            </motion.div>
-          ))}
+                <div className="nearby-event-price">{event.price}</div>
+              </motion.div>
+            ))
+          ) : (
+            <div className="category-empty-hint">
+              <span>No {activeCategory} concerts nearby</span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -223,7 +275,10 @@ export default function HomeScreen({
           activeTab={activeTab} 
           onTabChange={(tab) => {
             setActiveTab(tab);
-            if (tab === 'ticket') onOpenTicket();
+            if (tab === 'search') onNavigate('search');
+            else if (tab === 'calendar') onNavigate('explore');
+            else if (tab === 'ticket') onOpenTicket();
+            else if (tab === 'home') onNavigate('home');
           }} 
         />
       </div>

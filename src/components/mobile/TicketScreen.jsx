@@ -1,18 +1,56 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import TicketCard from '../ticket/TicketCard';
 import './TicketScreen.css';
 
+const DEFAULT_TICKET = {
+  id: 'default-1',
+  eventTitle: "Jazz & Blues Festival",
+  date: "Sep 5, 2026",
+  time: "15:00 PM",
+  location: "Riverfront Park",
+  seat: "No seat",
+  hash: "0x487Fh3kmjn3...35620",
+  image: "/assets/jazz_blues_pills.png",
+  parentBg: "pale"
+};
+
 export default function TicketScreen({
   onBack = () => {},
-  onOpenQR = () => {}
+  onOpenQR = () => {},
+  tickets = [],
+  onFindConcerts = () => {},
+  onShowToast = () => {}
 }) {
+  const ticketList = tickets.length > 0 ? tickets : [DEFAULT_TICKET];
+  const [ticketIndex, setTicketIndex] = useState(0);
+
+  const currentTicket = ticketList[ticketIndex] || ticketList[0];
+
+  const handleAppleWallet = () => {
+    onShowToast?.(`Added "${currentTicket.eventTitle}" to Apple Wallet! 🍏`);
+  };
+
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: `My Pass: ${currentTicket.eventTitle}`,
+        text: `I'm going to ${currentTicket.eventTitle} on ${currentTicket.date}!`,
+        url: window.location.href
+      }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(window.location.href);
+      onShowToast?.(`Ticket pass link copied! 🔗`);
+    }
+  };
+
   return (
     <motion.div 
       className="mobile-ticket-screen"
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.22 }}
     >
       {/* Header */}
@@ -25,9 +63,10 @@ export default function TicketScreen({
         >
           <AppIcon name="chevron-left" size={19} color="#0C0D12" strokeWidth={2.5} />
         </motion.button>
-        <h2 className="ticket-header-title">My Ticket</h2>
+        <h2 className="ticket-header-title">My Tickets</h2>
         <motion.button 
           className="ticket-nav-btn" 
+          onClick={handleShare}
           aria-label="Share ticket"
           whileTap={{ scale: 0.9 }}
         >
@@ -35,29 +74,53 @@ export default function TicketScreen({
         </motion.button>
       </header>
 
+      {/* Ticket Counter / Multiple Passes Switcher */}
       <div className="ticket-count-badge">
-        <strong>1</strong> active pass
+        <strong>{ticketIndex + 1}</strong> of <strong>{ticketList.length}</strong> active {ticketList.length === 1 ? 'pass' : 'passes'}
       </div>
 
-      {/* Ticket Card */}
+      {ticketList.length > 1 && (
+        <div className="ticket-switcher-pills">
+          {ticketList.map((t, idx) => (
+            <button
+              key={t.id || idx}
+              className={`ticket-dot-btn ${idx === ticketIndex ? 'active' : ''}`}
+              onClick={() => setTicketIndex(idx)}
+              aria-label={`Switch to ticket ${idx + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Ticket Card Presentation */}
       <div className="ticket-card-presentation">
-        <TicketCard 
-          title="Jazz & Blues Festival"
-          date="Sep 5, 2024"
-          time="15:00 PM"
-          location="Riverfront Park"
-          seat="No seat"
-          hash="0x487Fh3kmjn3...35620"
-          image="/assets/jazz_blues_pills.png"
-          parentBg="pale"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentTicket.id || ticketIndex}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+          >
+            <TicketCard 
+              title={currentTicket.eventTitle || currentTicket.title}
+              date={currentTicket.date}
+              time={currentTicket.time}
+              location={currentTicket.location || currentTicket.venueShort}
+              seat={currentTicket.seat || 'General Admission'}
+              hash={currentTicket.hash || '0x487Fh3kmjn3...35620'}
+              image={currentTicket.image || '/assets/jazz_blues_pills.png'}
+              parentBg="pale"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Actions */}
       <div className="ticket-screen-actions">
         <motion.button 
           className="ticket-primary-qr-btn" 
-          onClick={onOpenQR}
+          onClick={() => onOpenQR(currentTicket)}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
@@ -67,10 +130,11 @@ export default function TicketScreen({
 
         <motion.button 
           className="ticket-wallet-btn"
+          onClick={handleAppleWallet}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span>🍎</span>
+          <span>🍏</span>
           <span>Add to Apple Wallet</span>
         </motion.button>
       </div>

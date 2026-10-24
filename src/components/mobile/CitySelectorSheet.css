@@ -1,0 +1,129 @@
+.city-sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 8, 8, 0.55);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+}
+
+.city-sheet-drawer {
+  width: 100%;
+  background: #FFFFFF;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  padding: 12px 16px 28px 16px;
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 75%;
+}
+
+.city-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.city-sheet-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0C0D12;
+}
+
+.city-sheet-subtitle {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  color: #64748B;
+}
+
+.city-close-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.city-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: 320px;
+  padding-bottom: 8px;
+}
+
+.city-item-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: #F8FAFC;
+  border-radius: 14px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.city-item-row:hover {
+  background: #EBF1FF;
+}
+
+.city-item-row.selected {
+  background: #EBF1FF;
+  border-color: #0042D9;
+}
+
+.city-icon {
+  font-size: 20px;
+}
+
+.city-name-wrap {
+  flex: 1;
+}
+
+.city-title {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0C0D12;
+}
+
+.city-state {
+  font-size: 10.5px;
+  color: #64748B;
+}
+
+.city-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.city-shows-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  background: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid #E2E8F0;
+}
+
+.city-check-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #DAFB71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,366 @@
+.mobile-profile-screen {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #F4F7FC;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 16px;
+  position: relative;
+  scrollbar-width: none;
+}
+
+.mobile-profile-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.profile-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.profile-back-btn,
+.profile-settings-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.profile-header-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 800;
+  color: #0C0D12;
+}
+
+.profile-identity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 20px 16px;
+  border: 1px solid #E9EFF6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  margin-bottom: 16px;
+}
+
+.identity-avatar-ring {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #0042D9 0%, #DAFB71 100%);
+  margin-bottom: 10px;
+}
+
+.identity-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #E2E8F0;
+}
+
+.identity-vip-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: #0C0D12;
+  color: #DAFB71;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  border: 2px solid #FFFFFF;
+}
+
+.identity-name {
+  margin: 0 0 2px 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0C0D12;
+  letter-spacing: -0.01em;
+}
+
+.identity-handle {
+  margin: 0 0 10px 0;
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+.identity-pill-tag {
+  display: inline-flex;
+  padding: 4px 12px;
+  background: #EBF1FF;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #0042D9;
+  margin-bottom: 16px;
+}
+
+.identity-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  background: #F8FAFC;
+  border-radius: 16px;
+  padding: 12px 0;
+  border: 1px solid #F1F5F9;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0C0D12;
+}
+
+.stat-label {
+  font-size: 10.5px;
+  color: #64748B;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 24px;
+  background: #E2E8F0;
+}
+
+.profile-segmented-row {
+  display: flex;
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 4px;
+  gap: 4px;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 16px;
+}
+
+.profile-seg-btn {
+  flex: 1;
+  padding: 8px 4px;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: #64748B;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.profile-seg-btn.active {
+  background: #0C0D12;
+  color: #DAFB71;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.profile-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.passes-preview-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 16px;
+  border: 1.5px solid #0042D9;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 66, 217, 0.08);
+}
+
+.pass-tag {
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #0042D9;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.pass-title {
+  margin: 0 0 4px 0;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #0C0D12;
+}
+
+.pass-time {
+  font-size: 11px;
+  color: #64748B;
+}
+
+.pass-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pass-qr-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #DAFB71;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(218, 251, 113, 0.4);
+}
+
+.pass-tap-label {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #64748B;
+}
+
+.wallet-full-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  background: #0C0D12;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.saved-events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saved-event-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 10px 12px;
+  border: 1px solid #E9EFF6;
+  cursor: pointer;
+}
+
+.saved-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.saved-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.saved-cat {
+  font-size: 10px;
+  font-weight: 700;
+  color: #0042D9;
+  text-transform: uppercase;
+}
+
+.saved-title {
+  margin: 2px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0C0D12;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.saved-date {
+  font-size: 10.5px;
+  color: #64748B;
+}
+
+.saved-price {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0042D9;
+}
+
+.settings-group-card {
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 14px 16px;
+  border: 1px solid #E9EFF6;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.settings-label-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.settings-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0C0D12;
+}
+
+.settings-desc {
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 1px;
+}
+
+.settings-toggle {
+  width: 18px;
+  height: 18px;
+  accent-color: #0042D9;
+  cursor: pointer;
+}
+
+.settings-divider {
+  height: 1px;
+  background: #F1F5F9;
+  margin: 6px 0;
+}
