@@ -702,24 +702,73 @@
   gap: 10px;
 }
 
-/* Card 1: Studio Services (Rent Gear, Monthly Passes, Rent Space) */
+/* Card 1: Studio Services (with Lounge Interior Preview Header) */
 .bento-services-card {
   background: #FFFFFF;
-  border-radius: 22px;
-  padding: 13px 12px;
+  border-radius: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 182px;
-  border: 1px solid rgba(18, 19, 26, 0.07);
-  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.04);
+  border: 1px solid rgba(18, 19, 26, 0.08);
+  box-shadow: 0 4px 18px rgba(18, 19, 26, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-photo-preview {
+  height: 62px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 7px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.services-photo-preview:active {
+  transform: scale(0.98);
+}
+
+.services-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+.services-photo-badge {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  font-size: 7.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  padding: 2px 6px;
+  border-radius: 6px;
+  letter-spacing: 0.04em;
+}
+
+.services-photo-hint {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 7.5px;
+  font-weight: 750;
+  color: #DAFB71;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
 }
 
 .services-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
+  padding: 0 2px;
 }
 
 .services-card-eyebrow {
@@ -731,18 +780,18 @@
 }
 
 .services-card-tag {
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 750;
   color: #7A7E8D;
   background: #EDE8DF;
-  padding: 1.5px 6px;
+  padding: 1.5px 5.5px;
   border-radius: 999px;
 }
 
 .services-card-list {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4.5px;
 }
 
 .service-item-row {
@@ -751,8 +800,8 @@
   justify-content: space-between;
   background: #F7F5F0;
   border: 1px solid rgba(18, 19, 26, 0.04);
-  border-radius: 12px;
-  padding: 7px 9px;
+  border-radius: 10px;
+  padding: 6px 8px;
   cursor: pointer;
   text-align: left;
   width: 100%;
@@ -766,12 +815,12 @@
 .service-item-left {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
   min-width: 0;
 }
 
 .service-item-icon {
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -784,7 +833,7 @@
 
 .service-item-title {
   font-family: var(--font-family-display);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 750;
   color: #12131A;
   white-space: nowrap;
@@ -794,7 +843,7 @@
 }
 
 .service-item-desc {
-  font-size: 8px;
+  font-size: 7.5px;
   color: #7A7E8D;
   white-space: nowrap;
   overflow: hidden;
@@ -803,44 +852,95 @@
 }
 
 .service-item-arrow {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: #9AA0AF;
   line-height: 1;
   margin-left: 2px;
 }
 
-/* Card 2: Organise Your Event (Direct WhatsApp Integration) */
+/* Card 2: Organise Your Event (Atmospheric Real Stage Interior Photo + WhatsApp) */
 .bento-organise-card {
-  background: linear-gradient(150deg, #12131A 0%, #1A1C28 100%);
-  border-radius: 22px;
-  padding: 13px 12px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 12px 11px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 182px;
+  min-height: 220px;
   color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+}
+
+.organise-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 25%;
+  z-index: 1;
+  transition: transform 0.4s ease;
+}
+
+.organise-card-gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 15, 22, 0.32) 0%,
+    rgba(14, 15, 22, 0.68) 45%,
+    rgba(12, 13, 18, 0.97) 100%
+  );
+}
+
+.organise-card-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .organise-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 6px;
 }
 
 .organise-pill-tag {
-  font-size: 8px;
+  font-size: 7.5px;
   font-weight: 800;
   text-transform: uppercase;
   color: #DAFB71;
   letter-spacing: 0.05em;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  padding: 2.5px 7px;
+  border-radius: 999px;
+  border: 1px solid rgba(218, 251, 113, 0.35);
+}
+
+.organise-live-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #E5E7EB;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  padding: 2.5px 6.5px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .organise-wa-pulse {
-  width: 6.5px;
-  height: 6.5px;
+  width: 5.5px;
+  height: 5.5px;
   border-radius: 50%;
   background: #25D366;
   box-shadow: 0 0 8px #25D366;
@@ -848,30 +948,33 @@
 }
 
 .organise-card-text {
-  margin: 3px 0 6px;
+  margin: 4px 0 8px;
 }
 
 .organise-card-title {
   font-family: var(--font-family-display);
   font-size: 13.5px;
-  font-weight: 750;
+  font-weight: 800;
   color: #FFFFFF;
-  line-height: 1.2;
+  line-height: 1.18;
   margin: 0 0 3px;
   letter-spacing: -0.015em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .organise-card-sub {
-  font-size: 9px;
-  color: #9AA0AF;
+  font-size: 8.5px;
+  color: #E0E2EC;
   line-height: 1.25;
   margin: 0;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .organise-actions-stack {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  margin-top: auto;
 }
 
 .organise-wa-btn {
@@ -879,15 +982,15 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  background: #25D366;
-  color: #062814;
+  background: linear-gradient(135deg, #25D366 0%, #1EBE5B 100%);
+  color: #042210;
   font-family: var(--font-family-display);
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 800;
-  padding: 7px 8px;
+  padding: 7.5px 8px;
   border-radius: 11px;
   text-decoration: none;
-  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.28);
+  box-shadow: 0 3px 12px rgba(37, 211, 102, 0.38);
   transition: transform 0.15s, background-color 0.15s;
 }
 
@@ -897,12 +1000,13 @@
 }
 
 .organise-custom-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #D7DCFA;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
   font-size: 9px;
   font-weight: 700;
-  padding: 5px 8px;
+  padding: 6px 8px;
   border-radius: 9px;
   cursor: pointer;
   text-align: center;
@@ -910,10 +1014,166 @@
 }
 
 .organise-custom-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.22);
 }
 
-/* ── 5. Tonight's Stage Schedule (Editorial Poster Lineup List) ── */
+/* ── 5. Inside Kesari Studio: Real Interior Photography Showcase ── */
+.inside-kesari-gallery-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.gallery-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.gallery-location-tag {
+  font-size: 8px;
+  font-weight: 700;
+  color: #7A7E8D;
+}
+
+.gallery-explore-btn {
+  background: none;
+  border: none;
+  font-size: 10px;
+  font-weight: 750;
+  color: #0042D9;
+  cursor: pointer;
+  padding: 2px 4px;
+  transition: color 0.15s;
+}
+
+.gallery-explore-btn:hover {
+  color: #E50914;
+}
+
+.inside-studio-scroll-track {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 3px 1px 8px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.inside-studio-scroll-track::-webkit-scrollbar {
+  display: none;
+}
+
+.studio-photo-card {
+  flex: 0 0 215px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #12131A;
+  border: 1px solid rgba(18, 19, 26, 0.08);
+  box-shadow: 0 5px 16px rgba(18, 19, 26, 0.08);
+  cursor: pointer;
+  position: relative;
+}
+
+.studio-card-img {
+  height: 135px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.studio-card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.18) 0%,
+    rgba(0, 0, 0, 0.3) 45%,
+    rgba(10, 11, 16, 0.92) 100%
+  );
+  z-index: 1;
+}
+
+.studio-card-badge-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.studio-pill-badge {
+  font-size: 7.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.studio-pill-badge.live {
+  background: rgba(218, 251, 113, 0.25);
+  color: #DAFB71;
+  border: 1px solid rgba(218, 251, 113, 0.5);
+}
+
+.studio-pill-badge.neon {
+  background: rgba(0, 66, 217, 0.4);
+  color: #EBF1FF;
+  border: 1px solid rgba(0, 66, 217, 0.65);
+}
+
+.studio-pill-badge.gear {
+  background: rgba(229, 9, 20, 0.3);
+  color: #FFAAB2;
+  border: 1px solid rgba(229, 9, 20, 0.5);
+}
+
+.studio-cap-badge {
+  font-size: 7.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.studio-photo-meta {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.studio-photo-name {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 2px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.studio-photo-detail {
+  font-size: 8px;
+  color: #D7DCFA;
+  margin: 0;
+  line-height: 1.25;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* ── 6. Tonight's Stage Schedule (Editorial Poster Lineup List) ── */
 .venue-schedule-section {
   display: flex;
   flex-direction: column;

@@ -427,10 +427,20 @@ export default function HomeScreen({
                 </div>
               </motion.section>
 
-              {/* ── Studio Bento Duo: Studio Services (with 3 options) + Organise Your Event (with WhatsApp) ── */}
+              {/* ── Studio Bento Duo: Studio Services + Organise Your Event with Real Kesari Photography ── */}
               <motion.section className="venue-bento-duo-section" variants={itemVariants}>
-                {/* Bento Card 1: Studio Services & Rentals (Gear, Passes, Space) */}
+                {/* Bento Card 1: Studio Services & Rentals (with Lounge Interior Preview) */}
                 <div className="bento-services-card">
+                  <div 
+                    className="services-photo-preview"
+                    style={{ backgroundImage: "url('/assets/events/kesari_lounge_inside.jpg')" }}
+                    onClick={() => setShowRentSpaceModal(true)}
+                  >
+                    <div className="services-photo-overlay" />
+                    <span className="services-photo-badge">KESARI LOUNGE</span>
+                    <span className="services-photo-hint">Tap to View Spaces ›</span>
+                  </div>
+
                   <div className="services-card-header">
                     <span className="services-card-eyebrow">STUDIO SERVICES</span>
                     <span className="services-card-tag">Koramangala</span>
@@ -487,39 +497,139 @@ export default function HomeScreen({
                   </div>
                 </div>
 
-                {/* Bento Card 2: Organise Your Event with WhatsApp Integration */}
+                {/* Bento Card 2: Organise Your Event (Atmospheric Real Stage Interior Photo + WhatsApp) */}
                 <div className="bento-organise-card">
-                  <div className="organise-card-header">
-                    <span className="organise-pill-tag">HOST AT KESARI</span>
-                    <span className="organise-wa-pulse" title="WhatsApp Connected" />
-                  </div>
+                  {/* Real Photo Background of Inside Kesari Stage */}
+                  <div 
+                    className="organise-card-bg"
+                    style={{ backgroundImage: "url('/assets/events/kesari_stage_inside.jpg')" }}
+                  />
+                  {/* Frosted Dark Gradient Overlay for High Contrast Text */}
+                  <div className="organise-card-gradient" />
                   
-                  <div className="organise-card-text">
-                    <h4 className="organise-card-title">Organise Your Event</h4>
-                    <p className="organise-card-sub">Music gigs, workshops & private gatherings in Koramangala.</p>
-                  </div>
+                  <div className="organise-card-content">
+                    <div className="organise-card-header">
+                      <span className="organise-pill-tag">✦ INSIDE KESARI</span>
+                      <div className="organise-live-badge">
+                        <span className="organise-wa-pulse" />
+                        <span>Koramangala</span>
+                      </div>
+                    </div>
+                    
+                    <div className="organise-card-text">
+                      <h4 className="organise-card-title">Organise Your Event</h4>
+                      <p className="organise-card-sub">
+                        Host live gigs, acoustic sets & workshops inside our warm wood hall.
+                      </p>
+                    </div>
 
-                  <div className="organise-actions-stack">
-                    <a 
-                      href={KESARI_CONTACT.whatsappUrl('Hi Kesari - The Memory Studio Koramangala! I want to organise an event at the studio. Please let me know the available dates & pricing.')}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="organise-wa-btn"
-                    >
-                      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
-                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.63c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/>
-                      </svg>
-                      <span>Chat on WhatsApp</span>
-                    </a>
+                    <div className="organise-actions-stack">
+                      <a 
+                        href={KESARI_CONTACT.whatsappUrl('Hi Kesari - The Memory Studio Koramangala! I want to organise an event at the studio. Please let me know the available dates & pricing.')}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="organise-wa-btn"
+                      >
+                        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.63c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/>
+                        </svg>
+                        <span>Chat on WhatsApp</span>
+                      </a>
 
-                    <button 
-                      type="button"
-                      className="organise-custom-btn"
-                      onClick={() => setShowOrganiseModal(true)}
-                    >
-                      <span>Customise Plan &rsaquo;</span>
-                    </button>
+                      <button 
+                        type="button"
+                        className="organise-custom-btn"
+                        onClick={() => setShowOrganiseModal(true)}
+                      >
+                        <span>Customise Plan &rsaquo;</span>
+                      </button>
+                    </div>
                   </div>
+                </div>
+              </motion.section>
+
+              {/* ── Inside Kesari Studio: Real Interior Photography Showcase ── */}
+              <motion.section className="inside-kesari-gallery-section" variants={itemVariants}>
+                <div className="section-title-row">
+                  <div className="gallery-title-group">
+                    <span className="section-label">Inside Kesari Studio</span>
+                    <span className="gallery-location-tag">Koramangala, Bangalore</span>
+                  </div>
+                  <button 
+                    type="button" 
+                    className="gallery-explore-btn"
+                    onClick={() => setShowRentSpaceModal(true)}
+                  >
+                    <span>View Spaces &rsaquo;</span>
+                  </button>
+                </div>
+
+                <div className="inside-studio-scroll-track">
+                  {/* Photo Card 1: Main Live Stage */}
+                  <motion.div 
+                    className="studio-photo-card"
+                    onClick={() => setShowOrganiseModal(true)}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div 
+                      className="studio-card-img" 
+                      style={{ backgroundImage: "url('/assets/events/kesari_stage_inside.jpg')" }}
+                    >
+                      <div className="studio-card-badge-row">
+                        <span className="studio-pill-badge live">Live Stage</span>
+                        <span className="studio-cap-badge">40–60 Pax</span>
+                      </div>
+                      <div className="studio-photo-meta">
+                        <h5 className="studio-photo-name">Main Live Stage & Hall</h5>
+                        <p className="studio-photo-detail">Acoustic wood stage, warm lights & seating</p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Photo Card 2: Acoustic Jam Lounge */}
+                  <motion.div 
+                    className="studio-photo-card"
+                    onClick={() => setShowRentSpaceModal(true)}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div 
+                      className="studio-card-img" 
+                      style={{ backgroundImage: "url('/assets/events/kesari_lounge_inside.jpg')" }}
+                    >
+                      <div className="studio-card-badge-row">
+                        <span className="studio-pill-badge neon">Jam Lounge</span>
+                        <span className="studio-cap-badge">8–15 Pax</span>
+                      </div>
+                      <div className="studio-photo-meta">
+                        <h5 className="studio-photo-name">Acoustic Jam Lounge</h5>
+                        <p className="studio-photo-detail">Chesterfield couch, Marshall amps & neon</p>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Photo Card 3: Sound Gear & Control Vault */}
+                  <motion.div 
+                    className="studio-photo-card"
+                    onClick={() => setShowRentGear(true)}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div 
+                      className="studio-card-img" 
+                      style={{ backgroundImage: "url('/assets/events/kesari_gear_inside.jpg')" }}
+                    >
+                      <div className="studio-card-badge-row">
+                        <span className="studio-pill-badge gear">Gear Vault</span>
+                        <span className="studio-cap-badge">13 Rentals</span>
+                      </div>
+                      <div className="studio-photo-meta">
+                        <h5 className="studio-photo-name">Sound Gear & Control</h5>
+                        <p className="studio-photo-detail">Analog mixer, Shure mics & audio gear</p>
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.section>
 

@@ -218,7 +218,7 @@ export const SPACE_RENTALS = [
     hourlyRate: '₹1,500 / hr',
     idealFor: 'Live Gigs, Workshops, Standup Comedy, Poetry, Acoustic Concerts',
     amenities: 'Stage lighting, acoustic wall panels, Yamaha PA system, seating rows',
-    image: '/assets/events/hall.webp'
+    image: '/assets/events/kesari_stage_inside.jpg'
   },
   {
     id: 'acoustic-jam-lounge',
@@ -227,7 +227,7 @@ export const SPACE_RENTALS = [
     hourlyRate: '₹800 / hr',
     idealFor: 'Band Jamming, Podcasts, Vocal Tracking, Intimate Jam Circles',
     amenities: 'Guitar amps, vocal mics, drum rug, mood lighting, plush couches',
-    image: '/assets/events/lounge.webp'
+    image: '/assets/events/kesari_lounge_inside.jpg'
   },
   {
     id: 'full-studio-buyout',
@@ -236,7 +236,7 @@ export const SPACE_RENTALS = [
     hourlyRate: 'Half Day: ₹8,000 • Full Day: ₹14,000',
     idealFor: 'Private Parties, Corporate Offsites, Music Video Shoots, Popups',
     amenities: 'Exclusive access to entire studio, sound technician, lounge & green room',
-    image: '/assets/events/hero.webp'
+    image: '/assets/events/kesari_stage_inside.jpg'
   }
 ];
 
