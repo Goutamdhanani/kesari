@@ -11,50 +11,57 @@ export default function HomeSkeletonScreen() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.18 }}
     >
-      {/* 1. Header Skeleton */}
-      <div className="skel-header">
-        <div className="skel-row-left">
-          <div className="skel-circle skel-avatar" />
-          <div className="skel-pill skel-venue-pill" />
+      {/* 1. Curved Dome Skeleton */}
+      <div className="skel-curved-dome">
+        <div className="skel-dome-top">
+          <div className="skel-pill skel-venue-capsule" />
+          <div className="skel-dome-actions">
+            <div className="skel-circle skel-sm-circle" />
+            <div className="skel-circle skel-sm-circle" />
+            <div className="skel-circle skel-avatar-circle" />
+          </div>
         </div>
-        <div className="skel-row-right">
-          <div className="skel-circle skel-refresh" />
-          <div className="skel-circle skel-bell" />
+
+        <div className="skel-dome-card">
+          <div className="skel-line skel-eyebrow" />
+          <div className="skel-line skel-title-large" />
+          <div className="skel-dome-footer">
+            <div className="skel-line skel-timing" />
+            <div className="skel-pill skel-btn-pill" />
+          </div>
         </div>
       </div>
 
-      {/* 2. Greeting Skeleton */}
-      <div className="skel-greeting">
-        <div className="skel-line skel-eyebrow" />
-        <div className="skel-line skel-headline" />
-        <div className="skel-line skel-subtext" />
-      </div>
+      {/* 2. Warm Sheet Skeleton */}
+      <div className="skel-warm-sheet">
+        {/* Vibe Orbs Skeleton */}
+        <div className="skel-section-head">
+          <div className="skel-line skel-label" />
+          <div className="skel-line skel-meta" />
+        </div>
+        <div className="skel-vibe-orbs-row">
+          <div className="skel-circle skel-vibe-orb" />
+          <div className="skel-circle skel-vibe-orb" />
+          <div className="skel-circle skel-vibe-orb" />
+          <div className="skel-circle skel-vibe-orb" />
+          <div className="skel-circle skel-vibe-orb" />
+        </div>
 
-      {/* 3. Search Bar Skeleton */}
-      <div className="skel-search-capsule" />
+        {/* Passes Skeleton */}
+        <div className="skel-section-head" style={{ marginTop: 14 }}>
+          <div className="skel-line skel-label" />
+          <div className="skel-line skel-meta" />
+        </div>
+        <div className="skel-passes-row">
+          <div className="skel-pass-card" />
+          <div className="skel-pass-card" />
+        </div>
 
-      {/* 4. Stage Chips Skeleton */}
-      <div className="skel-chips-row">
-        <div className="skel-pill skel-chip-active" />
-        <div className="skel-pill skel-chip" />
-        <div className="skel-pill skel-chip" />
-        <div className="skel-pill skel-chip" />
-      </div>
-
-      {/* 5. Spotlight Hero Skeleton */}
-      <div className="skel-spotlight-card" />
-
-      {/* 6. Bento Grid Skeleton (2x2) */}
-      <div className="skel-bento-header">
-        <div className="skel-line skel-bento-title" />
-        <div className="skel-line skel-bento-badge" />
-      </div>
-
-      <div className="skel-bento-grid">
-        <div className="skel-bento-card" />
-        <div className="skel-bento-card" />
-        <div className="skel-bento-card" />
-        <div className="skel-bento-card" />
+        {/* Bento Duo Skeleton */}
+        <div className="skel-bento-duo">
+          <div className="skel-bento-box" />
+          <div className="skel-bento-box" />
+        </div>
       </div>
     </motion.div>
   );

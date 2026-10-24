@@ -5,59 +5,49 @@ import HomeSkeletonScreen from './HomeSkeletonScreen';
 import { FloatingBottomNav } from '../common/ControlWidgets';
 import './HomeScreen.css';
 
-const STAGE_FILTERS = ['All Stages', 'Main Stage', 'Sunset Stage', 'Deck Stage', 'Warehouse'];
+// 4 Interactive Stage Vibes (inspired by the mood log in reference image 2)
+const VIBE_SPECTRUM = [
+  { id: 'all', label: 'All', emoji: '✦', color: '#12131A', bg: '#EDE8DF', decibels: '92dB' },
+  { id: 'rock', label: 'Rock', emoji: '⚡', color: '#12131A', bg: '#F3E294', decibels: '98dB', stage: 'Main Stage' },
+  { id: 'jazz', label: 'Jazz', emoji: '🎷', color: '#12131A', bg: '#D7DCFA', decibels: '82dB', stage: 'Sunset Stage' },
+  { id: 'electronic', label: 'Rave', emoji: '🎛️', color: '#12131A', bg: '#CFE7DE', decibels: '102dB', stage: 'Warehouse' },
+  { id: 'acoustic', label: 'Lounge', emoji: '🌿', color: '#12131A', bg: '#F0BBB0', decibels: '74dB', stage: 'Garden' }
+];
 
-const HEADLINER_SET = {
-  id: 'rock',
-  stage: 'Main Stage • 21:00 PM',
-  title: 'Rock Legends Reunion',
-  subtitle: 'The Velvet Echoes & Sonic Revival',
-  date: 'Tonight • Sep 5',
-  price: 'From $18.89',
-  badge: '★ Headliner Set',
-  image: '/assets/rock_concert_bg.png'
-};
-
-const VENUE_BENTO_SETS = [
+// Horizontal Stage Passes (inspired by the bills cards in reference image 1)
+const STAGE_PASSES = [
   {
     id: 'jazz',
-    colorKey: 'lilac',
-    stage: 'Sunset Stage • 18:30 PM',
-    stageFilter: 'Sunset Stage',
+    vibeId: 'jazz',
+    bg: '#D7DCFA',
+    stage: 'Sunset Stage • 18:30',
     title: 'Jazz & Blues Festival',
-    act: 'Miles Quartet Live Improv',
-    price: 'From $22.50',
-    tag: 'Live Acoustic'
+    artist: 'Miles Davis Tribute Quartet',
+    price: '€22.50',
+    timing: 'In 45 mins',
+    iconType: 'jazz'
   },
   {
     id: 'hiphop',
-    colorKey: 'butter',
-    stage: 'Deck Stage • 20:15 PM',
-    stageFilter: 'Deck Stage',
+    vibeId: 'rock',
+    bg: '#F3E294',
+    stage: 'Deck Stage • 20:15',
     title: 'Hip Hop Showcase Live',
-    act: 'Apex Rhymes & DJ Metro',
-    price: 'From $25.00',
-    tag: 'Cypher Stage'
+    artist: 'Apex Rhymes & DJ Metro',
+    price: '€25.00',
+    timing: 'Tonight • 8:15 PM',
+    iconType: 'mic'
   },
   {
     id: 'electronic',
-    colorKey: 'mint',
-    stage: 'Warehouse • 22:45 PM',
-    stageFilter: 'Warehouse',
+    vibeId: 'electronic',
+    bg: '#CFE7DE',
+    stage: 'Warehouse 7 • 22:45',
     title: 'Neon Horizon Rave',
-    act: 'Klangwelt Live Modular',
-    price: 'From $45.00',
-    tag: 'Laser Array'
-  },
-  {
-    id: 'jazz',
-    colorKey: 'peach',
-    stage: 'Garden Terrace • 17:00 PM',
-    stageFilter: 'Sunset Stage',
-    title: 'Sunset Acoustic Sessions',
-    act: 'Sarah Vaughan Trio',
-    price: 'Free with pass',
-    tag: 'Lounge Set'
+    artist: 'Klangwelt Live Modular',
+    price: '€45.00',
+    timing: 'Late Night Set',
+    iconType: 'sound'
   }
 ];
 
@@ -66,18 +56,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.04,
+      staggerChildren: 0.045,
       delayChildren: 0.02
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: { opacity: 0, y: 10 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.22, ease: [0.19, 1, 0.22, 1] }
+    transition: { duration: 0.24, ease: [0.19, 1, 0.22, 1] }
   }
 };
 
@@ -90,11 +80,9 @@ export default function HomeScreen({
   unreadCount = 2
 }) {
   const [activeTab, setActiveTab] = useState('home');
-  const [activeStage, setActiveStage] = useState('All Stages');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedVibe, setSelectedVibe] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulated quick initial load for skeleton demonstration
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -109,18 +97,10 @@ export default function HomeScreen({
     }, 500);
   };
 
-  // Filter bento cards based on stage filter and search query
-  const filteredSets = VENUE_BENTO_SETS.filter(item => {
-    const matchesStage = activeStage === 'All Stages' || item.stageFilter === activeStage;
-    const matchesSearch = searchQuery === '' || 
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.act.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.stage.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesStage && matchesSearch;
+  const filteredPasses = STAGE_PASSES.filter(pass => {
+    if (selectedVibe === 'all') return true;
+    return pass.vibeId === selectedVibe;
   });
-
-  const showHeadliner = (activeStage === 'All Stages' || activeStage === 'Main Stage') &&
-    (searchQuery === '' || HEADLINER_SET.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="mobile-home-root-container">
@@ -136,228 +116,237 @@ export default function HomeScreen({
             animate="visible"
             exit={{ opacity: 0, transition: { duration: 0.15 } }}
           >
-            {/* 1. Minimal Header */}
-            <header className="mobile-home-header">
-              <div className="header-left-group">
-                <motion.button 
-                  className="user-avatar-circle" 
-                  title="My Profile" 
-                  aria-label="My Profile" 
-                  onClick={() => onNavigate('profile')}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.92 }}
-                >
-                  <img src="/assets/gregory_face.png" alt="Gregory" />
-                </motion.button>
-                
+            {/* ── 1. The Obsidian Curved Stage Dome (Inspired by Reference Image 1) ── */}
+            <header className="home-curved-dome-header">
+              {/* Top Navigation Row */}
+              <div className="dome-top-nav">
                 <motion.div 
-                  className="venue-pill-badge"
-                  whileHover={{ y: -1 }}
-                  whileTap={{ scale: 0.97 }}
+                  className="dome-venue-capsule"
                   onClick={onOpenCitySelector}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.96 }}
                 >
-                  <span className="venue-live-indicator" />
-                  <span className="venue-name">Riverfront Pavilion</span>
-                  <AppIcon name="chevron-right" size={9} color="#737682" className="rotate-90" />
+                  <span className="dome-live-beacon" />
+                  <span className="dome-venue-name">Riverfront Pavilion</span>
+                  <AppIcon name="chevron-right" size={8} color="#9AA0AF" className="rotate-90" />
                 </motion.div>
+
+                <div className="dome-nav-actions">
+                  <motion.button
+                    className="dome-glass-btn"
+                    onClick={triggerRefresh}
+                    whileHover={{ rotate: 90, scale: 1.08 }}
+                    whileTap={{ rotate: 360, scale: 0.88 }}
+                    title="Refresh Live Schedule"
+                    aria-label="Refresh Schedule"
+                  >
+                    <AppIcon name="refresh" size={13} color="#FFFFFF" strokeWidth={2.2} />
+                  </motion.button>
+
+                  <motion.button 
+                    className="dome-glass-btn" 
+                    onClick={onOpenNotifications}
+                    whileHover={{ scale: 1.08, rotate: 6 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label="Notifications"
+                  >
+                    <AppIcon name="bell" size={13} color="#FFFFFF" strokeWidth={2.2} />
+                    {unreadCount > 0 && <span className="dome-bell-dot" />}
+                  </motion.button>
+
+                  {/* Profile Avatar with Abstract Geometric Halo Ring */}
+                  <motion.div 
+                    className="dome-avatar-halo" 
+                    onClick={() => onNavigate('profile')}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.92 }}
+                    title="Profile"
+                  >
+                    <div className="dome-halo-ring" />
+                    <img src="/assets/gregory_face.png" alt="Gregory" className="dome-avatar-img" />
+                  </motion.div>
+                </div>
               </div>
 
-              <div className="header-right-group">
-                <motion.button
-                  className="header-refresh-btn"
-                  onClick={triggerRefresh}
-                  whileHover={{ rotate: 90, scale: 1.08 }}
-                  whileTap={{ rotate: 360, scale: 0.88 }}
-                  title="Refresh Schedule"
-                  aria-label="Refresh Schedule"
-                >
-                  <AppIcon name="refresh" size={13} color="#12131A" strokeWidth={2.2} />
-                </motion.button>
+              {/* Main Stage Live Feature Display */}
+              <motion.div 
+                className="dome-hero-spotlight"
+                onClick={() => onSelectEvent('rock')}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="dome-eyebrow-row">
+                  <span className="dome-live-tag">Now Live • Main Stage</span>
+                  <span className="dome-db-badge">98 dB Peak</span>
+                </div>
 
-                <motion.button 
-                  className="header-bell-button" 
-                  onClick={onOpenNotifications}
-                  whileHover={{ scale: 1.08, rotate: 6 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label="Notifications"
-                >
-                  <AppIcon name="bell" size={14} color="#12131A" strokeWidth={2.2} />
-                  {unreadCount > 0 && <span className="bell-badge-dot" />}
-                </motion.button>
-              </div>
+                <div className="dome-headline-row">
+                  <h1 className="dome-act-title">The Velvet Echoes</h1>
+                  {/* Delicate Animated Soundwave Equalizer */}
+                  <div className="dome-soundwave-bars" aria-label="Live audio waveform">
+                    <span className="wave-bar bar-1" />
+                    <span className="wave-bar bar-2" />
+                    <span className="wave-bar bar-3" />
+                    <span className="wave-bar bar-4" />
+                    <span className="wave-bar bar-5" />
+                  </div>
+                </div>
+
+                <div className="dome-footer-row">
+                  <div className="dome-timing-info">
+                    <span className="dome-subtext">Rock Legends Reunion • 1h 45m left</span>
+                  </div>
+                  
+                  <motion.button 
+                    className="dome-tune-btn"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.92 }}
+                  >
+                    <span>Pass from €18.89</span>
+                    <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
+                  </motion.button>
+                </div>
+              </motion.div>
             </header>
 
-            {/* 2. Venue Greeting & Status */}
-            <motion.section className="mobile-greeting-section" variants={itemVariants}>
-              <div className="greeting-eyebrow">
-                <span>Tonight's Venue Schedule</span>
-                <span className="eyebrow-divider">•</span>
-                <span className="eyebrow-highlight">Live Stages</span>
-              </div>
-              <h1 className="greeting-headline">
-                Hello, <em>Gregory</em>
-              </h1>
-              <p className="greeting-subtext">4 curated stages at Riverfront Pavilion</p>
-            </motion.section>
-
-            {/* 3. Minimal Search Bar */}
-            <motion.div 
-              className="venue-search-capsule" 
-              variants={itemVariants}
-            >
-              <AppIcon name="search" size={13} color="#737682" strokeWidth={2.4} />
-              <input 
-                type="text"
-                className="venue-search-input"
-                placeholder="Find a set, stage, or artist..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                aria-label="Search schedule"
-              />
-              {searchQuery ? (
-                <button 
-                  className="search-clear-btn" 
-                  onClick={() => setSearchQuery('')}
-                  aria-label="Clear search"
-                >
-                  <AppIcon name="close" size={11} color="#737682" />
-                </button>
-              ) : (
-                <div className="search-filter-icon">
-                  <AppIcon name="filter" size={11} color="#12131A" strokeWidth={2.4} />
+            {/* ── 2. The Warm Alabaster Sheet ── */}
+            <main className="home-warm-sheet">
+              {/* Vibe Spectrum / Acoustic Mood Bar (from Reference Image 2) */}
+              <motion.section className="venue-vibe-section" variants={itemVariants}>
+                <div className="section-title-row">
+                  <span className="section-label">Acoustic Stage Vibe</span>
+                  <span className="section-meta">4 Live Stages</span>
                 </div>
-              )}
-            </motion.div>
 
-            {/* 4. Stage Filter Chips */}
-            <motion.div 
-              className="venue-stage-chips-row" 
-              role="tablist" 
-              aria-label="Filter by stage"
-              variants={itemVariants}
-            >
-              {STAGE_FILTERS.map(stage => {
-                const isActive = activeStage === stage;
-                return (
-                  <motion.button
-                    key={stage}
-                    role="tab"
-                    aria-selected={isActive}
-                    className={`stage-chip ${isActive ? 'active' : ''}`}
-                    onClick={() => setActiveStage(stage)}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.94 }}
-                  >
-                    {isActive && (
-                      <motion.div 
-                        className="active-stage-backdrop" 
-                        layoutId="activeStageGlow" 
-                        transition={{ type: 'spring', stiffness: 480, damping: 34 }}
-                      />
-                    )}
-                    <span className="chip-label">{stage}</span>
-                  </motion.button>
-                );
-              })}
-            </motion.div>
+                <div className="vibe-pills-scroll">
+                  {VIBE_SPECTRUM.map((vibe) => {
+                    const isSelected = selectedVibe === vibe.id;
+                    return (
+                      <motion.button
+                        key={vibe.id}
+                        className={`vibe-orb-btn ${isSelected ? 'active' : ''}`}
+                        onClick={() => setSelectedVibe(vibe.id)}
+                        whileHover={{ scale: 1.08 }}
+                        whileTap={{ scale: 0.92 }}
+                      >
+                        <div 
+                          className="vibe-orb-circle" 
+                          style={{ backgroundColor: vibe.bg }}
+                        >
+                          <span className="vibe-emoji">{vibe.emoji}</span>
+                        </div>
+                        <span className="vibe-orb-label">{vibe.label}</span>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+              </motion.section>
 
-            {/* 5. Spotlight Headliner Set (Hero Card) */}
-            {showHeadliner && (
-              <motion.section 
-                className="spotlight-headliner-section" 
-                variants={itemVariants}
-              >
-                <div 
-                  className="spotlight-card"
-                  onClick={() => onSelectEvent(HEADLINER_SET.id)}
+              {/* Today's Stage Passes (from Reference Image 1) */}
+              <motion.section className="stage-passes-section" variants={itemVariants}>
+                <div className="section-title-row">
+                  <span className="section-label">Today's Stage Passes</span>
+                  <span className="section-meta-action" onClick={() => onNavigate('explore')}>
+                    All Sets &rsaquo;
+                  </span>
+                </div>
+
+                <div className="stage-passes-scroll">
+                  {filteredPasses.length > 0 ? (
+                    filteredPasses.map((pass) => (
+                      <motion.div
+                        key={pass.id}
+                        className="stage-pass-card"
+                        style={{ backgroundColor: pass.bg }}
+                        onClick={() => onSelectEvent(pass.id)}
+                        whileHover={{ y: -3, scale: 1.01 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        <div className="pass-card-top">
+                          <span className="pass-timing-tag">{pass.timing}</span>
+                          <motion.div 
+                            className="pass-arrow-circle"
+                            whileHover={{ rotate: 15, scale: 1.15 }}
+                          >
+                            <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
+                          </motion.div>
+                        </div>
+
+                        <div className="pass-card-mid">
+                          <span className="pass-stage-name">{pass.stage}</span>
+                          <h3 className="pass-event-title">{pass.title}</h3>
+                          <p className="pass-artist-name">{pass.artist}</p>
+                        </div>
+
+                        <div className="pass-card-bottom">
+                          <span className="pass-price-val">{pass.price}</span>
+                          <span className="pass-chip">Fast Pass</span>
+                        </div>
+                      </motion.div>
+                    ))
+                  ) : (
+                    <div className="pass-empty-state">
+                      <p>No sets on this vibe right now</p>
+                    </div>
+                  )}
+                </div>
+              </motion.section>
+
+              {/* Asymmetric Bento Lineup & Venue Capacity (from Reference Image 2) */}
+              <motion.section className="venue-bento-duo-section" variants={itemVariants}>
+                {/* Bento Card 1: Sunset Acoustic Lounge with Delicate Vector Line Art */}
+                <motion.div 
+                  className="bento-artistic-card"
+                  onClick={() => onSelectEvent('jazz')}
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <img 
-                    src={HEADLINER_SET.image} 
-                    alt={HEADLINER_SET.title} 
-                    className="spotlight-card-bg"
-                  />
-                  <div className="spotlight-card-overlay" />
-                  
-                  <div className="spotlight-top-row">
-                    <span className="spotlight-stage-badge">{HEADLINER_SET.stage}</span>
-                    <span className="spotlight-star-tag">{HEADLINER_SET.badge}</span>
+                  <div className="bento-art-content">
+                    <span className="bento-mini-tag">Garden Terrace • 17:00</span>
+                    <h4 className="bento-art-title">Sunset Acoustic Sessions</h4>
+                    <p className="bento-art-sub">Sarah Vaughan Trio • Unplugged</p>
+                    <div className="bento-art-footer">
+                      <span className="bento-badge-free">Free with pass</span>
+                      <div className="bento-icon-btn">
+                        <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="spotlight-bottom-content">
-                    <div className="spotlight-title-group">
-                      <h2 className="spotlight-title">{HEADLINER_SET.title}</h2>
-                      <p className="spotlight-subtitle">{HEADLINER_SET.subtitle}</p>
-                    </div>
+                  {/* Clean SVG Botanical Line Art (from Reference Image 2) */}
+                  <svg className="bento-botanical-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 95V35M50 35C50 20 65 10 75 18C85 26 70 42 50 48M50 55C35 45 25 30 35 22C45 14 55 35 50 55M50 75C65 65 78 52 70 44C62 36 50 58 50 75" stroke="#12131A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" opacity="0.35"/>
+                    <circle cx="75" cy="18" r="4" fill="#F3E294" />
+                    <circle cx="35" cy="22" r="3.5" fill="#D7DCFA" />
+                  </svg>
+                </motion.div>
 
-                    <div className="spotlight-action-row">
-                      <span className="spotlight-price">{HEADLINER_SET.price}</span>
-                      <motion.button 
-                        className="spotlight-arrow-btn"
-                        aria-label="View Headliner Pass"
-                        whileHover={{ scale: 1.12, rotate: 12 }}
-                        whileTap={{ scale: 0.9 }}
-                      >
-                        <AppIcon name="arrow-up-right" size={13} color="#12131A" strokeWidth={2.6} />
-                      </motion.button>
-                    </div>
+                {/* Bento Card 2: Giant Stat Capacity (from Reference Image 2's "89% your progress") */}
+                <div className="bento-metric-card">
+                  <div className="metric-header-row">
+                    <span className="metric-eyebrow">Venue Capacity</span>
+                    <span className="metric-live-dot" />
+                  </div>
+                  
+                  <div className="metric-giant-number">
+                    <span>92</span>
+                    <span className="metric-pct">%</span>
+                  </div>
+
+                  <p className="metric-subtext">Riverfront Gate 2 Check-in Fast Track Open</p>
+
+                  <div className="metric-dots-matrix" aria-hidden="true">
+                    {Array.from({ length: 12 }).map((_, i) => (
+                      <span key={i} className={`matrix-dot ${i < 10 ? 'filled' : ''}`} />
+                    ))}
                   </div>
                 </div>
               </motion.section>
-            )}
 
-            {/* 6. Venue Live Sets (Pastel Bento Grid from Reference Image) */}
-            <motion.section className="venue-bento-section" variants={itemVariants}>
-              <div className="bento-section-header">
-                <h3 className="bento-section-title">Stage Sets Today</h3>
-                <span className="bento-count-badge">{filteredSets.length} Sets</span>
-              </div>
+              {/* Bottom Spacer */}
+              <div style={{ height: 36, flexShrink: 0 }} />
+            </main>
 
-              {filteredSets.length > 0 ? (
-                <div className="bento-grid-2x2">
-                  {filteredSets.map((item, index) => (
-                    <motion.div
-                      key={`${item.id}-${index}`}
-                      className={`bento-card bento-${item.colorKey}`}
-                      onClick={() => onSelectEvent(item.id)}
-                      whileHover={{ y: -3, scale: 1.01 }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-                    >
-                      <div className="bento-card-top">
-                        <span className="bento-stage-tag">{item.stage}</span>
-                        <span className="bento-pill-indicator" />
-                      </div>
-
-                      <div className="bento-card-body">
-                        <h4 className="bento-title">{item.title}</h4>
-                        <p className="bento-act">{item.act}</p>
-                      </div>
-
-                      <div className="bento-card-footer">
-                        <span className="bento-price">{item.price}</span>
-                        <motion.button 
-                          className="bento-arrow-circle"
-                          aria-label={`Open ${item.title}`}
-                          whileHover={{ scale: 1.15, rotate: 12 }}
-                          whileTap={{ scale: 0.88 }}
-                        >
-                          <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
-                        </motion.button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              ) : (
-                <div className="bento-empty-hint">
-                  <p>No sets match "{searchQuery}" on this stage</p>
-                </div>
-              )}
-            </motion.section>
-
-            {/* Spacer for bottom navigation */}
-            <div style={{ height: 32, flexShrink: 0 }} />
-
-            {/* 7. Floating Bottom Navigation Bar (Frosted Capsule from Image 2) */}
+            {/* ── 3. Minimal Frosted Bottom Navigation (from Reference Image 2) ── */}
             <div className="mobile-bottom-nav-wrapper">
               <FloatingBottomNav 
                 activeTab={activeTab} 

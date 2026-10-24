@@ -1,9 +1,8 @@
 /* ============================================================
-   MOBILE HOME SCREEN — Event Jam App (2026 Warm Oat & Pastel Bento)
-   Color Palette: Warm Oat (#F7F4EE), Obsidian (#12131A), 
-   Periwinkle Lilac (#D7DCFA), Butter Ochre (#F3E294),
-   Sage Mint (#CFE7DE), Blush Peach (#F0BBB0).
-   Minimalist, single-venue focus, zero repetition.
+   MOBILE HOME SCREEN — Event Jam App (2026 Warm Oat & Obsidian Dome)
+   Inspired by Reference Images 1 & 2:
+   Two-tone architectural dome, soundwave visualizer, vibe spectrum,
+   pastel bento stage passes, and frosted bottom navigation.
    ============================================================ */
 
 .mobile-home-root-container {
@@ -31,572 +30,632 @@
 }
 .mobile-home-screen::-webkit-scrollbar { display: none; }
 
-/* ── 1. Header (Frosted Warm Oat) ────────────────────── */
-.mobile-home-header {
+/* ── 1. The Obsidian Curved Stage Dome (Inspired by Reference Image 1) ── */
+.home-curved-dome-header {
+  background: linear-gradient(180deg, #181A24 0%, #0D0E14 100%);
+  border-radius: 0 0 32px 32px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 12px 36px rgba(18, 19, 26, 0.18);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+/* Subtle background accent glow */
+.home-curved-dome-header::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(215, 220, 250, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Top Navigation Row in Dome */
+.dome-top-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 10px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 0;
-  z-index: 25;
-  background: linear-gradient(to bottom, rgba(247, 244, 238, 0.96) 70%, rgba(247, 244, 238, 0));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
 }
 
-.header-left-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.user-avatar-circle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 2px 8px rgba(18, 19, 26, 0.08);
-  cursor: pointer;
-  flex-shrink: 0;
-  padding: 0;
-  background: #EFECE5;
-  outline: none;
-}
-.user-avatar-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.venue-pill-badge {
+.dome-venue-capsule {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #FFFFFF;
-  padding: 6px 11px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 5px 11px;
   border-radius: 999px;
-  border: 1px solid rgba(18, 19, 26, 0.06);
-  box-shadow: 0 1px 4px rgba(18, 19, 26, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
 }
 
-.venue-live-indicator {
+.dome-live-beacon {
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #10B981;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 8px #10B981;
 }
 
-.venue-name {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
-  font-size: 11.5px;
-  font-weight: 750;
-  color: #12131A;
-  letter-spacing: -0.015em;
+.dome-venue-name {
+  font-family: var(--font-family-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
 }
 
-.rotate-90 {
-  transform: rotate(90deg);
-}
-
-.header-right-group {
+.dome-nav-actions {
   display: flex;
   align-items: center;
   gap: 7px;
 }
 
-.header-refresh-btn {
-  width: 34px;
-  height: 34px;
+.dome-glass-btn {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid rgba(18, 19, 26, 0.06);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(18, 19, 26, 0.04);
-  flex-shrink: 0;
-  outline: none;
-}
-
-.header-bell-button {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 1px solid rgba(18, 19, 26, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: relative;
-  box-shadow: 0 1px 4px rgba(18, 19, 26, 0.04);
-  cursor: pointer;
-  flex-shrink: 0;
   outline: none;
+  padding: 0;
 }
 
-.bell-badge-dot {
+.dome-bell-dot {
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 5px;
+  right: 5px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: #EE3D5A;
+  border: 1px solid #0D0E14;
+}
+
+/* Avatar with Abstract Geometric Halo Ring */
+.dome-avatar-halo {
+  position: relative;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dome-halo-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px dashed rgba(215, 220, 250, 0.4);
+  pointer-events: none;
+}
+
+.dome-avatar-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
   border: 1.5px solid #FFFFFF;
 }
 
-/* ── 2. Greeting Section ─────────────────────────────── */
-.mobile-greeting-section {
-  padding: 4px 16px 12px;
-  flex-shrink: 0;
-}
-
-.greeting-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #737682;
-  margin-bottom: 2px;
-}
-
-.eyebrow-divider {
-  opacity: 0.4;
-}
-
-.eyebrow-highlight {
-  color: #12131A;
-  font-weight: 800;
-}
-
-.greeting-headline {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif);
-  font-size: 22px;
-  font-weight: 850;
-  color: #12131A;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-  margin: 0 0 2px;
-}
-.greeting-headline em {
-  font-style: normal;
-  color: #12131A;
-}
-
-.greeting-subtext {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #737682;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-/* ── 3. Minimal Search Capsule ───────────────────────── */
-.venue-search-capsule {
-  margin: 0 16px 12px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: #FFFFFF;
-  border: 1px solid rgba(18, 19, 26, 0.08);
-  border-radius: 14px;
-  padding: 8px 12px;
-  box-shadow: 0 2px 8px rgba(18, 19, 26, 0.03);
-  flex-shrink: 0;
-}
-
-.venue-search-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-family: inherit;
-  font-size: 11.5px;
-  color: #12131A;
-  font-weight: 500;
-  outline: none;
-}
-.venue-search-input::placeholder {
-  color: #8E92A0;
-}
-
-.search-clear-btn {
-  background: none;
-  border: none;
-  padding: 2px;
+/* Main Stage Live Feature Display */
+.dome-hero-spotlight {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 13px 14px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-filter-icon {
-  width: 24px;
-  height: 24px;
-  border-radius: 7px;
-  background: #F7F4EE;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-/* ── 4. Stage Filter Chips ───────────────────────────── */
-.venue-stage-chips-row {
-  padding: 0 16px 14px;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  flex-shrink: 0;
-  position: relative;
-}
-.venue-stage-chips-row::-webkit-scrollbar { display: none; }
-
-.stage-chip {
-  position: relative;
-  flex-shrink: 0;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  background: #FFFFFF;
-  color: #545763;
-  border: 1px solid rgba(18, 19, 26, 0.06);
-  cursor: pointer;
-  white-space: nowrap;
-  outline: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-
-.active-stage-backdrop {
-  position: absolute;
-  inset: 0;
-  background: #12131A;
-  border-radius: 999px;
-  box-shadow: 0 3px 10px rgba(18, 19, 26, 0.18);
-  z-index: -1;
-}
-
-.stage-chip.active {
-  color: #FFFFFF;
-  border-color: transparent;
-}
-
-.chip-label {
-  position: relative;
-  z-index: 2;
-}
-
-/* ── 5. Spotlight Headliner Hero Card ────────────────── */
-.spotlight-headliner-section {
-  padding: 0 16px 14px;
-  flex-shrink: 0;
-}
-
-.spotlight-card {
-  position: relative;
-  width: 100%;
-  height: 180px;
-  border-radius: 22px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 14px;
-  box-shadow: 0 10px 28px rgba(18, 19, 26, 0.12);
-  cursor: pointer;
-  background: #12131A;
+  gap: 8px;
 }
 
-.spotlight-card-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 1;
-  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.spotlight-card:hover .spotlight-card-bg {
-  transform: scale(1.04);
-}
-
-.spotlight-card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 19, 26, 0.3) 0%,
-    rgba(18, 19, 26, 0.1) 40%,
-    rgba(18, 19, 26, 0.88) 100%
-  );
-  z-index: 2;
-}
-
-.spotlight-top-row {
-  position: relative;
-  z-index: 3;
+.dome-eyebrow-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.spotlight-stage-badge {
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #12131A;
-  font-size: 9.5px;
-  font-weight: 750;
-  padding: 4px 9px;
-  border-radius: 999px;
-  letter-spacing: -0.01em;
-}
-
-.spotlight-star-tag {
-  background: rgba(18, 19, 26, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.dome-live-tag {
   color: #F3E294;
   font-size: 9.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dome-db-badge {
+  background: rgba(215, 220, 250, 0.15);
+  color: #D7DCFA;
+  font-size: 9px;
   font-weight: 750;
-  padding: 4px 9px;
+  padding: 2.5px 7px;
   border-radius: 999px;
-  border: 1px solid rgba(243, 226, 148, 0.3);
+  letter-spacing: 0.02em;
 }
 
-.spotlight-bottom-content {
-  position: relative;
-  z-index: 3;
+.dome-headline-row {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.spotlight-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.spotlight-title {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif);
-  font-size: 16px;
-  font-weight: 850;
+.dome-act-title {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 20px;
+  font-weight: 800;
   color: #FFFFFF;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   line-height: 1.15;
   margin: 0;
 }
 
-.spotlight-subtitle {
-  font-size: 11px;
-  font-weight: 500;
-  color: #D6D8E0;
-  margin: 0;
+/* Soundwave Equalizer Bars */
+.dome-soundwave-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2.5px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
-.spotlight-action-row {
+.wave-bar {
+  width: 2.5px;
+  background: #D7DCFA;
+  border-radius: 2px;
+  animation: wave-bounce 0.9s ease-in-out infinite alternate;
+}
+
+.bar-1 { height: 6px; animation-delay: 0.1s; }
+.bar-2 { height: 14px; animation-delay: 0.35s; background: #F3E294; }
+.bar-3 { height: 9px; animation-delay: 0.2s; }
+.bar-4 { height: 16px; animation-delay: 0.45s; background: #CFE7DE; }
+.bar-5 { height: 8px; animation-delay: 0.15s; }
+
+@keyframes wave-bounce {
+  0% { transform: scaleY(0.35); }
+  100% { transform: scaleY(1); }
+}
+
+.dome-footer-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 2px;
 }
 
-.spotlight-price {
-  font-size: 12px;
-  font-weight: 750;
-  color: #FFFFFF;
+.dome-subtext {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #9AA0AF;
+  letter-spacing: -0.01em;
 }
 
-.spotlight-arrow-btn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+.dome-tune-btn {
   background: #FFFFFF;
-  display: flex;
+  color: #12131A;
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 5px 11px;
+  border-radius: 999px;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
+  gap: 4px;
   border: none;
-  padding: 0;
-}
-
-/* ── 6. Venue Live Sets (Pastel Bento Grid) ──────────── */
-.venue-bento-section {
-  padding: 0 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
 }
 
-.bento-section-header {
+/* ── 2. The Warm Alabaster Sheet ─────────────────────── */
+.home-warm-sheet {
+  padding: 16px 16px 20px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 18px;
+  flex: 1;
+}
+
+/* Section Header Generic */
+.section-title-row {
+  display: flex;
+  align-items: baseline;
   justify-content: space-between;
   margin-bottom: 10px;
 }
 
-.bento-section-title {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
-  font-size: 14.5px;
+.section-label {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 14px;
   font-weight: 800;
   color: #12131A;
-  letter-spacing: -0.025em;
-  margin: 0;
+  letter-spacing: -0.02em;
 }
 
-.bento-count-badge {
+.section-meta {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #8E92A0;
+}
+
+.section-meta-action {
+  font-size: 11px;
+  font-weight: 700;
+  color: #12131A;
+  cursor: pointer;
+}
+
+/* Vibe Spectrum / Acoustic Mood Bar (from Reference Image 2) */
+.venue-vibe-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.vibe-pills-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.vibe-orb-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  flex: 1;
+}
+
+.vibe-orb-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(18, 19, 26, 0.04);
+  border: 1.5px solid transparent;
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.2s;
+}
+
+.vibe-orb-btn.active .vibe-orb-circle {
+  border-color: #12131A;
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(18, 19, 26, 0.12);
+}
+
+.vibe-emoji {
+  font-size: 16px;
+}
+
+.vibe-orb-label {
   font-size: 10px;
   font-weight: 700;
-  color: #737682;
-  background: #FFFFFF;
-  padding: 2.5px 7px;
-  border-radius: 999px;
-  border: 1px solid rgba(18, 19, 26, 0.05);
+  color: #6B6F7B;
+  letter-spacing: -0.01em;
 }
 
-.bento-grid-2x2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.vibe-orb-btn.active .vibe-orb-label {
+  color: #12131A;
+  font-weight: 800;
 }
 
-.bento-card {
-  border-radius: 20px;
-  padding: 13px;
+/* ── 3. Today's Stage Passes (from Reference Image 1) ── */
+.stage-passes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-passes-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+.stage-passes-scroll::-webkit-scrollbar { display: none; }
+
+.stage-pass-card {
+  width: 205px;
+  border-radius: 22px;
+  padding: 13px 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 142px;
-  cursor: pointer;
+  min-height: 136px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  box-shadow: 0 3px 12px rgba(18, 19, 26, 0.04);
   border: 1px solid rgba(18, 19, 26, 0.05);
-  box-shadow: 0 3px 12px rgba(18, 19, 26, 0.03);
-  position: relative;
-  overflow: hidden;
+  cursor: pointer;
 }
 
-/* Bento Color Variants (from reference image) */
-.bento-lilac {
-  background: var(--color-bento-lilac, #D7DCFA);
-  border-color: rgba(200, 206, 245, 0.7);
-}
-
-.bento-butter {
-  background: var(--color-bento-butter, #F3E294);
-  border-color: rgba(232, 213, 128, 0.7);
-}
-
-.bento-mint {
-  background: var(--color-bento-mint, #CFE7DE);
-  border-color: rgba(188, 222, 211, 0.7);
-}
-
-.bento-peach {
-  background: var(--color-bento-peach, #F0BBB0);
-  border-color: rgba(229, 169, 157, 0.7);
-}
-
-.bento-card-top {
+.pass-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4px;
 }
 
-.bento-stage-tag {
+.pass-timing-tag {
   font-size: 9px;
-  font-weight: 750;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: rgba(18, 19, 26, 0.65);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.bento-pill-indicator {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: rgba(18, 19, 26, 0.4);
-  flex-shrink: 0;
-}
-
-.bento-card-body {
-  margin: 10px 0 8px;
-}
-
-.bento-title {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  color: #12131A;
-  margin: 0 0 3px;
-}
-
-.bento-act {
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(18, 19, 26, 0.65);
-  line-height: 1.3;
-  margin: 0;
-}
-
-.bento-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.bento-price {
-  font-family: var(--font-family-display, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif);
-  font-size: 11px;
-  font-weight: 750;
-  color: #12131A;
-}
-
-.bento-arrow-circle {
-  width: 25px;
-  height: 25px;
+.pass-arrow-circle {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: #12131A;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 6px rgba(18, 19, 26, 0.15);
-  flex-shrink: 0;
-  padding: 0;
-  border: none;
 }
 
-.bento-empty-hint {
-  padding: 24px 16px;
-  text-align: center;
+.pass-card-mid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 6px 0;
+}
+
+.pass-stage-name {
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(18, 19, 26, 0.55);
+}
+
+.pass-event-title {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #12131A;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.pass-artist-name {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(18, 19, 26, 0.65);
+  margin: 0;
+}
+
+.pass-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.pass-price-val {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 14px;
+  font-weight: 850;
+  color: #12131A;
+  letter-spacing: -0.02em;
+}
+
+.pass-chip {
+  font-size: 9px;
+  font-weight: 700;
+  color: #12131A;
+  background: rgba(255, 255, 255, 0.6);
+  padding: 2px 7px;
+  border-radius: 999px;
+}
+
+.pass-empty-state {
+  padding: 20px;
   color: #8E92A0;
-  font-size: 11.5px;
+  font-size: 11px;
   font-style: italic;
-  background: #FFFFFF;
-  border-radius: 18px;
-  border: 1px solid rgba(18, 19, 26, 0.05);
+  text-align: center;
 }
 
-/* ── 7. Floating Bottom Navigation Wrapper ─────────────── */
+/* ── 4. Asymmetric Bento Duo (from Reference Image 2) ── */
+.venue-bento-duo-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Bento Card 1: Artistic Line-Art Card */
+.bento-artistic-card {
+  background: #FFFFFF;
+  border-radius: 22px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 148px;
+  box-shadow: 0 3px 12px rgba(18, 19, 26, 0.03);
+  border: 1px solid rgba(18, 19, 26, 0.05);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-art-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.bento-mini-tag {
+  font-size: 8.5px;
+  font-weight: 750;
+  text-transform: uppercase;
+  color: #8E92A0;
+  letter-spacing: 0.04em;
+}
+
+.bento-art-title {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 13px;
+  font-weight: 800;
+  color: #12131A;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 4px 0 2px;
+}
+
+.bento-art-sub {
+  font-size: 10px;
+  color: #737682;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.bento-art-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.bento-badge-free {
+  font-size: 9px;
+  font-weight: 750;
+  color: #12131A;
+  background: #CFE7DE;
+  padding: 2.5px 7px;
+  border-radius: 999px;
+}
+
+.bento-icon-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #12131A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bento-botanical-svg {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+  width: 90px;
+  height: 90px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Bento Card 2: Giant Stat Capacity Card (like Image 2 "89%") */
+.bento-metric-card {
+  background: #12131A;
+  border-radius: 22px;
+  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 148px;
+  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.15);
+}
+
+.metric-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.metric-eyebrow {
+  font-size: 8.5px;
+  font-weight: 750;
+  text-transform: uppercase;
+  color: #9AA0AF;
+  letter-spacing: 0.05em;
+}
+
+.metric-live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+.metric-giant-number {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin: 4px 0 2px;
+}
+
+.metric-giant-number span:first-child {
+  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-size: 34px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.metric-pct {
+  font-size: 16px;
+  font-weight: 700;
+  color: #F3E294;
+}
+
+.metric-subtext {
+  font-size: 9.5px;
+  color: #9AA0AF;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.metric-dots-matrix {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.matrix-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.matrix-dot.filled {
+  background: #F3E294;
+}
+
+/* ── 5. Floating Bottom Navigation Wrapper ─────────────── */
 .mobile-bottom-nav-wrapper {
   position: sticky;
   bottom: 0;
