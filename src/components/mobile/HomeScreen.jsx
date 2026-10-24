@@ -49,11 +49,11 @@ const VIBE_ICONS = {
 
 // 5 Event Experiences at Kesari - The Memory Studio Koramangala
 const VIBE_SPECTRUM = [
-  { id: 'all', label: 'All', iconKey: 'all', color: '#12131A', bg: '#EDE8DF' },
-  { id: 'music', label: 'Live Gigs', iconKey: 'rock', color: '#12131A', bg: '#F3E294' },
-  { id: 'openmic', label: 'Open Mic', iconKey: 'acoustic', color: '#12131A', bg: '#D7DCFA' },
-  { id: 'jam', label: 'Jam Sessions', iconKey: 'electronic', color: '#12131A', bg: '#CFE7DE' },
-  { id: 'workshop', label: 'Workshops', iconKey: 'jazz', color: '#12131A', bg: '#F0BBB0' }
+  { id: 'all', label: 'All', iconKey: 'all' },
+  { id: 'music', label: 'Live Gigs', iconKey: 'rock' },
+  { id: 'openmic', label: 'Open Mic', iconKey: 'acoustic' },
+  { id: 'jam', label: 'Jam Sessions', iconKey: 'electronic' },
+  { id: 'workshop', label: 'Workshops', iconKey: 'jazz' }
 ];
 
 // Curated Studio Shows at Kesari - The Memory Studio Koramangala (No fake stages)
@@ -61,8 +61,7 @@ const STAGE_PASSES = [
   {
     id: 'rock',
     vibeId: 'music',
-    bg: '#F3E294',
-    badgeText: '⚡ Live Studio Gig',
+    badgeText: 'Live Studio Gig',
     stage: 'Kesari Studio • 21:00',
     title: 'Rock Legends Reunion',
     artist: 'The Velvet Echoes Live',
@@ -74,8 +73,7 @@ const STAGE_PASSES = [
   {
     id: 'jazz',
     vibeId: 'music',
-    bg: '#D7DCFA',
-    badgeText: '🎷 Acoustic Session',
+    badgeText: 'Acoustic Session',
     stage: 'Acoustic Lounge • 18:30',
     title: 'Jazz & Blues Evening',
     artist: 'Miles Davis Tribute Quartet',
@@ -87,8 +85,7 @@ const STAGE_PASSES = [
   {
     id: 'hiphop',
     vibeId: 'music',
-    bg: '#F0BBB0',
-    badgeText: '🎤 Live Cypher',
+    badgeText: 'Live Cypher',
     stage: 'Kesari Studio • 20:15',
     title: 'Hip Hop Showcase Live',
     artist: 'Apex Rhymes & DJ Metro',
@@ -100,8 +97,7 @@ const STAGE_PASSES = [
   {
     id: 'electronic',
     vibeId: 'jam',
-    bg: '#CFE7DE',
-    badgeText: '🎛️ Synth Immersion',
+    badgeText: 'Synth Immersion',
     stage: 'Kesari Studio • 22:00',
     title: 'Modular Synth & Ambient',
     artist: 'Klangwelt Live Modular',
@@ -113,8 +109,7 @@ const STAGE_PASSES = [
   {
     id: 'soundwaves',
     vibeId: 'openmic',
-    bg: '#EDE8DF',
-    badgeText: '🌿 Open Mic',
+    badgeText: 'Open Mic Session',
     stage: 'Acoustic Lounge • 17:00',
     title: 'Sunset Acoustic & Open Mic',
     artist: 'Community Artists & Sarah Vaughan',
@@ -339,83 +334,27 @@ export default function HomeScreen({
 
             {/* ── 2. The Warm Alabaster Sheet ── */}
             <main className="home-warm-sheet">
-              {/* ── Studio Quick-Action Hub: Sound System, Monthly Passes, Spaces, Organise ── */}
-              <motion.section className="studio-quick-hub-section" variants={itemVariants}>
-                <div className="studio-quick-hub-scroll">
-                  <motion.button 
-                    className="studio-hub-chip primary-rent-gear"
-                    onClick={() => setShowRentGear(true)}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="hub-chip-icon">🔊</span>
-                    <span className="hub-chip-title">Rent Sound Gear</span>
-                    <span className="hub-chip-badge">13 Items</span>
-                  </motion.button>
-
-                  <motion.button 
-                    className="studio-hub-chip monthly-pass-chip"
-                    onClick={() => setShowMonthlyPassModal(true)}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="hub-chip-icon">🎟️</span>
-                    <span className="hub-chip-title">Monthly Passes</span>
-                    <span className="hub-chip-badge">3 Plans</span>
-                  </motion.button>
-
-                  <motion.button 
-                    className="studio-hub-chip rent-space-chip"
-                    onClick={() => setShowRentSpaceModal(true)}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="hub-chip-icon">🏢</span>
-                    <span className="hub-chip-title">Rent Studio Space</span>
-                    <span className="hub-chip-badge">From ₹800/h</span>
-                  </motion.button>
-
-                  <motion.button 
-                    className="studio-hub-chip organise-event-chip"
-                    onClick={() => setShowOrganiseModal(true)}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <span className="hub-chip-icon">💬</span>
-                    <span className="hub-chip-title">Organise Event</span>
-                    <span className="hub-chip-badge">WhatsApp</span>
-                  </motion.button>
-                </div>
-              </motion.section>
-
-              {/* Vibe Spectrum with Bespoke Apple-grade Vector Icons */}
+              {/* Minimal Vibe Filter */}
               <motion.section className="venue-vibe-section" variants={itemVariants}>
                 <div className="section-title-row">
-                  <span className="section-label">Studio Experiences</span>
-                  <span className="section-meta">Kesari Koramangala</span>
+                  <span className="section-label">Studio Lineup</span>
+                  <span className="section-meta">Koramangala</span>
                 </div>
 
                 <div className="vibe-pills-scroll">
                   {VIBE_SPECTRUM.map((vibe) => {
                     const isSelected = selectedVibe === vibe.id;
                     return (
-                      <motion.button
+                      <button
                         key={vibe.id}
-                        className={`vibe-orb-btn ${isSelected ? 'active' : ''}`}
+                        className={`vibe-chip-btn ${isSelected ? 'active' : ''}`}
                         onClick={() => setSelectedVibe(vibe.id)}
-                        whileHover={{ scale: 1.08 }}
-                        whileTap={{ scale: 0.92 }}
                       >
-                        <div 
-                          className="vibe-orb-circle" 
-                          style={{ backgroundColor: vibe.bg }}
-                        >
-                          <span className="vibe-svg-wrap">
-                            {VIBE_ICONS[vibe.iconKey]}
-                          </span>
-                        </div>
-                        <span className="vibe-orb-label">{vibe.label}</span>
-                      </motion.button>
+                        <span className="vibe-chip-icon">
+                          {VIBE_ICONS[vibe.iconKey]}
+                        </span>
+                        <span className="vibe-chip-label">{vibe.label}</span>
+                      </button>
                     );
                   })}
                 </div>
@@ -424,7 +363,7 @@ export default function HomeScreen({
               {/* Event Poster Cards (Horizontal Studio Passes Carousel) */}
               <motion.section className="stage-passes-section" variants={itemVariants}>
                 <div className="section-title-row">
-                  <span className="section-label">Studio Passes & Lineup</span>
+                  <span className="section-label">Passes & Shows</span>
                   <span className="section-meta-action" onClick={() => onNavigate('explore')}>
                     All Shows &rsaquo;
                   </span>
@@ -449,10 +388,7 @@ export default function HomeScreen({
 
                         {/* Top Floating Badge Row */}
                         <div className="poster-card-header">
-                          <span 
-                            className="poster-stage-badge"
-                            style={{ backgroundColor: pass.bg }}
-                          >
+                          <span className="poster-stage-badge">
                             {pass.badgeText}
                           </span>
 
@@ -476,10 +412,7 @@ export default function HomeScreen({
 
                           <div className="poster-card-footer">
                             <span className="poster-price-val">{pass.price}</span>
-                            <span 
-                              className="poster-tag-chip"
-                              style={{ backgroundColor: pass.bg }}
-                            >
+                            <span className="poster-tag-chip">
                               {pass.tag}
                             </span>
                           </div>
@@ -494,38 +427,65 @@ export default function HomeScreen({
                 </div>
               </motion.section>
 
-              {/* ── Studio Bento Duo: Rent Out Space + Organise Your Event (with WhatsApp) ── */}
+              {/* ── Studio Bento Duo: Studio Services (with 3 options) + Organise Your Event (with WhatsApp) ── */}
               <motion.section className="venue-bento-duo-section" variants={itemVariants}>
-                {/* Bento Card 1: Rent Out Studio Space in Koramangala */}
-                <motion.div 
-                  className="bento-space-card"
-                  onClick={() => setShowRentSpaceModal(true)}
-                  whileHover={{ y: -3, scale: 1.01 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <div 
-                    className="bento-space-bg"
-                    style={{ backgroundImage: `url('/assets/events/hall.webp')` }}
-                  />
-                  <div className="bento-space-overlay" />
-
-                  <div className="bento-space-content">
-                    <div className="bento-space-top">
-                      <span className="bento-space-eyebrow">STUDIO SPACES</span>
-                      <span className="bento-space-rate">From ₹800/h</span>
-                    </div>
-
-                    <h4 className="bento-space-title">Rent Out Space</h4>
-                    <p className="bento-space-desc">Main Studio Hall (40-60 cap) & Jam Room in Koramangala</p>
-                    
-                    <div className="bento-space-footer">
-                      <span className="bento-space-chip">Acoustic Treated</span>
-                      <div className="bento-action-arrow">
-                        <AppIcon name="arrow-up-right" size={11} color="#12131A" strokeWidth={2.6} />
-                      </div>
-                    </div>
+                {/* Bento Card 1: Studio Services & Rentals (Gear, Passes, Space) */}
+                <div className="bento-services-card">
+                  <div className="services-card-header">
+                    <span className="services-card-eyebrow">STUDIO SERVICES</span>
+                    <span className="services-card-tag">Koramangala</span>
                   </div>
-                </motion.div>
+
+                  <div className="services-card-list">
+                    <motion.button 
+                      type="button"
+                      className="service-item-row"
+                      onClick={() => setShowRentGear(true)}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <div className="service-item-left">
+                        <span className="service-item-icon">🔊</span>
+                        <div className="service-item-text">
+                          <span className="service-item-title">Rent Sound Gear</span>
+                          <span className="service-item-desc">13 Items • From ₹150</span>
+                        </div>
+                      </div>
+                      <span className="service-item-arrow">›</span>
+                    </motion.button>
+
+                    <motion.button 
+                      type="button"
+                      className="service-item-row"
+                      onClick={() => setShowMonthlyPassModal(true)}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <div className="service-item-left">
+                        <span className="service-item-icon">🎟️</span>
+                        <div className="service-item-text">
+                          <span className="service-item-title">Monthly Passes</span>
+                          <span className="service-item-desc">3 Plans • From ₹1,999</span>
+                        </div>
+                      </div>
+                      <span className="service-item-arrow">›</span>
+                    </motion.button>
+
+                    <motion.button 
+                      type="button"
+                      className="service-item-row"
+                      onClick={() => setShowRentSpaceModal(true)}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <div className="service-item-left">
+                        <span className="service-item-icon">🏢</span>
+                        <div className="service-item-text">
+                          <span className="service-item-title">Rent Out Space</span>
+                          <span className="service-item-desc">Hall & Lounge • ₹800/h</span>
+                        </div>
+                      </div>
+                      <span className="service-item-arrow">›</span>
+                    </motion.button>
+                  </div>
+                </div>
 
                 {/* Bento Card 2: Organise Your Event with WhatsApp Integration */}
                 <div className="bento-organise-card">
@@ -534,8 +494,10 @@ export default function HomeScreen({
                     <span className="organise-wa-pulse" title="WhatsApp Connected" />
                   </div>
                   
-                  <h4 className="organise-card-title">Organise Your Event</h4>
-                  <p className="organise-card-sub">Music gigs, workshops, open mics & private gatherings at Kesari Koramangala.</p>
+                  <div className="organise-card-text">
+                    <h4 className="organise-card-title">Organise Your Event</h4>
+                    <p className="organise-card-sub">Music gigs, workshops & private gatherings in Koramangala.</p>
+                  </div>
 
                   <div className="organise-actions-stack">
                     <a 
@@ -544,125 +506,20 @@ export default function HomeScreen({
                       rel="noopener noreferrer"
                       className="organise-wa-btn"
                     >
-                      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
                         <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.23 8.23 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24m4.52 11.63c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.28z"/>
                       </svg>
                       <span>Chat on WhatsApp</span>
                     </a>
 
                     <button 
+                      type="button"
                       className="organise-custom-btn"
                       onClick={() => setShowOrganiseModal(true)}
                     >
-                      <span>Customise Event Plan &rsaquo;</span>
+                      <span>Customise Plan &rsaquo;</span>
                     </button>
                   </div>
-                </div>
-              </motion.section>
-
-              {/* ── 3. Sound System Available For Rent (Poster Catalog) ── */}
-              <motion.section className="studio-gear-rental-section" variants={itemVariants}>
-                <div className="section-title-row">
-                  <div>
-                    <span className="section-label">Sound System For Rent</span>
-                    <p className="section-sub-pitch">High quality audio equipment for your events</p>
-                  </div>
-                  <span className="section-meta-action" onClick={() => setShowRentGear(true)}>
-                    View All 13 Items &rsaquo;
-                  </span>
-                </div>
-
-                {/* Horizontal Gear Showcase Scroll */}
-                <div className="gear-showcase-scroll">
-                  {RENTAL_EQUIPMENT.slice(0, 8).map(gear => (
-                    <motion.div 
-                      key={gear.id}
-                      className="gear-mini-card"
-                      whileHover={{ y: -3, scale: 1.02 }}
-                      whileTap={{ scale: 0.97 }}
-                      onClick={() => setShowRentGear(true)}
-                    >
-                      <div className="gear-mini-top">
-                        <span className="gear-badge-tag">{gear.badge}</span>
-                        <span className="gear-category-indicator">{gear.category}</span>
-                      </div>
-                      <h4 className="gear-mini-name">{gear.name}</h4>
-                      <div className="gear-mini-bottom">
-                        <div className="gear-price-wrap">
-                          <span className="gear-currency">₹</span>
-                          <span className="gear-cost">{gear.price.toLocaleString()}</span>
-                          <span className="gear-unit">/{gear.priceUnit}</span>
-                        </div>
-                        <button className="gear-rent-add-btn" title="Add to Rental">
-                          + Rent
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Poster Footer Note: Pick up & drop at Kesari Koramangala */}
-                <div className="gear-pickup-banner">
-                  <div className="pickup-info">
-                    <span className="pickup-pin">📍</span>
-                    <div>
-                      <strong>Pick up & Drop:</strong> Kesari - The Memory Studio, Koramangala
-                      <small className="pickup-sub">Call 7760539955 • GST & transport additional</small>
-                    </div>
-                  </div>
-                  <button className="pickup-rent-cta" onClick={() => setShowRentGear(true)}>
-                    Rent Gear
-                  </button>
-                </div>
-              </motion.section>
-
-              {/* ── 4. 3 Types of Monthly Passes ── */}
-              <motion.section className="studio-passes-section" variants={itemVariants}>
-                <div className="section-title-row">
-                  <div>
-                    <span className="section-label">Studio Monthly Passes</span>
-                    <p className="section-sub-pitch">3 tiers for creators, performers & residencies</p>
-                  </div>
-                  <span className="section-meta-action" onClick={() => setShowMonthlyPassModal(true)}>
-                    Compare Perks &rsaquo;
-                  </span>
-                </div>
-
-                <div className="monthly-passes-grid">
-                  {MONTHLY_PASSES.map(pass => (
-                    <motion.div 
-                      key={pass.id}
-                      className={`monthly-pass-card ${pass.popular ? 'popular' : ''}`}
-                      whileHover={{ y: -3, scale: 1.01 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => setShowMonthlyPassModal(true)}
-                    >
-                      {pass.popular && <span className="pass-popular-ribbon">⭐ MOST POPULAR</span>}
-                      <div className="pass-card-head">
-                        <span className="pass-tier-badge">{pass.tierTag}</span>
-                        <h4 className="pass-name">{pass.name}</h4>
-                        <div className="pass-price-line">
-                          <span className="pass-billing">{pass.billing}</span>
-                        </div>
-                      </div>
-                      <p className="pass-highlight">{pass.highlight}</p>
-                      <ul className="pass-perks-preview">
-                        {pass.perks.slice(0, 2).map((perk, idx) => (
-                          <li key={idx}>✓ {perk}</li>
-                        ))}
-                      </ul>
-                      <button 
-                        className="pass-card-wa-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          const msg = `Hi Kesari - The Memory Studio Koramangala!\nI want to get the *${pass.name}* (${pass.billing}). Please activate my pass.`;
-                          window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
-                        }}
-                      >
-                        Get on WhatsApp &rsaquo;
-                      </button>
-                    </motion.div>
-                  ))}
                 </div>
               </motion.section>
 
