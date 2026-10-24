@@ -265,19 +265,12 @@ export default function HomeScreen({
                 </div>
               </div>
 
-              {/* Main Stage Live Feature Display with Real Concert Background Poster */}
+              {/* Main Stage Live Feature Display with Transparent Glass */}
               <motion.div 
                 className="dome-hero-spotlight"
                 onClick={() => onSelectEvent('rock')}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Background Concert Photography Layer */}
-                <div 
-                  className="dome-hero-backdrop-img"
-                  style={{ backgroundImage: `url('/assets/events/ev_rock.jpg')` }}
-                />
-                <div className="dome-hero-vignette" />
-
                 <div className="dome-hero-inner-content">
                   <div className="dome-eyebrow-row">
                     <div className="dome-live-pill">

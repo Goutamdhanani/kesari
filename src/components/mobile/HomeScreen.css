@@ -217,43 +217,25 @@
   border: 1.5px solid #FFFFFF;
 }
 
-/* Main Stage Live Feature Display with Real Concert Background Poster */
+/* Main Stage Live Feature Display with Transparent Liquid Glass */
 .dome-hero-spotlight {
   position: relative;
   z-index: 2;
   overflow: hidden;
   border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 14px 15px;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s cubic-bezier(0.19, 1, 0.22, 1), background 0.2s ease, border-color 0.2s ease;
 }
 
-.dome-hero-backdrop-img {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 25%;
-  filter: brightness(0.68) contrast(1.15);
-  transform: scale(1.02);
-  transition: transform 0.4s ease;
-}
-
-.dome-hero-spotlight:hover .dome-hero-backdrop-img {
-  transform: scale(1.06);
-}
-
-.dome-hero-vignette {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(13, 14, 20, 0.45) 0%,
-    rgba(13, 14, 20, 0.78) 50%,
-    rgba(13, 14, 20, 0.96) 100%
-  );
-  backdrop-filter: blur(1.5px);
-  -webkit-backdrop-filter: blur(1.5px);
+.dome-hero-spotlight:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(226, 91, 22, 0.45);
 }
 
 .dome-hero-inner-content {

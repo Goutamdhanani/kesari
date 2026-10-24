@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import AuroraFluidCanvas from './AuroraFluidCanvas';
 import ExploreSkeletonScreen from './ExploreSkeletonScreen';
+import './HomeScreen.css';
 import './ExploreEventsScreen.css';
 
 const DATE_TABS = [
@@ -116,18 +117,12 @@ export default function ExploreEventsScreen({
                 </div>
               </div>
 
-              {/* Main Stage Live Feature Display with Real Concert Background Poster (Exact Match to Screenshot) */}
+              {/* Main Stage Live Feature Display with Transparent Glass (Exact Match to Screenshot) */}
               <motion.div 
                 className="dome-hero-spotlight"
                 onClick={() => onSelectEvent('rock')}
                 whileTap={{ scale: 0.98 }}
               >
-                <div 
-                  className="dome-hero-backdrop-img"
-                  style={{ backgroundImage: `url('/assets/events/ev_rock.jpg')` }}
-                />
-                <div className="dome-hero-vignette" />
-
                 <div className="dome-hero-inner-content">
                   <div className="dome-eyebrow-row">
                     <div className="dome-live-pill">
