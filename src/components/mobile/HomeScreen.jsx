@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import HomeSkeletonScreen from './HomeSkeletonScreen';
+import AuroraFluidCanvas from './AuroraFluidCanvas';
 import './HomeScreen.css';
 
 // Bespoke Apple-grade SVG Micro-Icons for Stage Vibes (No emojis)
@@ -220,19 +221,10 @@ export default function HomeScreen({
             animate="visible"
             exit={{ opacity: 0, transition: { duration: 0.12 } }}
           >
-            {/* ── 1. The Obsidian Curved Stage Dome with Neon Behind Glass ── */}
+            {/* ── 1. The Obsidian Curved Stage Dome with Authentic Northern Lights Aurora Fluid ── */}
             <header className="home-curved-dome-header">
-              {/* Authentic Neon Lighting Behind Frosted Glass (Strictly Bounded to Dome) */}
-              <div className="dome-neon-glass-viewport" aria-hidden="true">
-                <div className="neon-tube-bar neon-cyan-top" />
-                <div className="neon-tube-bar neon-red-accent" />
-                <div className="neon-laser-ray neon-ray-1" />
-                <div className="neon-laser-ray neon-ray-2" />
-                <div className="neon-ambient-glow" />
-                <div className="neon-glass-diffuser" />
-                <div className="neon-glass-specular-sheen" />
-                <div className="neon-glass-edge-highlight" />
-              </div>
+              {/* Authentic Northern Lights (Aurora Borealis) Fluid Simulation Canvas */}
+              <AuroraFluidCanvas />
 
               {/* Top Navigation Row: Kesari Logo Branding & Bangalore Venue */}
               <div className="dome-top-nav">
