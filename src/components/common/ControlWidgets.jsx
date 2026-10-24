@@ -167,9 +167,9 @@ export function FloatingBottomNav({
   const tabs = [
     { id: 'home', icon: 'home', label: 'Home' },
     { id: 'search', icon: 'search', label: 'Search' },
-    { id: 'ai', icon: 'sparkles', label: 'JamAI', isAi: true },
     { id: 'calendar', icon: 'calendar', label: 'Events' },
-    { id: 'ticket', icon: 'ticket', label: 'Tickets' }
+    { id: 'ticket', icon: 'ticket', label: 'Tickets' },
+    { id: 'profile', icon: 'user', label: 'Profile' }
   ];
 
   return (
@@ -179,7 +179,7 @@ export function FloatingBottomNav({
         return (
           <motion.button
             key={tab.id}
-            className={`nav-tab-item ${isActive ? 'active-lime-tab' : 'inactive-dark-tab'} ${tab.isAi ? 'ai-concierge-tab' : ''}`}
+            className={`nav-tab-item ${isActive ? 'active-lime-tab' : 'inactive-dark-tab'}`}
             onClick={() => onTabChange(tab.id)}
             whileHover={{ scale: 1.12 }}
             whileTap={{ scale: 0.88 }}
@@ -187,9 +187,9 @@ export function FloatingBottomNav({
           >
             <AppIcon 
               name={tab.icon} 
-              size={tab.isAi ? 21 : 19} 
-              color={isActive ? '#080808' : (tab.isAi ? '#DAFB71' : '#FFFFFF')} 
-              strokeWidth={isActive ? 2.5 : (tab.isAi ? 2.2 : 2)}
+              size={18} 
+              color={isActive ? '#080808' : '#FFFFFF'} 
+              strokeWidth={isActive ? 2.5 : 2}
             />
           </motion.button>
         );

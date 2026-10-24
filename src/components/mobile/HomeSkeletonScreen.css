@@ -30,7 +30,6 @@
 .skel-pill,
 .skel-line,
 .skel-search-bar,
-.skel-ai-banner,
 .skel-upcoming-card,
 .skel-card-tall,
 .skel-nearby-row,
@@ -82,12 +81,6 @@
   border-radius: 50%;
 }
 
-.skel-ai-btn {
-  width: 58px;
-  height: 24px;
-  border-radius: 999px;
-}
-
 .skel-bell {
   width: 33px;
   height: 33px;
@@ -127,14 +120,7 @@
   border-radius: 13px;
 }
 
-/* ── 4. JamAI Banner Skeleton ───────────────────────── */
-.skel-ai-banner {
-  margin: 0 16px 14px;
-  height: 58px;
-  border-radius: 16px;
-}
-
-/* ── 5. Category Chips Skeleton ─────────────────────── */
+/* ── 4. Category Chips Skeleton ─────────────────────── */
 .skel-chips-row {
   display: flex;
   gap: 6px;

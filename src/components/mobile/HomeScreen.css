@@ -121,24 +121,6 @@
   outline: none;
 }
 
-.header-ai-pill-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #DAFB71;
-  color: #080808;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 999px;
-  font-size: 10.5px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(218, 251, 113, 0.45);
-  outline: none;
-  flex-shrink: 0;
-}
-
 .header-bell-button {
   width: 33px;
   height: 33px;
@@ -253,92 +235,7 @@
   box-shadow: 0 2px 6px rgba(218, 251, 113, 0.4);
 }
 
-/* ── 4. JamAI Neural Vibe Banner ─────────────────────── */
-.home-ai-vibe-banner {
-  margin: 0 16px 14px;
-  background: linear-gradient(135deg, #0B0D16 0%, #161929 100%);
-  border-radius: 16px;
-  padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  cursor: pointer;
-  border: 1px solid rgba(218, 251, 113, 0.22);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12), 0 0 14px rgba(0, 66, 217, 0.1);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.home-ai-vibe-banner::before {
-  content: '';
-  position: absolute;
-  top: -24px;
-  right: -24px;
-  width: 80px;
-  height: 80px;
-  background: radial-gradient(circle, rgba(218, 251, 113, 0.25) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.ai-banner-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.ai-banner-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 9px;
-  font-weight: 800;
-  color: #DAFB71;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 2px;
-}
-
-.ai-spark-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #DAFB71;
-  box-shadow: 0 0 6px #DAFB71;
-}
-
-.ai-banner-title {
-  margin: 0 0 2px 0;
-  font-size: 13px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-}
-
-.ai-banner-desc {
-  margin: 0;
-  font-size: 10px;
-  color: #94A3B8;
-  line-height: 1.3;
-}
-
-.ai-banner-action {
-  flex-shrink: 0;
-}
-
-.ai-magic-circle {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #DAFB71;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 6px rgba(218, 251, 113, 0.4);
-}
-
-/* ── 5. Category Pills Row (Smooth Spring layoutId) ──── */
+/* ── 4. Category Pills Row (Smooth Spring layoutId) ──── */
 .mobile-categories-row {
   padding: 0 16px 14px;
   display: flex;

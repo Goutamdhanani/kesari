@@ -19,7 +19,6 @@ export default function HomeSkeletonScreen() {
         </div>
         <div className="skel-row-right">
           <div className="skel-circle skel-refresh" />
-          <div className="skel-pill skel-ai-btn" />
           <div className="skel-circle skel-bell" />
         </div>
       </div>
@@ -34,10 +33,7 @@ export default function HomeSkeletonScreen() {
       {/* 3. Search Bar Skeleton */}
       <div className="skel-search-bar" />
 
-      {/* 4. JamAI Banner Skeleton */}
-      <div className="skel-ai-banner" />
-
-      {/* 5. Category Chips Skeleton */}
+      {/* 4. Category Chips Skeleton */}
       <div className="skel-chips-row">
         <div className="skel-pill skel-chip-active" />
         <div className="skel-pill skel-chip" />

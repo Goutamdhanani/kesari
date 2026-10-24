@@ -6,7 +6,6 @@ import TicketScreen from './TicketScreen';
 import EventDetailScreen from './EventDetailScreen';
 import SearchScreen from './SearchScreen';
 import ExploreEventsScreen from './ExploreEventsScreen';
-import JamAIScreen from './JamAIScreen';
 import ProfileScreen from './ProfileScreen';
 import NotificationsSheet from './NotificationsSheet';
 import CitySelectorSheet from './CitySelectorSheet';
@@ -168,9 +167,9 @@ export default function MobileFrame({
                   onBack={() => setCurrentScreen('home')}
                   onTabChange={(tab) => {
                     if (tab === 'home') setCurrentScreen('home');
-                    else if (tab === 'ai') setCurrentScreen('ai');
                     else if (tab === 'calendar') setCurrentScreen('explore');
                     else if (tab === 'ticket') setCurrentScreen('ticket');
+                    else if (tab === 'profile') setCurrentScreen('profile');
                   }}
                 />
               </motion.div>
@@ -194,38 +193,15 @@ export default function MobileFrame({
                   onTabChange={(tab) => {
                     if (tab === 'home') setCurrentScreen('home');
                     else if (tab === 'search') setCurrentScreen('search');
-                    else if (tab === 'ai') setCurrentScreen('ai');
                     else if (tab === 'ticket') setCurrentScreen('ticket');
+                    else if (tab === 'profile') setCurrentScreen('profile');
                   }}
                   onOpenCitySelector={() => setShowCitySelector(true)}
                 />
               </motion.div>
             )}
 
-            {/* 4. JamAI Neural Vibe Concierge Screen */}
-            {currentScreen === 'ai' && (
-              <motion.div
-                key="ai"
-                variants={screenVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                style={{ width: '100%', height: '100%' }}
-              >
-                <JamAIScreen 
-                  onSelectEvent={handleSelectEvent}
-                  onBack={() => setCurrentScreen('home')}
-                  onTabChange={(tab) => {
-                    if (tab === 'home') setCurrentScreen('home');
-                    else if (tab === 'search') setCurrentScreen('search');
-                    else if (tab === 'calendar') setCurrentScreen('explore');
-                    else if (tab === 'ticket') setCurrentScreen('ticket');
-                  }}
-                />
-              </motion.div>
-            )}
-
-            {/* 5. Event Detail & Booking Screen */}
+            {/* 4. Event Detail & Booking Screen */}
             {currentScreen === 'details' && (
               <motion.div
                 key="details"
