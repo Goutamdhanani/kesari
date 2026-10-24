@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 import AppIcon from '../common/AppIcon';
+import DetailSkeletonScreen from './DetailSkeletonScreen';
 import { MOCK_EVENTS } from '../../data/mockEvents';
 import './EventDetailScreen.css';
 
@@ -10,9 +11,18 @@ export default function EventDetailScreen({
   onBack = () => {},
   onBookSuccess = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTier, setSelectedTier] = useState('ga');
   const [ticketCount, setTicketCount] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, [eventId]);
 
   // Dynamic Bangalore Event Lookup
   const eventData = MOCK_EVENTS.find(e => e.id === eventId) || MOCK_EVENTS[0];
@@ -69,15 +79,20 @@ export default function EventDetailScreen({
   };
 
   return (
-    <motion.div 
-      key={eventData.id}
-      className="mobile-event-detail-screen"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.22, ease: [0.19, 1, 0.22, 1] }}
-    >
-      {/* Hero Header Media */}
+    <div className="mobile-event-detail-root" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <DetailSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key={eventData.id}
+            className="mobile-event-detail-screen"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.22, ease: [0.19, 1, 0.22, 1] }}
+          >
+            {/* Hero Header Media */}
       <div className="detail-hero-banner">
         <img src={eventData.image} alt={eventData.title} className="detail-hero-img" />
         <div className="detail-banner-gradient"></div>
@@ -226,6 +241,9 @@ export default function EventDetailScreen({
           <AppIcon name="arrow-up-right" size={18} color="#FFFFFF" strokeWidth={2.5} />
         </motion.button>
       </div>
-    </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

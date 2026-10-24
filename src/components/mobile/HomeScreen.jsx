@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import HomeSkeletonScreen from './HomeSkeletonScreen';
@@ -183,12 +183,19 @@ export default function HomeScreen({
   unreadCount = 2
 }) {
   const [selectedVibe, setSelectedVibe] = useState('all');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showRentGear, setShowRentGear] = useState(false);
   const [showOrganiseModal, setShowOrganiseModal] = useState(false);
   const [showRentSpaceModal, setShowRentSpaceModal] = useState(false);
   const [showMonthlyPassModal, setShowMonthlyPassModal] = useState(false);
   const [selectedPassForModal, setSelectedPassForModal] = useState('pass-ritual');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
 
   const triggerRefresh = () => {
     setIsLoading(true);

@@ -11,13 +11,33 @@ export default function ProfileScreen({
   tickets = [],
   savedEvents = []
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('passes'); // 'passes' | 'saved' | 'settings'
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [appleWalletSync, setAppleWalletSync] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 350);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="mobile-profile-screen">
-      {/* Header Bar */}
+    <div className="mobile-profile-screen-root" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <ProfileSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key="content"
+            className="mobile-profile-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            {/* Header Bar */}
       <header className="profile-top-bar">
         <button className="profile-back-btn" onClick={onBack} aria-label="Go Back">
           <AppIcon name="chevron-left" size={20} color="#0C0D12" strokeWidth={2.5} />
@@ -174,6 +194,9 @@ export default function ProfileScreen({
       )}
 
       <div style={{ height: 85, flexShrink: 0 }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

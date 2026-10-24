@@ -22,15 +22,23 @@ export default function SearchScreen({
   onBack = () => {},
   initialQuery = ''
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState(initialQuery);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (inputRef.current) {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 350);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [isLoading]);
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
@@ -52,9 +60,21 @@ export default function SearchScreen({
   }, [events, query, selectedGenre]);
 
   return (
-    <div className="mobile-search-screen">
-      {/* Search Header Bar */}
-      <header className="search-screen-header">
+    <div className="mobile-search-screen-root" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <SearchSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key="content"
+            className="mobile-search-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            {/* Search Header Bar */}
+            <header className="search-screen-header">
         <div className="search-input-wrapper">
           <AppIcon name="search" size={17} color="#0042D9" strokeWidth={2.5} />
           <input 
@@ -172,6 +192,9 @@ export default function SearchScreen({
 
       {/* Bottom Spacer for Fixed Nav */}
       <div style={{ height: 85, flexShrink: 0 }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -11,52 +11,63 @@ export default function ExploreSkeletonScreen() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.16 }}
     >
-      {/* Top Header */}
-      <div className="skel-explore-header">
-        <div className="skel-header-left">
-          <div className="skel-circle skel-back-circle" />
-          <div className="skel-header-titles">
-            <div className="skel-bar skel-title-bar" />
-            <div className="skel-bar skel-sub-bar" />
+      {/* 1. Curved Obsidian Dome Skeleton */}
+      <div className="skel-explore-curved-dome">
+        <div className="skel-explore-dome-nav">
+          <div className="skel-circle skel-explore-back-btn" />
+          <div className="skel-explore-title-box">
+            <div className="skel-line skel-explore-beacon-line" />
+            <div className="skel-line skel-explore-heading-line" />
           </div>
+          <div className="skel-pill skel-explore-venue-pill" />
         </div>
-        <div className="skel-pill skel-city-chip" />
+
+        {/* Date Tabs inside Dome */}
+        <div className="skel-explore-date-tabs">
+          <div className="skel-pill skel-date-pill active" />
+          <div className="skel-pill skel-date-pill" />
+          <div className="skel-pill skel-date-pill" />
+          <div className="skel-pill skel-date-pill" />
+        </div>
       </div>
 
-      {/* Timeline Filter Pills */}
-      <div className="skel-explore-timeline-row">
-        <div className="skel-pill skel-timeline-pill-active" />
-        <div className="skel-pill skel-timeline-pill" />
-        <div className="skel-pill skel-timeline-pill" />
-      </div>
+      {/* 2. Warm Alabaster Sheet Skeleton */}
+      <div className="skel-explore-warm-sheet">
+        {/* Vibe Pills Row */}
+        <div className="skel-explore-vibe-row">
+          <div className="skel-pill skel-vibe-pill active" />
+          <div className="skel-pill skel-vibe-pill" />
+          <div className="skel-pill skel-vibe-pill" />
+          <div className="skel-pill skel-vibe-pill" />
+        </div>
 
-      {/* Category Filter Pills */}
-      <div className="skel-explore-category-row">
-        <div className="skel-pill skel-cat-pill" />
-        <div className="skel-pill skel-cat-pill" />
-        <div className="skel-pill skel-cat-pill" />
-        <div className="skel-pill skel-cat-pill" />
-      </div>
+        {/* Section Header */}
+        <div className="skel-explore-meta-row">
+          <div className="skel-line skel-section-title-line" />
+          <div className="skel-line skel-section-count-line" />
+        </div>
 
-      {/* Events Grid / Cards */}
-      <div className="skel-explore-cards-list">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className="skel-explore-event-card">
-            <div className="skel-card-poster" />
-            <div className="skel-card-body">
-              <div className="skel-card-top-row">
-                <div className="skel-bar skel-card-date" />
-                <div className="skel-pill skel-card-badge" />
+        {/* Poster Pass Cards Skeleton */}
+        <div className="skel-explore-cards-stream">
+          {[1, 2].map((item) => (
+            <div key={item} className="skel-explore-poster-card">
+              <div className="skel-card-top-badges">
+                <div className="skel-pill skel-stage-pill" />
+                <div className="skel-circle skel-arrow-pill" />
               </div>
-              <div className="skel-bar skel-card-title" />
-              <div className="skel-bar skel-card-venue" />
-              <div className="skel-card-footer">
-                <div className="skel-bar skel-card-price" />
-                <div className="skel-circle skel-card-action" />
+
+              <div className="skel-card-drawer">
+                <div className="skel-line skel-drawer-time" />
+                <div className="skel-line skel-drawer-title" />
+                <div className="skel-line skel-drawer-artist" />
+                <div className="skel-drawer-footer">
+                  <div className="skel-line skel-drawer-price" />
+                  <div className="skel-pill skel-drawer-btn" />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </motion.div>
   );

@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import AuroraFluidCanvas from './AuroraFluidCanvas';
+import ExploreSkeletonScreen from './ExploreSkeletonScreen';
 import './ExploreEventsScreen.css';
 
 const DATE_TABS = [
@@ -26,8 +27,16 @@ export default function ExploreEventsScreen({
   onBack = () => {},
   onOpenCitySelector = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDateTab, setSelectedDateTab] = useState('all');
   const [selectedVibe, setSelectedVibe] = useState('all');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredEvents = useMemo(() => {
     return events.filter(e => {
@@ -48,9 +57,21 @@ export default function ExploreEventsScreen({
   }, [events, selectedDateTab, selectedVibe]);
 
   return (
-    <div className="mobile-explore-screen">
-      {/* ── 1. The Obsidian Curved Stage Dome Header (Matches Home Screen) ── */}
-      <header className="explore-curved-dome-header">
+    <div className="mobile-explore-screen-root" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <ExploreSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key="content"
+            className="mobile-explore-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            {/* ── 1. The Obsidian Curved Stage Dome Header (Matches Home Screen) ── */}
+            <header className="explore-curved-dome-header">
         {/* Northern Lights Aurora Canvas Background */}
         <div className="explore-aurora-viewport">
           <AuroraFluidCanvas />
@@ -214,6 +235,9 @@ export default function ExploreEventsScreen({
         {/* Space for Bottom Navigation */}
         <div className="explore-bottom-spacer" />
       </main>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

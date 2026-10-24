@@ -24,8 +24,16 @@ export default function TicketScreen({
   onFindConcerts = () => {},
   onShowToast = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const ticketList = tickets.length > 0 ? tickets : [DEFAULT_TICKET];
   const [ticketIndex, setTicketIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 350);
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentTicket = ticketList[ticketIndex] || ticketList[0];
 
@@ -47,8 +55,20 @@ export default function TicketScreen({
   };
 
   return (
-    <div className="mobile-ticket-screen">
-      {/* Header */}
+    <div className="mobile-ticket-screen-root" style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <AnimatePresence mode="wait">
+        {isLoading ? (
+          <TicketSkeletonScreen key="skeleton" />
+        ) : (
+          <motion.div 
+            key="content"
+            className="mobile-ticket-screen"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+          >
+            {/* Header */}
       <header className="ticket-screen-header">
         <motion.button 
           className="ticket-nav-btn" 
@@ -136,6 +156,9 @@ export default function TicketScreen({
 
       <div className="ticket-screen-spacer" />
       <div style={{ height: 85, flexShrink: 0 }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

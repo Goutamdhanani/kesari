@@ -1,5 +1,6 @@
 /* ============================================================
    EXPLORE SKELETON SCREEN — Apple HIG Shimmer
+   Zero Cumulative Layout Shift (CLS = 0) matching ExploreEventsScreen
    ============================================================ */
 
 .explore-skeleton-screen {
@@ -8,161 +9,253 @@
   display: flex;
   flex-direction: column;
   background: var(--color-canvas-warm, #F7F4EE);
-  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 90px;
   box-sizing: border-box;
   overflow: hidden;
   user-select: none;
   pointer-events: none;
-  gap: 14px;
 }
 
-.skel-explore-header {
+/* Shimmer Animation */
+@keyframes explore-skel-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skel-circle,
+.skel-pill,
+.skel-line {
+  background: linear-gradient(
+    90deg,
+    rgba(228, 223, 212, 0.45) 0%,
+    rgba(247, 244, 238, 0.95) 45%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(247, 244, 238, 0.95) 55%,
+    rgba(228, 223, 212, 0.45) 100%
+  );
+  background-size: 250% 100%;
+  animation: explore-skel-shimmer 1.5s infinite linear;
+}
+
+/* ── 1. Curved Dome Skeleton ── */
+.skel-explore-curved-dome {
+  background: rgba(14, 15, 23, 0.95);
+  border-radius: 0 0 28px 28px;
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid rgba(226, 91, 22, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.skel-explore-dome-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.skel-header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.skel-back-circle {
+.skel-explore-back-btn {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.skel-header-titles {
+.skel-explore-title-box {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
 }
 
-.skel-title-bar {
-  width: 110px;
-  height: 16px;
+.skel-explore-beacon-line {
+  width: 90px;
+  height: 8px;
   border-radius: 4px;
+  background: rgba(218, 251, 113, 0.2);
 }
 
-.skel-sub-bar {
-  width: 80px;
-  height: 10px;
-  border-radius: 3px;
+.skel-explore-heading-line {
+  width: 120px;
+  height: 16px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.skel-city-chip {
-  width: 90px;
-  height: 28px;
+.skel-explore-venue-pill {
+  width: 85px;
+  height: 26px;
   border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(226, 91, 22, 0.3);
 }
 
-.skel-explore-timeline-row {
+/* Date Tabs inside Dome */
+.skel-explore-date-tabs {
   display: flex;
-  gap: 8px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 3px;
 }
 
-.skel-timeline-pill-active {
-  width: 75px;
-  height: 30px;
-  border-radius: 999px;
-  background: #12131A !important;
+.skel-date-pill {
+  flex: 1;
+  height: 28px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.06);
 }
 
-.skel-timeline-pill {
-  width: 90px;
-  height: 30px;
-  border-radius: 999px;
+.skel-date-pill.active {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.skel-explore-category-row {
+/* ── 2. Warm Alabaster Sheet Skeleton ── */
+.skel-explore-warm-sheet {
+  padding: 16px 16px 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.skel-explore-vibe-row {
   display: flex;
   gap: 7px;
   overflow: hidden;
 }
 
-.skel-cat-pill {
-  width: 65px;
+.skel-vibe-pill {
+  width: 70px;
   height: 28px;
   border-radius: 999px;
-}
-
-.skel-explore-cards-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 4px;
-}
-
-.skel-explore-event-card {
-  display: flex;
   background: #FFFFFF;
-  border-radius: 20px;
-  overflow: hidden;
-  height: 105px;
-  border: 1px solid rgba(18, 19, 26, 0.05);
-}
-
-.skel-card-poster {
-  width: 95px;
-  height: 100%;
+  border: 1px solid rgba(18, 19, 26, 0.08);
   flex-shrink: 0;
 }
 
-.skel-card-body {
-  flex: 1;
-  padding: 10px 12px;
+.skel-vibe-pill.active {
+  background: #12131A;
+}
+
+.skel-explore-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skel-section-title-line {
+  width: 95px;
+  height: 14px;
+  border-radius: 4px;
+}
+
+.skel-section-count-line {
+  width: 45px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+/* Poster Pass Card Skeletons */
+.skel-explore-cards-stream {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skel-explore-poster-card {
+  width: 100%;
+  height: 240px;
+  border-radius: 22px;
+  background: #12141D;
+  border: 1px solid rgba(226, 91, 22, 0.32);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 14px;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
-.skel-card-top-row {
+.skel-card-top-badges {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.skel-card-date {
-  width: 60px;
-  height: 9px;
-  border-radius: 2px;
-}
-
-.skel-card-badge {
-  width: 50px;
-  height: 18px;
+.skel-stage-pill {
+  width: 80px;
+  height: 22px;
   border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(226, 91, 22, 0.3);
 }
 
-.skel-card-title {
-  width: 140px;
-  height: 14px;
-  border-radius: 3px;
+.skel-arrow-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(226, 91, 22, 0.3);
 }
 
-.skel-card-venue {
-  width: 90px;
+.skel-card-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(14, 15, 23, 0.85);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.skel-drawer-time {
+  width: 110px;
   height: 10px;
   border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.skel-card-footer {
+.skel-drawer-title {
+  width: 180px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.skel-drawer-artist {
+  width: 130px;
+  height: 11px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.skel-drawer-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.skel-card-price {
-  width: 45px;
-  height: 12px;
-  border-radius: 3px;
+.skel-drawer-price {
+  width: 60px;
+  height: 16px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
-.skel-card-action {
-  width: 24px;
+.skel-drawer-btn {
+  width: 65px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(226, 91, 22, 0.5) 0%, rgba(200, 74, 14, 0.5) 100%);
 }
