@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import HomeSkeletonScreen from './HomeSkeletonScreen';
@@ -175,11 +175,13 @@ const itemVariants = {
 };
 
 export default function HomeScreen({ 
+  events = [],
   onSelectEvent = () => {}, 
   onOpenTicket = () => {},
   onNavigate = () => {},
   onOpenNotifications = () => {},
   onOpenCitySelector = () => {},
+  onOpenAdmin = () => {},
   unreadCount = 2
 }) {
   const [selectedVibe, setSelectedVibe] = useState('all');
@@ -204,7 +206,25 @@ export default function HomeScreen({
     }, 450);
   };
 
-  const filteredPasses = STAGE_PASSES.filter(pass => {
+  const activePasses = useMemo(() => {
+    if (events && events.length > 0) {
+      return events.filter(e => e.isPublic !== false).map(e => ({
+        id: e.id,
+        vibeId: e.genre === 'rock' ? 'music' : e.genre === 'acoustic' ? 'openmic' : e.genre === 'electronic' ? 'jam' : 'music',
+        badgeText: e.badge?.replace(/[^\w\s-]/gi, '').trim() || e.category || 'Live Studio',
+        stage: `${e.venueShort || 'Kesari Studio'} • ${e.time?.split(' - ')[0] || e.time}`,
+        title: e.title,
+        artist: e.lineup?.[0]?.name ? `${e.lineup[0].name} Live` : (e.category || 'Live Studio Session'),
+        price: e.priceLabel || `₹${e.price?.toLocaleString()}`,
+        timing: e.date,
+        image: e.image,
+        tag: e.room?.split('(')[0]?.trim() || 'Studio Pass'
+      }));
+    }
+    return STAGE_PASSES;
+  }, [events]);
+
+  const filteredPasses = activePasses.filter(pass => {
     if (selectedVibe === 'all') return true;
     return pass.vibeId === selectedVibe;
   });
@@ -240,6 +260,18 @@ export default function HomeScreen({
                 </div>
 
                 <div className="dome-nav-actions">
+                  {/* Studio Event CMS & Fast Fydo Import Trigger */}
+                  <motion.button 
+                    className="dome-glass-btn admin-cms-trigger" 
+                    onClick={onOpenAdmin}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.9 }}
+                    title="Studio CMS & Fydo Fast Import"
+                    aria-label="Studio Admin CMS"
+                  >
+                    <span style={{ fontSize: 13, lineHeight: 1 }}>⚡</span>
+                  </motion.button>
+
                   <motion.button 
                     className="dome-glass-btn" 
                     onClick={onOpenNotifications}

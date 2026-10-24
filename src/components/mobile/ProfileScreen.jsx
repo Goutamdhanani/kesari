@@ -8,6 +8,7 @@ export default function ProfileScreen({
   onBack = () => {},
   onOpenTickets = () => {},
   onSelectEvent = () => {},
+  onOpenAdmin = () => {},
   tickets = [],
   savedEvents = []
 }) {
@@ -188,6 +189,24 @@ export default function ProfileScreen({
                 onChange={() => setAppleWalletSync(!appleWalletSync)}
                 className="settings-toggle"
               />
+            </div>
+
+            <div className="settings-divider" />
+
+            {/* Studio CMS & Fydo Import Entry */}
+            <div 
+              className="settings-row" 
+              onClick={onOpenAdmin}
+              style={{ cursor: 'pointer', background: 'rgba(218, 251, 113, 0.08)', borderRadius: 12, padding: '10px 12px' }}
+            >
+              <div className="settings-label-wrap">
+                <span style={{ fontSize: 18 }}>⚡</span>
+                <div>
+                  <div className="settings-title" style={{ color: '#0C0D12', fontWeight: 750 }}>Studio CMS & Event Admin</div>
+                  <div className="settings-desc">Add, edit, delete events & fast Fydo auto-import</div>
+                </div>
+              </div>
+              <AppIcon name="arrow-up-right" size={16} color="#0042D9" strokeWidth={2.5} />
             </div>
           </div>
         </div>

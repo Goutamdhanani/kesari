@@ -1,0 +1,499 @@
+/* ============================================================
+   UPI CHECKOUT MODAL — Android UPI Intent & QR Code Sheet
+   ============================================================ */
+
+.upi-checkout-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 9, 12, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.upi-checkout-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #10121A;
+  border-radius: 28px 28px 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: none;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.7);
+  padding: 12px 18px 28px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.upi-checkout-modal::-webkit-scrollbar {
+  display: none;
+}
+
+/* Modal Drag Handle */
+.upi-modal-handle-bar {
+  display: flex;
+  justify-content: center;
+  padding: 4px 0 6px;
+}
+
+.upi-modal-drag-pill {
+  width: 40px;
+  height: 4.5px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+}
+
+/* Header */
+.upi-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upi-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(218, 251, 113, 0.12);
+  border: 1px solid rgba(218, 251, 113, 0.28);
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+.upi-logo-symbol {
+  font-size: 13px;
+  color: #DAFB71;
+}
+
+.upi-brand-text {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 11px;
+  font-weight: 750;
+  color: #DAFB71;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.upi-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.upi-close-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Order Summary Capsule */
+.upi-order-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 10px 12px;
+}
+
+.upi-event-thumb-wrap {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #08090C;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.upi-event-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.upi-event-meta-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.upi-event-title {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upi-tier-label {
+  font-size: 11.5px;
+  color: #8E92A0;
+  margin: 0;
+}
+
+.upi-price-highlight {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.upi-total-tag {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  color: #8E92A0;
+  font-weight: 600;
+}
+
+.upi-total-val {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 16px;
+  font-weight: 800;
+  color: #DAFB71;
+  letter-spacing: -0.02em;
+}
+
+/* Tabs */
+.upi-payment-mode-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 3px;
+  gap: 4px;
+}
+
+.upi-tab-btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  background: transparent;
+  color: #8E92A0;
+  border-radius: 11px;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.upi-tab-btn.active {
+  background: #FFFFFF;
+  color: #08090C;
+  font-weight: 750;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.upi-tab-icon {
+  font-size: 13px;
+}
+
+/* App Intent Section */
+.upi-app-intent-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.upi-intent-tip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #8E92A0;
+  padding: 0 2px;
+}
+
+.upi-dot-pulse {
+  width: 6px;
+  height: 6px;
+  background: #DAFB71;
+  border-radius: 50%;
+  animation: upiPulse 1.8s infinite;
+}
+
+@keyframes upiPulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Primary Pay Button (Android UPI Scheme) */
+.upi-primary-pay-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #DAFB71;
+  color: #08090C;
+  text-decoration: none;
+  padding: 13px 16px;
+  border-radius: 16px;
+  font-weight: 750;
+  box-shadow: 0 6px 20px rgba(218, 251, 113, 0.28);
+  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+
+.upi-primary-pay-button:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 24px rgba(218, 251, 113, 0.4);
+}
+
+.upi-primary-pay-button:active {
+  transform: scale(0.98);
+}
+
+.upi-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.upi-btn-icon {
+  font-size: 20px;
+}
+
+.upi-btn-text-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.upi-btn-main {
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #08090C;
+  letter-spacing: -0.01em;
+}
+
+.upi-btn-sub {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(8, 9, 12, 0.75);
+}
+
+/* Quick Apps Grid */
+.upi-quick-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.upi-quick-app-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 8px 6px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 650;
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.upi-quick-app-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.quick-app-icon {
+  font-size: 12px;
+}
+
+/* VPA Copy Box */
+.upi-vpa-copy-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.upi-vpa-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.upi-vpa-label {
+  font-size: 9.5px;
+  text-transform: uppercase;
+  color: #8E92A0;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.upi-vpa-text {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #DAFB71;
+}
+
+.upi-copy-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.upi-copy-action-btn.copied {
+  background: rgba(218, 251, 113, 0.18);
+  color: #DAFB71;
+  border-color: #DAFB71;
+}
+
+/* QR Code Section */
+.upi-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.upi-qr-frame {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upi-qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.upi-qr-scan-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #DAFB71, transparent);
+  animation: qrScanLine 2.2s infinite ease-in-out;
+}
+
+@keyframes qrScanLine {
+  0% { transform: translateY(0); opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { transform: translateY(160px); opacity: 0; }
+}
+
+.upi-qr-hint {
+  font-size: 11.5px;
+  color: #8E92A0;
+  margin: 0;
+  text-align: center;
+}
+
+/* Footer Actions */
+.upi-footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.upi-confirm-paid-btn {
+  width: 100%;
+  background: #0042D9;
+  color: #FFFFFF;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-family: var(--font-family-display, -apple-system, sans-serif);
+  font-size: 13.5px;
+  font-weight: 750;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 66, 217, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upi-confirm-paid-btn:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.upi-verifying-state {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upi-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #FFFFFF;
+  border-radius: 50%;
+  animation: upiSpin 0.8s linear infinite;
+}
+
+@keyframes upiSpin {
+  to { transform: rotate(360deg); }
+}
+
+.upi-success-check {
+  font-weight: 900;
+  color: #DAFB71;
+  font-size: 16px;
+}
+
+.upi-security-note {
+  font-size: 10px;
+  color: #6B6F7B;
+  text-align: center;
+  margin: 0;
+}

@@ -21,9 +21,11 @@
 .detail-hero-banner {
   position: relative;
   width: 100%;
-  height: 260px;
+  aspect-ratio: 16 / 10;
+  min-height: 230px;
+  max-height: 290px;
   overflow: hidden;
-  background: #0C0D12;
+  background: #08090C;
   flex-shrink: 0;
 }
 
@@ -31,6 +33,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
+  display: block;
   transform-origin: center;
 }
 

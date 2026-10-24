@@ -10,6 +10,7 @@ import ProfileScreen from './ProfileScreen';
 import NotificationsSheet from './NotificationsSheet';
 import CitySelectorSheet from './CitySelectorSheet';
 import QRModal from './QRModal';
+import EventAdminModal from '../admin/EventAdminModal';
 import { FloatingBottomNav } from '../common/ControlWidgets';
 import { MOCK_EVENTS, INITIAL_TICKETS } from '../../data/mockEvents';
 import './MobileFrame.css';
@@ -22,7 +23,7 @@ const screenVariants = {
 
 export default function MobileFrame({ 
   initialScreen = 'home',
-  initialEventId = 'rock',
+  initialEventId = 'amour',
   onEventSelected = () => {}
 }) {
   const [currentScreen, setCurrentScreen] = useState(initialScreen);
@@ -31,10 +32,45 @@ export default function MobileFrame({
   const [tickets, setTickets] = useState(INITIAL_TICKETS);
   const [activeQRTicket, setActiveQRTicket] = useState(null);
 
+  // Global Events Catalog with LocalStorage persistence
+  const [events, setEvents] = useState(() => {
+    try {
+      const saved = localStorage.getItem('kesari_events_catalog');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return MOCK_EVENTS;
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('kesari_events_catalog', JSON.stringify(events));
+    } catch {}
+  }, [events]);
+
   // Sheets & Modals
+  const [showAdminModal, setShowAdminModal] = useState(false);
   const [showQRModal, setShowQRModal] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showCitySelector, setShowCitySelector] = useState(false);
+
+  // Event Catalog CRUD Handlers
+  const handleAddEvent = (newEvent) => {
+    setEvents(prev => [newEvent, ...prev]);
+    showToast(`Published "${newEvent.title}"! 🎉`);
+  };
+
+  const handleUpdateEvent = (updatedEvent) => {
+    setEvents(prev => prev.map(e => e.id === updatedEvent.id ? updatedEvent : e));
+    showToast(`Updated "${updatedEvent.title}"! 🚀`);
+  };
+
+  const handleDeleteEvent = (eventId) => {
+    setEvents(prev => prev.filter(e => e.id !== eventId));
+    showToast('Event removed from catalog 🗑️');
+  };
 
   // In-app Notification list
   const [notifications, setNotifications] = useState([
@@ -138,6 +174,7 @@ export default function MobileFrame({
                 style={{ width: '100%', height: '100%' }}
               >
                 <HomeScreen 
+                  events={events}
                   onSelectEvent={handleSelectEvent}
                   onOpenTicket={() => setCurrentScreen('ticket')}
                   onNavigate={(scr) => setCurrentScreen(scr)}
@@ -146,6 +183,7 @@ export default function MobileFrame({
                     setUnreadCount(0);
                   }}
                   onOpenCitySelector={() => setShowCitySelector(true)}
+                  onOpenAdmin={() => setShowAdminModal(true)}
                   selectedCity={selectedCity}
                   unreadCount={unreadCount}
                 />
@@ -163,7 +201,7 @@ export default function MobileFrame({
                 style={{ width: '100%', height: '100%' }}
               >
                 <SearchScreen 
-                  events={MOCK_EVENTS}
+                  events={events}
                   onSelectEvent={handleSelectEvent}
                   onBack={() => setCurrentScreen('home')}
                   onTabChange={(tab) => {
@@ -187,7 +225,7 @@ export default function MobileFrame({
                 style={{ width: '100%', height: '100%' }}
               >
                 <ExploreEventsScreen 
-                  events={MOCK_EVENTS}
+                  events={events}
                   selectedCity={selectedCity}
                   onSelectEvent={handleSelectEvent}
                   onBack={() => setCurrentScreen('home')}
@@ -214,6 +252,7 @@ export default function MobileFrame({
               >
                 <EventDetailScreen 
                   eventId={selectedEventId}
+                  events={events}
                   onBack={() => setCurrentScreen('home')}
                   onBookSuccess={handleBookSuccess}
                 />
@@ -254,6 +293,7 @@ export default function MobileFrame({
                   onBack={() => setCurrentScreen('home')}
                   onOpenTickets={() => setCurrentScreen('ticket')}
                   onSelectEvent={handleSelectEvent}
+                  onOpenAdmin={() => setShowAdminModal(true)}
                 />
               </motion.div>
             )}
@@ -295,6 +335,29 @@ export default function MobileFrame({
               />
             </div>
           )}
+
+          {/* Floating Studio CMS Quick Trigger */}
+          <motion.button 
+            className="mobile-admin-floating-pill"
+            onClick={() => setShowAdminModal(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Open Studio CMS & Fydo Fast Import"
+          >
+            <span className="cms-pill-sparkle">⚡</span>
+            <span>Studio CMS</span>
+          </motion.button>
+
+          {/* Studio CMS & Fast Fydo Import Modal */}
+          <EventAdminModal 
+            isOpen={showAdminModal}
+            onClose={() => setShowAdminModal(false)}
+            events={events}
+            onAddEvent={handleAddEvent}
+            onUpdateEvent={handleUpdateEvent}
+            onDeleteEvent={handleDeleteEvent}
+            onSelectEvent={handleSelectEvent}
+          />
 
           {/* Gate Check-in QR Modal */}
           <QRModal 

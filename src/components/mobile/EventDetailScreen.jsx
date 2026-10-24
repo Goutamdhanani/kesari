@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import confetti from 'canvas-confetti';
 import AppIcon from '../common/AppIcon';
 import DetailSkeletonScreen from './DetailSkeletonScreen';
+import UPICheckoutModal from './UPICheckoutModal';
 import { MOCK_EVENTS } from '../../data/mockEvents';
 import './EventDetailScreen.css';
 
 export default function EventDetailScreen({
   eventId = 'rock',
+  events = MOCK_EVENTS,
   onBack = () => {},
   onBookSuccess = () => {}
 }) {
@@ -15,6 +16,7 @@ export default function EventDetailScreen({
   const [selectedTier, setSelectedTier] = useState('ga');
   const [ticketCount, setTicketCount] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
+  const [showUPIModal, setShowUPIModal] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,45 +26,27 @@ export default function EventDetailScreen({
     return () => clearTimeout(timer);
   }, [eventId]);
 
-  // Dynamic Bangalore Event Lookup
-  const eventData = MOCK_EVENTS.find(e => e.id === eventId) || MOCK_EVENTS[0];
+  // Dynamic Event Lookup from passed events or catalog
+  const eventData = (events && events.length > 0 ? events : MOCK_EVENTS).find(e => e.id === eventId) || (events || MOCK_EVENTS)[0];
 
   const tiers = eventData.tiers && eventData.tiers.length > 0 ? eventData.tiers : [
     { id: 'ga', name: 'General Admission', price: eventData.price, perks: 'Standard access to standing area and main bars' },
     { id: 'vip', name: 'VIP Pit & Express Pass', price: Math.round(eventData.price * 1.8), perks: 'Front barrier access, private lounge & express entry' }
   ];
 
+  // Set default tier if selected is not in tiers
+  useEffect(() => {
+    if (tiers.length > 0 && !tiers.find(t => t.id === selectedTier)) {
+      setSelectedTier(tiers[0].id);
+    }
+  }, [eventId, tiers]);
+
   const currentTierObj = tiers.find(t => t.id === selectedTier) || tiers[0];
   const currentPrice = currentTierObj.price;
   const totalPrice = currentPrice * ticketCount;
 
-  const handleCheckout = () => {
-    confetti({
-      particleCount: 80,
-      spread: 60,
-      origin: { y: 0.8 },
-      colors: ['#E50914', '#0042D9', '#DAFB71', '#FFFFFF']
-    });
-
-    const newTicket = {
-      id: `ticket-${Date.now()}`,
-      eventId: eventData.id,
-      eventTitle: eventData.title,
-      date: eventData.date,
-      time: eventData.time.split(' - ')[0] || eventData.time,
-      location: eventData.venue || `${eventData.venueShort}, Bangalore`,
-      seat: selectedTier === 'vip' ? 'VIP Pavilion #14' : 'General Admission',
-      tier: currentTierObj.name,
-      price: totalPrice,
-      quantity: ticketCount,
-      hash: `0x${Math.random().toString(16).substring(2, 8).toUpperCase()}...${Math.random().toString(16).substring(2, 6).toUpperCase()}`,
-      image: eventData.image,
-      parentBg: 'pale'
-    };
-
-    setTimeout(() => {
-      onBookSuccess(newTicket);
-    }, 350);
+  const handleOpenCheckout = () => {
+    setShowUPIModal(true);
   };
 
   const handleShare = () => {
@@ -233,17 +217,28 @@ export default function EventDetailScreen({
         </div>
         <motion.button 
           className="book-lime-cta-btn" 
-          onClick={handleCheckout}
+          onClick={handleOpenCheckout}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span>Book Pass • ₹{totalPrice.toLocaleString()}</span>
+          <span>Pay via UPI • ₹{totalPrice.toLocaleString()}</span>
           <AppIcon name="arrow-up-right" size={18} color="#FFFFFF" strokeWidth={2.5} />
         </motion.button>
       </div>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Instant Android UPI Intent & QR Checkout Modal */}
+      <UPICheckoutModal 
+        isOpen={showUPIModal}
+        onClose={() => setShowUPIModal(false)}
+        event={eventData}
+        tier={currentTierObj}
+        ticketCount={ticketCount}
+        totalPrice={totalPrice}
+        onPaymentSuccess={onBookSuccess}
+      />
     </div>
   );
 }

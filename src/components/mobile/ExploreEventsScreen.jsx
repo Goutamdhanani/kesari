@@ -40,7 +40,9 @@ export default function ExploreEventsScreen({
   }, []);
 
   const filteredEvents = useMemo(() => {
-    return events.filter(e => {
+    return (events || []).filter(e => {
+      if (e.isPublic === false) return false;
+
       // Date filter
       if (selectedDateTab === 'tonight' && e.dateFilter !== 'tonight') return false;
       if (selectedDateTab === 'weekend' && e.dateFilter !== 'weekend') return false;

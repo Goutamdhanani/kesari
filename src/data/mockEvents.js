@@ -1,5 +1,38 @@
 export const MOCK_EVENTS = [
   {
+    id: 'amour',
+    title: 'AMOUR – A Yash Raj Films Instrumental Tribute',
+    category: 'Instrumental Tribute',
+    genre: 'acoustic',
+    city: 'Bangalore',
+    date: 'Sunday • Nov 1, 2026',
+    dateFilter: 'nov',
+    time: '12:30 PM - 15:00 PM',
+    venue: 'Kesari - The Memory Studio, Koramangala, Bangalore',
+    venueShort: 'Kesari Studio, Koramangala',
+    room: 'Acoustic Chamber (40 Pax)',
+    roomType: 'main-stage',
+    decibels: '74 dB Symphony • Candlelight',
+    ticketCode: 'KSR-YRF-1101',
+    capacity: { total: 40, booked: 28, remaining: 12, percentage: 70 },
+    price: 1800,
+    priceLabel: '₹1,800',
+    image: 'https://dpak4w7tblqv8.cloudfront.net/EVENTS/dcbc1dbf-772d-4abb-9027-6f512bd5ba34.jpeg',
+    badge: '🎻 Yash Raj Films Live Tribute',
+    featured: true,
+    isPublic: true,
+    sourceUrl: 'https://greet.fydo.in/amour-a-yash-raj-films-instrumental-tribute',
+    description: "Some melodies never grow old. They stay with us through love stories, unforgettable moments and memories return to, time and again. Amour brings the magic of Yash Raj Films' iconic musical universe to life through a live instrumental tribute at Kesari - The Memory Studio, Bengaluru. Experience timeless compositions reimagined with acoustic strings, piano, and cinematic elegance.",
+    lineup: [
+      { name: 'Amour String Ensemble', role: 'Acoustic Quartet', time: '12:30 PM', img: '/assets/artist_1.png' },
+      { name: 'Kesari Chamber Soloists', role: 'Piano & Cello', time: '13:45 PM', img: '/assets/artist_2.png' }
+    ],
+    tiers: [
+      { id: 'couple', name: 'Couple Entry Pass', price: 1800, perks: 'Entry for 2 guests to the live instrumental tribute session' },
+      { id: 'vip-couple', name: 'VIP Front Row Couple Pass', price: 2500, perks: 'Stage-front seating for 2 + 2 artisanal coffees & commemorative score' }
+    ]
+  },
+  {
     id: 'rock',
     title: 'Rock Legends Reunion',
     category: 'Live Music Gig',
