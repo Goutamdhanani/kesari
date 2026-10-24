@@ -2,6 +2,7 @@ import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import { FloatingBottomNav } from '../common/ControlWidgets';
+import SearchSkeletonScreen from './SearchSkeletonScreen';
 import './SearchScreen.css';
 
 const TRENDING_SEARCHES = [
@@ -22,15 +23,23 @@ export default function SearchScreen({
   onTabChange = () => {},
   initialQuery = ''
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState(initialQuery);
   const [selectedGenre, setSelectedGenre] = useState('All');
   const inputRef = useRef(null);
 
   useEffect(() => {
-    if (inputRef.current) {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [isLoading]);
 
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
@@ -52,13 +61,18 @@ export default function SearchScreen({
   }, [events, query, selectedGenre]);
 
   return (
-    <motion.div 
-      className="mobile-search-screen"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.2 }}
-    >
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <SearchSkeletonScreen key="search-skel" />
+      ) : (
+        <motion.div 
+          key="search-content"
+          className="mobile-search-screen"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.2 }}
+        >
       {/* Search Header Bar */}
       <header className="search-screen-header">
         <div className="search-input-wrapper">
@@ -184,5 +198,7 @@ export default function SearchScreen({
         />
       </div>
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

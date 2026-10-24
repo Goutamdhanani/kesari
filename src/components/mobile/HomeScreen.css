@@ -254,14 +254,14 @@
 }
 
 .dome-act-title {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 21px;
-  font-weight: 800;
+  font-family: var(--font-family-display);
+  font-size: 18.5px;
+  font-weight: 700;
   color: #FFFFFF;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.022em;
+  line-height: 1.2;
   margin: 0;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 /* Soundwave Equalizer Bars */
@@ -339,11 +339,11 @@
 }
 
 .section-label {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 14.5px;
-  font-weight: 800;
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 700;
   color: #12131A;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .section-meta {
@@ -547,12 +547,12 @@
 }
 
 .poster-event-title {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-family: var(--font-family-display);
   font-size: 13.5px;
-  font-weight: 800;
+  font-weight: 700;
   color: #FFFFFF;
-  line-height: 1.22;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
   margin: 1px 0 0;
   white-space: nowrap;
   overflow: hidden;
@@ -577,11 +577,12 @@
 }
 
 .poster-price-val {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 14px;
-  font-weight: 850;
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 700;
   color: #FFFFFF;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
 }
 
 .poster-tag-chip {
@@ -665,12 +666,12 @@
 }
 
 .bento-poster-title {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-family: var(--font-family-display);
   font-size: 13.5px;
-  font-weight: 800;
+  font-weight: 700;
   color: #FFFFFF;
   line-height: 1.25;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
   margin: 4px 0 2px;
 }
 
@@ -752,11 +753,12 @@
 }
 
 .metric-giant-number span:first-child {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
+  font-family: var(--font-family-display);
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
   color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
 }
 
 .metric-pct {
@@ -912,9 +914,9 @@
 }
 
 .schedule-item-title {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-family: var(--font-family-display);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 650;
   color: #12131A;
   margin: 0;
   white-space: nowrap;
@@ -940,11 +942,12 @@
 }
 
 .schedule-price-tag {
-  font-family: var(--font-family-display, 'Syne', sans-serif);
+  font-family: var(--font-family-display);
   font-size: 13px;
-  font-weight: 850;
+  font-weight: 700;
   color: #12131A;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
 }
 
 .schedule-quick-btn {

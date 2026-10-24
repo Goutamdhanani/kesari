@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
+import ProfileSkeletonScreen from './ProfileSkeletonScreen';
 import './ProfileScreen.css';
 
 export default function ProfileScreen({
@@ -10,18 +11,31 @@ export default function ProfileScreen({
   tickets = [],
   savedEvents = []
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('passes'); // 'passes' | 'saved' | 'settings'
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [appleWalletSync, setAppleWalletSync] = useState(true);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <motion.div 
-      className="mobile-profile-screen"
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      transition={{ duration: 0.2 }}
-    >
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <ProfileSkeletonScreen key="profile-skel" />
+      ) : (
+        <motion.div 
+          key="profile-content"
+          className="mobile-profile-screen"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.2 }}
+        >
       {/* Header Bar */}
       <header className="profile-top-bar">
         <button className="profile-back-btn" onClick={onBack} aria-label="Go Back">
@@ -180,5 +194,7 @@ export default function ProfileScreen({
 
       <div style={{ height: 30 }} />
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

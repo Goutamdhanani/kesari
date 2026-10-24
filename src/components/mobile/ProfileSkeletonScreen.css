@@ -1,0 +1,167 @@
+/* ============================================================
+   PROFILE SKELETON SCREEN — Apple HIG Shimmer
+   ============================================================ */
+
+.profile-skeleton-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-canvas-warm, #F7F4EE);
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 90px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  gap: 16px;
+}
+
+.skel-profile-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skel-prof-nav-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.skel-prof-title {
+  width: 90px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skel-profile-identity-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(18, 19, 26, 0.04);
+  border: 1px solid rgba(18, 19, 26, 0.05);
+}
+
+.skel-avatar-ring-box {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+}
+
+.skel-user-name {
+  width: 120px;
+  height: 16px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.skel-user-handle {
+  width: 150px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.skel-user-badge {
+  width: 130px;
+  height: 22px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+.skel-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(18, 19, 26, 0.06);
+}
+
+.skel-stat-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.skel-stat-num {
+  width: 28px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.skel-stat-lbl {
+  width: 50px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.skel-profile-tabs-row {
+  display: flex;
+  gap: 8px;
+}
+
+.skel-tab-active {
+  flex: 1;
+  height: 36px;
+  border-radius: 999px;
+  background: #12131A !important;
+}
+
+.skel-tab-item {
+  flex: 1;
+  height: 36px;
+  border-radius: 999px;
+}
+
+.skel-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skel-profile-pass-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  padding: 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(18, 19, 26, 0.05);
+}
+
+.skel-pass-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.skel-pass-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skel-pass-name {
+  width: 130px;
+  height: 13px;
+  border-radius: 3px;
+}
+
+.skel-pass-date {
+  width: 80px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.skel-pass-qr-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}

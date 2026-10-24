@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import TicketCard from '../ticket/TicketCard';
+import TicketSkeletonScreen from './TicketSkeletonScreen';
 import './TicketScreen.css';
 
 const DEFAULT_TICKET = {
@@ -23,8 +24,16 @@ export default function TicketScreen({
   onFindConcerts = () => {},
   onShowToast = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const ticketList = tickets.length > 0 ? tickets : [DEFAULT_TICKET];
   const [ticketIndex, setTicketIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentTicket = ticketList[ticketIndex] || ticketList[0];
 
@@ -46,13 +55,18 @@ export default function TicketScreen({
   };
 
   return (
-    <motion.div 
-      className="mobile-ticket-screen"
-      initial={{ opacity: 0, scale: 0.98 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      transition={{ duration: 0.22 }}
-    >
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <TicketSkeletonScreen key="ticket-skel" />
+      ) : (
+        <motion.div 
+          key="ticket-content"
+          className="mobile-ticket-screen"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.98 }}
+          transition={{ duration: 0.22 }}
+        >
       {/* Header */}
       <header className="ticket-screen-header">
         <motion.button 
@@ -141,5 +155,7 @@ export default function TicketScreen({
 
       <div className="ticket-screen-spacer" />
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

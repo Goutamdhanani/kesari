@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 import AppIcon from '../common/AppIcon';
+import DetailSkeletonScreen from './DetailSkeletonScreen';
 import './EventDetailScreen.css';
 
 export default function EventDetailScreen({
@@ -9,9 +10,17 @@ export default function EventDetailScreen({
   onBack = () => {},
   onBookSuccess = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTier, setSelectedTier] = useState('ga');
   const [ticketCount, setTicketCount] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
 
   const eventData = eventId === 'jazz' ? {
     title: "Jazz & Blues Festival",
@@ -89,13 +98,18 @@ export default function EventDetailScreen({
   };
 
   return (
-    <motion.div 
-      className="mobile-event-detail-screen"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -20 }}
-      transition={{ duration: 0.25 }}
-    >
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <DetailSkeletonScreen key="detail-skel" />
+      ) : (
+        <motion.div 
+          key="detail-content"
+          className="mobile-event-detail-screen"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.25 }}
+        >
       {/* Hero Header Media */}
       <div className="detail-hero-banner">
         <img src={eventData.image} alt={eventData.title} className="detail-hero-img" />
@@ -252,5 +266,7 @@ export default function EventDetailScreen({
         </motion.button>
       </div>
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

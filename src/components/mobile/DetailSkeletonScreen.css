@@ -1,0 +1,178 @@
+/* ============================================================
+   EVENT DETAIL SKELETON SCREEN — Apple HIG Shimmer
+   ============================================================ */
+
+.detail-skeleton-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-canvas-warm, #F7F4EE);
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  position: relative;
+}
+
+.skel-detail-hero {
+  width: 100%;
+  height: 230px;
+  background: #181A24;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.skel-hero-nav {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top, 16px));
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skel-hero-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.skel-detail-sheet {
+  flex: 1;
+  background: var(--color-canvas-warm, #F7F4EE);
+  border-radius: 28px 28px 0 0;
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+  padding: 20px 16px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.skel-detail-badge {
+  width: 110px;
+  height: 22px;
+  border-radius: 999px;
+}
+
+.skel-detail-title {
+  width: 210px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.skel-detail-artist {
+  width: 140px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.skel-detail-info-row {
+  display: flex;
+  gap: 16px;
+  margin-top: 2px;
+}
+
+.skel-detail-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.skel-info-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.skel-info-line {
+  width: 90px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.skel-detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.skel-sec-title {
+  width: 95px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.skel-lineup-avatars-row {
+  display: flex;
+  gap: 14px;
+}
+
+.skel-lineup-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skel-tier-cards-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skel-tier-card-active {
+  height: 58px;
+  border-radius: 16px;
+  background: #12131A !important;
+}
+
+.skel-tier-card {
+  height: 58px;
+  border-radius: 16px;
+  background: #FFFFFF;
+}
+
+.skel-detail-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(18, 19, 26, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.skel-price-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.skel-price-label {
+  width: 50px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.skel-price-num {
+  width: 75px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.skel-book-btn {
+  width: 140px;
+  height: 44px;
+  border-radius: 999px;
+  background: #12131A !important;
+}

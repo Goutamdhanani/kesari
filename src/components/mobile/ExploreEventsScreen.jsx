@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import AppIcon from '../common/AppIcon';
 import { FloatingBottomNav } from '../common/ControlWidgets';
+import ExploreSkeletonScreen from './ExploreSkeletonScreen';
 import './ExploreEventsScreen.css';
 
 const TIMELINES = ['All Dates', 'This Weekend', 'Next Week', 'Trending'];
@@ -15,8 +16,16 @@ export default function ExploreEventsScreen({
   onTabChange = () => {},
   onOpenCitySelector = () => {}
 }) {
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedTimeline, setSelectedTimeline] = useState('All Dates');
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 380);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredEvents = events.filter(e => {
     if (selectedCategory !== 'All' && 
@@ -28,13 +37,18 @@ export default function ExploreEventsScreen({
   });
 
   return (
-    <motion.div 
-      className="mobile-explore-screen"
-      initial={{ opacity: 0, x: 15 }}
-      animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: -15 }}
-      transition={{ duration: 0.22 }}
-    >
+    <AnimatePresence mode="wait">
+      {isLoading ? (
+        <ExploreSkeletonScreen key="explore-skel" />
+      ) : (
+        <motion.div 
+          key="explore-content"
+          className="mobile-explore-screen"
+          initial={{ opacity: 0, x: 15 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -15 }}
+          transition={{ duration: 0.22 }}
+        >
       {/* Top Header */}
       <header className="explore-header">
         <div className="explore-header-left">
@@ -155,5 +169,7 @@ export default function ExploreEventsScreen({
         />
       </div>
     </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

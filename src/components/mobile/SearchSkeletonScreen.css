@@ -1,0 +1,173 @@
+/* ============================================================
+   SEARCH SKELETON SCREEN — Apple HIG Shimmer
+   ============================================================ */
+
+.search-skeleton-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-canvas-warm, #F7F4EE);
+  padding: max(16px, env(safe-area-inset-top, 16px)) 16px 90px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  gap: 16px;
+}
+
+@keyframes apple-skel-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skel-circle,
+.skel-pill,
+.skel-bar,
+.skel-thumb-box {
+  background: linear-gradient(
+    90deg,
+    rgba(228, 223, 212, 0.45) 0%,
+    rgba(247, 244, 238, 0.95) 45%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(247, 244, 238, 0.95) 55%,
+    rgba(228, 223, 212, 0.45) 100%
+  );
+  background-size: 250% 100%;
+  animation: apple-skel-shimmer 1.5s infinite linear;
+}
+
+.skel-search-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skel-search-input-box {
+  flex: 1;
+  height: 44px;
+  border-radius: 999px;
+  background: #FFFFFF;
+  border: 1px solid rgba(18, 19, 26, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+}
+
+.skel-search-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+}
+
+.skel-search-placeholder {
+  width: 140px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+.skel-cancel-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.skel-search-pills-row {
+  display: flex;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.skel-genre-pill-active {
+  width: 52px;
+  height: 32px;
+  border-radius: 999px;
+  background: #12131A !important;
+}
+
+.skel-genre-pill {
+  width: 68px;
+  height: 32px;
+  border-radius: 999px;
+}
+
+.skel-trending-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skel-section-label {
+  width: 90px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.skel-trending-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skel-trend-tag {
+  width: 75px;
+  height: 26px;
+  border-radius: 999px;
+}
+
+.skel-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.skel-result-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFFFF;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(18, 19, 26, 0.05);
+}
+
+.skel-thumb-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.skel-result-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skel-res-title {
+  width: 130px;
+  height: 13px;
+  border-radius: 4px;
+}
+
+.skel-res-sub {
+  width: 95px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.skel-res-venue {
+  width: 70px;
+  height: 9px;
+  border-radius: 3px;
+}
+
+.skel-res-price {
+  width: 54px;
+  height: 26px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}

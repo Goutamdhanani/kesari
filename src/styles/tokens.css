@@ -32,10 +32,10 @@
   --color-royal-blue: #0042D9;
   --color-electric-lime: #DAFB71;
 
-  /* Typography */
-  --font-family-display: 'Syne', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-  --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
-  --font-family-mono: 'Space Grotesk', monospace;
+  /* Apple Human Interface Guidelines (HIG) Typography */
+  --font-family-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", -system-ui, sans-serif;
+  --font-family-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", -system-ui, sans-serif;
+  --font-family-mono: "SF Mono", Menlo, Monaco, Consolas, "Space Grotesk", monospace;
 
   /* Radii */
   --radius-sm: 10px;
