@@ -13,7 +13,7 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 54px 18px 32px;
+  padding: max(20px, env(safe-area-inset-top, 20px)) 18px 32px;
 }
 .mobile-ticket-screen::-webkit-scrollbar { display: none; }
 

@@ -167,6 +167,7 @@ export function FloatingBottomNav({
   const tabs = [
     { id: 'home', icon: 'home', label: 'Home' },
     { id: 'search', icon: 'search', label: 'Search' },
+    { id: 'ai', icon: 'sparkles', label: 'JamAI', isAi: true },
     { id: 'calendar', icon: 'calendar', label: 'Events' },
     { id: 'ticket', icon: 'ticket', label: 'Tickets' }
   ];
@@ -178,17 +179,17 @@ export function FloatingBottomNav({
         return (
           <motion.button
             key={tab.id}
-            className={`nav-tab-item ${isActive ? 'active-lime-tab' : 'inactive-dark-tab'}`}
+            className={`nav-tab-item ${isActive ? 'active-lime-tab' : 'inactive-dark-tab'} ${tab.isAi ? 'ai-concierge-tab' : ''}`}
             onClick={() => onTabChange(tab.id)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.12 }}
+            whileTap={{ scale: 0.88 }}
             aria-label={tab.label}
           >
             <AppIcon 
               name={tab.icon} 
-              size={20} 
-              color={isActive ? '#080808' : '#FFFFFF'} 
-              strokeWidth={isActive ? 2.5 : 2}
+              size={tab.isAi ? 21 : 19} 
+              color={isActive ? '#080808' : (tab.isAi ? '#DAFB71' : '#FFFFFF')} 
+              strokeWidth={isActive ? 2.5 : (tab.isAi ? 2.2 : 2)}
             />
           </motion.button>
         );

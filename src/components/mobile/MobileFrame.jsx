@@ -6,6 +6,7 @@ import TicketScreen from './TicketScreen';
 import EventDetailScreen from './EventDetailScreen';
 import SearchScreen from './SearchScreen';
 import ExploreEventsScreen from './ExploreEventsScreen';
+import JamAIScreen from './JamAIScreen';
 import ProfileScreen from './ProfileScreen';
 import NotificationsSheet from './NotificationsSheet';
 import CitySelectorSheet from './CitySelectorSheet';
@@ -13,20 +14,10 @@ import QRModal from './QRModal';
 import { MOCK_EVENTS, INITIAL_TICKETS } from '../../data/mockEvents';
 import './MobileFrame.css';
 
-const SCREEN_TABS = [
-  { id: 'home',       label: '🏠 Home' },
-  { id: 'search',     label: '🔍 Search' },
-  { id: 'explore',    label: '📅 Explore' },
-  { id: 'details',    label: '🎸 Event' },
-  { id: 'ticket',     label: '🎟️ Tickets' },
-  { id: 'profile',    label: '👤 Profile' },
-  { id: 'onboarding', label: '🚀 Onboarding' },
-];
-
 const screenVariants = {
-  initial: { opacity: 0, x: 16 },
-  animate: { opacity: 1, x: 0, transition: { duration: 0.22, ease: [0.19, 1, 0.22, 1] } },
-  exit:    { opacity: 0, x: -16, transition: { duration: 0.16 } },
+  initial: { opacity: 0, scale: 0.985, y: 8 },
+  animate: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.24, ease: [0.19, 1, 0.22, 1] } },
+  exit:    { opacity: 0, scale: 0.985, y: -8, transition: { duration: 0.16 } },
 };
 
 export default function MobileFrame({ 
@@ -71,7 +62,7 @@ export default function MobileFrame({
   ]);
   const [unreadCount, setUnreadCount] = useState(2);
 
-  // In-phone Micro Toast
+  // In-app Toast Feedback Banner
   const [toastMessage, setToastMessage] = useState('');
   const showToast = (msg) => {
     setToastMessage(msg);
@@ -113,58 +104,15 @@ export default function MobileFrame({
   };
 
   return (
-    <div className="mobile-frame-showcase">
-      {/* Screen Quick-Switcher Bar (Desktop Header for Phone Preview) */}
-      <div className="frame-screen-switcher" role="tablist" aria-label="Mobile screen preview">
-        <span className="switcher-label">Screen:</span>
-        {SCREEN_TABS.map(tab => (
-          <button
-            key={tab.id}
-            role="tab"
-            aria-selected={currentScreen === tab.id}
-            className={`switch-tab-btn ${currentScreen === tab.id ? 'active' : ''}`}
-            onClick={() => setCurrentScreen(tab.id)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+    <div className="eventjam-web-app-viewport">
+      {/* Centered Modern Web App Stage (No artificial phone chassis or fake status bar) */}
+      <main className="eventjam-app-stage" role="main" aria-label="Event Jam App">
 
-      {/* iPhone Device Frame */}
-      <div className="iphone-outer-chassis" role="presentation" aria-label="iPhone mobile preview">
-        
-        {/* Dynamic Island */}
-        <div className="iphone-dynamic-island" aria-hidden="true">
-          <div className="island-camera-lens" />
-        </div>
-
-        {/* Status Bar */}
-        <div className="iphone-status-bar" aria-hidden="true">
-          <span className="status-time">9:41</span>
-          <div className="status-icons">
-            {/* Signal Bars */}
-            <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor">
-              <rect x="0" y="9" width="3" height="3" rx="0.5"/>
-              <rect x="4.5" y="6.5" width="3" height="5.5" rx="0.5"/>
-              <rect x="9" y="3.5" width="3" height="8.5" rx="0.5"/>
-              <rect x="13.5" y="0" width="3" height="12" rx="0.5"/>
-            </svg>
-            {/* WiFi */}
-            <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
-              <path fillRule="evenodd" clipRule="evenodd" d="M8 3C5.5 3 3.2 3.9 1.5 5.5L0 4C2.1 1.5 5 0 8 0C11 0 13.9 1.5 16 4L14.5 5.5C12.8 3.9 10.5 3 8 3ZM8 7C6.5 7 5.2 7.6 4.2 8.5L2.7 7C4 5.8 5.9 5 8 5C10.1 5 12 5.8 13.3 7L11.8 8.5C10.8 7.6 9.5 7 8 7ZM8 11C7.2 11 6.5 11.3 6 11.8L8 14L10 11.8C9.5 11.3 8.8 11 8 11Z" fill="currentColor"/>
-            </svg>
-            {/* Battery */}
-            <div className="battery-indicator-wrap">
-              <div className="battery-level-bar" />
-            </div>
-          </div>
-        </div>
-
-        {/* In-Phone Feedback Micro Toast Banner */}
+        {/* In-App Feedback Micro Toast Banner */}
         <AnimatePresence>
           {toastMessage && (
             <motion.div 
-              className="in-phone-toast-pill"
+              className="in-app-toast-pill"
               initial={{ opacity: 0, y: -20, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -15, scale: 0.92 }}
@@ -175,8 +123,8 @@ export default function MobileFrame({
           )}
         </AnimatePresence>
 
-        {/* Screen Viewport */}
-        <div className="iphone-screen-viewport">
+        {/* Screen Viewport Container */}
+        <div className="eventjam-screen-viewport">
           <AnimatePresence mode="wait">
             
             {/* 1. Home Screen */}
@@ -220,6 +168,7 @@ export default function MobileFrame({
                   onBack={() => setCurrentScreen('home')}
                   onTabChange={(tab) => {
                     if (tab === 'home') setCurrentScreen('home');
+                    else if (tab === 'ai') setCurrentScreen('ai');
                     else if (tab === 'calendar') setCurrentScreen('explore');
                     else if (tab === 'ticket') setCurrentScreen('ticket');
                   }}
@@ -245,6 +194,7 @@ export default function MobileFrame({
                   onTabChange={(tab) => {
                     if (tab === 'home') setCurrentScreen('home');
                     else if (tab === 'search') setCurrentScreen('search');
+                    else if (tab === 'ai') setCurrentScreen('ai');
                     else if (tab === 'ticket') setCurrentScreen('ticket');
                   }}
                   onOpenCitySelector={() => setShowCitySelector(true)}
@@ -252,7 +202,30 @@ export default function MobileFrame({
               </motion.div>
             )}
 
-            {/* 4. Event Detail & Booking Screen */}
+            {/* 4. JamAI Neural Vibe Concierge Screen */}
+            {currentScreen === 'ai' && (
+              <motion.div
+                key="ai"
+                variants={screenVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                style={{ width: '100%', height: '100%' }}
+              >
+                <JamAIScreen 
+                  onSelectEvent={handleSelectEvent}
+                  onBack={() => setCurrentScreen('home')}
+                  onTabChange={(tab) => {
+                    if (tab === 'home') setCurrentScreen('home');
+                    else if (tab === 'search') setCurrentScreen('search');
+                    else if (tab === 'calendar') setCurrentScreen('explore');
+                    else if (tab === 'ticket') setCurrentScreen('ticket');
+                  }}
+                />
+              </motion.div>
+            )}
+
+            {/* 5. Event Detail & Booking Screen */}
             {currentScreen === 'details' && (
               <motion.div
                 key="details"
@@ -270,7 +243,7 @@ export default function MobileFrame({
               </motion.div>
             )}
 
-            {/* 5. Ticket Screen */}
+            {/* 6. Ticket Screen */}
             {currentScreen === 'ticket' && (
               <motion.div
                 key="ticket"
@@ -289,7 +262,7 @@ export default function MobileFrame({
               </motion.div>
             )}
 
-            {/* 6. Profile & Wallet Screen */}
+            {/* 7. Profile & Wallet Screen */}
             {currentScreen === 'profile' && (
               <motion.div
                 key="profile"
@@ -308,7 +281,7 @@ export default function MobileFrame({
               </motion.div>
             )}
 
-            {/* 7. Onboarding Screen */}
+            {/* 8. Onboarding Screen */}
             {currentScreen === 'onboarding' && (
               <motion.div
                 key="onboarding"
@@ -352,15 +325,7 @@ export default function MobileFrame({
             onSelectCity={handleSelectCity}
           />
         </div>
-
-        {/* iPhone Home Indicator */}
-        <div 
-          className="iphone-home-indicator" 
-          aria-label="Home Bar"
-          onClick={() => setCurrentScreen('home')}
-          title="Tap to go Home"
-        />
-      </div>
+      </main>
     </div>
   );
 }

@@ -269,3 +269,19 @@
 .nav-tab-item.inactive-dark-tab {
   background: transparent;
 }
+
+.nav-tab-item.ai-concierge-tab:not(.active-lime-tab) {
+  background: linear-gradient(135deg, rgba(0, 66, 217, 0.35) 0%, rgba(218, 251, 113, 0.25) 100%);
+  border: 1px solid rgba(218, 251, 113, 0.4);
+  box-shadow: 0 0 12px rgba(218, 251, 113, 0.25);
+  animation: ai-pulse-glow 3s infinite alternate ease-in-out;
+}
+
+@keyframes ai-pulse-glow {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 66, 217, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 16px rgba(218, 251, 113, 0.5);
+  }
+}

@@ -30,7 +30,12 @@ import {
   Minus,
   Settings,
   CreditCard,
-  Clock
+  Clock,
+  Send,
+  Bot,
+  Wand2,
+  Volume2,
+  RefreshCw
 } from 'lucide-react';
 
 export default function AppIcon({ name, size = 20, color = 'currentColor', fill = 'none', strokeWidth = 2, className = '' }) {
@@ -104,6 +109,16 @@ export default function AppIcon({ name, size = 20, color = 'currentColor', fill 
       return <CreditCard {...iconProps} />;
     case 'clock':
       return <Clock {...iconProps} />;
+    case 'send':
+      return <Send {...iconProps} />;
+    case 'bot':
+      return <Bot {...iconProps} />;
+    case 'wand':
+      return <Wand2 {...iconProps} />;
+    case 'volume':
+      return <Volume2 {...iconProps} />;
+    case 'refresh':
+      return <RefreshCw {...iconProps} />;
     default:
       return <Home {...iconProps} />;
   }

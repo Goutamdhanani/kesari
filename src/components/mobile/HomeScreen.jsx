@@ -119,15 +119,28 @@ export default function HomeScreen({
           </button>
         </div>
 
-        <motion.button 
-          className="header-bell-button" 
-          onClick={onOpenNotifications}
-          whileTap={{ scale: 0.9 }}
-          aria-label="Notifications"
-        >
-          <AppIcon name="bell" size={17} color="#0C0D12" strokeWidth={2} />
-          {unreadCount > 0 && <span className="bell-badge-dot" />}
-        </motion.button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <motion.button
+            className="header-ai-pill-btn"
+            onClick={() => onNavigate('ai')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            title="Ask JamAI"
+          >
+            <AppIcon name="sparkles" size={13} color="#080808" strokeWidth={2.5} />
+            <span>JamAI</span>
+          </motion.button>
+
+          <motion.button 
+            className="header-bell-button" 
+            onClick={onOpenNotifications}
+            whileTap={{ scale: 0.9 }}
+            aria-label="Notifications"
+          >
+            <AppIcon name="bell" size={17} color="#0C0D12" strokeWidth={2} />
+            {unreadCount > 0 && <span className="bell-badge-dot" />}
+          </motion.button>
+        </div>
       </header>
 
       {/* Greeting Section */}
@@ -149,10 +162,39 @@ export default function HomeScreen({
       >
         <AppIcon name="search" size={16} color="#0042D9" strokeWidth={2.5} />
         <span className="search-bar-placeholder">Search concerts, artists, venues...</span>
-        <div className="search-mic-btn" aria-label="Voice search">
-          <AppIcon name="mic" size={14} color="#fff" strokeWidth={2} />
+        <div 
+          className="search-mic-btn" 
+          aria-label="Voice search with JamAI"
+          onClick={(e) => {
+            e.stopPropagation();
+            onNavigate('ai');
+          }}
+        >
+          <AppIcon name="sparkles" size={13} color="#080808" strokeWidth={2.5} />
         </div>
       </div>
+
+      {/* JamAI Vibe Concierge Feature Banner */}
+      <motion.div 
+        className="home-ai-vibe-banner"
+        onClick={() => onNavigate('ai')}
+        whileHover={{ scale: 1.015 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <div className="ai-banner-content">
+          <div className="ai-banner-tag">
+            <span className="ai-spark-dot" />
+            <span>JamAI Neural Concierge</span>
+          </div>
+          <h3 className="ai-banner-title">Match your live sound vibe</h3>
+          <p className="ai-banner-desc">Describe your mood or favorite artists to find secret sets</p>
+        </div>
+        <div className="ai-banner-action">
+          <div className="ai-magic-circle">
+            <AppIcon name="arrow-up-right" size={15} color="#080808" strokeWidth={2.5} />
+          </div>
+        </div>
+      </motion.div>
 
       {/* Category Pills */}
       <div className="mobile-categories-row" role="tablist" aria-label="Event categories">
@@ -276,6 +318,7 @@ export default function HomeScreen({
           onTabChange={(tab) => {
             setActiveTab(tab);
             if (tab === 'search') onNavigate('search');
+            else if (tab === 'ai') onNavigate('ai');
             else if (tab === 'calendar') onNavigate('explore');
             else if (tab === 'ticket') onOpenTicket();
             else if (tab === 'home') onNavigate('home');
