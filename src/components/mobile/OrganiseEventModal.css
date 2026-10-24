@@ -81,6 +81,71 @@
 }
 .organise-body-scroll::-webkit-scrollbar { display: none; }
 
+/* Direct WhatsApp bar inside modal */
+.organise-direct-wa-bar {
+  background: #E8F8EE;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.15s, background-color 0.15s;
+}
+
+.organise-direct-wa-bar:hover {
+  background: #DCF4E4;
+}
+
+.organise-direct-wa-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  text-decoration: none;
+}
+
+.wa-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.wa-bar-icon {
+  font-size: 16px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.wa-bar-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.wa-bar-title {
+  font-family: var(--font-family-display);
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #064E24;
+  line-height: 1.2;
+}
+
+.wa-bar-sub {
+  font-size: 9px;
+  color: #198045;
+  line-height: 1.2;
+}
+
+.wa-bar-action {
+  font-family: var(--font-family-display);
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #064E24;
+  background: rgba(37, 211, 102, 0.22);
+  padding: 3px 8px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
 .form-group-block {
   display: flex;
   flex-direction: column;

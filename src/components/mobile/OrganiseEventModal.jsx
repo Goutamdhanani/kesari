@@ -62,6 +62,25 @@ export default function OrganiseEventModal({ isOpen, onClose = () => {} }) {
           </div>
 
           <div className="organise-body-scroll">
+            {/* Quick Direct WhatsApp Chat Bar */}
+            <div className="organise-direct-wa-bar">
+              <a 
+                href={KESARI_CONTACT.whatsappUrl('Hi Kesari Studio Koramangala! I want to chat about organising an event at the studio.')}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="organise-direct-wa-link"
+              >
+                <div className="wa-bar-left">
+                  <span className="wa-bar-icon">💬</span>
+                  <div className="wa-bar-text">
+                    <span className="wa-bar-title">Direct WhatsApp Chat</span>
+                    <span className="wa-bar-sub">Quick question? Chat directly with Kesari</span>
+                  </div>
+                </div>
+                <span className="wa-bar-action">Chat ›</span>
+              </a>
+            </div>
+
             {/* 1. Category Selection */}
             <div className="form-group-block">
               <label className="form-group-label">1. Select Event Type</label>

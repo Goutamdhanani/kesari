@@ -970,47 +970,40 @@
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-.organise-actions-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.organise-cta-row {
   margin-top: auto;
+  display: flex;
 }
 
-.organise-wa-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  background: linear-gradient(135deg, #25D366 0%, #1EBE5B 100%);
-  color: #042210;
+.organise-plan-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #FFFFFF;
   font-family: var(--font-family-display);
   font-size: 10px;
   font-weight: 800;
-  padding: 7.5px 8px;
-  border-radius: 11px;
-  text-decoration: none;
-  box-shadow: 0 3px 12px rgba(37, 211, 102, 0.38);
-  transition: transform 0.15s, background-color 0.15s;
-}
-
-.organise-wa-btn:hover {
-  transform: scale(1.02);
-  background: #22BF5B;
-}
-
-.organise-custom-btn {
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 6px 8px;
-  border-radius: 9px;
+  padding: 8px 10px;
+  border-radius: 12px;
   cursor: pointer;
-  text-align: center;
-  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.15s, transform 0.15s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.organise-plan-btn:hover {
+  background: rgba(255, 255, 255, 0.24);
+  transform: translateY(-1px);
+}
+
+.organise-plan-arrow {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  color: #DAFB71;
 }
 
 .organise-custom-btn:hover {
