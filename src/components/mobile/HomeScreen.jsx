@@ -194,6 +194,15 @@ export default function HomeScreen({
           >
             {/* ── 1. The Obsidian Curved Stage Dome (Inspired by Reference Image 1) ── */}
             <header className="home-curved-dome-header">
+              {/* Aurora Borealis Ambient Stage Lighting (Strictly bounded inside the curved dome boundary) */}
+              <div className="dome-aurora-container" aria-hidden="true">
+                <div className="aurora-glow aurora-glow-emerald" />
+                <div className="aurora-glow aurora-glow-indigo" />
+                <div className="aurora-glow aurora-glow-amber" />
+                <div className="aurora-glow aurora-glow-coral" />
+                <div className="aurora-mesh-noise" />
+              </div>
+
               {/* Top Navigation Row */}
               <div className="dome-top-nav">
                 <motion.div 

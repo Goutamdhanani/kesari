@@ -45,20 +45,143 @@
   z-index: 10;
 }
 
-/* Subtle background accent glow */
-.home-curved-dome-header::before {
-  content: '';
+/* ── Aurora Borealis Ambient Stage Lighting (Strictly bounded to Dome) ── */
+.dome-aurora-container {
   position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 160px;
-  height: 160px;
-  background: radial-gradient(circle, rgba(215, 220, 250, 0.12) 0%, transparent 70%);
+  inset: 0;
+  border-radius: 0 0 32px 32px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.aurora-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  -webkit-filter: blur(36px);
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
   pointer-events: none;
 }
 
-/* Top Navigation Row in Dome */
+/* 1. Emerald / Electric Cyan Wave */
+.aurora-glow-emerald {
+  width: 250px;
+  height: 200px;
+  top: -60px;
+  left: -40px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.45) 0%, rgba(6, 182, 212, 0.25) 50%, transparent 75%);
+  animation: aurora-wave-1 8s ease-in-out infinite alternate;
+}
+
+/* 2. Electric Violet / Royal Indigo Wave */
+.aurora-glow-indigo {
+  width: 280px;
+  height: 220px;
+  top: -50px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.48) 0%, rgba(99, 102, 241, 0.22) 55%, transparent 75%);
+  animation: aurora-wave-2 10s ease-in-out infinite alternate;
+}
+
+/* 3. Warm Amber / Golden Stage Spotlight */
+.aurora-glow-amber {
+  width: 220px;
+  height: 170px;
+  bottom: -30px;
+  left: 25%;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.4) 0%, rgba(243, 226, 148, 0.18) 55%, transparent 75%);
+  animation: aurora-wave-3 12s ease-in-out infinite alternate;
+}
+
+/* 4. Electric Coral / Rose Flare */
+.aurora-glow-coral {
+  width: 190px;
+  height: 180px;
+  top: 15px;
+  left: 45%;
+  background: radial-gradient(circle, rgba(244, 63, 94, 0.35) 0%, rgba(236, 72, 153, 0.15) 55%, transparent 75%);
+  animation: aurora-wave-4 9s ease-in-out infinite alternate;
+}
+
+/* Vignette mask over aurora lights to blend deeply into obsidian */
+.aurora-mesh-noise {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    transparent 15%,
+    rgba(13, 14, 20, 0.45) 60%,
+    rgba(13, 14, 20, 0.92) 100%
+  );
+  pointer-events: none;
+}
+
+@keyframes aurora-wave-1 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(40px, 30px) scale(1.15) rotate(12deg);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(20px, 50px) scale(0.95) rotate(-8deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes aurora-wave-2 {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-40px, 35px) scale(1.2) rotate(-15deg);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(-15px, 20px) scale(1.05) rotate(8deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes aurora-wave-3 {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-25px, -20px) scale(1.18);
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate(30px, -10px) scale(1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes aurora-wave-4 {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(25px, 15px) scale(1.2);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(-20px, 25px) scale(0.9);
+    opacity: 0.38;
+  }
+}
+
+/* Top Navigation Row in Dome (Elevated above Aurora) */
 .dome-top-nav {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -156,6 +279,7 @@
 /* Main Stage Live Feature Display with Real Concert Background Poster */
 .dome-hero-spotlight {
   position: relative;
+  z-index: 2;
   overflow: hidden;
   border-radius: 22px;
   border: 1px solid rgba(255, 255, 255, 0.12);
