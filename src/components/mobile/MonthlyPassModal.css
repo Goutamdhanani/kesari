@@ -1,0 +1,242 @@
+/* MonthlyPassModal.css — 3 Types of Kesari Studio Monthly Passes */
+.pass-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 11, 16, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1050;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.pass-modal-card {
+  width: 100%;
+  max-width: 440px;
+  max-height: 88vh;
+  background: #FFFFFF;
+  border-radius: 28px 28px 0 0;
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.pass-modal-header {
+  padding: 12px 18px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid #F0F2F7;
+  flex-shrink: 0;
+}
+
+.pass-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #E50914;
+  text-transform: uppercase;
+}
+
+.pass-title {
+  font-family: var(--font-family-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #12131A;
+  margin: 2px 0 0;
+}
+
+.pass-sub {
+  font-size: 11px;
+  color: #717684;
+  margin: 2px 0 0;
+}
+
+.pass-close-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F4F5F9;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #6B7080;
+}
+
+.pass-pills-row {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #FAF9F6;
+  border-bottom: 1px solid #ECEEE8;
+  flex-shrink: 0;
+}
+
+.pass-tier-pill {
+  flex: 1;
+  padding: 8px 6px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  transition: all 0.15s ease;
+}
+.pass-tier-pill span {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #12131A;
+}
+.pass-tier-pill small {
+  font-size: 9.5px;
+  color: #717684;
+}
+
+.pass-tier-pill.active {
+  background: #12131A;
+  border-color: #12131A;
+}
+.pass-tier-pill.active span {
+  color: #FFFFFF;
+}
+.pass-tier-pill.active small {
+  color: #DAFB71;
+}
+
+.pass-body-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  scrollbar-width: none;
+}
+.pass-body-scroll::-webkit-scrollbar { display: none; }
+
+.pass-hero-card {
+  background: #FAF9F6;
+  border: 1.5px solid #ECEEE8;
+  border-radius: 20px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pass-hero-card.popular {
+  border-color: #E50914;
+  background: #FFFBFB;
+  box-shadow: 0 6px 24px rgba(229, 9, 20, 0.1);
+}
+
+.pass-hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pass-tier-tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  background: #E50914;
+  color: #FFFFFF;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+}
+
+.pass-hero-price {
+  font-family: var(--font-family-display);
+  font-size: 16px;
+  font-weight: 800;
+  color: #12131A;
+}
+
+.pass-hero-title {
+  font-family: var(--font-family-display);
+  font-size: 17px;
+  font-weight: 800;
+  color: #12131A;
+  margin: 4px 0 0;
+}
+
+.pass-hero-desc {
+  font-size: 11.5px;
+  color: #6B7080;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.pass-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(18, 19, 26, 0.1);
+}
+
+.pass-perk-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.perk-check {
+  font-size: 12px;
+  font-weight: 900;
+  color: #25D366;
+  line-height: 1.2;
+}
+
+.perk-text {
+  font-size: 11.5px;
+  color: #374151;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.pass-guarantee-note {
+  font-size: 10.5px;
+  color: #717684;
+  background: #F4F6FB;
+  border-radius: 12px;
+  padding: 8px 12px;
+  line-height: 1.35;
+}
+
+.pass-modal-footer {
+  padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px));
+  border-top: 1px solid #ECEEF3;
+  background: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.pass-whatsapp-btn {
+  width: 100%;
+  background: #25D366;
+  color: #FFFFFF;
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 750;
+  padding: 13px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+}

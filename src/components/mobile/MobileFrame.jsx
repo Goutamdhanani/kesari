@@ -42,7 +42,7 @@ export default function MobileFrame({
       id: 'n1',
       icon: '🎟️',
       title: 'Pass Ready for Gate Check-in',
-      message: 'Your Jazz & Blues Festival pass is verified for Kesari Pavilion Main Gate, Bangalore.',
+      message: 'Your Jazz & Blues Studio pass is verified for Kesari - The Memory Studio, Koramangala.',
       time: '12m ago'
     },
     {
@@ -56,7 +56,7 @@ export default function MobileFrame({
       id: 'n3',
       icon: '🎷',
       title: 'Miles Quartet Added',
-      message: 'Sunset Stage lineup updated with special acoustic set.',
+      message: 'Acoustic Lounge lineup updated with special studio session.',
       time: 'Yesterday'
     }
   ]);

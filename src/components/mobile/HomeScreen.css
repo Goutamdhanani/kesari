@@ -688,19 +688,90 @@
   text-align: center;
 }
 
-/* ── 4. Asymmetric Bento Duo (from Reference Image 2) ── */
+/* ── 3. Studio Quick-Action Hub ── */
+.studio-quick-hub-section {
+  margin-top: -6px;
+  margin-bottom: 2px;
+}
+
+.studio-quick-hub-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.studio-quick-hub-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.studio-hub-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid rgba(18, 19, 26, 0.08);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(18, 19, 26, 0.04);
+  transition: transform 0.15s, background-color 0.15s, border-color 0.15s;
+}
+
+.studio-hub-chip.primary-rent-gear {
+  background: #12131A;
+  color: #FFFFFF;
+  border-color: #12131A;
+}
+
+.studio-hub-chip.primary-rent-gear .hub-chip-title {
+  color: #FFFFFF;
+}
+
+.studio-hub-chip.primary-rent-gear .hub-chip-badge {
+  background: #DAFB71;
+  color: #12131A;
+}
+
+.hub-chip-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.hub-chip-title {
+  font-family: var(--font-family-display);
+  font-size: 11px;
+  font-weight: 700;
+  color: #12131A;
+  white-space: nowrap;
+}
+
+.hub-chip-badge {
+  font-size: 8.5px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #EDE8DF;
+  color: #12131A;
+  white-space: nowrap;
+}
+
+/* ── 4. Studio Bento Duo: Rent Out Space + Organise Your Event (WhatsApp) ── */
 .venue-bento-duo-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-/* Bento Card 1: Sunset Acoustic Lounge with Real Photo Poster */
-.bento-poster-card {
+/* Bento Card 1: Rent Out Studio Space in Koramangala */
+.bento-space-card {
   border-radius: 22px;
   position: relative;
   overflow: hidden;
-  min-height: 162px;
+  min-height: 175px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -709,31 +780,31 @@
   cursor: pointer;
 }
 
-.bento-poster-bg {
+.bento-space-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.85);
+  filter: brightness(0.82);
   transition: transform 0.4s ease;
 }
 
-.bento-poster-card:hover .bento-poster-bg {
+.bento-space-card:hover .bento-space-bg {
   transform: scale(1.06);
 }
 
-.bento-poster-overlay {
+.bento-space-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(18, 19, 26, 0.35) 0%,
-    rgba(18, 19, 26, 0.75) 60%,
-    rgba(18, 19, 26, 0.95) 100%
+    rgba(18, 19, 26, 0.25) 0%,
+    rgba(18, 19, 26, 0.72) 55%,
+    rgba(18, 19, 26, 0.96) 100%
   );
 }
 
-.bento-poster-content {
+.bento-space-content {
   position: relative;
   z-index: 2;
   padding: 13px;
@@ -743,40 +814,57 @@
   height: 100%;
 }
 
-.bento-mini-tag {
-  font-size: 8.5px;
+.bento-space-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bento-space-eyebrow {
+  font-size: 8px;
   font-weight: 800;
   text-transform: uppercase;
   color: #F3E294;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
-.bento-poster-title {
+.bento-space-rate {
+  font-size: 8.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 1.5px 6px;
+  border-radius: 999px;
+}
+
+.bento-space-title {
   font-family: var(--font-family-display);
-  font-size: 13.5px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 750;
   color: #FFFFFF;
   line-height: 1.25;
   letter-spacing: -0.015em;
-  margin: 4px 0 2px;
+  margin: 6px 0 2px;
 }
 
-.bento-poster-sub {
-  font-size: 10px;
+.bento-space-desc {
+  font-size: 9.5px;
   color: #CFD3DF;
   margin: 0;
   line-height: 1.25;
 }
 
-.bento-poster-footer {
+.bento-space-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 10px;
 }
 
-.bento-badge-free {
-  font-size: 9px;
+.bento-space-chip {
+  font-size: 8.5px;
   font-weight: 750;
   color: #12131A;
   background: #CFE7DE;
@@ -784,7 +872,7 @@
   border-radius: 999px;
 }
 
-.bento-icon-btn {
+.bento-action-arrow {
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -794,140 +882,409 @@
   justify-content: center;
 }
 
-/* Bento Card 2: Giant Stat Capacity Card (like Image 2 "89%") */
-.bento-metric-card {
-  background: #12131A;
+/* Bento Card 2: Organise Your Event (Direct WhatsApp Integration) */
+.bento-organise-card {
+  background: linear-gradient(145deg, #12131A 0%, #1A1C28 100%);
   border-radius: 22px;
   padding: 13px 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 162px;
+  min-height: 175px;
   color: #FFFFFF;
   box-shadow: 0 4px 16px rgba(18, 19, 26, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.metric-header-row {
+.organise-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.metric-eyebrow {
-  font-size: 9px;
-  font-weight: 750;
+.organise-pill-tag {
+  font-size: 8px;
+  font-weight: 800;
   text-transform: uppercase;
-  color: #9AA0AF;
+  color: #DAFB71;
   letter-spacing: 0.05em;
 }
 
-.metric-live-dot {
-  width: 6.5px;
-  height: 6.5px;
+.organise-wa-pulse {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 6px #10B981;
+  background: #25D366;
+  box-shadow: 0 0 8px #25D366;
+  animation: pulse-ring 1.8s infinite;
 }
 
-.metric-giant-number {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  line-height: 1;
-  margin: 3px 0 1px;
-}
-
-.metric-giant-number span:first-child {
+.organise-card-title {
   font-family: var(--font-family-display);
-  font-size: 28px;
+  font-size: 14px;
   font-weight: 750;
-  letter-spacing: -0.03em;
   color: #FFFFFF;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  margin: 4px 0 2px;
+  letter-spacing: -0.015em;
 }
 
-.metric-pct {
-  font-size: 16px;
-  font-weight: 700;
-  color: #D7DCFA;
-}
-
-.metric-subtext {
+.organise-card-sub {
   font-size: 9.5px;
   color: #9AA0AF;
   line-height: 1.25;
-  margin: 0;
+  margin: 0 0 6px;
 }
 
-/* Live Decibel Audio Meter in Metric Card */
-.metric-sound-meter {
+.organise-actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.organise-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #25D366;
+  color: #062814;
+  font-family: var(--font-family-display);
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 7px 8px;
+  border-radius: 11px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(37, 211, 102, 0.28);
+  transition: transform 0.15s, background-color 0.15s;
+}
+
+.organise-wa-btn:hover {
+  transform: scale(1.02);
+  background: #22BF5B;
+}
+
+.organise-custom-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #D7DCFA;
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 5px 8px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.organise-custom-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── 5. Sound System Available For Rent (Poster Catalog) ── */
+.studio-gear-rental-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-sub-pitch {
+  font-size: 10px;
+  color: #7A7E8D;
+  margin: 2px 0 0;
+  font-weight: 500;
+}
+
+.gear-showcase-scroll {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 3px 2px 7px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gear-showcase-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.gear-mini-card {
+  min-width: 140px;
+  max-width: 150px;
+  background: #FFFFFF;
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid rgba(18, 19, 26, 0.06);
+  box-shadow: 0 2px 10px rgba(18, 19, 26, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gear-mini-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 4px 8px;
-  border-radius: 8px;
-  margin: 4px 0 2px;
+  gap: 4px;
 }
 
-.meter-info {
+.gear-badge-tag {
+  font-size: 8px;
+  font-weight: 800;
+  color: #0042D9;
+  background: #EBF1FF;
+  padding: 2px 5px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.gear-category-indicator {
+  font-size: 8px;
+  text-transform: uppercase;
+  color: #9AA0AF;
+  font-weight: 750;
+  letter-spacing: 0.03em;
+}
+
+.gear-mini-name {
+  font-family: var(--font-family-display);
+  font-size: 12px;
+  font-weight: 700;
+  color: #12131A;
+  margin: 8px 0 10px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.gear-mini-bottom {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
 }
 
-.meter-label {
-  font-size: 8.5px;
-  color: #9AA0AF;
-  font-weight: 600;
-}
-
-.meter-db {
-  font-size: 8.5px;
-  font-weight: 800;
-  color: #F3E294;
-}
-
-.meter-bars {
+.gear-price-wrap {
   display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 10px;
+  align-items: baseline;
 }
 
-.m-bar {
-  width: 2px;
-  border-radius: 1px;
-  background: #D7DCFA;
-  animation: meter-wave 0.8s ease-in-out infinite alternate;
-}
-.mb-1 { height: 4px; animation-delay: 0.1s; }
-.mb-2 { height: 8px; animation-delay: 0.3s; background: #F3E294; }
-.mb-3 { height: 6px; animation-delay: 0.15s; }
-.mb-4 { height: 10px; animation-delay: 0.4s; background: #CFE7DE; }
-.mb-5 { height: 5px; animation-delay: 0.2s; }
-
-@keyframes meter-wave {
-  0% { transform: scaleY(0.4); }
-  100% { transform: scaleY(1); }
+.gear-currency {
+  font-size: 10px;
+  font-weight: 750;
+  color: #12131A;
 }
 
-.metric-dots-matrix {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 4px;
+.gear-cost {
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #12131A;
+  font-variant-numeric: tabular-nums;
+}
+
+.gear-unit {
+  font-size: 8px;
+  color: #7A7E8D;
+  margin-left: 1px;
+}
+
+.gear-rent-add-btn {
+  background: #12131A;
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 750;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.gear-rent-add-btn:hover {
+  background: #0042D9;
+}
+
+.gear-pickup-banner {
+  background: #EDE8DF;
+  border-radius: 14px;
+  padding: 9px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pickup-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #12131A;
+  line-height: 1.2;
+}
+
+.pickup-pin {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.pickup-sub {
+  display: block;
+  font-size: 8.5px;
+  color: #7A7E8D;
+  margin-top: 1px;
+}
+
+.pickup-rent-cta {
+  background: #0042D9;
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 750;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+
+.pickup-rent-cta:hover {
+  opacity: 0.9;
+}
+
+/* ── 6. 3 Types of Monthly Passes Showcase ── */
+.studio-passes-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.monthly-passes-grid {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.monthly-passes-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.monthly-pass-card {
+  min-width: 180px;
+  max-width: 200px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: 13px;
+  border: 1px solid rgba(18, 19, 26, 0.06);
+  box-shadow: 0 4px 14px rgba(18, 19, 26, 0.04);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.monthly-pass-card.popular {
+  border: 1.5px solid #0042D9;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F5F7FF 100%);
+  box-shadow: 0 6px 20px rgba(0, 66, 217, 0.09);
+}
+
+.pass-popular-ribbon {
+  position: absolute;
+  top: -8px;
+  right: 12px;
+  background: #0042D9;
+  color: #FFFFFF;
+  font-size: 7.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(0, 66, 217, 0.3);
+}
+
+.pass-card-head {
+  margin-bottom: 4px;
+}
+
+.pass-tier-badge {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #7A7E8D;
+}
+
+.monthly-pass-card.popular .pass-tier-badge {
+  color: #0042D9;
+}
+
+.pass-name {
+  font-family: var(--font-family-display);
+  font-size: 13px;
+  font-weight: 750;
+  color: #12131A;
+  margin: 3px 0 2px;
+  line-height: 1.2;
+}
+
+.pass-price-line {
   margin-top: 2px;
 }
 
-.matrix-dot {
-  height: 3.5px;
-  border-radius: 2px;
-  background: rgba(255, 255, 255, 0.12);
+.pass-billing {
+  font-family: var(--font-family-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #12131A;
+  font-variant-numeric: tabular-nums;
 }
 
-.matrix-dot.filled {
-  background: #D7DCFA;
+.pass-highlight {
+  font-size: 9px;
+  color: #7A7E8D;
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+
+.pass-perks-preview {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pass-perks-preview li {
+  font-size: 8.5px;
+  color: #323546;
+  line-height: 1.2;
+}
+
+.pass-card-wa-btn {
+  background: #12131A;
+  color: #FFFFFF;
+  font-size: 9.5px;
+  font-weight: 750;
+  padding: 6px 10px;
+  border-radius: 9px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.monthly-pass-card.popular .pass-card-wa-btn {
+  background: #0042D9;
 }
 
 /* ── 5. Tonight's Stage Schedule (Editorial Poster Lineup List) ── */

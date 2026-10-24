@@ -2,141 +2,137 @@ export const MOCK_EVENTS = [
   {
     id: 'rock',
     title: 'Rock Legends Reunion',
-    category: 'Rock & Electric',
+    category: 'Live Music Gig',
     genre: 'rock',
-    city: 'Bangalore',
+    city: 'Koramangala, Bangalore',
     date: 'October 20, 2026',
-    time: '18:00 PM - 02:00 AM',
-    venue: 'Kesari Arena, Indiranagar, Bangalore',
-    venueShort: 'Kesari Arena',
+    time: '18:00 PM - 23:30 PM',
+    venue: 'Kesari - The Memory Studio, Koramangala',
+    venueShort: 'Kesari Koramangala',
     price: 1499,
     priceLabel: '₹1,499',
     image: '/assets/events/ev_rock.jpg',
-    badge: '⚡ Selling Fast • 92% Booked',
+    badge: '⚡ Selling Fast • Live Studio Set',
     featured: true,
-    description: 'An electrifying night celebrating iconic guitar riffs, thunderous drum solos, and legendary rock anthems performed live at Kesari Arena, Bangalore.',
+    description: 'An electrifying night celebrating iconic guitar riffs, drum jams, and legendary rock anthems performed live at Kesari - The Memory Studio, Koramangala.',
     lineup: [
-      { name: 'The Velvet Echoes', role: 'Headliner', time: '21:30 PM', img: '/assets/artist_1.png' },
-      { name: 'Neon Distortion', role: 'Direct Support', time: '20:00 PM', img: '/assets/artist_2.png' },
+      { name: 'The Velvet Echoes', role: 'Headliner', time: '21:00 PM', img: '/assets/artist_1.png' },
+      { name: 'Neon Distortion', role: 'Direct Support', time: '19:45 PM', img: '/assets/artist_2.png' },
       { name: 'Sonic Revival', role: 'Opening Act', time: '18:30 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'General Admission', price: 1499, perks: 'Standard access to standing area and main bars' },
-      { id: 'vip', name: 'VIP Pit & Express Pass', price: 2999, perks: 'Front stage barrier access, private bar, express gate entry' },
-      { id: 'all', name: 'Backstage All-Access', price: 5499, perks: 'Artist lounge access, soundcheck invite, complimentary drinks' }
+      { id: 'ga', name: 'General Studio Pass', price: 1499, perks: 'Entry to live studio hall & acoustic lounge' },
+      { id: 'vip', name: 'VIP Front Row Pass', price: 2999, perks: 'Front row seating, meet the band & welcome beverage' },
+      { id: 'all', name: 'All-Access Backstage Pass', price: 5499, perks: 'Artist green room access, soundcheck invite, free studio jam hour' }
     ]
   },
   {
     id: 'jazz',
-    title: 'Jazz & Blues Festival',
-    category: 'Jazz & Blues',
+    title: 'Jazz & Blues Evening',
+    category: 'Acoustic & Blues',
     genre: 'jazz',
-    city: 'Bangalore',
+    city: 'Koramangala, Bangalore',
     date: 'September 5, 2026',
-    time: '15:00 PM - 23:00 PM',
-    venue: 'Kesari Pavilion, Koramangala, Bangalore',
-    venueShort: 'Kesari Pavilion',
+    time: '18:30 PM - 22:30 PM',
+    venue: 'Kesari - The Memory Studio, Koramangala',
+    venueShort: 'Kesari Koramangala',
     price: 1250,
     priceLabel: '₹1,250',
     image: '/assets/events/ev_jazz.jpg',
-    badge: '🎷 Sunset Stage Special',
+    badge: '🎷 Intimate Studio Session',
     featured: true,
-    description: 'Immerse yourself in smooth saxophone melodies, soulful electric blues, and world-class live improvisation at Kesari Pavilion, Bangalore.',
+    description: 'Immerse yourself in smooth saxophone melodies, soulful electric blues, and world-class live improvisation at Kesari - The Memory Studio, Koramangala.',
     lineup: [
-      { name: 'Miles Quartet', role: 'Main Stage', time: '19:00 PM', img: '/assets/artist_1.png' },
-      { name: 'Sarah Vaughan Trio', role: 'Acoustic Dome', time: '17:30 PM', img: '/assets/artist_2.png' },
-      { name: 'Blue Note All-Stars', role: 'Sunset Stage', time: '16:00 PM', img: '/assets/artist_3.png' }
+      { name: 'Miles Quartet', role: 'Main Feature', time: '20:00 PM', img: '/assets/artist_1.png' },
+      { name: 'Sarah Vaughan Trio', role: 'Acoustic Set', time: '19:00 PM', img: '/assets/artist_2.png' },
+      { name: 'Blue Note All-Stars', role: 'Opening Jam', time: '18:30 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Lawn General Admission', price: 1250, perks: 'Open lawn seating, festival food village access' },
-      { id: 'vip', name: 'Reserved Pavilion Seating', price: 2450, perks: 'Covered canopy seat, fast-track drinks pass' },
-      { id: 'all', name: 'Patron VIP Lounge', price: 4250, perks: 'Wine tasting terrace, artist meet & greet pass' }
+      { id: 'ga', name: 'Studio Entry Pass', price: 1250, perks: 'Open seating in acoustic lounge' },
+      { id: 'vip', name: 'Reserved Table Seating', price: 2450, perks: 'Reserved cafe table, complimentary artisanal coffee' },
+      { id: 'all', name: 'VIP Studio Patron', price: 4250, perks: 'Front table, artist meet & greet, exclusive live vinyl recording' }
     ]
   },
   {
     id: 'hiphop',
-    title: 'Hip Hop Showcase Live',
-    category: 'Hip-Hop & Urban',
+    title: 'Hip Hop & Cypher Showcase',
+    category: 'Urban Live',
     genre: 'hiphop',
-    city: 'Bangalore',
+    city: 'Koramangala, Bangalore',
     date: 'November 14, 2026',
-    time: '20:00 PM - 03:00 AM',
-    venue: 'Kesari Deck, MG Road, Bangalore',
-    venueShort: 'Kesari Deck',
+    time: '20:00 PM - 23:45 PM',
+    venue: 'Kesari - The Memory Studio, Koramangala',
+    venueShort: 'Kesari Koramangala',
     price: 1350,
     priceLabel: '₹1,350',
     image: '/assets/concert_crowd.jpg',
-    badge: '🔥 Top Trending',
+    badge: '🔥 Live Cypher Session',
     featured: false,
-    description: 'Freestyle cyphers, chart-topping lyricists, and high-energy 808 bass beats live on stage at Kesari Deck, Bangalore.',
+    description: 'Freestyle cyphers, chart-topping lyricists, and high-energy 808 beats live on mic at Kesari - The Memory Studio, Koramangala.',
     lineup: [
-      { name: 'Apex Rhymes', role: 'Headliner', time: '22:30 PM', img: '/assets/artist_2.png' },
-      { name: 'DJ Cipher & Metro', role: 'Live Set', time: '21:00 PM', img: '/assets/artist_3.png' }
+      { name: 'Apex Rhymes', role: 'Headline Emcee', time: '22:00 PM', img: '/assets/artist_2.png' },
+      { name: 'DJ Cipher & Metro', role: 'Beatmaker Live Set', time: '20:30 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Balcony General', price: 1350, perks: 'Tiered theater seating' },
-      { id: 'vip', name: 'Floor Mosh & Pit', price: 2750, perks: 'Floor access right in front of speakers' },
-      { id: 'all', name: 'Opera Box VIP', price: 4800, perks: 'Private opera box with dedicated server' }
+      { id: 'ga', name: 'Cypher Entry', price: 1350, perks: 'Standing room & cypher floor' },
+      { id: 'vip', name: 'VIP Mosh & Front Row', price: 2750, perks: 'Floor access right next to speakers & wireless mic cypher slot' },
+      { id: 'all', name: 'Artist Backstage Circle', price: 4800, perks: 'Green room pass, open mic battle priority' }
     ]
   },
   {
     id: 'electronic',
-    title: 'Neon Horizon Rave 2026',
-    category: 'Electronic & Rave',
+    title: 'Modular Synth & Ambient Night',
+    category: 'Live Electronic',
     genre: 'electronic',
-    city: 'Bangalore',
+    city: 'Koramangala, Bangalore',
     date: 'December 31, 2026',
-    time: '21:00 PM - 06:00 AM',
-    venue: 'Kesari Warehouse 7, Whitefield, Bangalore',
-    venueShort: 'Kesari Warehouse',
+    time: '21:00 PM - 02:00 AM',
+    venue: 'Kesari - The Memory Studio, Koramangala',
+    venueShort: 'Kesari Koramangala',
     price: 1850,
     priceLabel: '₹1,850',
     image: '/assets/fluid_art.jpg',
-    badge: '🎆 NYE Special Event',
+    badge: '🎆 Studio Special Night',
     featured: true,
-    description: 'A 360-degree immersive audiovisual rave with 40-foot laser arrays and international warehouse techno titans at Kesari Warehouse Bangalore.',
+    description: 'An intimate 360-degree audio immersion with live analog modular synths, ambient light projections, and deep bass at Kesari Studio Koramangala.',
     lineup: [
-      { name: 'Klangwelt Collective', role: 'Berlin Techno', time: '01:00 AM', img: '/assets/artist_3.png' },
-      { name: 'Aura Pulse', role: 'Live Modular', time: '23:30 PM', img: '/assets/artist_1.png' }
+      { name: 'Klangwelt Collective', role: 'Live Modular Set', time: '23:30 PM', img: '/assets/artist_3.png' },
+      { name: 'Aura Pulse', role: 'Ambient Soundscape', time: '21:30 PM', img: '/assets/artist_1.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Early Bird Warehouse Pass', price: 1850, perks: 'All-night hangar entry' },
-      { id: 'vip', name: 'VIP Mezzanine Laser View', price: 3600, perks: 'Elevated viewing platform, dedicated bathrooms' },
-      { id: 'all', name: 'Sunrise Pass + Afterparty', price: 6200, perks: '24-hour access including exclusive sunrise warehouse set' }
+      { id: 'ga', name: 'Studio Entry Pass', price: 1850, perks: 'Full audio visual access' },
+      { id: 'vip', name: 'VIP Acoustic Lounge Seat', price: 3600, perks: 'Front row studio seating, priority beverage service' },
+      { id: 'all', name: 'All-Night Studio VIP', price: 6200, perks: 'All-night access, sound engineer session invite' }
     ]
   },
   {
     id: 'soundwaves',
-    title: 'Sunset Acoustic Sessions',
-    category: 'Acoustic & Lounge',
+    title: 'Sunset Acoustic & Open Mic',
+    category: 'Open Mic & Jam',
     genre: 'acoustic',
-    city: 'Bangalore',
+    city: 'Koramangala, Bangalore',
     date: 'October 28, 2026',
-    time: '17:00 PM - 22:30 AM',
-    venue: 'Kesari Garden Terrace, Bangalore',
-    venueShort: 'Kesari Garden',
+    time: '17:00 PM - 21:30 PM',
+    venue: 'Kesari - The Memory Studio, Koramangala',
+    venueShort: 'Kesari Koramangala',
     price: 950,
     priceLabel: '₹950',
     image: '/assets/events/ev_openmic.jpg',
-    badge: '🌿 Garden Stage Unplugged',
+    badge: '🌿 Studio Unplugged',
     featured: false,
-    description: 'Intimate acoustic guitar, candlelit wooden deck, and craft cocktails under Bangalore starlight at Kesari Garden Terrace.',
+    description: 'Intimate acoustic guitar, candlelit wooden stage, and craft beverages under warm studio lights at Kesari - The Memory Studio, Koramangala.',
     lineup: [
       { name: 'Sarah Vaughan Trio', role: 'Acoustic Set', time: '18:00 PM', img: '/assets/artist_1.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Lawn Pass', price: 950, perks: 'Lawn seating & welcome drink' },
-      { id: 'vip', name: 'Table Terrace Seating', price: 1950, perks: 'Reserved table with tapas service' }
+      { id: 'ga', name: 'Open Mic Audience Pass', price: 950, perks: 'Studio lounge seating & welcome drink' },
+      { id: 'vip', name: 'Performer + Table Pass', price: 1950, perks: 'Guaranteed 10-min mic performance slot + audio recording of set' }
     ]
   }
 ];
 
 export const CITIES = [
-  'Bangalore',
-  'Indiranagar, Bangalore',
-  'Koramangala, Bangalore',
-  'Whitefield, Bangalore',
-  'MG Road, Bangalore'
+  'Kesari Koramangala, Bangalore'
 ];
 
 export const GENRES = [

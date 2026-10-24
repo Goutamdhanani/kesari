@@ -114,7 +114,7 @@ export default function ProfileScreen({
               <div className="saved-info">
                 <span className="saved-cat">Rock & Electric</span>
                 <h4 className="saved-title">Rock Legends Reunion</h4>
-                <span className="saved-date">Oct 20 • Kesari Main Stage, Bangalore</span>
+                <span className="saved-date">Oct 20 • Kesari Studio Hall, Koramangala</span>
               </div>
               <span className="saved-price">From ₹1,499</span>
             </div>
@@ -124,7 +124,7 @@ export default function ProfileScreen({
               <div className="saved-info">
                 <span className="saved-cat">Hip-Hop & Urban</span>
                 <h4 className="saved-title">Hip Hop Showcase Live</h4>
-                <span className="saved-date">Nov 14 • Kesari Deck, Bangalore</span>
+                <span className="saved-date">Nov 14 • Kesari Studio, Koramangala</span>
               </div>
               <span className="saved-price">From ₹1,350</span>
             </div>
