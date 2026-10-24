@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
 import AppIcon from '../common/AppIcon';
-import DetailSkeletonScreen from './DetailSkeletonScreen';
+import { MOCK_EVENTS } from '../../data/mockEvents';
 import './EventDetailScreen.css';
 
 export default function EventDetailScreen({
@@ -10,68 +10,39 @@ export default function EventDetailScreen({
   onBack = () => {},
   onBookSuccess = () => {}
 }) {
-  const [isLoading, setIsLoading] = useState(true);
   const [selectedTier, setSelectedTier] = useState('ga');
   const [ticketCount, setTicketCount] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 380);
-    return () => clearTimeout(timer);
-  }, []);
+  // Dynamic Bangalore Event Lookup
+  const eventData = MOCK_EVENTS.find(e => e.id === eventId) || MOCK_EVENTS[0];
 
-  const eventData = eventId === 'jazz' ? {
-    title: "Jazz & Blues Festival",
-    date: "Sep 5, 2024",
-    time: "15:00 PM - 23:00 PM",
-    venue: "Riverfront Park, San Francisco",
-    image: "/assets/jazz_blues_pills.png",
-    category: "Jazz & Blues",
-    description: "Immerse yourself in three stages of smooth saxophone melodies, soulful electric blues, and world-class live improvisation along the scenic bay.",
-    lineup: [
-      { name: "Miles Quartet", role: "Main Stage", img: "/assets/artist_1.png" },
-      { name: "Sarah Vaughan Trio", role: "Acoustic Dome", img: "/assets/artist_2.png" },
-      { name: "Blue Note All-Stars", role: "Sunset Stage", img: "/assets/artist_3.png" }
-    ],
-    prices: { ga: 22.50, vip: 55.00, all: 110.00 }
-  } : {
-    title: "Rock Legends Reunion",
-    date: "October 20, 2024",
-    time: "18:00 PM - 02:00 AM",
-    venue: "The Great Northern, San Francisco",
-    image: "/assets/rock_concert_bg.png",
-    category: "Rock & Electric",
-    description: "An electrifying night celebrating iconic guitar riffs, thunderous drum solos, and legendary rock anthems performed by Grammy-nominated artists.",
-    lineup: [
-      { name: "The Velvet Echoes", role: "Headliner", img: "/assets/artist_1.png" },
-      { name: "Neon Distortion", role: "Direct Support", img: "/assets/artist_2.png" },
-      { name: "Sonic Revival", role: "Opening Act", img: "/assets/artist_3.png" }
-    ],
-    prices: { ga: 18.89, vip: 45.00, all: 95.00 }
-  };
+  const tiers = eventData.tiers && eventData.tiers.length > 0 ? eventData.tiers : [
+    { id: 'ga', name: 'General Admission', price: eventData.price, perks: 'Standard access to standing area and main bars' },
+    { id: 'vip', name: 'VIP Pit & Express Pass', price: Math.round(eventData.price * 1.8), perks: 'Front barrier access, private lounge & express entry' }
+  ];
 
-  const currentPrice = eventData.prices[selectedTier];
-  const totalPrice = (currentPrice * ticketCount).toFixed(2);
+  const currentTierObj = tiers.find(t => t.id === selectedTier) || tiers[0];
+  const currentPrice = currentTierObj.price;
+  const totalPrice = currentPrice * ticketCount;
 
   const handleCheckout = () => {
     confetti({
       particleCount: 80,
       spread: 60,
       origin: { y: 0.8 },
-      colors: ['#DAFB71', '#0042D9', '#EE3D5A', '#FFFFFF']
+      colors: ['#E50914', '#0042D9', '#DAFB71', '#FFFFFF']
     });
 
     const newTicket = {
       id: `ticket-${Date.now()}`,
-      eventId,
+      eventId: eventData.id,
       eventTitle: eventData.title,
       date: eventData.date,
       time: eventData.time.split(' - ')[0] || eventData.time,
-      location: eventData.venue,
+      location: eventData.venue || `${eventData.venueShort}, Bangalore`,
       seat: selectedTier === 'vip' ? 'VIP Pavilion #14' : 'General Admission',
-      tier: selectedTier === 'vip' ? 'VIP Festival Pass' : 'General Admission',
+      tier: currentTierObj.name,
       price: totalPrice,
       quantity: ticketCount,
       hash: `0x${Math.random().toString(16).substring(2, 8).toUpperCase()}...${Math.random().toString(16).substring(2, 6).toUpperCase()}`,
@@ -81,14 +52,14 @@ export default function EventDetailScreen({
 
     setTimeout(() => {
       onBookSuccess(newTicket);
-    }, 450);
+    }, 350);
   };
 
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
         title: eventData.title,
-        text: `Join me at ${eventData.title}!`,
+        text: `Join me at ${eventData.title} in Bangalore!`,
         url: window.location.href
       }).catch(() => {});
     } else {
@@ -98,18 +69,14 @@ export default function EventDetailScreen({
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {isLoading ? (
-        <DetailSkeletonScreen key="detail-skel" />
-      ) : (
-        <motion.div 
-          key="detail-content"
-          className="mobile-event-detail-screen"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.25 }}
-        >
+    <motion.div 
+      key={eventData.id}
+      className="mobile-event-detail-screen"
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -20 }}
+      transition={{ duration: 0.22, ease: [0.19, 1, 0.22, 1] }}
+    >
       {/* Hero Header Media */}
       <div className="detail-hero-banner">
         <img src={eventData.image} alt={eventData.title} className="detail-hero-img" />
@@ -170,10 +137,10 @@ export default function EventDetailScreen({
           </div>
 
           <div className="quick-meta-item">
-            <AppIcon name="pin" size={16} color="#EE3D5A" />
+            <AppIcon name="pin" size={16} color="#E50914" />
             <div>
-              <div className="meta-bold">San Francisco</div>
-              <div className="meta-sub">{eventData.venue}</div>
+              <div className="meta-bold">Bangalore</div>
+              <div className="meta-sub">{eventData.venueShort || eventData.venue}</div>
             </div>
           </div>
         </div>
@@ -185,46 +152,40 @@ export default function EventDetailScreen({
         </div>
 
         {/* Lineup Section */}
-        <div className="detail-section">
-          <h3 className="section-label">Artist Lineup</h3>
-          <div className="lineup-avatars-row">
-            {eventData.lineup.map((artist, i) => (
-              <div key={i} className="lineup-artist-item">
-                <div className="lineup-avatar-wrap">
-                  <img src={artist.img} alt={artist.name} />
+        {eventData.lineup && eventData.lineup.length > 0 && (
+          <div className="detail-section">
+            <h3 className="section-label">Artist Lineup</h3>
+            <div className="lineup-avatars-row">
+              {eventData.lineup.map((artist, i) => (
+                <div key={i} className="lineup-artist-item">
+                  <div className="lineup-avatar-wrap">
+                    <img src={artist.img} alt={artist.name} />
+                  </div>
+                  <span className="artist-name">{artist.name}</span>
+                  <span className="artist-role">{artist.role}</span>
                 </div>
-                <span className="artist-name">{artist.name}</span>
-                <span className="artist-role">{artist.role}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Ticket Tier Selection */}
         <div className="detail-section">
           <h3 className="section-label">Select Ticket Tier</h3>
           <div className="ticket-tier-selector">
-            <div 
-              className={`tier-card ${selectedTier === 'ga' ? 'active-tier' : ''}`}
-              onClick={() => setSelectedTier('ga')}
-            >
-              <div className="tier-header">
-                <span className="tier-name">General Admission</span>
-                <span className="tier-price">${eventData.prices.ga.toFixed(2)}</span>
+            {tiers.map((tier) => (
+              <div 
+                key={tier.id}
+                className={`tier-card ${selectedTier === tier.id ? 'active-tier' : ''}`}
+                onClick={() => setSelectedTier(tier.id)}
+              >
+                <div className="tier-header">
+                  <span className="tier-name">{tier.name}</span>
+                  <span className="tier-price">₹{tier.price.toLocaleString()}</span>
+                </div>
+                <span className="tier-desc">{tier.perks}</span>
               </div>
-              <span className="tier-desc">Standard access to general standing area and stages</span>
-            </div>
-
-            <div 
-              className={`tier-card ${selectedTier === 'vip' ? 'active-tier' : ''}`}
-              onClick={() => setSelectedTier('vip')}
-            >
-              <div className="tier-header">
-                <span className="tier-name">VIP Festival Pass</span>
-                <span className="tier-price">${eventData.prices.vip.toFixed(2)}</span>
-              </div>
-              <span className="tier-desc">Express entry, private bar, premium viewing deck</span>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -252,8 +213,8 @@ export default function EventDetailScreen({
       {/* Sticky Bottom Bar */}
       <div className="detail-sticky-footer">
         <div className="footer-total">
-          <span className="total-label">Total Price</span>
-          <span className="total-amount">${totalPrice}</span>
+          <span className="total-label">Total Amount</span>
+          <span className="total-amount">₹{totalPrice.toLocaleString()}</span>
         </div>
         <motion.button 
           className="book-lime-cta-btn" 
@@ -261,12 +222,10 @@ export default function EventDetailScreen({
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
         >
-          <span>Add to Cart & Checkout</span>
-          <AppIcon name="arrow-up-right" size={18} color="#080808" strokeWidth={2.5} />
+          <span>Book Pass • ₹{totalPrice.toLocaleString()}</span>
+          <AppIcon name="arrow-up-right" size={18} color="#FFFFFF" strokeWidth={2.5} />
         </motion.button>
       </div>
     </motion.div>
-      )}
-    </AnimatePresence>
   );
 }

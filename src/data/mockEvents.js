@@ -9,8 +9,8 @@ export const MOCK_EVENTS = [
     time: '18:00 PM - 02:00 AM',
     venue: 'Kesari Arena, Indiranagar, Bangalore',
     venueShort: 'Kesari Arena',
-    price: 18.89,
-    priceLabel: 'From $18.89',
+    price: 1499,
+    priceLabel: '₹1,499',
     image: '/assets/events/ev_rock.jpg',
     badge: '⚡ Selling Fast • 92% Booked',
     featured: true,
@@ -21,9 +21,9 @@ export const MOCK_EVENTS = [
       { name: 'Sonic Revival', role: 'Opening Act', time: '18:30 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'General Admission', price: 18.89, perks: 'Standard access to standing area and main bars' },
-      { id: 'vip', name: 'VIP Pit & Express Pass', price: 49.99, perks: 'Front stage barrier access, private bar, express gate entry' },
-      { id: 'all', name: 'Backstage All-Access', price: 99.00, perks: 'Artist lounge access, soundcheck invite, complimentary drinks' }
+      { id: 'ga', name: 'General Admission', price: 1499, perks: 'Standard access to standing area and main bars' },
+      { id: 'vip', name: 'VIP Pit & Express Pass', price: 2999, perks: 'Front stage barrier access, private bar, express gate entry' },
+      { id: 'all', name: 'Backstage All-Access', price: 5499, perks: 'Artist lounge access, soundcheck invite, complimentary drinks' }
     ]
   },
   {
@@ -36,8 +36,8 @@ export const MOCK_EVENTS = [
     time: '15:00 PM - 23:00 PM',
     venue: 'Kesari Pavilion, Koramangala, Bangalore',
     venueShort: 'Kesari Pavilion',
-    price: 22.50,
-    priceLabel: 'From $22.50',
+    price: 1250,
+    priceLabel: '₹1,250',
     image: '/assets/events/ev_jazz.jpg',
     badge: '🎷 Sunset Stage Special',
     featured: true,
@@ -48,9 +48,9 @@ export const MOCK_EVENTS = [
       { name: 'Blue Note All-Stars', role: 'Sunset Stage', time: '16:00 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Lawn General Admission', price: 22.50, perks: 'Open lawn seating, festival food village access' },
-      { id: 'vip', name: 'Reserved Pavilion Seating', price: 55.00, perks: 'Covered canopy seat, fast-track drinks pass' },
-      { id: 'all', name: 'Patron VIP Lounge', price: 110.00, perks: 'Wine tasting terrace, artist meet & greet pass' }
+      { id: 'ga', name: 'Lawn General Admission', price: 1250, perks: 'Open lawn seating, festival food village access' },
+      { id: 'vip', name: 'Reserved Pavilion Seating', price: 2450, perks: 'Covered canopy seat, fast-track drinks pass' },
+      { id: 'all', name: 'Patron VIP Lounge', price: 4250, perks: 'Wine tasting terrace, artist meet & greet pass' }
     ]
   },
   {
@@ -63,8 +63,8 @@ export const MOCK_EVENTS = [
     time: '20:00 PM - 03:00 AM',
     venue: 'Kesari Deck, MG Road, Bangalore',
     venueShort: 'Kesari Deck',
-    price: 25.00,
-    priceLabel: 'From $25.00',
+    price: 1350,
+    priceLabel: '₹1,350',
     image: '/assets/concert_crowd.jpg',
     badge: '🔥 Top Trending',
     featured: false,
@@ -74,9 +74,9 @@ export const MOCK_EVENTS = [
       { name: 'DJ Cipher & Metro', role: 'Live Set', time: '21:00 PM', img: '/assets/artist_3.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Balcony General', price: 25.00, perks: 'Tiered theater seating' },
-      { id: 'vip', name: 'Floor Mosh & Pit', price: 50.00, perks: 'Floor access right in front of speakers' },
-      { id: 'all', name: 'Opera Box VIP', price: 120.00, perks: 'Private opera box with dedicated server' }
+      { id: 'ga', name: 'Balcony General', price: 1350, perks: 'Tiered theater seating' },
+      { id: 'vip', name: 'Floor Mosh & Pit', price: 2750, perks: 'Floor access right in front of speakers' },
+      { id: 'all', name: 'Opera Box VIP', price: 4800, perks: 'Private opera box with dedicated server' }
     ]
   },
   {
@@ -89,8 +89,8 @@ export const MOCK_EVENTS = [
     time: '21:00 PM - 06:00 AM',
     venue: 'Kesari Warehouse 7, Whitefield, Bangalore',
     venueShort: 'Kesari Warehouse',
-    price: 45.00,
-    priceLabel: 'From $45.00',
+    price: 1850,
+    priceLabel: '₹1,850',
     image: '/assets/fluid_art.jpg',
     badge: '🎆 NYE Special Event',
     featured: true,
@@ -100,9 +100,9 @@ export const MOCK_EVENTS = [
       { name: 'Aura Pulse', role: 'Live Modular', time: '23:30 PM', img: '/assets/artist_1.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Early Bird Warehouse Pass', price: 45.00, perks: 'All-night hangar entry' },
-      { id: 'vip', name: 'VIP Mezzanine Laser View', price: 85.00, perks: 'Elevated viewing platform, dedicated bathrooms' },
-      { id: 'all', name: 'Sunrise Pass + Afterparty', price: 150.00, perks: '24-hour access including exclusive sunrise warehouse set' }
+      { id: 'ga', name: 'Early Bird Warehouse Pass', price: 1850, perks: 'All-night hangar entry' },
+      { id: 'vip', name: 'VIP Mezzanine Laser View', price: 3600, perks: 'Elevated viewing platform, dedicated bathrooms' },
+      { id: 'all', name: 'Sunrise Pass + Afterparty', price: 6200, perks: '24-hour access including exclusive sunrise warehouse set' }
     ]
   },
   {
@@ -115,8 +115,8 @@ export const MOCK_EVENTS = [
     time: '17:00 PM - 22:30 AM',
     venue: 'Kesari Garden Terrace, Bangalore',
     venueShort: 'Kesari Garden',
-    price: 18.00,
-    priceLabel: 'From $18.00',
+    price: 950,
+    priceLabel: '₹950',
     image: '/assets/events/ev_openmic.jpg',
     badge: '🌿 Garden Stage Unplugged',
     featured: false,
@@ -125,8 +125,8 @@ export const MOCK_EVENTS = [
       { name: 'Sarah Vaughan Trio', role: 'Acoustic Set', time: '18:00 PM', img: '/assets/artist_1.png' }
     ],
     tiers: [
-      { id: 'ga', name: 'Lawn Pass', price: 18.00, perks: 'Lawn seating & welcome drink' },
-      { id: 'vip', name: 'Table Terrace Seating', price: 38.00, perks: 'Reserved table with tapas service' }
+      { id: 'ga', name: 'Lawn Pass', price: 950, perks: 'Lawn seating & welcome drink' },
+      { id: 'vip', name: 'Table Terrace Seating', price: 1950, perks: 'Reserved table with tapas service' }
     ]
   }
 ];
@@ -158,7 +158,7 @@ export const INITIAL_TICKETS = [
     seat: 'VIP Pit (Front Stage)',
     hash: '0x487Fh3kmjn3...35620',
     tier: 'VIP Pit & Express Pass',
-    price: 49.99,
+    price: 2999,
     image: '/assets/events/ev_rock.jpg',
     bookedAt: 'Today at 14:22'
   }

@@ -42,7 +42,7 @@ export default function MobileFrame({
       id: 'n1',
       icon: '🎟️',
       title: 'Pass Ready for Gate Check-in',
-      message: 'Your Jazz & Blues Festival ticket is verified for Riverfront Park Main Gate.',
+      message: 'Your Jazz & Blues Festival pass is verified for Kesari Pavilion Main Gate, Bangalore.',
       time: '12m ago'
     },
     {

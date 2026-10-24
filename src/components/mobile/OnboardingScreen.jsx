@@ -8,24 +8,24 @@ export default function OnboardingScreen({ onFinish = () => {} }) {
 
   const slides = [
     {
-      title: "Event Jam",
-      subtitle: "Discover live concerts, secret festivals, and underground experiences around you in seconds.",
+      title: "Kesari Live",
+      subtitle: "Discover live concerts, arena festivals, and stage experiences at Kesari Arena Bangalore.",
       feature: "Instant Gate Check-in • Digital Wallet Pass",
-      image: "/assets/rock_concert_bg.png",
-      tag: "⚡ Hyperactive Live Experience"
+      image: "/assets/events/ev_rock.jpg",
+      tag: "⚡ Kesari Live Experience"
     },
     {
       title: "Sound Waves",
       subtitle: "Secure verifiable digital screen tickets with anti-counterfeit dynamic barcode encryption.",
       feature: "Zero Fraud • One-Tap Apple Wallet",
-      image: "/assets/jazz_blues_pills.png",
+      image: "/assets/events/ev_jazz.jpg",
       tag: "🎟️ Verified NFC Passes"
     },
     {
       title: "Vibe Together",
-      subtitle: "Explore artist lineups, set times, and curated festival stages before you arrive.",
+      subtitle: "Explore artist lineups, set times, and curated festival stages before you arrive in Bangalore.",
       feature: "Curated Lineups • Realtime Notifications",
-      image: "/assets/rock_concert_bg.png",
+      image: "/assets/fluid_art.jpg",
       tag: "🎸 Curated Lineups"
     }
   ];
@@ -50,7 +50,7 @@ export default function OnboardingScreen({ onFinish = () => {} }) {
     <div className="mobile-onboarding-screen">
       {/* Top Header */}
       <div className="onboarding-top-bar">
-        <span className="onboarding-brand-mini">HYPERACTIVE</span>
+        <img src="/assets/kesari-logo.png" alt="Kesari" style={{ height: 20, objectFit: 'contain' }} />
         <button className="onboarding-skip-btn" onClick={onFinish}>
           Skip
         </button>

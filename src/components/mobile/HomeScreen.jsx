@@ -220,16 +220,18 @@ export default function HomeScreen({
             animate="visible"
             exit={{ opacity: 0, transition: { duration: 0.12 } }}
           >
-            {/* ── 1. The Obsidian Curved Stage Dome with Prominent Aurora Lights ── */}
+            {/* ── 1. The Obsidian Curved Stage Dome with Neon Behind Glass ── */}
             <header className="home-curved-dome-header">
-              {/* Prominent Aurora Borealis Ambient Stage Lighting (Strictly bounded to dome) */}
-              <div className="dome-aurora-container" aria-hidden="true">
-                <div className="aurora-beam aurora-beam-cyan" />
-                <div className="aurora-beam aurora-beam-violet" />
-                <div className="aurora-beam aurora-beam-netflix-red" />
-                <div className="aurora-beam aurora-beam-emerald" />
-                <div className="aurora-veil-sweep" />
-                <div className="aurora-mesh-noise" />
+              {/* Authentic Neon Lighting Behind Frosted Glass (Strictly Bounded to Dome) */}
+              <div className="dome-neon-glass-viewport" aria-hidden="true">
+                <div className="neon-tube-bar neon-cyan-top" />
+                <div className="neon-tube-bar neon-red-accent" />
+                <div className="neon-laser-ray neon-ray-1" />
+                <div className="neon-laser-ray neon-ray-2" />
+                <div className="neon-ambient-glow" />
+                <div className="neon-glass-diffuser" />
+                <div className="neon-glass-specular-sheen" />
+                <div className="neon-glass-edge-highlight" />
               </div>
 
               {/* Top Navigation Row: Kesari Logo Branding & Bangalore Venue */}

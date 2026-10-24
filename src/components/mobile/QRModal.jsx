@@ -7,7 +7,7 @@ export default function QRModal({ isOpen, onClose = () => {}, ticket = null }) {
   if (!isOpen) return null;
 
   const eventTitle = ticket?.eventTitle || 'Gate Entry Pass';
-  const location = ticket?.location || 'Riverfront Park Main Gate A';
+  const location = ticket?.location || 'Kesari Arena Main Gate, Bangalore';
   const passHash = ticket?.hash || '0x487Fh3kmjn3...35620';
 
   return (
