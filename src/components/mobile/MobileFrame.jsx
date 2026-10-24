@@ -42,7 +42,7 @@ export default function MobileFrame({
       id: 'n1',
       icon: '🎟️',
       title: 'Pass Ready for Gate Check-in',
-      message: 'Your Jazz & Blues Studio pass is verified for Kesari - The Memory Studio, Koramangala.',
+      message: 'Your Jazz & Blues Studio pass is verified for Kesari - The Memory Studio, Bangalore.',
       time: '12m ago'
     },
     {

@@ -4,16 +4,16 @@ import AppIcon from '../common/AppIcon';
 import './CitySelectorSheet.css';
 
 const AVAILABLE_STUDIO_ZONES = [
-  { name: 'Kesari - The Memory Studio', state: 'Koramangala, Bangalore', icon: '📍', activeShows: 'Studio HQ' },
+  { name: 'Kesari - The Memory Studio', state: 'Bangalore', icon: '📍', activeShows: 'Studio HQ' },
   { name: 'Main Studio Hall', state: 'Capacity 40-60 • Stage & PA', icon: '🎸', activeShows: 'Live Gigs' },
   { name: 'Acoustic Jam Lounge', state: 'Capacity 8-15 • Soundproof', icon: '🎷', activeShows: 'Jams & Pods' },
-  { name: 'Audio Gear Rental Hub', state: 'Pick up & Drop at Koramangala', icon: '🔊', activeShows: '13 Items' }
+  { name: 'Audio Gear Rental Hub', state: 'Pick up & Drop at Studio', icon: '🔊', activeShows: '13 Items' }
 ];
 
 export default function CitySelectorSheet({
   isOpen,
   onClose = () => {},
-  selectedCity = 'Koramangala',
+  selectedCity = 'Bangalore',
   onSelectCity = () => {}
 }) {
   if (!isOpen) return null;
@@ -40,7 +40,7 @@ export default function CitySelectorSheet({
           <div className="city-sheet-header">
             <div>
               <h3 className="city-sheet-title">Kesari - The Memory Studio</h3>
-              <p className="city-sheet-subtitle">Single Studio Location • Koramangala, Bangalore</p>
+              <p className="city-sheet-subtitle">Single Studio Location • Bangalore</p>
             </div>
             <button className="city-close-btn" onClick={onClose} aria-label="Close">
               <AppIcon name="x" size={16} color="#64748B" />

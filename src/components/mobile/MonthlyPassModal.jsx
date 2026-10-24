@@ -14,17 +14,16 @@ export default function MonthlyPassModal({ isOpen, initialPassId = 'pass-ritual'
 
   if (!isOpen) return null;
 
-  const handleSubscribeWhatsApp = (pass) => {
-    const msg = 
+  const getWhatsAppMsg = (pass) => {
+    return (
       `Hi Kesari - The Memory Studio!\n` +
       `I want to join the *${pass.name}* (${pass.billing}) membership.\n\n` +
       `• *Access:* ${pass.workdays} (${pass.workHoursTotal})\n` +
       `• *Beverages:* ${pass.teaCount}\n` +
       (pass.diningCredit !== '—' ? `• *Dining Credit:* ${pass.diningCredit}\n` : '') +
       `• *Total Package Worth:* ₹${pass.totalValue.toLocaleString()} (${pass.savingsText})\n\n` +
-      `Please let me know how to start my membership!`;
-    window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
-    onClose();
+      `Please let me know how to start my membership!`
+    );
   };
 
   const currentPass = MONTHLY_PASSES.find(p => p.id === selectedPassId) || MONTHLY_PASSES[1];
@@ -53,18 +52,29 @@ export default function MonthlyPassModal({ isOpen, initialPassId = 'pass-ritual'
             <div>
               <span className="membership-kicker">KESARI MEMBERSHIP</span>
               <h3 className="membership-hero-title">Come for a coffee. Find your place.</h3>
-              <p className="membership-hero-motto">Work here. Eat here. Meet here. Belong here.</p>
+              <p className="membership-hero-desc">
+                Some days you need somewhere to focus. Some days you need good food, meaningful conversations, or just a change of scene. At Kesari, you don't have to choose.
+              </p>
+              <p className="membership-hero-motto">
+                <strong>Work here. Eat here. Meet here. Belong here.</strong>
+              </p>
             </div>
             <button className="pass-close-btn" onClick={onClose} aria-label="Close">✕</button>
           </div>
 
-          {/* Coworking Schedule Pill */}
+          {/* Coworking Schedule & Rate Anchors Banner */}
           <div className="membership-schedule-banner">
             <span className="sched-icon">⏱️</span>
             <div className="sched-text">
-              <strong>Coworking Hours:</strong> Mon–Thu 10am–6pm (8h) · Fri 10am–3pm (5h)
+              <strong>Coworking Hours:</strong> Mon–Thu 10:00 AM – 6:00 PM (8h) · Fri 10:00 AM – 3:00 PM (5h)
             </div>
             <span className="sched-badge">37h / wk</span>
+          </div>
+
+          <div className="membership-rate-anchors-pill">
+            <span>☕ Teas / Coffees: <strong>₹120</strong></span>
+            <span className="anchor-sep">•</span>
+            <span>🏢 Coworking Space: <strong>₹250/hr</strong></span>
           </div>
 
           {/* Pass Selector Tabs */}
@@ -162,17 +172,17 @@ export default function MonthlyPassModal({ isOpen, initialPassId = 'pass-ritual'
             </div>
           </div>
 
-          {/* Sticky WhatsApp Trigger */}
+          {/* Sticky WhatsApp Trigger — Bulletproof Direct Link that ALWAYS works */}
           <div className="pass-modal-footer">
-            <motion.button 
+            <a 
+              href={KESARI_CONTACT.whatsappUrl(getWhatsAppMsg(currentPass))}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`pass-subscribe-btn ${currentPass.theme}`}
-              onClick={() => handleSubscribeWhatsApp(currentPass)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.96 }}
             >
               <span className="wa-icon">💬</span>
               <span>Join {currentPass.name} on WhatsApp ({currentPass.billing.split(' ')[0]})</span>
-            </motion.button>
+            </a>
           </div>
         </motion.div>
       </motion.div>

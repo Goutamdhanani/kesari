@@ -10,7 +10,7 @@ export default function RentSpaceModal({ isOpen, onClose = () => {} }) {
 
   const handleInquireOnWhatsApp = (space) => {
     const msg = 
-      `Hi Kesari - The Memory Studio Koramangala!\n` +
+      `Hi Kesari - The Memory Studio!\n` +
       `I want to rent out the *${space.title}* (${space.hourlyRate}).\n` +
       `Please let me know available slots and booking terms!`;
     window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
@@ -38,7 +38,7 @@ export default function RentSpaceModal({ isOpen, onClose = () => {} }) {
           {/* Header */}
           <div className="space-modal-header">
             <div>
-              <span className="space-eyebrow">STUDIO SPACES • KORAMANGALA</span>
+              <span className="space-eyebrow">STUDIO SPACES • KESARI</span>
               <h3 className="space-title">Rent Out Space</h3>
               <p className="space-sub">Acoustically treated jam rooms & performance halls</p>
             </div>
@@ -84,7 +84,7 @@ export default function RentSpaceModal({ isOpen, onClose = () => {} }) {
 
           <div className="space-modal-footer">
             <span className="space-footer-note">
-              📍 Pick up & drop / site visits at Kesari - The Memory Studio, Koramangala • Call {KESARI_CONTACT.phone}
+              📍 Site visits & bookings at Kesari - The Memory Studio • Call {KESARI_CONTACT.phone}
             </span>
           </div>
         </motion.div>

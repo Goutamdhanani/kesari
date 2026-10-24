@@ -45,7 +45,7 @@ export default function RentGearSheet({ isOpen, onClose = () => {} }) {
 
   const handleBookOnWhatsApp = () => {
     if (totalItemCount === 0) {
-      const msg = `Hi Kesari - The Memory Studio Koramangala! I want to inquire about renting sound equipment & audio gear.`;
+      const msg = `Hi Kesari - The Memory Studio! I want to inquire about renting sound equipment & audio gear.`;
       window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
       return;
     }
@@ -57,7 +57,7 @@ export default function RentGearSheet({ isOpen, onClose = () => {} }) {
       })
       .join('\n');
 
-    const msg = `Hi Kesari - The Memory Studio Koramangala!\nI want to rent the following sound equipment:\n\n${itemsSummary}\n\n*Estimated Total: ₹${totalPrice.toLocaleString()}*\n\nPlease let me know the availability and pickup details for Koramangala!`;
+    const msg = `Hi Kesari - The Memory Studio!\nI want to rent the following sound equipment:\n\n${itemsSummary}\n\n*Estimated Total: ₹${totalPrice.toLocaleString()}*\n\nPlease let me know the availability and pickup details for Kesari studio!`;
     window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
   };
 
@@ -86,7 +86,7 @@ export default function RentGearSheet({ isOpen, onClose = () => {} }) {
             <div>
               <div className="gear-brand-tag">KESARI • THE MEMORY STUDIO</div>
               <h3 className="gear-sheet-title">Event Sound System For Rent</h3>
-              <p className="gear-sheet-subtitle">Pick up & drop at Kesari Koramangala • Call {KESARI_CONTACT.phone}</p>
+              <p className="gear-sheet-subtitle">Pick up & drop at Kesari Studio • Call {KESARI_CONTACT.phone}</p>
             </div>
             <button className="gear-close-btn" onClick={onClose} aria-label="Close">
               ✕

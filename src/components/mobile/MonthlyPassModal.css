@@ -69,12 +69,38 @@
   line-height: 1.2;
 }
 
+.membership-hero-desc {
+  font-family: var(--font-family-body);
+  font-size: 11px;
+  color: #555A68;
+  line-height: 1.35;
+  margin: 3px 0 0;
+}
+
 .membership-hero-motto {
   font-family: var(--font-family-body);
   font-size: 11.5px;
-  font-weight: 600;
-  color: #6B7080;
-  margin: 2px 0 0;
+  font-weight: 750;
+  color: #121318;
+  margin: 3px 0 0;
+}
+
+.membership-rate-anchors-pill {
+  margin: 2px 18px 4px;
+  background: #EFECE5;
+  border-radius: 999px;
+  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 10px;
+  color: #3C404C;
+}
+
+.anchor-sep {
+  color: #A0A5B5;
+  font-weight: 800;
 }
 
 .pass-close-btn {
@@ -633,6 +659,7 @@
 .pass-subscribe-btn {
   width: 100%;
   color: #FFFFFF;
+  text-decoration: none;
   font-family: var(--font-family-body);
   font-size: 13px;
   font-weight: 800;

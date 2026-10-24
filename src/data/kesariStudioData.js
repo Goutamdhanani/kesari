@@ -4,8 +4,8 @@
 export const KESARI_CONTACT = {
   name: 'Kesari - The Memory Studio',
   tagline: 'MUSIC | EVENTS | MEETUPS | MEMORIES',
-  location: 'Koramangala, Bangalore',
-  fullAddress: 'Kesari - The Memory Studio, Koramangala, Bangalore',
+  location: 'Bangalore',
+  fullAddress: 'Kesari - The Memory Studio, Bangalore',
   phone: '7760539955',
   whatsappNumber: '917760539955',
   whatsappUrl: (msg) => `https://wa.me/917760539955?text=${encodeURIComponent(msg)}`

@@ -20,13 +20,13 @@ export default function OrganiseEventModal({ isOpen, onClose = () => {} }) {
     const catLabel = categoryObj ? categoryObj.label : 'Event';
 
     const message = 
-      `Hi Kesari - The Memory Studio Koramangala!\n` +
+      `Hi Kesari - The Memory Studio!\n` +
       `I want to organise an event at the studio:\n\n` +
       `• *Event Type:* ${catLabel}\n` +
       `• *Expected Guests:* ${guestCount}\n` +
       `• *Preferred Time:* ${datePref}\n` +
       (customNotes ? `• *Notes:* ${customNotes}\n` : '') +
-      `\nPlease share the available slots and quotation for Koramangala studio!`;
+      `\nPlease share the available slots and quotation for Kesari studio!`;
 
     window.open(KESARI_CONTACT.whatsappUrl(message), '_blank');
     onClose();
@@ -54,7 +54,7 @@ export default function OrganiseEventModal({ isOpen, onClose = () => {} }) {
           {/* Header */}
           <div className="organise-modal-header">
             <div>
-              <span className="organise-eyebrow">HOST AT KESARI KORAMANGALA</span>
+              <span className="organise-eyebrow">HOST AT KESARI STUDIO</span>
               <h3 className="organise-title">Organise Your Event</h3>
               <p className="organise-sub">Music, workshops, meetups & private gatherings</p>
             </div>
@@ -65,7 +65,7 @@ export default function OrganiseEventModal({ isOpen, onClose = () => {} }) {
             {/* Quick Direct WhatsApp Chat Bar */}
             <div className="organise-direct-wa-bar">
               <a 
-                href={KESARI_CONTACT.whatsappUrl('Hi Kesari Studio Koramangala! I want to chat about organising an event at the studio.')}
+                href={KESARI_CONTACT.whatsappUrl('Hi Kesari Studio! I want to chat about organising an event at the studio.')}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="organise-direct-wa-link"
@@ -146,7 +146,7 @@ export default function OrganiseEventModal({ isOpen, onClose = () => {} }) {
             <div className="studio-perks-box">
               <span className="perk-tag">INCLUDED AT KESARI STUDIO</span>
               <p className="perk-desc">
-                Yamaha PA sound system, stage lighting, green room, high-speed WiFi & cafe lounge at Koramangala.
+                Yamaha PA sound system, stage lighting, green room, high-speed WiFi & cafe lounge at Kesari Studio.
               </p>
             </div>
           </div>
