@@ -33,6 +33,36 @@ export const MOCK_EVENTS = [
     ]
   },
   {
+    id: 'laadla',
+    title: 'Maa Da Laadla by Parminder',
+    category: 'Live Music Gig',
+    genre: 'acoustic',
+    city: 'Bangalore',
+    date: 'Sun, 1 Nov 2026',
+    dateFilter: 'nov',
+    time: '18:00 PM - 21:00 PM',
+    venue: 'Kesari - The Memory Studio, Bangalore',
+    venueShort: 'Kesari Studio',
+    room: 'Acoustic Hall (40 Pax)',
+    roomType: 'main-stage',
+    decibels: '82 dB Live Energy',
+    ticketCode: 'KSR-MDL-1101',
+    capacity: { total: 40, booked: 22, remaining: 18, percentage: 55 },
+    price: 349,
+    priceLabel: '₹349',
+    image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=1000&auto=format&fit=crop&q=80',
+    badge: 'Yash Raj Films Live Tribute',
+    featured: false,
+    isPublic: true,
+    description: 'A soulful and vibrant live rendition of classic and contemporary melodies featuring Amour String Quartet Live at Kesari - The Memory Studio.',
+    lineup: [
+      { name: 'Amour String Quartet Live', role: 'Live Strings', time: '18:00 PM', img: '/assets/artist_1.png' }
+    ],
+    tiers: [
+      { id: 'standard', name: 'Acoustic Hall Pass', price: 349, perks: 'Entry to live acoustic hall session' }
+    ]
+  },
+  {
     id: 'soundwaves',
     title: 'Sunset Acoustic & Open Mic',
     category: 'Open Mic & Jam',

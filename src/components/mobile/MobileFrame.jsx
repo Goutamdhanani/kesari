@@ -63,6 +63,18 @@ export default function MobileFrame({
   const [showNotifications, setShowNotifications] = useState(false);
   const [showCitySelector, setShowCitySelector] = useState(false);
 
+  // URL Link listener: Access admin via link "#admin" or "?admin=true" (No button, just link)
+  useEffect(() => {
+    const handleAdminRoute = () => {
+      if (window.location.hash === '#admin' || window.location.search.includes('admin=true')) {
+        setShowAdminModal(true);
+      }
+    };
+    handleAdminRoute();
+    window.addEventListener('hashchange', handleAdminRoute);
+    return () => window.removeEventListener('hashchange', handleAdminRoute);
+  }, []);
+
   // Event Catalog CRUD Handlers
   const handleAddEvent = (newEvent) => {
     setEvents(prev => [newEvent, ...prev]);
@@ -342,18 +354,6 @@ export default function MobileFrame({
               />
             </div>
           )}
-
-          {/* Floating Studio CMS Quick Trigger */}
-          <motion.button 
-            className="mobile-admin-floating-pill"
-            onClick={() => setShowAdminModal(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            title="Open Studio CMS & Fydo Fast Import"
-          >
-            <span className="cms-pill-sparkle">⚡</span>
-            <span>Studio CMS</span>
-          </motion.button>
 
           {/* Studio CMS & Fast Fydo Import Modal */}
           <EventAdminModal 

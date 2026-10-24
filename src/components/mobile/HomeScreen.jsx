@@ -295,18 +295,6 @@ export default function HomeScreen({
                 </div>
 
                 <div className="dome-nav-actions">
-                  {/* Studio Event CMS & Fast Fydo Import Trigger */}
-                  <motion.button 
-                    className="dome-glass-btn admin-cms-trigger" 
-                    onClick={onOpenAdmin}
-                    whileHover={{ scale: 1.08 }}
-                    whileTap={{ scale: 0.9 }}
-                    title="Studio CMS & Fydo Fast Import"
-                    aria-label="Studio Admin CMS"
-                  >
-                    <span style={{ fontSize: 13, lineHeight: 1 }}>⚡</span>
-                  </motion.button>
-
                   <motion.button 
                     className="dome-glass-btn" 
                     onClick={onOpenNotifications}
@@ -639,6 +627,20 @@ export default function HomeScreen({
                   ))}
                 </div>
               </motion.section>
+
+              {/* Discreet Studio Admin Access Link (Not a button, just link) */}
+              <div className="home-admin-link-row">
+                <a 
+                  href="#admin" 
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    onOpenAdmin(); 
+                  }} 
+                  className="home-admin-text-link"
+                >
+                  Kesari Studio Operations • Admin Portal
+                </a>
+              </div>
 
               {/* Bottom Spacer for Fixed Root Navigation */}
               <div style={{ height: 85, flexShrink: 0 }} />
