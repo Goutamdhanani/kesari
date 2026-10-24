@@ -1,1347 +1,326 @@
 /* ============================================================
-   EXPLORE EVENTS SCREEN — Event Jam Electric Editorial (2026)
-   Apple HIG Craftsmanship, Liquid Obsidian Glass,
-   Perforated Ticket Pass Cards, Dynamic Soundwave Equalizer,
-   and Responsive Interactive Date Rail.
+   EXPLORE EVENTS SCREEN — Antique Minimal Editorial
+   Quiet luxury, generous whitespace, refined serif typography,
+   warm linen canvas, and zero visual clutter.
    ============================================================ */
 
-.mobile-explore-screen {
+.antique-explore-root {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: 
-    radial-gradient(circle at 85% 0%, rgba(226, 91, 22, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 10% 25%, rgba(0, 66, 217, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 50% 70%, rgba(218, 251, 113, 0.04) 0%, transparent 60%),
-    #08090E;
-  color: #F8FAFC;
+  background: #FAF7F2;
+  color: #1C1917;
   overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
-  padding: max(14px, env(safe-area-inset-top, 14px)) 16px 85px 16px;
   position: relative;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 
-.mobile-explore-screen::-webkit-scrollbar {
+.antique-explore-root::-webkit-scrollbar {
   display: none;
 }
 
-/* ── Toast Feedback Notification ── */
-.explore-toast {
-  position: fixed;
-  top: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(14, 17, 27, 0.94);
-  border: 1px solid rgba(218, 251, 113, 0.3);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  padding: 8px 16px;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #F8FAFC;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 16px rgba(218, 251, 113, 0.15);
-  z-index: 100;
-  pointer-events: none;
-}
-
-/* ── 1. Top Liquid Obsidian Header ── */
-.explore-header {
+/* ── Minimal Antique Header ── */
+.antique-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
-  flex-shrink: 0;
-  gap: 12px;
+  padding: max(18px, env(safe-area-inset-top, 18px)) 24px 14px 24px;
+  background: #FAF7F2;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.06);
 }
 
-.explore-header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 0;
-}
-
-.explore-back-btn {
-  width: 40px;
-  height: 40px;
+.antique-back-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(28, 25, 23, 0.12);
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-  flex-shrink: 0;
-}
-
-.explore-back-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: scale(1.05);
-}
-
-.explore-back-btn:active {
-  transform: scale(0.94);
-}
-
-.explore-header-titles {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.explore-live-beacon {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.beacon-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 8px #10B981;
-  animation: beaconPulse 1.8s ease-in-out infinite;
-}
-
-.beacon-dot.red {
-  background: #EE3D5A;
-  box-shadow: 0 0 8px #EE3D5A;
-}
-
-@keyframes beaconPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.45; transform: scale(0.85); }
-}
-
-.beacon-text {
-  font-size: 9.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #DAFB71;
-  text-transform: uppercase;
-}
-
-.explore-title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.025em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.2;
-}
-
-.explore-count-tag {
-  font-size: 11px;
-  font-weight: 700;
-  color: #DAFB71;
-  background: rgba(218, 251, 113, 0.12);
-  border: 1px solid rgba(218, 251, 113, 0.25);
-  padding: 1px 7px;
-  border-radius: 999px;
-  line-height: 1.4;
-}
-
-.explore-city-chip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #E2E8F0;
-  cursor: pointer;
-  transition: all 0.18s ease;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.explore-city-chip:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(226, 91, 22, 0.4);
-}
-
-.city-chip-text {
-  max-width: 90px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* ── 2. Smart Search & View Mode Switcher ── */
-.explore-search-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  flex-shrink: 0;
-}
-
-.explore-search-bar {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 9px 14px;
   transition: all 0.2s ease;
-}
-
-.explore-search-bar:focus-within {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(218, 251, 113, 0.4);
-  box-shadow: 0 0 16px rgba(218, 251, 113, 0.1);
-}
-
-.explore-search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  font-size: 12.5px;
-  color: #FFFFFF;
-  font-family: inherit;
-}
-
-.explore-search-input::placeholder {
-  color: #64748B;
-}
-
-.explore-search-clear {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.explore-view-toggle {
-  display: flex;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 12px;
-  padding: 3px;
-  gap: 2px;
-}
-
-.view-toggle-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  border: none;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-
-.view-toggle-btn.active {
-  background: #DAFB71;
-  box-shadow: 0 2px 8px rgba(218, 251, 113, 0.35);
-}
-
-/* ── 3. Tactile Date Rail (Calendar Timeline Strip) ── */
-.explore-date-rail {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  margin-bottom: 12px;
-  scrollbar-width: none;
-  padding-bottom: 2px;
   flex-shrink: 0;
 }
 
-.explore-date-rail::-webkit-scrollbar {
-  display: none;
-}
-
-.date-rail-item {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 8px 14px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94A3B8;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-  min-width: 90px;
-}
-
-.date-rail-item:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #F8FAFC;
-}
-
-.date-rail-item.active {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(218, 251, 113, 0.45);
-  color: #FFFFFF;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-.rail-item-top {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  width: 100%;
-}
-
-.rail-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.rail-badge {
-  font-size: 10px;
-  font-weight: 700;
-  background: rgba(255, 255, 255, 0.1);
-  color: #94A3B8;
-  padding: 1px 5px;
-  border-radius: 6px;
-  margin-left: auto;
-}
-
-.date-rail-item.active .rail-badge {
-  background: rgba(218, 251, 113, 0.2);
-  color: #DAFB71;
-}
-
-.rail-sub {
-  font-size: 10px;
-  font-weight: 500;
-  color: #64748B;
-  margin-top: 1px;
-}
-
-.date-rail-item.active .rail-sub {
-  color: #CBD5E1;
-}
-
-.live-pill-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 6px #10B981;
-  animation: beaconPulse 1.6s infinite ease-in-out;
-}
-
-.date-rail-glaze {
-  position: absolute;
-  bottom: 0;
-  left: 12px;
-  right: 12px;
-  height: 2.5px;
-  background: #DAFB71;
-  border-radius: 2px;
-  box-shadow: 0 0 8px #DAFB71;
-}
-
-/* ── 4. Vibe Spectrum Row ── */
-.explore-vibes-row {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  margin-bottom: 10px;
-  scrollbar-width: none;
-  flex-shrink: 0;
-}
-
-.explore-vibes-row::-webkit-scrollbar {
-  display: none;
-}
-
-.vibe-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94A3B8;
-  font-size: 11.5px;
-  font-weight: 600;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-
-.vibe-chip:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #FFFFFF;
-}
-
-.vibe-chip.active {
-  background: #FFFFFF;
-  border-color: #FFFFFF;
-  color: #08090E;
-  font-weight: 700;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.25);
-}
-
-.vibe-chip.active .vibe-icon-wrap svg {
-  color: #08090E;
-}
-
-.vibe-icon-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ── 5. Room Filter Row ── */
-.explore-room-filter-row {
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  margin-bottom: 16px;
-  scrollbar-width: none;
-  flex-shrink: 0;
-}
-
-.explore-room-filter-row::-webkit-scrollbar {
-  display: none;
-}
-
-.room-chip {
-  padding: 5px 11px;
-  border-radius: 8px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  color: #64748B;
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.room-chip:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  color: #CBD5E1;
-}
-
-.room-chip.active {
-  background: rgba(226, 91, 22, 0.14);
-  border-color: rgba(226, 91, 22, 0.4);
-  color: #E25B16;
-  font-weight: 600;
-}
-
-/* ── 6. Stream Area & Section Header ── */
-.explore-content-stream {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.explore-section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2px;
-}
-
-.section-title-wrap {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.section-tag-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #DAFB71;
-  box-shadow: 0 0 6px #DAFB71;
-}
-
-.section-title-text {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.01em;
-}
-
-.section-count-hint {
-  font-size: 11px;
-  color: #64748B;
-}
-
-/* ── 7. CINEMA HEADLINER SPOTLIGHT CARD ── */
-.explore-cinema-card {
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #0F111A;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 66, 217, 0.12);
-  cursor: pointer;
-  margin-bottom: 6px;
-  transition: transform 0.22s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.explore-cinema-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(218, 251, 113, 0.4);
-}
-
-.cinema-media-wrap {
-  position: relative;
-  width: 100%;
-  min-height: 240px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-.cinema-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.75) contrast(1.08);
-  transition: transform 0.4s ease;
-}
-
-.explore-cinema-card:hover .cinema-bg-img {
-  transform: scale(1.03);
-}
-
-.cinema-overlay-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg, 
-    rgba(8, 9, 14, 0.45) 0%, 
-    rgba(8, 9, 14, 0.15) 30%, 
-    rgba(8, 9, 14, 0.88) 75%, 
-    rgba(8, 9, 14, 0.98) 100%
-  );
-  pointer-events: none;
-}
-
-.cinema-top-row {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.cinema-headliner-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(14, 17, 27, 0.82);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(238, 61, 90, 0.35);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #FFFFFF;
-}
-
-.cinema-eq-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: rgba(14, 17, 27, 0.82);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-.eq-waveform {
-  display: flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 12px;
-}
-
-.eq-bar {
-  width: 2.5px;
-  background: #DAFB71;
-  border-radius: 1px;
-  animation: eqBounce 1.2s infinite ease-in-out;
-}
-
-.bar-1 { height: 40%; animation-delay: 0.1s; }
-.bar-2 { height: 90%; animation-delay: 0.3s; }
-.bar-3 { height: 65%; animation-delay: 0.15s; }
-.bar-4 { height: 100%; animation-delay: 0.4s; }
-
-@keyframes eqBounce {
-  0%, 100% { transform: scaleY(0.3); }
-  50% { transform: scaleY(1); }
-}
-
-.eq-label {
-  font-size: 10px;
-  font-weight: 600;
-  color: #DAFB71;
-}
-
-.cinema-content-bottom {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.cinema-meta-tag {
-  font-size: 11px;
-  font-weight: 600;
-  color: #DAFB71;
-}
-
-.cinema-title {
-  margin: 0;
-  font-size: 20px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-}
-
-.cinema-desc {
-  margin: 0;
-  font-size: 11.5px;
-  color: #94A3B8;
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.cinema-actions-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.cinema-price-block {
-  display: flex;
-  flex-direction: column;
-}
-
-.price-sub {
-  font-size: 9.5px;
-  color: #64748B;
-  text-transform: uppercase;
-  font-weight: 600;
-}
-
-.price-num {
-  font-size: 18px;
-  font-weight: 800;
-  color: #FFFFFF;
-}
-
-.cinema-btn-group {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.cinema-wa-btn {
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px;
-  color: #E2E8F0;
-  font-size: 11.5px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-
-.cinema-wa-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #FFFFFF;
-}
-
-.cinema-book-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #DAFB71;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #080808;
-  cursor: pointer;
-  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0 4px 14px rgba(218, 251, 113, 0.35);
-}
-
-.cinema-book-btn:hover {
+.antique-back-btn:hover {
+  background: rgba(28, 25, 23, 0.05);
   transform: scale(1.04);
-  box-shadow: 0 6px 20px rgba(218, 251, 113, 0.5);
 }
 
-/* ── 8. ARCHITECTURAL PERFORATED TICKET CARDS ── */
-.explore-tickets-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.perforated-ticket-card {
-  position: relative;
-  background: #11131E;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.perforated-ticket-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(218, 251, 113, 0.3);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 66, 217, 0.1);
-}
-
-/* Physical Perforation Notches on Left & Right */
-.ticket-notch {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  background: #08090E;
-  border-radius: 50%;
-  top: 140px;
-  z-index: 10;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.notch-left {
-  left: -9px;
-}
-
-.notch-right {
-  right: -9px;
-}
-
-.ticket-perforation-dash {
-  position: absolute;
-  top: 149px;
-  left: 12px;
-  right: 12px;
-  height: 0;
-  border-top: 1.5px dashed rgba(255, 255, 255, 0.12);
-  z-index: 9;
-  pointer-events: none;
-}
-
-/* Ticket Header Strip */
-.ticket-header-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.02);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.ticket-date-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #F8FAFC;
-}
-
-.ticket-genre-badge {
-  font-size: 10px;
-  font-weight: 700;
-  color: #DAFB71;
-  background: rgba(218, 251, 113, 0.1);
-  padding: 2px 8px;
-  border-radius: 6px;
-  border: 1px solid rgba(218, 251, 113, 0.2);
-}
-
-/* Media Box */
-.ticket-media-box {
-  position: relative;
-  height: 135px;
-  overflow: hidden;
-}
-
-.ticket-poster-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.perforated-ticket-card:hover .ticket-poster-img {
-  transform: scale(1.03);
-}
-
-.ticket-media-gradient {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(17, 19, 30, 0.85) 100%);
-}
-
-.ticket-sound-tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(8, 9, 14, 0.78);
-  backdrop-filter: blur(8px);
-  padding: 4px 9px;
-  border-radius: 999px;
-  font-size: 10px;
-  font-weight: 600;
-  color: #E2E8F0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.sound-pulse {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #10B981;
-  box-shadow: 0 0 6px #10B981;
-}
-
-.ticket-share-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: rgba(8, 9, 14, 0.75);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-
-.ticket-share-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.08);
-}
-
-.ticket-floating-price {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: #FFFFFF;
-  padding: 4px 10px;
-  border-radius: 8px;
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.tf-label {
-  font-size: 9px;
-  font-weight: 700;
-  color: #64748B;
-  text-transform: uppercase;
-}
-
-.tf-amt {
-  font-size: 13.5px;
-  font-weight: 800;
-  color: #08090E;
-}
-
-/* Ticket Details Body */
-.ticket-body {
-  padding: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.ticket-room-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.ticket-room-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 10.5px;
-  font-weight: 600;
-  color: #94A3B8;
-}
-
-.ticket-code-tag {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 10px;
-  font-weight: 600;
-  color: #64748B;
-  letter-spacing: 0.05em;
-}
-
-.ticket-event-title {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-}
-
-.ticket-event-time {
-  margin: 0;
-  font-size: 11px;
-  color: #DAFB71;
-  font-weight: 600;
-}
-
-.ticket-event-snippet {
-  margin: 2px 0 6px 0;
-  font-size: 11.5px;
-  color: #94A3B8;
-  line-height: 1.45;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* Lineup Stack */
-.ticket-lineup-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 0;
-}
-
-.lineup-avatar-stack {
-  display: flex;
-  align-items: center;
-}
-
-.lineup-circle-avatar {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 1.5px solid #11131E;
-  object-fit: cover;
-  background: #1E2235;
-}
-
-.lineup-artist-summary {
-  font-size: 11px;
-  color: #CBD5E1;
-}
-
-.lineup-artist-summary strong {
-  color: #FFFFFF;
-  font-weight: 600;
-}
-
-/* Capacity Meter */
-.ticket-capacity-box {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 8px 10px;
-  border-radius: 10px;
-  margin: 4px 0 8px 0;
-}
-
-.capacity-text-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 10.5px;
-}
-
-.cap-booked-info {
-  font-weight: 700;
-  color: #DAFB71;
-}
-
-.cap-remaining-tag {
-  color: #94A3B8;
-  font-weight: 500;
-}
-
-.capacity-bar-track {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.capacity-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #E25B16 0%, #DAFB71 100%);
-  border-radius: 2px;
-  transition: width 0.5s ease;
-}
-
-/* Ticket Footer Actions */
-.ticket-footer-actions {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.ticket-wa-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #DAFB71;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.16s ease;
-}
-
-.ticket-wa-action:hover {
-  background: rgba(218, 251, 113, 0.12);
-  border-color: rgba(218, 251, 113, 0.3);
-}
-
-.ticket-primary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #DAFB71;
-  border: none;
-  padding: 8px 18px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  color: #08090E;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(218, 251, 113, 0.3);
-  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.ticket-primary-btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 6px 18px rgba(218, 251, 113, 0.5);
-}
-
-/* ── 9. VIEW MODE 2: EDITORIAL TIMELINE SCHEDULE ── */
-.explore-editorial-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  position: relative;
-  padding-left: 4px;
-}
-
-.timeline-item-row {
-  display: flex;
-  gap: 14px;
-  cursor: pointer;
-}
-
-.timeline-spine {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 14px;
-  flex-shrink: 0;
-  padding-top: 6px;
-}
-
-.spine-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #DAFB71;
-  box-shadow: 0 0 8px #DAFB71;
-  border: 2px solid #08090E;
-}
-
-.spine-line {
-  flex: 1;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  margin-top: 6px;
-}
-
-.timeline-schedule-card {
-  flex: 1;
-  background: #11131E;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  transition: all 0.18s ease;
-}
-
-.timeline-item-row:hover .timeline-schedule-card {
-  background: #161928;
-  border-color: rgba(218, 251, 113, 0.3);
-  transform: translateX(4px);
-}
-
-.tsc-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.tsc-time {
-  font-size: 11px;
-  font-weight: 700;
-  color: #DAFB71;
-}
-
-.tsc-badge {
-  font-size: 10px;
-  font-weight: 600;
-  color: #94A3B8;
-  background: rgba(255, 255, 255, 0.06);
-  padding: 1px 6px;
-  border-radius: 4px;
-}
-
-.tsc-title {
-  margin: 2px 0 0 0;
-  font-size: 14px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-
-.tsc-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 10.5px;
-  color: #64748B;
-  margin-top: 2px;
-}
-
-.tsc-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 6px;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.tsc-price {
-  font-size: 13px;
-  font-weight: 800;
-  color: #FFFFFF;
-}
-
-.tsc-action-btn {
-  background: transparent;
-  border: 1px solid rgba(218, 251, 113, 0.3);
-  color: #DAFB71;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-}
-
-.tsc-action-btn:hover {
-  background: #DAFB71;
-  color: #08090E;
-}
-
-/* ── 10. STUDIO CONCIERGE / PRIVATE HOST CARD ── */
-.explore-concierge-card {
-  margin-top: 8px;
-  border-radius: 20px;
-  background: 
-    radial-gradient(circle at 10% 10%, rgba(226, 91, 22, 0.18) 0%, transparent 60%),
-    #10131E;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 18px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-}
-
-.concierge-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: #DAFB71;
-  margin-bottom: 6px;
-}
-
-.concierge-heading {
-  margin: 0 0 6px 0;
-  font-size: 15px;
-  font-weight: 800;
-  color: #FFFFFF;
-  line-height: 1.35;
-}
-
-.concierge-desc {
-  margin: 0 0 14px 0;
-  font-size: 11.5px;
-  color: #94A3B8;
-  line-height: 1.45;
-}
-
-.concierge-actions {
-  display: flex;
-}
-
-.concierge-wa-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: #DAFB71;
-  color: #08090E;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(218, 251, 113, 0.3);
-  transition: all 0.18s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.concierge-wa-link:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(218, 251, 113, 0.45);
-}
-
-/* ── 11. EMPTY STATE ── */
-.explore-empty-state {
+.antique-header-center {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 36px 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
 }
 
-.empty-icon-capsule {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  background: rgba(218, 251, 113, 0.1);
-  border: 1px solid rgba(218, 251, 113, 0.25);
+.antique-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #A8A29E;
+  text-transform: uppercase;
+}
+
+.antique-title {
+  margin: 0;
+  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #1C1917;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.antique-location-link {
+  background: transparent;
+  border: none;
+  padding: 6px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #78716C;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color 0.18s ease;
+}
+
+.antique-location-link:hover {
+  color: #C2571A;
+}
+
+/* ── Minimal Understated Filter Tabs ── */
+.antique-tabs-nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 12px;
+  gap: 24px;
+  padding: 12px 24px 16px 24px;
+  background: #FAF7F2;
+  border-bottom: 1px solid rgba(28, 25, 23, 0.05);
+  position: sticky;
+  top: 73px;
+  z-index: 15;
 }
 
-.empty-title {
-  margin: 0 0 6px 0;
-  font-size: 15px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-
-.empty-desc {
-  margin: 0 0 16px 0;
-  font-size: 11.5px;
-  color: #94A3B8;
-  line-height: 1.5;
-  max-width: 260px;
-}
-
-.empty-reset-btn {
-  background: #FFFFFF;
+.antique-tab-btn {
+  position: relative;
+  background: transparent;
   border: none;
-  color: #08090E;
-  padding: 8px 18px;
+  padding: 6px 4px 10px 4px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 450;
+  color: #8C827A;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.antique-tab-btn:hover {
+  color: #1C1917;
+}
+
+.antique-tab-btn.is-active {
+  color: #1C1917;
+  font-weight: 600;
+}
+
+.antique-tab-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: #C2571A;
+}
+
+/* ── Spacious Event Stream ── */
+.antique-events-stream {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 20px 40px 20px;
+  gap: 40px; /* Generous breathing space */
+}
+
+.antique-event-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: #FAF7F2;
+  transition: opacity 0.2s ease;
+}
+
+.antique-event-item:hover {
+  opacity: 0.94;
+}
+
+.antique-event-item:active {
+  transform: scale(0.995);
+}
+
+/* Photo */
+.antique-image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #EFECE5;
+  box-shadow: 0 4px 18px rgba(28, 25, 23, 0.06);
+  position: relative;
+}
+
+.antique-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  filter: contrast(1.02);
+}
+
+.antique-event-item:hover .antique-image {
+  transform: scale(1.02);
+}
+
+/* Editorial Details */
+.antique-info-row {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 4px 0 4px;
+}
+
+.antique-meta-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.antique-date {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #C2571A;
+  text-transform: uppercase;
+}
+
+.antique-time {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 11.5px;
+  color: #8C827A;
+  font-weight: 450;
+}
+
+.antique-event-title {
+  margin: 0 0 4px 0;
+  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: 500;
+  color: #1C1917;
+  letter-spacing: -0.015em;
+  line-height: 1.25;
+}
+
+.antique-artist-line {
+  margin: 0 0 14px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 13px;
+  color: #78716C;
+  font-weight: 400;
+}
+
+.antique-action-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid rgba(28, 25, 23, 0.08);
+}
+
+.antique-price {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1C1917;
+  letter-spacing: -0.01em;
+}
+
+.antique-reserve-link {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #C2571A;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: transform 0.18s ease;
+}
+
+.antique-reserve-link span {
+  transition: transform 0.18s ease;
+}
+
+.antique-event-item:hover .antique-reserve-link span {
+  transform: translateX(3px);
+}
+
+/* Empty State */
+.antique-empty {
+  text-align: center;
+  padding: 48px 16px;
+  color: #78716C;
+}
+
+.antique-empty p {
+  margin: 0 0 12px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 13.5px;
+}
+
+.antique-reset-btn {
+  background: transparent;
+  border: 1px solid rgba(28, 25, 23, 0.2);
+  color: #1C1917;
+  padding: 7px 16px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 500;
   cursor: pointer;
-  transition: transform 0.16s ease;
 }
 
-.empty-reset-btn:hover {
-  transform: scale(1.04);
+/* Footer Note */
+.antique-footer-note {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(28, 25, 23, 0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
-/* Bottom Safety Spacer */
-.explore-bottom-spacer {
-  height: 85px;
-  flex-shrink: 0;
+.antique-footer-note p {
+  margin: 0;
+  font-family: "Editorial New", "Playfair Display", "Baskerville", "Georgia", "Times New Roman", serif;
+  font-size: 14.5px;
+  color: #1C1917;
+  font-style: italic;
+}
+
+.antique-footer-note span {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+  font-size: 10.5px;
+  color: #A8A29E;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
