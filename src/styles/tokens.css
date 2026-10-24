@@ -1,47 +1,53 @@
 :root {
-  /* Core Brand Colors */
-  --color-royal-blue: #0042D9;
-  --color-royal-blue-deep: #0036B8;
-  --color-electric-lime: #DAFB71;
-  --color-lime-glow: rgba(218, 251, 113, 0.4);
-  --color-crimson: #EE3D5A;
-  --color-sky-blue: #80B0EC;
-  --color-pale-blue-bg: #EBF1FF;
+  /* ============================================================
+     WARM EDITORIAL & PASTEL BENTO PALETTE
+     Inspired by minimalist luxury fintech & mindfulness design
+     ============================================================ */
+
+  /* Canvas & Warm Paper Tones */
+  --color-canvas-warm: #F7F4EE;
+  --color-canvas-card: #FFFFFF;
+  --color-canvas-muted: #EFECE5;
+  --color-canvas-subtle: #FAF8F5;
+
+  /* Typography Inks */
+  --color-ink-primary: #12131A;
+  --color-ink-secondary: #6B6F7B;
+  --color-ink-tertiary: #9AA0AF;
   --color-pure-white: #FFFFFF;
-  --color-true-black: #080808;
-  --color-card-dark: #0F1118;
-  --color-muted-gray: #7E8597;
-  --color-light-gray: #F4F6FB;
-  --color-border-subtle: #E2E7F2;
-  --color-dashed-line: rgba(255, 255, 255, 0.5);
 
-  /* Typography - Lufga geometric profile */
-  --font-family-display: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
-  --font-family-body: 'Plus Jakarta Sans', 'Outfit', -apple-system, sans-serif;
+  /* Pastel Bento Accent Palette (from reference imagery) */
+  --color-bento-lilac: #D7DCFA;
+  --color-bento-lilac-border: #C8CEF5;
+  --color-bento-mint: #CFE7DE;
+  --color-bento-mint-border: #BCDED3;
+  --color-bento-butter: #F3E294;
+  --color-bento-butter-border: #E8D580;
+  --color-bento-peach: #F0BBB0;
+  --color-bento-peach-border: #E5A99D;
+  --color-bento-dark: #12131A;
+
+  /* Supporting Accents */
+  --color-crimson: #EE3D5A;
+  --color-royal-blue: #0042D9;
+  --color-electric-lime: #DAFB71;
+
+  /* Typography */
+  --font-family-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  --font-family-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
   --font-family-mono: 'Space Grotesk', monospace;
-
-  /* Typography Scale from Reference Board */
-  --text-h1: 40px;
-  --text-h2: 36px;
-  --text-h3: 24px;
-  --text-title: 20px;
-  --text-subtitle: 16px;
-  --text-caption: 13px;
-  --text-micro: 11px;
 
   /* Radii */
   --radius-sm: 10px;
   --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
   --radius-pill: 9999px;
 
-  /* Shadows */
-  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.14);
-  --shadow-card: 0 12px 36px rgba(0, 66, 217, 0.12);
-  --shadow-lime: 0 8px 24px rgba(218, 251, 113, 0.35);
+  /* Shadows - delicate ambient occlusion */
+  --shadow-subtle: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 4px 20px rgba(18, 19, 26, 0.05);
+  --shadow-float: 0 12px 36px rgba(18, 19, 26, 0.08);
 
   /* Transitions */
   --transition-fast: 0.18s cubic-bezier(0.19, 1, 0.22, 1);
@@ -58,8 +64,8 @@
 html, body {
   width: 100%;
   min-height: 100%;
-  background-color: var(--color-true-black);
-  color: var(--color-pure-white);
+  background-color: #EDE8DF;
+  color: var(--color-ink-primary);
   font-family: var(--font-family-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -81,17 +87,23 @@ button:active {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(18, 19, 26, 0.12);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-electric-lime);
+  background: rgba(18, 19, 26, 0.25);
 }
-button:focus-visible,a:focus-visible{outline:2px solid #80b0ec;outline-offset:4px}a{ -webkit-tap-highlight-color:transparent }button,input{ -webkit-tap-highlight-color:transparent }
+
+button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--color-ink-primary);
+  outline-offset: 3px;
+}
+a { -webkit-tap-highlight-color: transparent; }
+button, input { -webkit-tap-highlight-color: transparent; }

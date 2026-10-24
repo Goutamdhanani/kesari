@@ -15,7 +15,7 @@ export default function HomeSkeletonScreen() {
       <div className="skel-header">
         <div className="skel-row-left">
           <div className="skel-circle skel-avatar" />
-          <div className="skel-pill skel-location" />
+          <div className="skel-pill skel-venue-pill" />
         </div>
         <div className="skel-row-right">
           <div className="skel-circle skel-refresh" />
@@ -31,64 +31,30 @@ export default function HomeSkeletonScreen() {
       </div>
 
       {/* 3. Search Bar Skeleton */}
-      <div className="skel-search-bar" />
+      <div className="skel-search-capsule" />
 
-      {/* 4. Category Chips Skeleton */}
+      {/* 4. Stage Chips Skeleton */}
       <div className="skel-chips-row">
         <div className="skel-pill skel-chip-active" />
         <div className="skel-pill skel-chip" />
         <div className="skel-pill skel-chip" />
         <div className="skel-pill skel-chip" />
-        <div className="skel-pill skel-chip" />
       </div>
 
-      {/* 6. Upcoming Event Card Skeleton */}
-      <div className="skel-upcoming-card">
-        <div className="skel-upcoming-thumb" />
-        <div className="skel-upcoming-text">
-          <div className="skel-line skel-upcoming-tag" />
-          <div className="skel-line skel-upcoming-title" />
-        </div>
-        <div className="skel-circle skel-upcoming-btn" />
+      {/* 5. Spotlight Hero Skeleton */}
+      <div className="skel-spotlight-card" />
+
+      {/* 6. Bento Grid Skeleton (2x2) */}
+      <div className="skel-bento-header">
+        <div className="skel-line skel-bento-title" />
+        <div className="skel-line skel-bento-badge" />
       </div>
 
-      {/* 7. Popular Section Skeleton */}
-      <div className="skel-section-header">
-        <div className="skel-line skel-section-title" />
-        <div className="skel-line skel-see-all" />
-      </div>
-
-      <div className="skel-carousel-row">
-        <div className="skel-card-tall" />
-        <div className="skel-card-tall" />
-      </div>
-
-      {/* 8. Nearby Section Skeleton */}
-      <div className="skel-section-header">
-        <div className="skel-line skel-section-title" />
-        <div className="skel-line skel-see-all" />
-      </div>
-
-      <div className="skel-nearby-list">
-        <div className="skel-nearby-row">
-          <div className="skel-nearby-thumb" />
-          <div className="skel-nearby-info">
-            <div className="skel-line skel-nearby-cat" />
-            <div className="skel-line skel-nearby-title" />
-            <div className="skel-line skel-nearby-meta" />
-          </div>
-          <div className="skel-line skel-nearby-price" />
-        </div>
-
-        <div className="skel-nearby-row">
-          <div className="skel-nearby-thumb" />
-          <div className="skel-nearby-info">
-            <div className="skel-line skel-nearby-cat" />
-            <div className="skel-line skel-nearby-title" />
-            <div className="skel-line skel-nearby-meta" />
-          </div>
-          <div className="skel-line skel-nearby-price" />
-        </div>
+      <div className="skel-bento-grid">
+        <div className="skel-bento-card" />
+        <div className="skel-bento-card" />
+        <div className="skel-bento-card" />
+        <div className="skel-bento-card" />
       </div>
     </motion.div>
   );

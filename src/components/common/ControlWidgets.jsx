@@ -167,29 +167,29 @@ export function FloatingBottomNav({
   const tabs = [
     { id: 'home', icon: 'home', label: 'Home' },
     { id: 'search', icon: 'search', label: 'Search' },
-    { id: 'calendar', icon: 'calendar', label: 'Events' },
-    { id: 'ticket', icon: 'ticket', label: 'Tickets' },
+    { id: 'calendar', icon: 'calendar', label: 'Schedule' },
+    { id: 'ticket', icon: 'ticket', label: 'Passes' },
     { id: 'profile', icon: 'user', label: 'Profile' }
   ];
 
   return (
-    <nav className="floating-bottom-nav-bar" aria-label="Main Navigation">
+    <nav className="floating-bottom-nav-bar" aria-label="Venue Navigation">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.id;
         return (
           <motion.button
             key={tab.id}
-            className={`nav-tab-item ${isActive ? 'active-lime-tab' : 'inactive-dark-tab'}`}
+            className={`nav-tab-item ${isActive ? 'active-dark-tab' : 'inactive-tab'}`}
             onClick={() => onTabChange(tab.id)}
-            whileHover={{ scale: 1.12 }}
-            whileTap={{ scale: 0.88 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.9 }}
             aria-label={tab.label}
           >
             <AppIcon 
               name={tab.icon} 
-              size={18} 
-              color={isActive ? '#080808' : '#FFFFFF'} 
-              strokeWidth={isActive ? 2.5 : 2}
+              size={17} 
+              color={isActive ? '#FFFFFF' : '#6B6F7B'} 
+              strokeWidth={isActive ? 2.3 : 2}
             />
           </motion.button>
         );

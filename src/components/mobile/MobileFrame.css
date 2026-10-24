@@ -1,6 +1,6 @@
 /* ============================================================
    EVENT JAM WEB APPLICATION — True Responsive Architecture
-   (Clean, borderless, zero artificial phone chassis elements)
+   (Clean, warm oat canvas, minimalist editorial aesthetic)
    ============================================================ */
 
 /* Outer App Viewport Canvas */
@@ -9,9 +9,9 @@
   min-height: 100vh;
   min-height: 100dvh;
   background: 
-    radial-gradient(ellipse at 50% 0%, rgba(0, 66, 217, 0.2) 0%, transparent 55%),
-    radial-gradient(ellipse at 80% 100%, rgba(218, 251, 113, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, #0E101A 0%, #08080A 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(215, 220, 250, 0.45) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(243, 226, 148, 0.35) 0%, transparent 55%),
+    #EDE8DF;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -24,12 +24,12 @@
 .eventjam-web-app-viewport::before {
   content: '';
   position: fixed;
-  top: -150px;
+  top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 650px;
-  height: 650px;
-  background: radial-gradient(circle, rgba(0, 66, 217, 0.14) 0%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(215, 220, 250, 0.3) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -37,12 +37,12 @@
 .eventjam-web-app-viewport::after {
   content: '';
   position: fixed;
-  bottom: -150px;
+  bottom: -120px;
   left: 50%;
   transform: translateX(-50%);
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(218, 251, 113, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(207, 231, 222, 0.35) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -57,12 +57,12 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
-  background: #F4F7FC;
+  background: var(--color-canvas-warm, #F7F4EE);
   box-shadow: 
-    0 24px 80px rgba(0, 0, 0, 0.7),
-    0 0 40px rgba(0, 66, 217, 0.15);
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
+    0 16px 60px rgba(18, 19, 26, 0.08),
+    0 2px 8px rgba(18, 19, 26, 0.03);
+  border-left: 1px solid rgba(18, 19, 26, 0.06);
+  border-right: 1px solid rgba(18, 19, 26, 0.06);
   overflow: hidden;
 }
 
@@ -83,7 +83,7 @@
   height: 100dvh;
   overflow: hidden;
   position: relative;
-  background: #F4F7FC;
+  background: var(--color-canvas-warm, #F7F4EE);
   display: flex;
   flex-direction: column;
 }
@@ -94,17 +94,15 @@
   top: 18px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(12, 13, 20, 0.94);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: #DAFB71;
+  background: #12131A;
+  color: #FFFFFF;
   font-size: 11.5px;
   font-weight: 700;
   padding: 8px 18px;
   border-radius: 999px;
   z-index: 999;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(218, 251, 113, 0.35);
+  box-shadow: 0 6px 20px rgba(18, 19, 26, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   white-space: nowrap;
   pointer-events: none;
   display: flex;
