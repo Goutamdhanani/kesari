@@ -7,7 +7,7 @@ import RentGearSheet from './RentGearSheet';
 import OrganiseEventModal from './OrganiseEventModal';
 import RentSpaceModal from './RentSpaceModal';
 import MonthlyPassModal from './MonthlyPassModal';
-import { RENTAL_EQUIPMENT, MONTHLY_PASSES, KESARI_CONTACT } from '../../data/kesariStudioData';
+import { RENTAL_EQUIPMENT, MONTHLY_PASSES, KESARI_MEMBERSHIP_META, KESARI_CONTACT } from '../../data/kesariStudioData';
 import './HomeScreen.css';
 
 // Bespoke Apple-grade SVG Micro-Icons for Stage Vibes (No emojis)
@@ -120,11 +120,11 @@ const STAGE_PASSES = [
   }
 ];
 
-// Schedule for Tonight at Kesari Studio Koramangala
+// Schedule for Tonight at Kesari Studio
 const TONIGHT_SCHEDULE = [
   {
     id: 'jazz',
-    stage: 'Acoustic Lounge • Kesari Koramangala',
+    stage: 'Acoustic Lounge • Kesari Studio',
     time: '18:30',
     title: 'Jazz & Blues Improv',
     artist: 'Miles Davis Tribute Quartet',
@@ -134,7 +134,7 @@ const TONIGHT_SCHEDULE = [
   },
   {
     id: 'hiphop',
-    stage: 'Studio Floor • Kesari Koramangala',
+    stage: 'Studio Floor • Kesari Studio',
     time: '20:15',
     title: 'Hip Hop Showcase Live',
     artist: 'Apex Rhymes & DJ Metro',
@@ -144,7 +144,7 @@ const TONIGHT_SCHEDULE = [
   },
   {
     id: 'rock',
-    stage: 'Main Hall • Kesari Koramangala',
+    stage: 'Main Hall • Kesari Studio',
     time: '21:00',
     title: 'Rock Legends Reunion',
     artist: 'The Velvet Echoes',
@@ -188,6 +188,7 @@ export default function HomeScreen({
   const [showOrganiseModal, setShowOrganiseModal] = useState(false);
   const [showRentSpaceModal, setShowRentSpaceModal] = useState(false);
   const [showMonthlyPassModal, setShowMonthlyPassModal] = useState(false);
+  const [selectedPassForModal, setSelectedPassForModal] = useState('pass-ritual');
 
   const triggerRefresh = () => {
     setIsLoading(true);
@@ -230,7 +231,7 @@ export default function HomeScreen({
                     className="dome-kesari-brand-logo" 
                   />
 
-                  {/* Koramangala Studio Venue Capsule */}
+                  {/* Studio Venue Capsule */}
                   <motion.div 
                     className="dome-venue-capsule"
                     onClick={() => setShowRentSpaceModal(true)}
@@ -238,23 +239,12 @@ export default function HomeScreen({
                     whileTap={{ scale: 0.96 }}
                   >
                     <span className="dome-live-beacon" />
-                    <span className="dome-venue-name">Kesari Studio • Koramangala</span>
+                    <span className="dome-venue-name">Kesari Studio</span>
                     <AppIcon name="chevron-right" size={8} color="#9AA0AF" className="rotate-90" />
                   </motion.div>
                 </div>
 
                 <div className="dome-nav-actions">
-                  <motion.button
-                    className="dome-glass-btn"
-                    onClick={triggerRefresh}
-                    whileHover={{ rotate: 90, scale: 1.08 }}
-                    whileTap={{ rotate: 360, scale: 0.88 }}
-                    title="Refresh Live Schedule"
-                    aria-label="Refresh Schedule"
-                  >
-                    <AppIcon name="refresh" size={13} color="#FFFFFF" strokeWidth={2.2} />
-                  </motion.button>
-
                   <motion.button 
                     className="dome-glass-btn" 
                     onClick={onOpenNotifications}
@@ -316,7 +306,7 @@ export default function HomeScreen({
 
                   <div className="dome-footer-row">
                     <div className="dome-timing-info">
-                      <span className="dome-subtext">Rock Legends Reunion • Kesari Studio Koramangala</span>
+                      <span className="dome-subtext">Rock Legends Reunion • Live Studio Stage</span>
                     </div>
                     
                     <motion.button 
@@ -338,7 +328,7 @@ export default function HomeScreen({
               <motion.section className="venue-vibe-section" variants={itemVariants}>
                 <div className="section-title-row">
                   <span className="section-label">Studio Lineup</span>
-                  <span className="section-meta">Koramangala</span>
+                  <span className="section-meta">Live This Week</span>
                 </div>
 
                 <div className="vibe-pills-scroll">
@@ -443,7 +433,7 @@ export default function HomeScreen({
 
                   <div className="services-card-header">
                     <span className="services-card-eyebrow">STUDIO SERVICES</span>
-                    <span className="services-card-tag">Koramangala</span>
+                    <span className="services-card-tag">Studio Hub</span>
                   </div>
 
                   <div className="services-card-list">
@@ -466,14 +456,17 @@ export default function HomeScreen({
                     <motion.button 
                       type="button"
                       className="service-item-row"
-                      onClick={() => setShowMonthlyPassModal(true)}
+                      onClick={() => {
+                        setSelectedPassForModal('pass-ritual');
+                        setShowMonthlyPassModal(true);
+                      }}
                       whileTap={{ scale: 0.97 }}
                     >
                       <div className="service-item-left">
                         <span className="service-item-icon">🎟️</span>
                         <div className="service-item-text">
-                          <span className="service-item-title">Monthly Passes</span>
-                          <span className="service-item-desc">3 Plans • From ₹1,999</span>
+                          <span className="service-item-title">Kesari Membership</span>
+                          <span className="service-item-desc">From ₹3,000 • Worth up to ₹53,700</span>
                         </div>
                       </div>
                       <span className="service-item-arrow">›</span>
@@ -513,7 +506,7 @@ export default function HomeScreen({
                   
                   <div className="organise-card-content">
                     <div className="organise-card-header">
-                      <span className="organise-pill-tag">✦ INSIDE KESARI</span>
+                      <span className="organise-pill-tag">✦ HOST AT KESARI</span>
                       <span className="organise-live-badge">Live Stage Hall</span>
                     </div>
                     
@@ -541,88 +534,144 @@ export default function HomeScreen({
                 </motion.div>
               </motion.section>
 
-              {/* ── Inside Kesari Studio: Real Interior Photography Showcase ── */}
-              <motion.section className="inside-kesari-gallery-section" variants={itemVariants}>
-                <div className="section-title-row">
-                  <div className="gallery-title-group">
-                    <span className="section-label">Inside Kesari Studio</span>
-                    <span className="gallery-location-tag">Koramangala, Bangalore</span>
+              {/* ── Kesari Membership Section: 3 Bespoke Luxury Passes with Exact Copy & Mathematical Worth ── */}
+              <motion.section className="kesari-membership-section" variants={itemVariants}>
+                <div className="membership-section-header">
+                  <div className="membership-header-top">
+                    <span className="membership-section-kicker">KESARI MEMBERSHIP</span>
+                    <button 
+                      type="button" 
+                      className="membership-view-all-btn"
+                      onClick={() => {
+                        setSelectedPassForModal('pass-ritual');
+                        setShowMonthlyPassModal(true);
+                      }}
+                    >
+                      Compare Passes &rsaquo;
+                    </button>
                   </div>
-                  <button 
-                    type="button" 
-                    className="gallery-explore-btn"
-                    onClick={() => setShowRentSpaceModal(true)}
-                  >
-                    <span>View Spaces &rsaquo;</span>
-                  </button>
+                  <h3 className="membership-section-title">Come for a coffee. Find your place.</h3>
+                  <p className="membership-section-sub">
+                    Some days you need somewhere to focus. Some days you need good food, meaningful conversations, or just a change of scene. At Kesari, you don't have to choose.
+                  </p>
+                  <p className="membership-section-motto">
+                    Work here. Eat here. Meet here. Belong here.
+                  </p>
+                  
+                  {/* Anchored Coworking Rates & Hours Banner */}
+                  <div className="membership-rates-banner">
+                    <span className="rates-clock-icon">⏱️</span>
+                    <div className="rates-text">
+                      <strong>Coworking Hours:</strong> Mon–Thu 10:00 AM – 6:00 PM (8h) · Fri 10:00 AM – 3:00 PM (5h) · <strong>37h/wk</strong>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="inside-studio-scroll-track">
-                  {/* Photo Card 1: Main Live Stage */}
-                  <motion.div 
-                    className="studio-photo-card"
-                    onClick={() => setShowOrganiseModal(true)}
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div 
-                      className="studio-card-img" 
-                      style={{ backgroundImage: "url('/assets/events/kesari_stage_inside.jpg')" }}
+                {/* 3 Bespoke Pass Cards Track */}
+                <div className="membership-cards-track">
+                  {MONTHLY_PASSES.map((pass) => (
+                    <motion.div
+                      key={pass.id}
+                      className={`home-pass-card ${pass.theme}`}
+                      onClick={() => {
+                        setSelectedPassForModal(pass.id);
+                        setShowMonthlyPassModal(true);
+                      }}
+                      whileHover={{ y: -4, scale: 1.015 }}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <div className="studio-card-badge-row">
-                        <span className="studio-pill-badge live">Live Stage</span>
-                        <span className="studio-cap-badge">40–60 Pax</span>
+                      {/* Pass Top Badge Row */}
+                      <div className="home-pass-top">
+                        <span className="home-pass-tier-badge">{pass.tierTag}</span>
+                        <span className="home-pass-price-pill">{pass.billing}</span>
                       </div>
-                      <div className="studio-photo-meta">
-                        <h5 className="studio-photo-name">Main Live Stage & Hall</h5>
-                        <p className="studio-photo-detail">Acoustic wood stage, warm lights & seating</p>
-                      </div>
-                    </div>
-                  </motion.div>
 
-                  {/* Photo Card 2: Acoustic Jam Lounge */}
-                  <motion.div 
-                    className="studio-photo-card"
-                    onClick={() => setShowRentSpaceModal(true)}
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div 
-                      className="studio-card-img" 
-                      style={{ backgroundImage: "url('/assets/events/kesari_lounge_inside.jpg')" }}
-                    >
-                      <div className="studio-card-badge-row">
-                        <span className="studio-pill-badge neon">Jam Lounge</span>
-                        <span className="studio-cap-badge">8–15 Pax</span>
+                      {/* Title & Tagline */}
+                      <div className="home-pass-name-group">
+                        <h4 className="home-pass-name">{pass.name}</h4>
+                        <p className="home-pass-headline">"{pass.headline}"</p>
                       </div>
-                      <div className="studio-photo-meta">
-                        <h5 className="studio-photo-name">Acoustic Jam Lounge</h5>
-                        <p className="studio-photo-detail">Chesterfield couch, Marshall amps & neon</p>
-                      </div>
-                    </div>
-                  </motion.div>
 
-                  {/* Photo Card 3: Sound Gear & Control Vault */}
-                  <motion.div 
-                    className="studio-photo-card"
-                    onClick={() => setShowRentGear(true)}
-                    whileHover={{ y: -3 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <div 
-                      className="studio-card-img" 
-                      style={{ backgroundImage: "url('/assets/events/kesari_gear_inside.jpg')" }}
-                    >
-                      <div className="studio-card-badge-row">
-                        <span className="studio-pill-badge gear">Gear Vault</span>
-                        <span className="studio-cap-badge">13 Rentals</span>
+                      {/* WOW WHAT A DEAL: Total Value Highlight */}
+                      <div className="home-pass-deal-box">
+                        <div className="deal-worth-row">
+                          <span className="deal-worth-label">TOTAL BENEFIT WORTH</span>
+                          <span className="deal-worth-val">₹{pass.totalValue.toLocaleString()}</span>
+                        </div>
+                        <div className="deal-savings-row">
+                          <span className="deal-savings-pill">{pass.savingsText}</span>
+                          <span className="deal-hours-badge">{pass.workHoursTotal}</span>
+                        </div>
                       </div>
-                      <div className="studio-photo-meta">
-                        <h5 className="studio-photo-name">Sound Gear & Control</h5>
-                        <p className="studio-photo-detail">Analog mixer, Shure mics & audio gear</p>
+
+                      {/* Mathematical Value Breakdown List */}
+                      <div className="home-pass-benefits-list">
+                        <div className="home-benefit-pill">
+                          <span className="benefit-dot" />
+                          <span className="benefit-text"><strong>{pass.workdays}</strong> (₹{pass.spaceValue.toLocaleString()} space value @ ₹250/h)</span>
+                        </div>
+                        <div className="home-benefit-pill">
+                          <span className="benefit-dot" />
+                          <span className="benefit-text"><strong>{pass.teaCount}</strong> (₹{pass.teaValue.toLocaleString()} value @ ₹120 each)</span>
+                        </div>
+                        {pass.diningCredit !== '—' && (
+                          <div className="home-benefit-pill dining">
+                            <span className="benefit-dot dining-dot" />
+                            <span className="benefit-text"><strong>{pass.diningCredit}</strong> café dining credit</span>
+                          </div>
+                        )}
+                        <div className="home-benefit-pill community">
+                          <span className="benefit-dot" />
+                          <span className="benefit-text">Regular community experiences & privileges</span>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
+
+                      {/* Card Action Row */}
+                      <div className="home-pass-action-row">
+                        <button 
+                          type="button"
+                          className="home-pass-claim-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const msg = 
+                              `Hi Kesari - The Memory Studio!\n` +
+                              `I want to claim the *${pass.name}* (${pass.billing}) membership pass!\n` +
+                              `• Space: ${pass.workdays} (${pass.workHoursTotal})\n` +
+                              `• Beverages: ${pass.teaCount}\n` +
+                              (pass.diningCredit !== '—' ? `• Dining Credit: ${pass.diningCredit}\n` : '') +
+                              `• Total Benefit Worth: ₹${pass.totalValue.toLocaleString()} (${pass.savingsText})\n\n` +
+                              `Please let me know how to get started!`;
+                            window.open(KESARI_CONTACT.whatsappUrl(msg), '_blank');
+                          }}
+                        >
+                          <span>Claim on WhatsApp</span>
+                          <AppIcon name="arrow-up-right" size={11} color="currentColor" strokeWidth={2.4} />
+                        </button>
+
+                        <button 
+                          type="button" 
+                          className="home-pass-details-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedPassForModal(pass.id);
+                            setShowMonthlyPassModal(true);
+                          }}
+                        >
+                          Breakdown &rsaquo;
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Closing Motto Note */}
+                <div className="membership-section-footer">
+                  <span className="membership-closing-quote">
+                    Three ways to belong. One place to call yours.
+                  </span>
+                  <p className="membership-closing-terms">
+                    Monthly memberships. Personal beverage redemptions only (artisan teas & coffees @ ₹120). Coworking space rate ₹250/hr. Subject to RSVP & availability. Terms apply.
+                  </p>
                 </div>
               </motion.section>
 
@@ -630,7 +679,7 @@ export default function HomeScreen({
               <motion.section className="venue-schedule-section" variants={itemVariants}>
                 <div className="section-title-row">
                   <span className="section-label">Tonight's Kesari Schedule</span>
-                  <span className="section-meta">Koramangala Studio</span>
+                  <span className="section-meta">Live Tonight</span>
                 </div>
 
                 <div className="schedule-cards-list">
@@ -688,6 +737,7 @@ export default function HomeScreen({
             />
             <MonthlyPassModal 
               isOpen={showMonthlyPassModal} 
+              initialPassId={selectedPassForModal}
               onClose={() => setShowMonthlyPassModal(false)} 
             />
           </motion.div>

@@ -1,10 +1,16 @@
-/* MonthlyPassModal.css — 3 Types of Kesari Studio Monthly Passes */
+/* ============================================================
+   MONTHLY PASS MODAL — KESARI MEMBERSHIP BESPOKE DESIGNS
+   - Everyday: Warm craft parchment & espresso
+   - Ritual: Signature Kesari saffron & burnt gold
+   - Circle: Obsidian slate & champagne gold VIP
+   ============================================================ */
+
 .pass-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 11, 16, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 11, 16, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   z-index: 1050;
   display: flex;
   justify-content: center;
@@ -14,109 +20,189 @@
 .pass-modal-card {
   width: 100%;
   max-width: 440px;
-  max-height: 88vh;
-  background: #FFFFFF;
+  max-height: 90vh;
+  background: #F8F5EE;
   border-radius: 28px 28px 0 0;
-  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   position: relative;
 }
 
-.pass-modal-header {
-  padding: 12px 18px 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  border-bottom: 1px solid #F0F2F7;
+.sheet-drag-handle {
+  width: 36px;
+  height: 4px;
+  background: #D8D4CC;
+  border-radius: 999px;
+  margin: 10px auto 4px;
   flex-shrink: 0;
 }
 
-.pass-eyebrow {
+/* Header */
+.pass-modal-header {
+  padding: 10px 20px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(18, 19, 24, 0.07);
+  flex-shrink: 0;
+}
+
+.membership-kicker {
+  font-family: var(--font-family-body);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
-  color: #E50914;
+  color: #E25B16;
   text-transform: uppercase;
+  display: block;
 }
 
-.pass-title {
-  font-family: var(--font-family-display);
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #12131A;
+.membership-hero-title {
+  font-family: var(--font-family-serif);
+  font-size: 19px;
+  font-weight: 700;
+  color: #121318;
   margin: 2px 0 0;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
 }
 
-.pass-sub {
-  font-size: 11px;
-  color: #717684;
+.membership-hero-motto {
+  font-family: var(--font-family-body);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #6B7080;
   margin: 2px 0 0;
 }
 
 .pass-close-btn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: #F4F5F9;
+  background: #EDE8DF;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  color: #6B7080;
+  font-size: 13px;
+  color: #555A68;
 }
 
-.pass-pills-row {
+/* Schedule Banner */
+.membership-schedule-banner {
+  margin: 8px 18px 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(18, 19, 24, 0.08);
+  border-radius: 12px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #3C404C;
+}
+
+.sched-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.sched-text {
+  flex: 1;
+  line-height: 1.25;
+}
+
+.sched-badge {
+  font-size: 9.5px;
+  font-weight: 800;
+  background: #EFECE5;
+  color: #121318;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+/* Tier Selector Tabs */
+.membership-tier-tabs {
   display: flex;
   gap: 8px;
-  padding: 10px 16px;
-  background: #FAF9F6;
-  border-bottom: 1px solid #ECEEE8;
+  padding: 8px 18px 6px;
   flex-shrink: 0;
 }
 
-.pass-tier-pill {
+.tier-tab-btn {
   flex: 1;
-  padding: 8px 6px;
-  border-radius: 12px;
   background: #FFFFFF;
-  border: 1px solid #E5E7EB;
+  border: 1px solid rgba(18, 19, 24, 0.1);
+  border-radius: 12px;
+  padding: 8px 6px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  transition: all 0.15s ease;
-}
-.pass-tier-pill span {
-  font-size: 11.5px;
-  font-weight: 800;
-  color: #12131A;
-}
-.pass-tier-pill small {
-  font-size: 9.5px;
-  color: #717684;
+  position: relative;
+  transition: all 0.18s ease;
 }
 
-.pass-tier-pill.active {
-  background: #12131A;
-  border-color: #12131A;
+.tab-tier-name {
+  font-family: var(--font-family-serif);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #121318;
+  letter-spacing: 0.02em;
 }
-.pass-tier-pill.active span {
+
+.tab-tier-price {
+  font-family: var(--font-family-body);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #6B7080;
+}
+
+.tab-loved-dot {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E25B16;
+}
+
+.tier-tab-btn.active.everyday {
+  background: #F4EFE6;
+  border-color: #8C6D4F;
+  box-shadow: 0 2px 8px rgba(140, 109, 79, 0.15);
+}
+.tier-tab-btn.active.everyday .tab-tier-name { color: #5C432B; }
+.tier-tab-btn.active.everyday .tab-tier-price { color: #8C6D4F; }
+
+.tier-tab-btn.active.ritual {
+  background: #E25B16;
+  border-color: #E25B16;
+  box-shadow: 0 4px 14px rgba(226, 91, 22, 0.35);
+}
+.tier-tab-btn.active.ritual .tab-tier-name,
+.tier-tab-btn.active.ritual .tab-tier-price {
   color: #FFFFFF;
 }
-.pass-tier-pill.active small {
-  color: #DAFB71;
-}
 
+.tier-tab-btn.active.circle {
+  background: #121318;
+  border-color: #D4AF37;
+  box-shadow: 0 4px 14px rgba(18, 19, 24, 0.4);
+}
+.tier-tab-btn.active.circle .tab-tier-name { color: #F2D27A; }
+.tier-tab-btn.active.circle .tab-tier-price { color: #FFFFFF; }
+
+/* Scrollable Body */
 .pass-body-scroll {
   flex: 1;
   overflow-y: auto;
-  padding: 16px 18px 20px;
+  padding: 10px 18px 18px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -124,119 +210,460 @@
 }
 .pass-body-scroll::-webkit-scrollbar { display: none; }
 
-.pass-hero-card {
-  background: #FAF9F6;
-  border: 1.5px solid #ECEEE8;
+/* ============================================================
+   3 DISTINCT PASS CARD DESIGNS
+   ============================================================ */
+.bespoke-membership-pass {
   border-radius: 20px;
-  padding: 16px;
+  padding: 18px 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 
-.pass-hero-card.popular {
-  border-color: #E50914;
-  background: #FFFBFB;
-  box-shadow: 0 6px 24px rgba(229, 9, 20, 0.1);
+/* 1. THE EVERYDAY (Warm Craft Parchment & Espresso) */
+.bespoke-membership-pass.everyday {
+  background: #FDFBF7;
+  border: 1.5px solid #D9CEBE;
+  color: #2E261D;
 }
 
-.pass-hero-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.bespoke-membership-pass.everyday .pass-eyebrow-tag {
+  background: rgba(140, 109, 79, 0.12);
+  color: #7D5936;
+  border: 1px solid rgba(140, 109, 79, 0.25);
 }
 
-.pass-tier-tag {
-  font-size: 9.5px;
-  font-weight: 800;
-  background: #E50914;
+.bespoke-membership-pass.everyday .pass-name-display {
+  color: #2E261D;
+}
+
+.bespoke-membership-pass.everyday .pass-price-num {
+  color: #7D5936;
+}
+
+.bespoke-membership-pass.everyday .deal-callout-capsule {
+  background: #F5EFE4;
+  border: 1px solid #D9CEBE;
+}
+.bespoke-membership-pass.everyday .deal-worth-amount {
+  color: #2E261D;
+}
+.bespoke-membership-pass.everyday .deal-savings-badge {
+  background: #7D5936;
   color: #FFFFFF;
+}
+
+.bespoke-membership-pass.everyday .value-math-breakdown-box {
+  background: #FAF7F0;
+  border: 1px solid rgba(140, 109, 79, 0.15);
+}
+
+/* 2. THE RITUAL (Signature Kesari Saffron & Burnt Gold) */
+.bespoke-membership-pass.ritual {
+  background: linear-gradient(145deg, #E65A1E 0%, #D44810 50%, #992F05 100%);
+  border: 1.5px solid rgba(255, 230, 180, 0.35);
+  box-shadow: 0 10px 30px rgba(226, 91, 22, 0.38);
+  color: #FFFFFF;
+}
+
+.bespoke-membership-pass.ritual .pass-eyebrow-tag {
+  background: rgba(0, 0, 0, 0.35);
+  color: #FFE6A8;
+  border: 1px solid rgba(255, 230, 168, 0.35);
+}
+
+.bespoke-membership-pass.ritual .pass-name-display {
+  color: #FFFFFF;
+}
+
+.bespoke-membership-pass.ritual .pass-price-num {
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.bespoke-membership-pass.ritual .pass-tagline-quote {
+  color: #FFDCC4;
+}
+
+.bespoke-membership-pass.ritual .deal-callout-capsule {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.bespoke-membership-pass.ritual .deal-worth-label { color: #FFE6A8; }
+.bespoke-membership-pass.ritual .deal-worth-amount { color: #FFFFFF; }
+.bespoke-membership-pass.ritual .deal-pay-note { color: #FFF0E5; }
+.bespoke-membership-pass.ritual .deal-savings-badge {
+  background: #FFF;
+  color: #C8460D;
+  font-weight: 800;
+}
+
+.bespoke-membership-pass.ritual .value-math-breakdown-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.bespoke-membership-pass.ritual .math-box-heading { color: #FFE6A8; }
+.bespoke-membership-pass.ritual .math-item-label { color: #FFDAC2; }
+.bespoke-membership-pass.ritual .math-item-val { color: #FFFFFF; }
+.bespoke-membership-pass.ritual .math-total-row {
+  border-top-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+.bespoke-membership-pass.ritual .features-label { color: #FFE6A8; }
+.bespoke-membership-pass.ritual .feature-check-icon {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+.bespoke-membership-pass.ritual .feature-check-text { color: #FFFFFF; }
+.bespoke-membership-pass.ritual .pass-studio-hours-note {
+  background: rgba(0, 0, 0, 0.3);
+  color: #FFDAC2;
+}
+
+/* 3. THE CIRCLE (Obsidian Slate & Champagne Gold VIP) */
+.bespoke-membership-pass.circle {
+  background: linear-gradient(150deg, #101117 0%, #181A24 60%, #0A0A0F 100%);
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(212, 175, 55, 0.3);
+  color: #FFFFFF;
+}
+
+.bespoke-membership-pass.circle .pass-eyebrow-tag {
+  background: rgba(212, 175, 55, 0.15);
+  color: #F5D77F;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.bespoke-membership-pass.circle .pass-name-display {
+  color: #FFFFFF;
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.35);
+}
+
+.bespoke-membership-pass.circle .pass-price-num {
+  color: #F5D77F;
+}
+
+.bespoke-membership-pass.circle .pass-tagline-quote {
+  color: #D2D5E0;
+}
+
+.bespoke-membership-pass.circle .deal-callout-capsule {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+.bespoke-membership-pass.circle .deal-worth-label { color: #F5D77F; }
+.bespoke-membership-pass.circle .deal-worth-amount { color: #FFFFFF; }
+.bespoke-membership-pass.circle .deal-pay-note { color: #E0E2EC; }
+.bespoke-membership-pass.circle .deal-savings-badge {
+  background: linear-gradient(135deg, #F5D77F 0%, #D4AF37 100%);
+  color: #0E0F14;
+  font-weight: 800;
+}
+
+.bespoke-membership-pass.circle .value-math-breakdown-box {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+.bespoke-membership-pass.circle .math-box-heading { color: #F5D77F; }
+.bespoke-membership-pass.circle .math-item-label { color: #C4C8D8; }
+.bespoke-membership-pass.circle .math-item-val { color: #FFFFFF; }
+.bespoke-membership-pass.circle .math-total-row {
+  border-top-color: rgba(212, 175, 55, 0.3);
+  color: #F5D77F;
+}
+.bespoke-membership-pass.circle .features-label { color: #F5D77F; }
+.bespoke-membership-pass.circle .feature-check-icon {
+  background: rgba(212, 175, 55, 0.2);
+  color: #F5D77F;
+}
+.bespoke-membership-pass.circle .feature-check-text { color: #FFFFFF; }
+.bespoke-membership-pass.circle .pass-studio-hours-note {
+  background: rgba(255, 255, 255, 0.05);
+  color: #C4C8D8;
+}
+
+/* Card Elements */
+.pass-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pass-badge-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pass-eyebrow-tag {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.pass-name-display {
+  font-family: var(--font-family-serif);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.pass-price-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.pass-price-num {
+  font-family: var(--font-family-serif);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pass-validity-tag {
+  font-size: 9px;
+  font-weight: 600;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+.pass-tagline-quote {
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Deal Callout Capsule (WOW What A Deal) */
+.deal-callout-capsule {
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.deal-callout-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.deal-worth-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.deal-worth-amount {
+  font-family: var(--font-family-serif);
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.deal-callout-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.deal-pay-note {
+  font-size: 11px;
+}
+
+.deal-savings-badge {
+  font-size: 9.5px;
   padding: 3px 8px;
   border-radius: 999px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
 }
 
-.pass-hero-price {
-  font-family: var(--font-family-display);
-  font-size: 16px;
-  font-weight: 800;
-  color: #12131A;
-}
-
-.pass-hero-title {
-  font-family: var(--font-family-display);
-  font-size: 17px;
-  font-weight: 800;
-  color: #12131A;
-  margin: 4px 0 0;
-}
-
-.pass-hero-desc {
-  font-size: 11.5px;
-  color: #6B7080;
-  margin: 0;
-  line-height: 1.35;
-}
-
-.pass-perks-list {
+/* Math breakdown */
+.value-math-breakdown-box {
+  border-radius: 12px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-top: 8px;
-  padding-top: 10px;
-  border-top: 1px dashed rgba(18, 19, 26, 0.1);
+  gap: 6px;
 }
 
-.pass-perk-row {
+.math-box-heading {
+  font-size: 10px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.math-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.math-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+}
+
+.math-item-label {
+  opacity: 0.9;
+}
+
+.math-item-val {
+  font-weight: 700;
+}
+
+.math-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11.5px;
+  padding-top: 5px;
+  margin-top: 3px;
+  border-top: 1px dashed rgba(18, 19, 24, 0.2);
+}
+
+/* Features checklist */
+.pass-features-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.features-label {
+  font-size: 10.5px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.features-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.feature-check-item {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
-}
-
-.perk-check {
-  font-size: 12px;
-  font-weight: 900;
-  color: #25D366;
-  line-height: 1.2;
-}
-
-.perk-text {
+  gap: 7px;
   font-size: 11.5px;
-  color: #374151;
-  font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.3;
 }
 
-.pass-guarantee-note {
-  font-size: 10.5px;
-  color: #717684;
-  background: #F4F6FB;
-  border-radius: 12px;
-  padding: 8px 12px;
-  line-height: 1.35;
+.feature-check-icon {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(37, 211, 102, 0.2);
+  color: #179646;
+  font-size: 9.5px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
+/* Studio Hours Note */
+.pass-studio-hours-note {
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.hours-note-label {
+  font-weight: 750;
+}
+
+/* Philosophy */
+.membership-philosophy-box {
+  background: #FFFFFF;
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(18, 19, 24, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.philo-heading {
+  font-family: var(--font-family-serif);
+  font-size: 12.5px;
+  font-weight: 750;
+  color: #121318;
+}
+
+.philo-terms {
+  font-size: 10px;
+  color: #6B7080;
+  line-height: 1.35;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Sticky CTA Footer */
 .pass-modal-footer {
   padding: 12px 18px max(14px, env(safe-area-inset-bottom, 14px));
-  border-top: 1px solid #ECEEF3;
+  border-top: 1px solid rgba(18, 19, 24, 0.08);
   background: #FFFFFF;
   flex-shrink: 0;
 }
 
-.pass-whatsapp-btn {
+.pass-subscribe-btn {
   width: 100%;
-  background: #25D366;
   color: #FFFFFF;
-  font-family: var(--font-family-display);
-  font-size: 13.5px;
-  font-weight: 750;
-  padding: 13px 20px;
-  border-radius: 999px;
+  font-family: var(--font-family-body);
+  font-size: 13px;
+  font-weight: 800;
+  padding: 13px 18px;
+  border-radius: 14px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.pass-subscribe-btn.everyday {
+  background: #7D5936;
+  box-shadow: 0 4px 14px rgba(125, 89, 54, 0.35);
+}
+
+.pass-subscribe-btn.ritual {
+  background: linear-gradient(135deg, #E65A1E 0%, #D44810 100%);
+  box-shadow: 0 4px 18px rgba(226, 91, 22, 0.45);
+}
+
+.pass-subscribe-btn.circle {
+  background: #121318;
+  border: 1px solid #D4AF37;
+  color: #F5D77F;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+.wa-icon {
+  font-size: 15px;
 }
