@@ -33,39 +33,6 @@ export const MOCK_EVENTS = [
     ]
   },
   {
-    id: 'rock',
-    title: 'Rock Legends Reunion',
-    category: 'Live Music Gig',
-    genre: 'rock',
-    city: 'Bangalore',
-    date: 'Tonight • Oct 24, 2026',
-    dateFilter: 'tonight',
-    time: '19:00 PM - 23:30 PM',
-    venue: 'Kesari - The Memory Studio, Bangalore',
-    venueShort: 'Kesari Studio',
-    room: 'Main Stage (40-60 Pax)',
-    roomType: 'main-stage',
-    decibels: '98 dB Peak • High Energy',
-    ticketCode: 'KSR-RCK-1024',
-    capacity: { total: 60, booked: 52, remaining: 8, percentage: 87 },
-    price: 1499,
-    priceLabel: '₹1,499',
-    image: '/assets/events/ev_rock.jpg',
-    badge: '🔥 8 Passes Left • Selling Out',
-    featured: true,
-    description: 'An electrifying night celebrating iconic guitar riffs, drum jams, and legendary rock anthems performed live at Kesari - The Memory Studio.',
-    lineup: [
-      { name: 'The Velvet Echoes', role: 'Headliner', time: '21:00 PM', img: '/assets/artist_1.png' },
-      { name: 'Neon Distortion', role: 'Direct Support', time: '19:45 PM', img: '/assets/artist_2.png' },
-      { name: 'Sonic Revival', role: 'Opening Act', time: '18:30 PM', img: '/assets/artist_3.png' }
-    ],
-    tiers: [
-      { id: 'ga', name: 'General Studio Pass', price: 1499, perks: 'Entry to live studio hall & acoustic lounge' },
-      { id: 'vip', name: 'VIP Front Row Pass', price: 2999, perks: 'Front row seating, meet the band & welcome beverage' },
-      { id: 'all', name: 'All-Access Backstage Pass', price: 5499, perks: 'Artist green room access, soundcheck invite, free studio jam hour' }
-    ]
-  },
-  {
     id: 'soundwaves',
     title: 'Sunset Acoustic & Open Mic',
     category: 'Open Mic & Jam',
@@ -93,6 +60,39 @@ export const MOCK_EVENTS = [
     tiers: [
       { id: 'ga', name: 'Open Mic Audience Pass', price: 950, perks: 'Studio lounge seating & welcome drink' },
       { id: 'vip', name: 'Performer + Table Pass', price: 1950, perks: 'Guaranteed 10-min mic performance slot + audio recording of set' }
+    ]
+  },
+  {
+    id: 'rock',
+    title: 'Rock Legends Reunion',
+    category: 'Live Music Gig',
+    genre: 'rock',
+    city: 'Bangalore',
+    date: 'Oct 24, 2026 • Studio Hall',
+    dateFilter: 'tonight',
+    time: '19:00 PM - 23:30 PM',
+    venue: 'Kesari - The Memory Studio, Bangalore',
+    venueShort: 'Kesari Studio',
+    room: 'Main Stage (40-60 Pax)',
+    roomType: 'main-stage',
+    decibels: '98 dB Peak • High Energy',
+    ticketCode: 'KSR-RCK-1024',
+    capacity: { total: 60, booked: 52, remaining: 8, percentage: 87 },
+    price: 1499,
+    priceLabel: '₹1,499',
+    image: '/assets/events/ev_rock.jpg',
+    badge: '⚡ Past Legend Set',
+    featured: false,
+    description: 'An electrifying night celebrating iconic guitar riffs, drum jams, and legendary rock anthems performed live at Kesari - The Memory Studio.',
+    lineup: [
+      { name: 'The Velvet Echoes', role: 'Headliner', time: '21:00 PM', img: '/assets/artist_1.png' },
+      { name: 'Neon Distortion', role: 'Direct Support', time: '19:45 PM', img: '/assets/artist_2.png' },
+      { name: 'Sonic Revival', role: 'Opening Act', time: '18:30 PM', img: '/assets/artist_3.png' }
+    ],
+    tiers: [
+      { id: 'ga', name: 'General Studio Pass', price: 1499, perks: 'Entry to live studio hall & acoustic lounge' },
+      { id: 'vip', name: 'VIP Front Row Pass', price: 2999, perks: 'Front row seating, meet the band & welcome beverage' },
+      { id: 'all', name: 'All-Access Backstage Pass', price: 5499, perks: 'Artist green room access, soundcheck invite, free studio jam hour' }
     ]
   },
   {

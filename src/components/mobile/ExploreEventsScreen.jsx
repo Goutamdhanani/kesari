@@ -39,6 +39,11 @@ export default function ExploreEventsScreen({
     return () => clearTimeout(timer);
   }, []);
 
+  const featuredEvent = useMemo(() => {
+    const publicList = (events && events.length > 0 ? events : []).filter(e => e.isPublic !== false);
+    return publicList.find(e => e.featured) || publicList[0] || {};
+  }, [events]);
+
   const filteredEvents = useMemo(() => {
     return (events || []).filter(e => {
       if (e.isPublic === false) return false;
@@ -119,23 +124,25 @@ export default function ExploreEventsScreen({
                 </div>
               </div>
 
-              {/* Main Stage Live Feature Display with Transparent Glass (Exact Match to Screenshot) */}
+              {/* Main Stage Live Feature Display with Transparent Glass (Dynamic Featured Event) */}
               <motion.div 
                 className="dome-hero-spotlight"
-                onClick={() => onSelectEvent('rock')}
+                onClick={() => onSelectEvent(featuredEvent.id || 'amour')}
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="dome-hero-inner-content">
                   <div className="dome-eyebrow-row">
                     <div className="dome-live-pill">
                       <span className="live-pulse-dot" />
-                      <span className="dome-live-tag">NOW LIVE • KESARI STUDIO</span>
+                      <span className="dome-live-tag">
+                        {featuredEvent.badge ? featuredEvent.badge.toUpperCase() : 'FEATURED SHOW • KESARI STUDIO'}
+                      </span>
                     </div>
-                    <span className="dome-db-badge">98 dB Peak</span>
+                    <span className="dome-db-badge">{featuredEvent.decibels || 'Acoustic Symphony'}</span>
                   </div>
 
                   <div className="dome-headline-row">
-                    <h1 className="dome-act-title">The Velvet Echoes</h1>
+                    <h1 className="dome-act-title">{featuredEvent.title || 'Studio Special Experience'}</h1>
                     <div className="dome-soundwave-bars" aria-label="Live audio waveform">
                       <span className="wave-bar bar-1" />
                       <span className="wave-bar bar-2" />
@@ -147,19 +154,21 @@ export default function ExploreEventsScreen({
 
                   <div className="dome-footer-row">
                     <div className="dome-timing-info">
-                      <span className="dome-subtext">Rock Legends Reunion • Live Studio Stage</span>
+                      <span className="dome-subtext">
+                        {featuredEvent.date} • {featuredEvent.room?.split('(')[0]?.trim() || featuredEvent.venueShort || 'Kesari Studio'}
+                      </span>
                     </div>
                     
                     <motion.button 
                       className="dome-tune-btn"
                       onClick={(e) => {
                         e.stopPropagation();
-                        onSelectEvent('rock');
+                        onSelectEvent(featuredEvent.id || 'amour');
                       }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.92 }}
                     >
-                      <span>Pass ₹1,499</span>
+                      <span>Pass {featuredEvent.priceLabel || `₹${featuredEvent.price?.toLocaleString() || 1800}`}</span>
                       <AppIcon name="arrow-up-right" size={11} color="#FFFFFF" strokeWidth={2.6} />
                     </motion.button>
                   </div>

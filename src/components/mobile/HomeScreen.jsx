@@ -206,23 +206,58 @@ export default function HomeScreen({
     }, 450);
   };
 
-  const activePasses = useMemo(() => {
-    if (events && events.length > 0) {
-      return events.filter(e => e.isPublic !== false).map(e => ({
-        id: e.id,
-        vibeId: e.genre === 'rock' ? 'music' : e.genre === 'acoustic' ? 'openmic' : e.genre === 'electronic' ? 'jam' : 'music',
-        badgeText: e.badge?.replace(/[^\w\s-]/gi, '').trim() || e.category || 'Live Studio',
-        stage: `${e.venueShort || 'Kesari Studio'} • ${e.time?.split(' - ')[0] || e.time}`,
-        title: e.title,
-        artist: e.lineup?.[0]?.name ? `${e.lineup[0].name} Live` : (e.category || 'Live Studio Session'),
-        price: e.priceLabel || `₹${e.price?.toLocaleString()}`,
-        timing: e.date,
-        image: e.image,
-        tag: e.room?.split('(')[0]?.trim() || 'Studio Pass'
-      }));
-    }
-    return STAGE_PASSES;
+  // Dynamic Top Featured Event (Headline Tribute Show, e.g. Amour or custom featured)
+  const featuredEvent = useMemo(() => {
+    const publicList = (events && events.length > 0 ? events : MOCK_EVENTS).filter(e => e.isPublic !== false);
+    return publicList.find(e => e.featured) || publicList[0] || MOCK_EVENTS[0];
   }, [events]);
+
+  // Nearest & Newest upcoming events first; old past events moved to the end
+  const sortedEvents = useMemo(() => {
+    const list = (events && events.length > 0 ? events : MOCK_EVENTS).filter(e => e.isPublic !== false);
+    
+    return [...list].sort((a, b) => {
+      // 1. Featured event takes top spot
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
+
+      // 2. Old past events (e.g. past rock gig) moved down
+      const isOldA = a.id === 'rock';
+      const isOldB = b.id === 'rock';
+      if (isOldA && !isOldB) return 1;
+      if (!isOldA && isOldB) return -1;
+
+      return 0;
+    });
+  }, [events]);
+
+  const activePasses = useMemo(() => {
+    return sortedEvents.map(e => ({
+      id: e.id,
+      vibeId: e.genre === 'rock' ? 'music' : e.genre === 'acoustic' ? 'openmic' : e.genre === 'electronic' ? 'jam' : 'music',
+      badgeText: e.badge?.replace(/[^\w\s-]/gi, '').trim() || e.category || 'Live Studio',
+      stage: `${e.venueShort || 'Kesari Studio'} • ${e.time?.split(' - ')[0] || e.time}`,
+      title: e.title,
+      artist: e.lineup?.[0]?.name ? `${e.lineup[0].name} Live` : (e.category || 'Live Studio Session'),
+      price: e.priceLabel || `₹${e.price?.toLocaleString()}`,
+      timing: e.date,
+      image: e.image,
+      tag: e.room?.split('(')[0]?.trim() || 'Studio Pass'
+    }));
+  }, [sortedEvents]);
+
+  const activeSchedule = useMemo(() => {
+    return sortedEvents.map(e => ({
+      id: e.id,
+      stage: `${e.room?.split('(')[0]?.trim() || 'Studio Hall'} • ${e.venueShort || 'Kesari Studio'}`,
+      time: e.time?.split(' - ')[0] || e.time,
+      title: e.title,
+      artist: e.lineup?.[0]?.name ? `${e.lineup[0].name} Live` : (e.category || 'Live Studio Set'),
+      price: e.priceLabel || `₹${e.price?.toLocaleString()}`,
+      image: e.image,
+      status: e.badge?.replace(/[^\w\s-]/gi, '').trim() || 'Upcoming'
+    }));
+  }, [sortedEvents]);
 
   const filteredPasses = activePasses.filter(pass => {
     if (selectedVibe === 'all') return true;
@@ -297,24 +332,26 @@ export default function HomeScreen({
                 </div>
               </div>
 
-              {/* Main Stage Live Feature Display with Transparent Glass */}
+              {/* Main Stage Live Feature Display with Transparent Glass (Dynamic Featured Event) */}
               <motion.div 
                 className="dome-hero-spotlight"
-                onClick={() => onSelectEvent('rock')}
+                onClick={() => onSelectEvent(featuredEvent.id)}
                 whileTap={{ scale: 0.98 }}
               >
                 <div className="dome-hero-inner-content">
                   <div className="dome-eyebrow-row">
                     <div className="dome-live-pill">
                       <span className="live-pulse-dot" />
-                      <span className="dome-live-tag">NOW LIVE • KESARI STUDIO</span>
+                      <span className="dome-live-tag">
+                        {featuredEvent.badge ? featuredEvent.badge.toUpperCase() : 'FEATURED SHOW • KESARI STUDIO'}
+                      </span>
                     </div>
-                    <span className="dome-db-badge">98 dB Peak</span>
+                    <span className="dome-db-badge">{featuredEvent.decibels || 'Acoustic Symphony'}</span>
                   </div>
 
                   <div className="dome-headline-row">
-                    <h1 className="dome-act-title">The Velvet Echoes</h1>
-                    {/* Animated Soundwave Equalizer with Netflix Red Peak */}
+                    <h1 className="dome-act-title">{featuredEvent.title}</h1>
+                    {/* Animated Soundwave Equalizer with Red Peak */}
                     <div className="dome-soundwave-bars" aria-label="Live audio waveform">
                       <span className="wave-bar bar-1" />
                       <span className="wave-bar bar-2 bar-netflix" />
@@ -326,15 +363,21 @@ export default function HomeScreen({
 
                   <div className="dome-footer-row">
                     <div className="dome-timing-info">
-                      <span className="dome-subtext">Rock Legends Reunion • Live Studio Stage</span>
+                      <span className="dome-subtext">
+                        {featuredEvent.date} • {featuredEvent.room?.split('(')[0]?.trim() || featuredEvent.venueShort || 'Kesari Studio'}
+                      </span>
                     </div>
                     
                     <motion.button 
                       className="dome-tune-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectEvent(featuredEvent.id);
+                      }}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.92 }}
                     >
-                      <span>Pass ₹1,499</span>
+                      <span>Pass {featuredEvent.priceLabel || `₹${featuredEvent.price?.toLocaleString()}`}</span>
                       <AppIcon name="arrow-up-right" size={11} color="#FFFFFF" strokeWidth={2.6} />
                     </motion.button>
                   </div>
@@ -554,15 +597,15 @@ export default function HomeScreen({
                 </motion.div>
               </motion.section>
 
-              {/* Tonight's Stage Schedule (Editorial Poster Lineup List) */}
+              {/* Upcoming Kesari Schedule (Nearest First, Dynamic Lineup) */}
               <motion.section className="venue-schedule-section" variants={itemVariants}>
                 <div className="section-title-row">
-                  <span className="section-label">Tonight's Kesari Schedule</span>
-                  <span className="section-meta">Live Tonight</span>
+                  <span className="section-label">Upcoming Kesari Schedule</span>
+                  <span className="section-meta">Nearest First</span>
                 </div>
 
                 <div className="schedule-cards-list">
-                  {TONIGHT_SCHEDULE.map((item) => (
+                  {activeSchedule.map((item) => (
                     <motion.div
                       key={item.id}
                       className="schedule-row-item"
@@ -570,7 +613,7 @@ export default function HomeScreen({
                       whileHover={{ x: 3, backgroundColor: 'rgba(255, 255, 255, 0.95)' }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {/* Thumbnail Poster */}
+                      {/* Thumbnail Poster with proper aspect ratio */}
                       <div 
                         className="schedule-thumb-poster"
                         style={{ backgroundImage: `url(${item.image})` }}

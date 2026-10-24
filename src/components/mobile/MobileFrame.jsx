@@ -38,7 +38,14 @@ export default function MobileFrame({
       const saved = localStorage.getItem('kesari_events_catalog');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          const hasAmour = parsed.some(e => e.id === 'amour');
+          if (hasAmour) {
+            // Ensure amour is featured
+            return parsed.map(e => e.id === 'amour' ? { ...e, featured: true } : e);
+          }
+          return [MOCK_EVENTS[0], ...parsed];
+        }
       }
     } catch {}
     return MOCK_EVENTS;
