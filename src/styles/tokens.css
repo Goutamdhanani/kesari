@@ -1,42 +1,46 @@
 :root {
   /* ============================================================
-     WARM EDITORIAL & PASTEL BENTO PALETTE
-     Inspired by minimalist luxury fintech & mindfulness design
+     PEARL, INK & SOFT COBALT
+     Visual refinement of the existing Kesari template
      ============================================================ */
 
   /* Canvas & Warm Paper Tones */
-  --color-canvas-warm: #F7F4EE;
+  --color-canvas-warm: #F5F6FA;
   --color-canvas-card: #FFFFFF;
-  --color-canvas-muted: #EFECE5;
-  --color-canvas-subtle: #FAF8F5;
+  --color-canvas-muted: #E9ECF3;
+  --color-canvas-subtle: #FAFBFD;
 
   /* Typography Inks */
-  --color-ink-primary: #12131A;
-  --color-ink-secondary: #6B6F7B;
-  --color-ink-tertiary: #9AA0AF;
+  --color-ink-primary: #1B2335;
+  --color-ink-secondary: #596378;
+  --color-ink-tertiary: #6E7788;
   --color-pure-white: #FFFFFF;
 
   /* Pastel Bento Accent Palette (from reference imagery) */
-  --color-bento-lilac: #D7DCFA;
-  --color-bento-lilac-border: #C8CEF5;
-  --color-bento-mint: #CFE7DE;
-  --color-bento-mint-border: #BCDED3;
-  --color-bento-butter: #F3E294;
-  --color-bento-butter-border: #E8D580;
-  --color-bento-peach: #F0BBB0;
-  --color-bento-peach-border: #E5A99D;
-  --color-bento-dark: #12131A;
+  --color-bento-lilac: #E5E9FA;
+  --color-bento-lilac-border: #D4DCF2;
+  --color-bento-mint: #E4EDF3;
+  --color-bento-mint-border: #CEDCE8;
+  --color-bento-butter: #F2EDDF;
+  --color-bento-butter-border: #E5DDC9;
+  --color-bento-peach: #F1E7E4;
+  --color-bento-peach-border: #E5D4CF;
+  --color-bento-dark: #1B2335;
 
   /* Supporting Accents & Cinematic Colors */
   --color-netflix-red: #E50914;
   --color-netflix-red-glow: rgba(229, 9, 20, 0.45);
   --color-crimson: #EE3D5A;
-  --color-royal-blue: #0042D9;
-  --color-electric-lime: #DAFB71;
+  --color-royal-blue: #3655B5;
+  /* Legacy component name retained; the highlight is now pale periwinkle. */
+  --color-electric-lime: #DFE7FF;
+  --color-accent-hover: #294496;
+  --color-accent-soft: #E9EEFC;
+  --color-border: #DDE2EC;
 
   /* Apple Human Interface Guidelines (HIG) Typography */
-  --font-family-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro", "Inter", -system-ui, sans-serif;
-  --font-family-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Inter", -system-ui, sans-serif;
+  --font-family-display: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-body: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-family-mono: "SF Mono", Menlo, Monaco, Consolas, "Space Grotesk", monospace;
 
   /* Radii */
@@ -66,7 +70,7 @@
 html, body {
   width: 100%;
   min-height: 100%;
-  background-color: #EDE8DF;
+  background-color: var(--color-canvas-muted);
   color: var(--color-ink-primary);
   font-family: var(--font-family-body);
   -webkit-font-smoothing: antialiased;

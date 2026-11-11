@@ -1,0 +1,256 @@
+/* Visual refinements of the existing template. Screens, navigation and motion stay intact. */
+body,
+.eventjam-root-app {
+  background-color: var(--color-canvas-warm);
+  color: var(--color-ink-primary);
+  font-family: var(--font-family-body);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+button, input, select, textarea { font-family: inherit; }
+button { line-height: 1.3; }
+
+.eventjam-web-app-viewport {
+  background: radial-gradient(ellipse at 50% 10%, #E3E8F5 0%, transparent 65%), #EDEFF4;
+}
+.eventjam-web-app-viewport::before {
+  background: radial-gradient(circle, rgb(185 200 235 / 18%), transparent 70%);
+}
+.eventjam-web-app-viewport::after {
+  background: radial-gradient(circle, rgb(202 211 236 / 16%), transparent 70%);
+}
+.eventjam-app-stage { box-shadow: 0 12px 48px rgb(27 35 53 / 9%); }
+
+/* The same animated glass dome, with quieter light and clearer text. */
+.home-curved-dome-header,
+.explore-curved-dome-header {
+  border-bottom-color: rgb(211 224 255 / 18%);
+  box-shadow: 0 10px 24px rgb(20 27 42 / 16%);
+}
+.aurora-fluid-canvas { filter: blur(5px) saturate(85%); -webkit-filter: blur(5px) saturate(85%); }
+.aurora-fluid-glass-gloss { box-shadow: inset 0 -1px 0 rgb(211 224 255 / 18%); }
+.dome-hero-spotlight {
+  background: rgb(20 27 42 / 38%);
+  border-color: rgb(255 255 255 / 20%);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 15%), inset 0 1px 0 rgb(255 255 255 / 10%);
+}
+.dome-hero-spotlight:hover { border-color: rgb(211 224 255 / 45%); }
+.dome-act-title { font-size: 21px; line-height: 1.25; font-weight: 650; letter-spacing: -.025em; }
+.dome-subtext { min-width: 0; flex: 1; font-size: 12px; line-height: 1.5; color: #D1D8E8; }
+.dome-footer-row { gap: 8px; }
+.dome-live-tag { color: #DCE7FF; font-size: 11px; font-weight: 650; letter-spacing: .015em; }
+.dome-db-badge { color: #EDF2FF; background: rgb(255 255 255 / 12%); font-size: 10px; font-weight: 600; }
+.dome-venue-name { font-size: 12px; font-weight: 600; }
+.live-pulse-dot, .wave-bar { background: #A9C1FF; box-shadow: 0 0 8px rgb(169 193 255 / 28%); }
+.dome-tune-btn,
+.book-lime-cta-btn {
+  background: var(--color-royal-blue);
+  color: #FFF;
+  box-shadow: 0 4px 12px rgb(54 85 181 / 22%);
+  font-weight: 650;
+}
+.dome-tune-btn { font-size: 12px; }
+.dome-tune-btn:hover,
+.book-lime-cta-btn:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 5px 16px rgb(54 85 181 / 26%);
+}
+
+/* Retain the poster carousel and two studio cards. */
+.section-label, .explore-section-title { color: var(--color-ink-primary); font-size: 17px; font-weight: 650; letter-spacing: -.02em; }
+.section-meta, .section-meta-action { font-size: 12px; font-weight: 550; }
+.section-meta { color: var(--color-ink-secondary); }
+.section-meta-action, .home-admin-text-link { color: var(--color-royal-blue); }
+.vibe-chip-btn { border-color: var(--color-border); box-shadow: 0 1px 3px rgb(27 35 53 / 3%); }
+.vibe-chip-label { color: var(--color-ink-secondary); font-size: 12px; font-weight: 600; }
+.vibe-chip-btn.active { background: var(--color-ink-primary); border-color: var(--color-ink-primary); box-shadow: 0 2px 7px rgb(27 35 53 / 14%); }
+.poster-pass-card, .explore-poster-card { border-color: rgb(27 35 53 / 13%); box-shadow: 0 6px 18px rgb(27 35 53 / 12%); }
+.poster-pass-card:hover, .explore-poster-card:hover { border-color: rgb(54 85 181 / 45%); box-shadow: 0 8px 22px rgb(27 35 53 / 18%); }
+.poster-event-title, .explore-card-title { font-size: 16px; font-weight: 650; letter-spacing: -.02em; }
+.poster-artist-name, .explore-card-artist { color: #C2CBDE; font-size: 12px; }
+.poster-timing-text, .explore-timing-text { font-size: 11px; font-weight: 600; letter-spacing: 0; }
+.poster-price-val { font-size: 19px; font-weight: 650; }
+.poster-stage-badge, .explore-stage-badge { font-size: 11px; font-weight: 600; }
+.poster-tag-chip { font-size: 11px; font-weight: 550; }
+.services-card-eyebrow { color: var(--color-royal-blue); font-size: 11px; font-weight: 650; letter-spacing: 0; text-transform: none; }
+.services-card-tag { color: var(--color-ink-secondary); background: var(--color-canvas-muted); font-size: 10px; font-weight: 550; white-space: nowrap; }
+.service-item-row { min-height: 44px; background: var(--color-canvas-subtle); border-color: var(--color-border); }
+.service-item-row:hover { background: var(--color-accent-soft); }
+.service-item-title { color: var(--color-ink-primary); font-size: 12px; font-weight: 650; line-height: 1.35; white-space: normal; }
+.service-item-desc { color: var(--color-ink-secondary); font-size: 10px; line-height: 1.4; }
+.organise-pill-tag { color: #E2EAFF; border-color: rgb(226 234 255 / 28%); font-size: 9px; font-weight: 600; letter-spacing: 0; }
+.organise-live-badge { font-size: 9px; font-weight: 550; }
+.organise-card-title { font-size: 16px; line-height: 1.25; font-weight: 650; }
+.organise-card-sub { font-size: 11px; line-height: 1.45; color: #E2E7F2; }
+.organise-plan-btn { font-size: 12px; font-weight: 650; }
+.organise-plan-arrow { color: #E2EAFF; }
+.schedule-item-title { color: var(--color-ink-primary); font-size: 14px; font-weight: 650; }
+.schedule-stage-name, .schedule-item-artist { color: var(--color-ink-secondary); font-size: 11px; }
+.schedule-stage-name { font-weight: 550; letter-spacing: 0; text-transform: none; }
+.schedule-price-tag { color: var(--color-ink-primary); font-size: 14px; font-weight: 650; }
+.schedule-time-badge { font-size: 10px; font-weight: 600; }
+.home-admin-text-link, .pass-empty-state { font-size: 12px; }
+
+/* Match the existing inner screens to the same palette and type scale. */
+.mobile-search-screen, .mobile-profile-screen, .mobile-ticket-screen { background: var(--color-canvas-warm); color: var(--color-ink-primary); }
+.profile-header-title, .ticket-header-title, .explore-dome-heading { font-size: 20px; font-weight: 650; letter-spacing: -.02em; }
+.identity-name { font-size: 22px; font-weight: 650; }
+.identity-handle, .identity-pill-tag, .stat-label, .settings-desc, .saved-date, .pass-time { font-size: 12px; }
+.identity-handle, .stat-label, .settings-desc, .saved-date, .pass-time { color: var(--color-ink-secondary); }
+.stat-number { font-size: 20px; font-weight: 650; }
+.settings-title, .saved-title, .pass-title, .result-title { color: var(--color-ink-primary); font-size: 15px; font-weight: 600; }
+.profile-seg-btn, .search-genre-pill { font-size: 13px; font-weight: 600; }
+.identity-avatar-ring { background: linear-gradient(135deg, #3655B5, #CBD8FF); }
+.identity-vip-badge { color: #DFE7FF; }
+.identity-pill-tag, .result-category-badge { background: var(--color-accent-soft); color: var(--color-royal-blue); }
+.search-text-input { font-size: 15px; }
+.search-text-input::placeholder { color: var(--color-ink-tertiary); }
+.search-input-wrapper:focus-within { border-color: var(--color-royal-blue); box-shadow: 0 0 0 3px rgb(54 85 181 / 10%); }
+.search-genre-pill.active { background: var(--color-ink-primary); border-color: var(--color-ink-primary); color: #FFF; }
+.search-cancel-btn { color: var(--color-royal-blue); }
+.explore-claim-btn { background: var(--color-royal-blue); color: #FFF; box-shadow: 0 3px 9px rgb(54 85 181 / 20%); }
+.explore-claim-btn:hover { background: var(--color-accent-hover); }
+.explore-stage-badge { color: #E2EAFF; border-color: rgb(226 234 255 / 28%); }
+.explore-venue-dot { background: #C5D5FF; }
+.profile-seg-btn.active { color: #E2EAFF; background: var(--color-ink-primary); }
+.passes-preview-card { border-color: var(--color-border); box-shadow: 0 3px 12px rgb(27 35 53 / 5%); }
+.pass-qr-thumb, .result-arrow-circle { background: var(--color-accent-soft); box-shadow: none; }
+.pass-tag { color: var(--color-royal-blue); }
+.result-meta-row { color: var(--color-ink-secondary); font-size: 12px; }
+.explore-live-label { color: #DFE7FF; font-size: 10px; font-weight: 600; letter-spacing: .02em; }
+.explore-date-tab { font-size: 12px; font-weight: 600; }
+.explore-date-tab-active-pill { background: var(--color-accent-soft); }
+.detail-title { font-size: 25px; font-weight: 650; line-height: 1.2; letter-spacing: -.025em; }
+.detail-description { color: var(--color-ink-secondary); font-size: 14px; line-height: 1.65; }
+.meta-sub, .tier-desc, .artist-role, .total-label { color: var(--color-ink-secondary); font-size: 12px; }
+.meta-bold { font-size: 14px; font-weight: 600; }
+.tier-card.active-tier { border-color: var(--color-royal-blue); background: var(--color-accent-soft); }
+.tier-name, .tier-price, .total-amount { font-weight: 650; }
+.ticket-section-label { color: var(--color-ink-secondary); font-size: 12px; font-weight: 600; }
+
+/* Preserve the floating capsule, with a cleaner glass edge and visible focus. */
+.floating-bottom-nav-bar {
+  background: rgb(255 255 255 / 92%);
+  border-color: rgb(106 124 159 / 20%);
+  box-shadow: 0 6px 22px rgb(27 35 53 / 12%), inset 0 1px 0 #FFF;
+}
+.nav-tab-item.active-dark-tab { background: var(--color-ink-primary); box-shadow: 0 3px 9px rgb(27 35 53 / 20%); }
+.mobile-fixed-bottom-nav-root, .mobile-bottom-nav-wrapper {
+  background: linear-gradient(180deg, rgb(245 246 250 / 0%), rgb(245 246 250 / 90%) 70%, #F5F6FA);
+}
+button:focus-visible, a:focus-visible { outline: 2px solid var(--color-royal-blue); outline-offset: 3px; }
+.home-curved-dome-header :focus-visible, .explore-curved-dome-header :focus-visible { outline-color: #DFE7FF; }
+
+/* Slight type adjustment on the smallest phones keeps the original compact cards. */
+@media (max-width: 360px) {
+  .dome-act-title { font-size: 20px; }
+  .dome-db-badge { max-width: 46%; }
+  .services-card-tag { font-size: 9px; }
+}
+
+/* Kesari shape language: stage arches and the tear-off edge of a concert pass. */
+.home-curved-dome-header,
+.explore-curved-dome-header {
+  border-radius: 0 0 48px 14px;
+}
+.aurora-fluid-viewport,
+.explore-aurora-viewport,
+.aurora-fluid-vignette,
+.aurora-fluid-glass-gloss {
+  border-radius: inherit;
+}
+.dome-hero-spotlight {
+  border-radius: 28px 12px 28px 12px;
+}
+
+.poster-pass-card,
+.explore-poster-card {
+  --ticket-stub: 146px;
+  --ticket-cut: 9px;
+  border-radius: 28px 12px 28px 12px;
+}
+.explore-poster-card { --ticket-stub: 176px; }
+.explore-card-drawer {
+  min-height: var(--ticket-stub);
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+.explore-card-title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.explore-card-artist {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Two half masks produce real transparent notches over any background. */
+@supports (mask-image: radial-gradient(circle, #000, transparent)) {
+  .poster-pass-card,
+  .explore-poster-card {
+    -webkit-mask:
+      radial-gradient(circle at 0 calc(100% - var(--ticket-stub)), transparent var(--ticket-cut), #000 calc(var(--ticket-cut) + .75px)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% calc(100% - var(--ticket-stub)), transparent var(--ticket-cut), #000 calc(var(--ticket-cut) + .75px)) right / 51% 100% no-repeat;
+    mask:
+      radial-gradient(circle at 0 calc(100% - var(--ticket-stub)), transparent var(--ticket-cut), #000 calc(var(--ticket-cut) + .75px)) left / 51% 100% no-repeat,
+      radial-gradient(circle at 100% calc(100% - var(--ticket-stub)), transparent var(--ticket-cut), #000 calc(var(--ticket-cut) + .75px)) right / 51% 100% no-repeat;
+  }
+}
+.poster-pass-card::after,
+.explore-poster-card::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: var(--ticket-stub);
+  z-index: 3;
+  border-top: 1px dashed rgb(226 234 255 / 55%);
+  pointer-events: none;
+}
+.poster-card-drawer {
+  border-radius: 8px 8px 22px 8px;
+  background: rgb(20 27 42 / 91%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 8%);
+}
+.poster-tag-chip,
+.explore-stage-badge {
+  border-radius: 6px 12px 12px 6px;
+}
+.poster-arrow-circle,
+.explore-arrow-circle {
+  border-radius: 12px 12px 12px 4px;
+}
+
+/* The two studio panels keep their grid, with complementary arch corners. */
+.bento-services-card { border-radius: 28px 12px 28px 12px; }
+.bento-organise-card { border-radius: 12px 28px 12px 28px; }
+.services-photo-preview { border-radius: 18px 7px 18px 7px; }
+.service-item-row { border-radius: 12px 12px 12px 4px; }
+.schedule-row-item,
+.search-result-card,
+.saved-event-item { border-radius: 22px 10px 22px 10px; }
+
+.dome-tune-btn,
+.book-lime-cta-btn,
+.explore-claim-btn {
+  border-radius: 14px 14px 14px 5px;
+  min-height: 44px;
+}
+.organise-plan-btn { border-radius: 12px 12px 12px 4px; }
+.floating-bottom-nav-bar { border-radius: 22px 22px 30px 30px; }
+.nav-tab-item {
+  width: 44px;
+  height: 44px;
+}
+.nav-tab-item,
+.nav-tab-item.active-dark-tab { border-radius: 16px 16px 16px 6px; }
+.profile-identity-card { border-radius: 38px 16px 38px 16px; }
+.passes-preview-card { border-radius: 22px 10px 22px 10px; }
+
+@media (max-width: 360px) {
+  .poster-pass-card, .explore-poster-card { --ticket-cut: 8px; }
+}
